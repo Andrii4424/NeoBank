@@ -1,0 +1,130 @@
+﻿/*Default settings*/
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+/*Layout*/
+/*Header part*/
+header {
+    width: 100%;
+    margin-top: 14px;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+header img{
+    width: 180px;
+    height:auto;
+}
+
+/*Footer part*/
+/* БАЗА: mobile-first */
+.site-footer {
+    background: transparent;
+    color: #102A5A;
+    border-top: 1px solid #e5e7eb;
+    padding: 16px 0 20px;
+}
+
+.footer-container {
+    width: min(100% - 32px, 1200px);
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: 1fr; /* 1 колонка на мобиле */
+    row-gap: 16px;
+    text-align: center; /* всё по центру на мобиле */
+}
+
+.footer-col h3 {
+    margin: 0 0 10px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* Соц-иконки — удобные для тапа */
+.social {
+    list-style: none;
+    margin: 8px 0 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.icn {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #f1f5f9;
+    transition: transform .15s, background .15s;
+}
+
+    .icn:hover {
+        transform: translateY(-2px);
+        background: #e2e8f0;
+    }
+
+.icn-img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    display: block;
+}
+
+/* Контакты */
+.contact {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    row-gap: 6px;
+    justify-items: center; /* центр на мобиле */
+}
+
+    .contact a {
+        color: #102A5A;
+        text-decoration: none;
+        overflow-wrap: anywhere; /* чтобы длинная почта не выпирала */
+    }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+/* Низ футера */
+.footer-bottom {
+    width: min(100% - 32px, 1200px);
+    margin: 12px auto 0;
+    padding-top: 10px;
+    border-top: 1px dashed #e5e7eb;
+    color: #64748b;
+    text-align: center;
+}
+
+/* ПЛАНШЕТ И ВЫШЕ: две колонки и левое выравнивание */
+@media (min-width:768px) {
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+        column-gap: 24px;
+        text-align: left;
+    }
+
+    .contact {
+        justify-items: start;
+    }
+
+    .social {
+        justify-content: flex-start;
+    }
+}

@@ -3,13 +3,57 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" href="~/bank-logo-icon.png" asp-append-version="true">
-    <link rel="apple-touch-icon" href="~/bank-logo-icon.png" asp-append-version="true">
+    <link rel="icon" href="~/images/bank-logo-icon.png" asp-append-version="true">
+    <link rel="apple-touch-icon" href="~/images/bank-logo-icon.png" asp-append-version="true">
+    <link rel="stylesheet" href="@Url.Content("~/styles/StyleSheet.css")" />
     <title>@ViewBag.Title</title>
 </head>
 <body>
+    <header>
+        <img src="~/images/bank-logo.png" alt="bank-logo" />
+    </header>
+
     <div>
         @RenderBody()
     </div>
+
+
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-container">
+            <section class="footer-col">
+                <h3>About Us</h3>
+
+                <ul class="social">
+                    <li>
+                        <a href="https://github.com/Andrii4424" class="icn" aria-label="GitHub">
+                            <img src="~/images/social-media-icons/github-logo.svg" alt="GitHub" class="icn-img" asp-append-version="true">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://t.me/Pipsqueak3" class="icn" aria-label="Telegram">
+                            <img src="~/images/social-media-icons/telegram-logo.svg" alt="Telegram" class="icn-img" asp-append-version="true">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="viber://chat?number=%2B380639615125" target="_blank" class="icn" aria-label="Viber">
+                            <img src="~/images/social-media-icons/viber-logo.svg" alt="Viber" class="icn-img" asp-append-version="true">
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="footer-col">
+                <h3>Contact Us</h3>
+                <ul class="contact">
+                    <li>Telegram: <a href="https://t.me/Pipsqueak3">Pipsqueak3</a></li>
+                    <li><a href="mailto:andreyfalchevskiy@gmail.com">andreyfalchevskiy@gmail.com</a></li>
+                </ul>
+            </section>
+        </div>
+
+        <div class="footer-bottom">
+            <small>© 2025 Neobank</small>
+        </div>
+    </footer>
 </body>
 </html>
