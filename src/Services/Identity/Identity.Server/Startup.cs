@@ -1,18 +1,22 @@
-﻿using Identity.Server.Data;
+﻿using dotenv.net;
+using Identity.Server.Data;
 using Identity.Server.Middleware;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using OpenIddict.Server;
+using OpenIddict.Server.AspNetCore;
 using Quartz;
 using static OpenIddict.Abstractions.OpenIddictConstants;
-using OpenIddict.Server.AspNetCore;
-using OpenIddict.Server;
 
 namespace Identity.Server
 {
     public class Startup
     {
         public Startup(IConfiguration configuration)
-            => Configuration = configuration;
+        {
+            DotEnv.Load();
+            Configuration = configuration;
+        }
 
         public IConfiguration Configuration { get; }
 
