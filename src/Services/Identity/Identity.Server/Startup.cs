@@ -1,8 +1,11 @@
 ﻿using Identity.Server.Data;
+using Identity.Server.Middleware;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Quartz;
 using static OpenIddict.Abstractions.OpenIddictConstants;
+using OpenIddict.Server.AspNetCore;
+using OpenIddict.Server;
 
 namespace Identity.Server
 {
@@ -16,10 +19,12 @@ namespace Identity.Server
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddRazorPages();
+            services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDbContext<ApplicationDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
 
                 options.UseOpenIddict();
             });
@@ -53,16 +58,16 @@ namespace Identity.Server
                 // Register the OpenIddict server components.
                 .AddServer(options =>
                 {
+
                     // Enable the authorization, logout, token and userinfo endpoints.
-                    options.SetAuthorizationEndpointUris("connect/authorize")
-                           .SetEndSessionEndpointUris("connect/logout")
-                           .SetIntrospectionEndpointUris("connect/introspect")
-                           .SetTokenEndpointUris("connect/token")
-                           .SetUserInfoEndpointUris("connect/userinfo")
-                           .SetEndUserVerificationEndpointUris("connect/verify");
+                    options.SetAuthorizationEndpointUris("/connect/authorize")
+                           .SetEndSessionEndpointUris("/connect/logout")
+                           .SetIntrospectionEndpointUris("/connect/introspect")
+                           .SetTokenEndpointUris("/connect/token")
+                           .SetUserInfoEndpointUris("/connect/userinfo");
 
                     // Mark the "email", "profile" and "roles" scopes as supported scopes.
-                    options.RegisterScopes(Scopes.Email, Scopes.Profile, Scopes.Roles);
+                    options.RegisterScopes(Scopes.Email, Scopes.Profile, Scopes.Roles, Scopes.OfflineAccess);
 
                     // implicit, password or client credentials.
                     options.AllowAuthorizationCodeFlow()
@@ -105,8 +110,7 @@ namespace Identity.Server
             else
             {
                 app.UseStatusCodePagesWithReExecute("~/error");
-                //app.UseExceptionHandler("~/error");
-
+                app.UseExceptionHandlerMiddleware();
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
@@ -124,6 +128,5 @@ namespace Identity.Server
                 endpoints.MapRazorPages();
             });
         }
-
     }
 }
