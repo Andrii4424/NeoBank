@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bank.API.Domain.Abstractions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Bank.API.Domain.Entities
 {
-    public class BankEntity
+    public class BankEntity : IHasId
     {
         [Key]
         public Guid Id { get; private set; } = Guid.Parse("E2A4A522-8486-46F7-9437-5F5B7E539502");

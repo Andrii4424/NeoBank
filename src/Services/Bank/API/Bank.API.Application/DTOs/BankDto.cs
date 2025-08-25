@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Bank.API.Application.DTO
 {
-    public class BankDTO
+    public class BankDto
     {
         public int Id { get; private set; } = 1;
 

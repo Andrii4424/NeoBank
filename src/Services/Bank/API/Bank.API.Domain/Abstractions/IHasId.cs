@@ -8,7 +8,7 @@ namespace Bank.API.Domain.Abstractions
 {
     public interface IHasId
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; }
     }
 }
 

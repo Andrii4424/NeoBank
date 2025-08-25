@@ -1,5 +1,11 @@
-﻿using Bank.API.Infrastructure.Data;
+﻿using Bank.API.Application.Helpers.Mapping;
+using Bank.API.Application.ServiceContracts.BankServiceContracts;
+using Bank.API.Application.Services.BankServices;
+using Bank.API.Domain.RepositoryContracts;
+using Bank.API.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace Bank.API.WebUI.StartupServicesInjection
 {
@@ -17,7 +23,17 @@ namespace Bank.API.WebUI.StartupServicesInjection
                 }
                 );
 
+            //Repositories injection
+            services.AddScoped(typeof(IGenericRepository<>), typeof(IGenericRepository<>));
+            services.AddScoped(typeof(IBankRepository), typeof(IBankRepository));
 
+            //Services injection
+            services.AddScoped<IBankReadService, BankReadService>();
+            services.AddScoped<IBankUpdateService, BankUpdateService>();
+
+
+            //AutoMapper
+            services.AddAutoMapper(typeof(MappingProfile));
 
             return services;
         }
