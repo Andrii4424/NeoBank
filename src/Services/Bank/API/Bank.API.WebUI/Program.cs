@@ -1,5 +1,9 @@
+using Bank.API.WebUI.StartupServicesInjection;
+
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
+
+AddApplicationServices.AddServices(builder.Services, builder.Configuration);
 
 if (app.Environment.IsDevelopment())
 {
