@@ -10,7 +10,7 @@ namespace Bank.API.Application.DTO
 {
     public class BankDto
     {
-        public int Id { get; private set; } = 1;
+        public Guid Id { get; private set; } = Guid.Parse("E2A4A522-8486-46F7-9437-5F5B7E539502");
 
         public string Name { get; private set; } = "NeoBank";
 
