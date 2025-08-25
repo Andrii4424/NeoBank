@@ -20,7 +20,7 @@ namespace Bank.API.Application.Services.BankServices
             _mapper = mapper;
         }
 
-        public async Task<BankDto> GetBank()
+        public async Task<BankDto> GetBankInfo()
         {
             return _mapper.Map<BankDto>(await _bankRepository.GetValueByIdAsync(SharedMethods.GetBankGuid()));
         }
