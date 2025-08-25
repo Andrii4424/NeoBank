@@ -1,9 +1,10 @@
 using Bank.API.WebUI.StartupServicesInjection;
 
 var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
 
 AddApplicationServices.AddServices(builder.Services, builder.Configuration);
+
+var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
@@ -14,6 +15,11 @@ else
 {
     app.UseHsts();
 }
+
+//Swagger
+//Swagger available in production because its a pet project
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseStaticFiles();
 app.MapControllers();
