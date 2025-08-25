@@ -40,7 +40,7 @@ namespace Bank.API.Domain.Entities
         [StringLength(20)]
         public string ContactPhone { get; set; }
 
-        public DateTime EstablishedDate { get; }
+        public DateTime EstablishedDate { get; set; }
 
         [StringLength(100)]
         public string LegalAddress { get; set; }

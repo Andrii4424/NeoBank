@@ -1,0 +1,97 @@
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Bank.API.Application.DTO
+{
+    public class BankDTO
+    {
+        public int Id { get; private set; } = 1;
+
+        public string Name { get; private set; } = "NeoBank";
+
+        [Required(ErrorMessage ="{0} has to be provided")]
+        [Range(1.0, 5.0, ErrorMessage = "{0} must be between {1} and {2}")]
+        [Display(Name= "Rating")]
+        public double Rating { get; set; }
+
+        [Required(ErrorMessage = "{0} has to be provided")]
+        [Display(Name = "Has license")]
+        public bool HasLicense { get; set; }
+
+        [Required(ErrorMessage = "{0} has to be provided")]
+        [StringLength(40, ErrorMessage = "{0} character limit exceeded {1}")]
+        [Display(Name = "Bank Founder Full Name")]
+        public string BankFounderFullName { get; set; }
+
+        [Required(ErrorMessage = "{0} has to be provided")]
+        [StringLength(40, ErrorMessage = "{0} character limit exceeded {1}")]
+        [Display(Name = "Bank Director Full Name")]
+        public string BankDirectorFullName { get; set; }
+
+        [Required(ErrorMessage = "{0} has to be provided")]
+        [Display(Name = "Capitalization")]
+        public double Capitalization { get; set; }
+
+        [BindNever]
+        public int EmployeesCount { get; set; }
+
+        [BindNever]
+        public int BlockedClientsCount { get; set; }
+
+        [BindNever]
+        public int ClientsCount { get; set; }
+
+        [BindNever]
+        public int ActiveClientsCount { get; set; }
+
+        [StringLength(100)]
+        public string? WebsiteUrl { get; set; }
+
+        [Required(ErrorMessage = "{0} has to be provided")]
+        [StringLength(20, ErrorMessage = "{0} character limit exceeded {1}")]
+        [Display(Name = "Contact Phone")]
+        public string ContactPhone { get; set; }
+
+        [BindNever]
+        public DateTime EstablishedDate { get; }
+
+        [Required(ErrorMessage = "{0} has to be provided")]
+        [StringLength(100, ErrorMessage = "{0} character limit exceeded {1}")]
+        [Display(Name = "Legal Address")]
+        public string LegalAddress { get; set; }
+
+        [Range(0, 10.0, ErrorMessage = "{0} must be between {1} and {2}")]
+        public double PercentageCommissionForBuyingCurrency { get; set; }
+
+        [Range(0, 10.0, ErrorMessage = "{0} must be between {1} and {2}")]
+        public double PercentageCommissionForSellingCurrency { get; set; }
+
+        [Required(ErrorMessage = "{0} has to be provided")]
+        [StringLength(12, ErrorMessage = "{0} character limit exceeded {1}")]
+        [Display(Name = "Swift Code")]
+        public string SwiftCode { get; set; }
+
+        [Required(ErrorMessage = "{0} has to be provided")]
+        [StringLength(20, ErrorMessage = "{0} character limit exceeded {1}")]
+        [Display(Name = "Mfo Code")]
+        public string MfoCode { get; set; }
+
+        [Required(ErrorMessage = "{0} has to be provided")]
+        [StringLength(20, ErrorMessage = "{0} character limit exceeded {1}")]
+        [Display(Name = "Tax Id")]
+        public string TaxId { get; set; }
+
+        [Required(ErrorMessage = "{0} has to be provided")]
+        [StringLength(100, ErrorMessage = "{0} character limit exceeded {1}")]
+        [Display(Name = "Contact Email")]
+        public string ContactEmail { get; set; }
+
+        [BindNever]
+        public DateTime UpdatedAt { get; set; }
+    }
+}
