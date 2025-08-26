@@ -21,6 +21,7 @@ else
 app.UseSwagger();
 app.UseSwaggerUI();
 
+app.UseCors(options=> options.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200", "https://localhost:4200"));
 app.UseStaticFiles();
 app.MapControllers();
 app.UseRouting();

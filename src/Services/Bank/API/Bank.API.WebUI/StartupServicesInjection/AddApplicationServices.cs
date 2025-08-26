@@ -15,6 +15,7 @@ namespace Bank.API.WebUI.StartupServicesInjection
         public static IServiceCollection AddServices(IServiceCollection services, IConfiguration configuration)
         {
             services.AddControllers();
+            services.AddCors();
 
             //Swagger
             services.AddEndpointsApiExplorer();
