@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { BankService } from './../data/services/bank-service';
-import { Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { bank } from '../data/interfaces/bank/bank.interface';
 
 @Component({
   selector: 'bank-info',
@@ -10,10 +11,13 @@ import { Component, inject } from '@angular/core';
 })
 export class BankInfo {
   bankService = inject(BankService);
-  bankInfo : any= null;
+  bankInfo!: bank;
+  private cdr = inject(ChangeDetectorRef);
   constructor(){
     this.bankService.getBankInfo().subscribe(val=>{
       this.bankInfo=val;
+      this.cdr.detectChanges();
+      console.log(this.bankInfo);
     })
   }
 }
