@@ -1,0 +1,123 @@
+.site-footer {
+    background: transparent;
+    color: #102A5A;
+    border-top: 1px solid #e5e7eb;
+    padding: 12px 0 16px;
+}
+
+.footer-container {
+    width: min(100% - 32px, 1200px);
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: 1fr; 
+    row-gap: 4px;
+    text-align: center;
+}
+.footer-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* <-- вместо center */
+    justify-content: center;
+    text-align: left;        /* <-- текст тоже влево */
+    margin-inline: auto;  
+}
+
+.footer-col h3 {
+    margin: 0 0 10px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.social {
+    list-style: none;
+    margin: 8px 0 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.icn {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #f1f5f9;
+    transition: transform .15s, background .15s;
+}
+
+    .icn:hover {
+        transform: translateY(-2px);
+        background: #e2e8f0;
+    }
+
+.icn-img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    display: block;
+}
+
+
+.contact {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    row-gap: 6px;
+    justify-items: center;
+}
+
+    .contact a {
+        color: #102A5A;
+        text-decoration: none;
+        overflow-wrap: anywhere; 
+    }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+.footer-bottom {
+    width: min(100% - 32px, 1200px);
+    margin: 8px auto 0;
+    padding-top: 8px;
+    border-top: 1px dashed #e5e7eb;
+    color: #64748b;
+    text-align: center;
+}
+
+/* Adaptivity */
+@media (max-width:767px) {
+    .footer-col {
+        align-items: center; 
+        text-align: center;
+        padding: 4px 0 28px 0;  
+    }
+
+    .contact {
+        justify-items: center; 
+    }
+
+    .social {
+        justify-content: center; 
+    }
+}
+
+@media (min-width:768px) {
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+        column-gap: 24px;
+        text-align: left;
+    }
+
+    .contact {
+        justify-items: start;
+    }
+
+    .social {
+        justify-content: flex-start;
+    }
+}
