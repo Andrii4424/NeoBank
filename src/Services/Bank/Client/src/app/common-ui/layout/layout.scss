@@ -1,10 +1,16 @@
 /*Header*/
 .layout-header {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    right: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
     border-bottom: 1px solid var(--light-gray-color);
+    background-color: white;
+    z-index: 1000;
 }
 .logo{
     display: flex;
@@ -23,15 +29,14 @@
 
 
 /*Sidebar*/
-.sidebar {
+.menu{
     display: flex;
     flex-direction: row;
     gap:10px;
     padding: 10px 40px;
-    border-bottom: 1px solid var(--light-gray-color);
 }
 
-.sidebar a{
+.menu a{
     text-decoration: none;
     color: black;
     font-size: 20px;
@@ -39,7 +44,26 @@
     padding: 14px 18px;
 }
 
-.sidebar a:hover{
+.sidebar{
+    top: 60px;
+    border-bottom: 1px solid var(--light-gray-color);
+    background-color: white;
+    z-index: 1000;
+}
+
+.sidebar.compact{
+    display: none;
+}
+
+.header-menu{
+    display: none;
+}
+
+.header-menu.compact{
+    display: flex;
+}
+.menu a:hover{
     background-color: var(--light-gray-color);
     border-radius: 14px;
 }
+
