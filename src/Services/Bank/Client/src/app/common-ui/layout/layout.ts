@@ -15,7 +15,7 @@ export class Layout {
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    if(pageYOffset > 40) {
+    if(pageYOffset > 440) {
       this.compact = true;
       console.log('scrolling', pageYOffset);
     }

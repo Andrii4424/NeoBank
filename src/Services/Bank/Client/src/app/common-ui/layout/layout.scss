@@ -4,14 +4,19 @@
     top: 0; 
     left: 0; 
     right: 0;
+    min-height: var(--header-height);
+    max-height: var(--header-height);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
     border-bottom: 1px solid var(--light-gray-color);
     background-color: white;
     z-index: 1000;
 }
+.layout-header >*{
+    margin: 20px 44px;
+}
+
 .logo{
     display: flex;
     align-items: center;
@@ -32,8 +37,8 @@
 .menu{
     display: flex;
     flex-direction: row;
-    gap:10px;
-    padding: 10px 40px;
+    gap:8px;
+    padding: 10px 36px;
 }
 
 .menu a{
@@ -45,14 +50,28 @@
 }
 
 .sidebar{
-    top: 60px;
+    position: sticky;
+    transform: scaleY(1);
+    top: calc(var(--header-height) + 1px); /*+1px for header border*/
     border-bottom: 1px solid var(--light-gray-color);
     background-color: white;
     z-index: 1000;
+    transition: transform 0.24s ease-in-out; 
+    transform-origin: top;
 }
 
 .sidebar.compact{
-    display: none;
+    transform: scaleY(0);
+}
+.sidebar a{
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.12s ease, transform 0.12s ease;
+}
+
+.sidebar.compact a{
+    opacity: 0;
+    transform: translateY(4px);
 }
 
 .header-menu{
@@ -66,4 +85,15 @@
     background-color: var(--light-gray-color);
     border-radius: 14px;
 }
+.header-menu{
+    padding-left: 0px;
+}
 
+/*Main Content*/
+.content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: calc(var(--header-height) + 44px); 
+    background-color: var(--gray-background);
+}
