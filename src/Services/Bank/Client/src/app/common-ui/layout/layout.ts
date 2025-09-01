@@ -2,6 +2,7 @@ import { Component, ElementRef, Host, HostListener, inject, signal, ViewChild } 
 import { RouterOutlet } from '@angular/router';
 import { Footer } from "../footer/footer";
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { SharedService } from '../../data/services/shared-service';
 
 @Component({
   selector: 'app-layout',
@@ -49,7 +50,6 @@ export class Layout {
     }
   }
 
-
   constructor() {
     this.bo.observe(['(max-width: 1440px)']).subscribe(result => {
       this.labtop.set(result.matches);
@@ -61,5 +61,4 @@ export class Layout {
       this.mobile.set(result.matches);
     });
   }
-
 }

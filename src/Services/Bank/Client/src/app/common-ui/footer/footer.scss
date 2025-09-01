@@ -70,13 +70,14 @@
     justify-items: center;
 }
 
-    .contact a {
+    .contact span {
         color: #102A5A;
         text-decoration: none;
-        overflow-wrap: anywhere; 
+        overflow-wrap: anywhere;
+        cursor: pointer; 
     }
 
-        .contact a:hover {
+        .contact span:hover {
             text-decoration: underline;
         }
 
