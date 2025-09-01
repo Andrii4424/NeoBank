@@ -1,4 +1,5 @@
 @import url(./reset.scss);
+@import url(./fonts.scss);
 
 :root {
   --light-gray-color: rgb(231, 231, 231);
@@ -8,6 +9,16 @@
 
 html, body {
   height: 100%;
+}
+body{
+  font-family: "InterLocal", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600; 
 }
 
 .page {
