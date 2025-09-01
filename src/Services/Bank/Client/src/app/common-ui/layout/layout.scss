@@ -30,6 +30,7 @@
     display: none;
     height: 30px;
     width: auto;
+    cursor: pointer;
 }
 
 
@@ -86,8 +87,26 @@
     border-radius: 14px;
 }
 .header-menu{
-    padding-left: 0px;
+    padding-left: 0px; 
 }
+
+//Menu adaptivity
+.header-menu.labtop{
+    display: none !important;
+}
+
+.menu-icon.labtop.chosen{
+    display: block;
+}
+
+#adaptive-menu.closed{
+
+}
+
+#adaptive-menu.open{
+
+}
+
 
 /*Main Content*/
 .content{

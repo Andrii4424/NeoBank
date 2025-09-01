@@ -2,7 +2,7 @@
     <div class="logo">
         <img src="assets/images/bank-logo.png" alt="bank-logo" class="bank-logo">
 
-        <nav class="header-menu menu" [class.compact]="compact">
+        <nav class="header-menu menu" [class.compact]="compact" [class.labtop]="labtop()">
             <a href="#">About Bank</a>
             <a href="#">Cards</a>
             <a href="#">Deposits</a>
@@ -14,15 +14,15 @@
         </nav>
 
 
-        <img src="assets/images/menu/menu.svg" alt="open-menu" class="menu-icon">
-        <img src="assets/images/menu/cross.svg" alt="close-menu" class="menu-icon">
+        <img src="assets/images/menu/menu.svg" alt="open-menu" #openMenu class="menu-icon chosen" [class.labtop]="labtop()">
+        <img src="assets/images/menu/cross.svg" alt="close-menu" #closeMenu class="menu-icon" [class.labtop]="labtop()">
 
     </div>
     <div class="auth">
         auth
     </div>
 </header>
-<aside class="sidebar menu" [class.compact]="compact">
+<aside class="sidebar menu" id="adaptive-menu" [class.compact]="compact" [class.labtop]="labtop()" [class.mobile]="mobile()">
     <a href="#">About Bank</a>
     <a href="#">Cards</a>
     <a href="#">Deposits</a>
