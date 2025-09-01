@@ -94,7 +94,7 @@
 .sidebar.menu.labtop{
     display: none;
 }
-
+/*Labtop adaptivity*/
 .sidebar.menu.labtop.opened{
     position: fixed;
     top: calc(var(--header-height) + 1px); /*+1px for header border*/
@@ -120,6 +120,38 @@
 
 .menu-icon.labtop.chosen{
     display: block;
+}
+
+/*Mobile adaptivity*/
+//Elements with mobile class have labtop class styles 
+.sidebar.menu.mobile{
+    display: none !important;
+}
+.sidebar.menu.mobile.opened{
+    position: fixed;
+    top: calc(var(--header-height) + 1px); /*+1px for header border*/
+    padding: 10px 8px !important;
+    display: flex !important;
+    flex-direction: column;
+    gap: 8px;
+    width: 100dvw;
+    height: calc(100dvh - var(--header-height) - 1px); /*-1px for header border*/
+}
+.sidebar.menu.mobile.opened a{
+    width: calc(100% - 64px);
+}
+
+@media (max-width: 768px) {
+    .layout-header >*{
+        margin: 20px 8px 20px 8px;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .logo{
+        gap: 16px;
+    }
 }
 
 /*Main Content*/
