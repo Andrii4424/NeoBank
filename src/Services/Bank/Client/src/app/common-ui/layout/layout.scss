@@ -91,6 +91,11 @@
 }
 
 //Menu adaptivity
+.sidebar.menu.labtop{
+    display: none;
+}
+
+
 .header-menu.labtop{
     display: none !important;
 }
@@ -98,15 +103,6 @@
 .menu-icon.labtop.chosen{
     display: block;
 }
-
-#adaptive-menu.closed{
-
-}
-
-#adaptive-menu.open{
-
-}
-
 
 /*Main Content*/
 .content{

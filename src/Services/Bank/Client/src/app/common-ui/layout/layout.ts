@@ -19,7 +19,6 @@ export class Layout {
   onWindowScroll() {
     if(pageYOffset > 440) {
       this.compact = true;
-      console.log('scrolling', pageYOffset);
     }
     else {
       this.compact = false;
