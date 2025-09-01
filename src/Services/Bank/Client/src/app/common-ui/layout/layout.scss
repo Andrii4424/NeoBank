@@ -95,6 +95,24 @@
     display: none;
 }
 
+.sidebar.menu.labtop.opened{
+    position: fixed;
+    top: calc(var(--header-height) + 1px); /*+1px for header border*/
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    justify-content: left;
+    left: 0;
+    width: 100dvw;
+    border-right: 1px solid var(--light-gray-color);
+    border-bottom: 1px solid var(--light-gray-color);
+    background-color: white;
+    z-index: 1000;
+    padding: 10px 0 10px 44px;
+}
+
+.sidebar.menu.labtop.opened a{
+    padding: 14px 18px;
+}
 
 .header-menu.labtop{
     display: none !important;
