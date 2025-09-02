@@ -153,3 +153,19 @@ testem.log
 .DS_Store
 Thumbs.db
 
+*.key
+*.pfx
+*.p12
+**/ssl/**/*.key
+# Dev TLS certs (mkcert)
+src/Services/Bank/Client/ssl/
+
+**/ssl/*.pem
+**/ssl/*.key
+
+# Dev TLS certs (mkcert)
+**/ssl/localhost.pem
+**/ssl/localhost-key.pem
+**/ssl/*-key.pem
+**/ssl/*.pfx
+**/ssl/*.p12
