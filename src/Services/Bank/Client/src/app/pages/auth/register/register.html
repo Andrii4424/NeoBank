@@ -1,0 +1,48 @@
+<section class="auth-wrap">
+  <div class="auth-card">
+    <h1 class="auth-title">Create your account</h1>
+
+    <form action="/register" method="post" novalidate>
+      <input type="hidden" name="ReturnUrl" />
+      <div class="val-summary"></div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="Email" type="email" autocomplete="email"
+               placeholder="Enter your email" />
+        <span class="val"></span>
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <input id="password" name="Password" type="password" autocomplete="new-password"
+               placeholder="Create a password" />
+        <span class="val"></span>
+      </div>
+
+      <div class="field">
+        <label for="confirmPassword">Confirm Password</label>
+        <input id="confirmPassword" name="ConfirmPassword" type="password" autocomplete="new-password"
+               placeholder="Confirm your password" />
+        <span class="val"></span>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Sign up</button>
+    </form>
+
+    <div class="divider"><span>or</span></div>
+
+    <form action="/google-login" method="post">
+      <button type="submit" class="btn btn-google">
+        <img src="/images/social-media-icons/google-logo.svg" alt="" class="g-icn" />
+        Continue with Google
+      </button>
+    </form>
+
+    <p class="auth-switch">
+      Already have an account?
+      <a href="/signin" class="auth-link">Sign in</a>
+    </p>
+  </div>
+</section>
+<app-footer></app-footer>
