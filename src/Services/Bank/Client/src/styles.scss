@@ -95,6 +95,24 @@ footer {
   text-decoration: none; 
   font-weight: 600;
 }
+
+.object-info-card{
+  width: 70dvw;
+  max-width: 1120px;
+  background: #fff; 
+  border: 1px solid var(--light-gray-color);
+  border-radius: 8px; 
+  padding: 16px 20px; 
+  box-shadow: 0 4px 14px rgba(16,42,90,.05);
+}
+
+@media (max-width: 768px) {
+  .object-info-card{
+    width: 100dvw;
+    border-radius: 0px; 
+  }
+  
+}
 @media (max-width: 480px) {
   .heading{
     font-size: 20px;

@@ -1,7 +1,9 @@
 <div class="page">
     <header class="layout-header">
         <div class="logo">
-            <img src="assets/images/bank-logo.png" alt="bank-logo" class="bank-logo">
+            <a href="/">
+                <img src="assets/images/bank-logo.png" alt="bank-logo" class="bank-logo">
+            </a>
 
             <nav class="header-menu menu" [class.compact]="compact" [class.labtop]="labtop()">
                 <a href="#">About Bank</a>
@@ -22,7 +24,7 @@
         </div>
     </header>
     <aside class="sidebar menu" #adaptiveMenu id="adaptive-menu" [class.compact]="compact" [class.labtop]="labtop()" [class.mobile]="mobile()">
-        <a href="#">About Bank</a>
+        <a href="/bank-info">About Bank</a>
         <a href="#">Cards</a>
         <a href="#">Deposits</a>
         <a href="#">Credits</a>
