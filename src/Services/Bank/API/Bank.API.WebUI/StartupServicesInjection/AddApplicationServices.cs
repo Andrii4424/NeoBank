@@ -1,5 +1,7 @@
 ﻿using Bank.API.Application.Helpers.Mapping;
+using Bank.API.Application.ServiceContracts;
 using Bank.API.Application.ServiceContracts.BankServiceContracts;
+using Bank.API.Application.Services;
 using Bank.API.Application.Services.BankServices;
 using Bank.API.Domain.Entities.Identity;
 using Bank.API.Domain.RepositoryContracts;
@@ -50,6 +52,9 @@ namespace Bank.API.WebUI.StartupServicesInjection
             services.AddScoped(typeof(IBankRepository), typeof(BankRepository));
 
             //Services injection
+            //Identity
+            services.AddScoped<IIdentityService, IdentityService>();
+
             services.AddScoped<IBankReadService, BankReadService>();
             services.AddScoped<IBankUpdateService, BankUpdateService>();
 
