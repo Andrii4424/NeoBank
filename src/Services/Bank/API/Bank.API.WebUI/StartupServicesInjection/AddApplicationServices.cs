@@ -1,9 +1,11 @@
 ﻿using Bank.API.Application.Helpers.Mapping;
 using Bank.API.Application.ServiceContracts.BankServiceContracts;
 using Bank.API.Application.Services.BankServices;
+using Bank.API.Domain.Entities.Identity;
 using Bank.API.Domain.RepositoryContracts;
 using Bank.API.Infrastructure.Data;
 using Bank.API.Infrastructure.Repository;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -28,6 +30,20 @@ namespace Bank.API.WebUI.StartupServicesInjection
                     options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
                 }
                 );
+
+            //Identity
+            services.AddIdentity<ApplicationUser, ApplicationRole>(options =>{
+                options.Password.RequireDigit = false;             
+                options.Password.RequiredLength = 8;              
+                options.Password.RequireNonAlphanumeric = false;    
+                options.Password.RequireUppercase = false;          
+                options.Password.RequireLowercase = true;          
+                options.Password.RequiredUniqueChars = 0;
+
+            })
+                .AddEntityFrameworkStores<BankAppContext>()
+                .AddDefaultTokenProviders()
+                ;
 
             //Repositories injection
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
