@@ -26,7 +26,7 @@ namespace Bank.API.WebUI.Controllers
 
             if (result.Succeeded) {
                 await _signInManager.SignInAsync(await _identityService.GetUserByEmailAsync(registerDto.Email), isPersistent: rememberMe);
-                return Ok();
+                return Ok(_identityService.GetJwt(await _identityService.GetUserByEmailAsync(registerDto.Email)));
             }
             else
             {
@@ -43,7 +43,7 @@ namespace Bank.API.WebUI.Controllers
 
             if(result.Succeeded)
             {
-                return Ok();
+                return Ok(_identityService.GetJwt(await _identityService.GetUserByEmailAsync(loginDto.Email)));
             }
             else
             {

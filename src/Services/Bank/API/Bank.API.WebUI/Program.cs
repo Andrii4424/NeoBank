@@ -1,6 +1,8 @@
 using Bank.API.WebUI.StartupServicesInjection;
+using DotNetEnv;
 
 var builder = WebApplication.CreateBuilder(args);
+Env.Load();
 
 AddApplicationServices.AddServices(builder.Services, builder.Configuration);
 
