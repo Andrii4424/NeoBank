@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Bank.API.WebUI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class AccountController : ControllerBase
     {
@@ -20,12 +20,12 @@ namespace Bank.API.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostRegister([FromBody] RegisterDto registerDto)
+        public async Task<IActionResult> PostRegister([FromForm] RegisterDto registerDto, [FromForm] bool rememberMe)
         {
             IdentityResult result = await _identityService.RegisterAsync(registerDto);
 
             if (result.Succeeded) {
-                await _signInManager.SignInAsync(await _identityService.GetUserByEmailAsync(registerDto.Email), isPersistent: false);
+                await _signInManager.SignInAsync(await _identityService.GetUserByEmailAsync(registerDto.Email), isPersistent: rememberMe);
                 return Ok();
             }
             else
@@ -34,5 +34,22 @@ namespace Bank.API.WebUI.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<IActionResult> PostLogin([FromForm] LoginDto loginDto, [FromForm] bool rememberMe)
+        {
+            _identityService.IsEmailUniqueAsync(loginDto.Email).Wait();
+
+            var result = await _signInManager.PasswordSignInAsync(loginDto.Email, loginDto.Password, isPersistent: rememberMe, lockoutOnFailure: false);
+
+            if(result.Succeeded)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest("Wrong email or password!");
+            }
+
+        }
     }
 }

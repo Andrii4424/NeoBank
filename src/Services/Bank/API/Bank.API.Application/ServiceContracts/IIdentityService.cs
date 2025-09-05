@@ -14,7 +14,5 @@ namespace Bank.API.Application.ServiceContracts
         public Task<IdentityResult> RegisterAsync(RegisterDto registerDto);
         public Task<bool> IsEmailUniqueAsync(string email);
         public Task<ApplicationUser> GetUserByEmailAsync(string email);
-
-
     }
 }
