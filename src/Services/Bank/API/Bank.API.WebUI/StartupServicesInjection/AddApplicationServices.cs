@@ -7,9 +7,13 @@ using Bank.API.Domain.Entities.Identity;
 using Bank.API.Domain.RepositoryContracts;
 using Bank.API.Infrastructure.Data;
 using Bank.API.Infrastructure.Repository;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
 
 namespace Bank.API.WebUI.StartupServicesInjection
@@ -18,7 +22,14 @@ namespace Bank.API.WebUI.StartupServicesInjection
     {
         public static IServiceCollection AddServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddControllers();
+            services.AddControllers(options =>
+            {
+                var policy = new Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder()
+                                 .RequireAuthenticatedUser()
+                                 .Build();
+
+                options.Filters.Add(new AuthorizeFilter(policy));
+            });
             services.AddCors();
 
             //Swagger
@@ -33,8 +44,31 @@ namespace Bank.API.WebUI.StartupServicesInjection
                 }
                 );
 
+            //Jwt verification
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = configuration["Jwt:Issuer"],
+                    ValidAudience = configuration["Jwt:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Convert.FromBase64String(configuration["Jwt:Key"]!)),
+                    ClockSkew = TimeSpan.FromMinutes(2)
+                };
+            });
+            services.AddAuthorization(options => {});
+
             //Identity
-            services.AddIdentity<ApplicationUser, ApplicationRole>(options =>{
+            services.AddIdentityCore<ApplicationUser>(options =>{
                 options.Password.RequireDigit = false;             
                 options.Password.RequiredLength = 8;              
                 options.Password.RequireNonAlphanumeric = false;    
@@ -43,9 +77,9 @@ namespace Bank.API.WebUI.StartupServicesInjection
                 options.Password.RequiredUniqueChars = 0;
 
             })
+                .AddRoles<ApplicationRole>()
                 .AddEntityFrameworkStores<BankAppContext>()
-                .AddDefaultTokenProviders()
-                ;
+                .AddDefaultTokenProviders();
 
             //Repositories injection
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));

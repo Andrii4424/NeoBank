@@ -2,6 +2,7 @@
 using Bank.API.Application.Helpers.HelperClasses;
 using Bank.API.Application.ServiceContracts.BankServiceContracts;
 using Bank.API.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,6 +22,7 @@ namespace Bank.API.WebUI.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> BankInfo()
         {
             BankDto bankDto = await _bankReadService.GetBankInfo();
@@ -28,7 +30,7 @@ namespace Bank.API.WebUI.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPut]
         public async Task<IActionResult> UpdateBank([FromBody] BankDto bankDto)
         {
             OperationResult result = await _bankUpdateService.UpdateBank(bankDto);

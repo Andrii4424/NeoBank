@@ -22,5 +22,9 @@ namespace Bank.API.Application.DTOs.Identity
         [Compare("Password", ErrorMessage = "Passwords do not match")]
         public string ConfirmPassword { get; set; }
 
+        [Required(ErrorMessage = "{0} has to be provided")]
+        [Display(Name = "Remember me")]
+        public bool RememberMe { get; set; }
+
     }
 }
