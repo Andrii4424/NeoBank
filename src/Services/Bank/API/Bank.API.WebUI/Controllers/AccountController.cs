@@ -27,7 +27,7 @@ namespace Bank.API.WebUI.Controllers
             IdentityResult result = await _identityService.RegisterAsync(registerDto);
 
             if (result.Succeeded) {
-                return Ok(_identityService.GetAccessToken(await _identityService.GetUserByEmailAsync(registerDto.Email)));
+                return Ok(await _identityService.GetAccessToken(await _identityService.GetUserByEmailAsync(registerDto.Email)));
             }
             else
             {
@@ -46,7 +46,7 @@ namespace Bank.API.WebUI.Controllers
 
             if(result)
             {
-                return Ok(_identityService.GetAccessToken(await _identityService.GetUserByEmailAsync(loginDto.Email)));
+                return Ok(await _identityService.GetAccessToken(await _identityService.GetUserByEmailAsync(loginDto.Email)));
             }
             else
             {

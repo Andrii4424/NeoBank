@@ -19,5 +19,8 @@ namespace Bank.API.Domain.Entities.Identity
         public string? Language { get; set; }
 
         public string? AvatarPath { get; set; }
+
+        public string? RefreshToken { get; set; }
+        public DateTime? RefreshTokenExpiryTime { get; set; }
     }
 }

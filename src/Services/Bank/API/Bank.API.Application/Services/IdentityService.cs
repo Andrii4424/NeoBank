@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
+using System.Security.Cryptography;
 
 namespace Bank.API.Application.Services
 {
@@ -29,7 +30,7 @@ namespace Bank.API.Application.Services
 
         public async Task<IdentityResult> RegisterAsync(RegisterDto registerDto)
         {
-            if(!await IsEmailUniqueAsync(registerDto.Email))
+            if (!await IsEmailUniqueAsync(registerDto.Email))
             {
                 return IdentityResult.Failed(new IdentityError { Description = "Email is already in use." });
             }
@@ -52,7 +53,7 @@ namespace Bank.API.Application.Services
 
         public async Task<ApplicationUser> GetUserByEmailAsync(string email)
         {
-            if(IsEmailUniqueAsync(email).Result)
+            if (IsEmailUniqueAsync(email).Result)
             {
                 throw new ArgumentException("User not found");
             }
@@ -61,6 +62,7 @@ namespace Bank.API.Application.Services
 
         public async Task<AuthenticationResponse> GetAccessToken(ApplicationUser user)
         {
+            //Access Token
             Claim[] claim = new Claim[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, Convert.ToString(user.Id)),
@@ -84,11 +86,33 @@ namespace Bank.API.Application.Services
             JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
             string token = tokenHandler.WriteToken(jwtSecurityToken);
 
+            //Refresh Token
+            string refreshToken = GenerateRefreshToken();
+            await RecordRefreshToken(refreshToken, user);
+
             return new AuthenticationResponse
             {
                 AccessToken = token,
-                ExpiresOn = jwtSecurityToken.ValidTo
+                AccessExpiresOn = jwtSecurityToken.ValidTo,
+                RefreshToken = refreshToken,
             };
+        }
+
+        private string GenerateRefreshToken()
+        {
+            Byte[] bytes = new Byte[64];
+            var random = RandomNumberGenerator.Create();
+
+            random.GetBytes(bytes);
+
+            return Convert.ToBase64String(bytes);
+        }
+
+        private async Task RecordRefreshToken(string refreshToken, ApplicationUser user)
+        {
+            user.RefreshToken = refreshToken;
+            user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(Convert.ToDouble(_configuration["RefreshToken:Expiration_days"]));
+            await _userManager.UpdateAsync(user);
         }
     }
 }
