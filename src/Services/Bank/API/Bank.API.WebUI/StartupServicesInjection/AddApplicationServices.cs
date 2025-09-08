@@ -59,9 +59,9 @@ namespace Bank.API.WebUI.StartupServicesInjection
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer = configuration["Jwt:Issuer"],
-                    ValidAudience = configuration["Jwt:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Convert.FromBase64String(configuration["Jwt:Key"]!)),
+                    ValidIssuer = configuration["AccessToken:Issuer"],
+                    ValidAudience = configuration["AccessToken:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Convert.FromBase64String(configuration["AccessToken:Key"]!)),
                     ClockSkew = TimeSpan.FromMinutes(2)
                 };
             });

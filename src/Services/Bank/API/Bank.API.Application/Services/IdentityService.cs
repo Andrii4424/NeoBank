@@ -59,7 +59,7 @@ namespace Bank.API.Application.Services
             return await _userManager.FindByEmailAsync(email);
         }
 
-        public async Task<AuthenticationResponse> GetJwt(ApplicationUser user)
+        public async Task<AuthenticationResponse> GetAccessToken(ApplicationUser user)
         {
             Claim[] claim = new Claim[]
             {
@@ -69,15 +69,15 @@ namespace Bank.API.Application.Services
                 new Claim(JwtRegisteredClaimNames.Iat, EpochTime.GetIntDate(DateTime.UtcNow).ToString(),ClaimValueTypes.Integer64)
             };
 
-            SymmetricSecurityKey securityKey = new SymmetricSecurityKey(Convert.FromBase64String(_configuration["Jwt:Key"]!));
+            SymmetricSecurityKey securityKey = new SymmetricSecurityKey(Convert.FromBase64String(_configuration["AccessToken:Key"]!));
 
             SigningCredentials signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             JwtSecurityToken jwtSecurityToken = new JwtSecurityToken(
-                issuer: _configuration["Jwt:Issuer"],
-                audience: _configuration["Jwt:Audience"],
+                issuer: _configuration["AccessToken:Issuer"],
+                audience: _configuration["AccessToken:Audience"],
                 claims: claim,
-                expires: DateTime.UtcNow.AddMinutes(Convert.ToDouble(_configuration["Jwt:Expiration_minutes"])),
+                expires: DateTime.UtcNow.AddMinutes(Convert.ToDouble(_configuration["AccessToken:Expiration_minutes"])),
                 signingCredentials: signingCredentials
                 );
 
