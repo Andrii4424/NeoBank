@@ -12,8 +12,10 @@ namespace Bank.API.Application.ServiceContracts
     public interface IIdentityService
     {
         public Task<IdentityResult> RegisterAsync(RegisterDto registerDto);
+        public Task LogoutAsync(ApplicationUser? user);
         public Task<bool> IsEmailUniqueAsync(string email);
         public Task<ApplicationUser> GetUserByEmailAsync(string email);
         public Task<AuthenticationResponse> GetAccessToken(ApplicationUser user);
+        public Task<AuthenticationResponse?> CheckAndUpdateRefreshTokenAsync(string refreshToken);
     }
 }

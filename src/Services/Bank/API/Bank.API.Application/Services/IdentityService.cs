@@ -12,6 +12,7 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
 using System.Security.Cryptography;
+using Microsoft.EntityFrameworkCore;
 
 namespace Bank.API.Application.Services
 {
@@ -43,6 +44,16 @@ namespace Bank.API.Application.Services
             IdentityResult result = await _userManager.CreateAsync(user, registerDto.Password);
 
             return result;
+        }
+
+        public async Task LogoutAsync(ApplicationUser? user)
+        {
+            if (user != null) { 
+                user.RefreshToken = null;
+                user.RefreshTokenExpiryTime = null;
+                await _userManager.UpdateAsync(user);
+                await _userManager.UpdateSecurityStampAsync(user);
+            }
         }
 
         public async Task<bool> IsEmailUniqueAsync(string email)
@@ -95,8 +106,20 @@ namespace Bank.API.Application.Services
                 AccessToken = token,
                 AccessExpiresOn = jwtSecurityToken.ValidTo,
                 RefreshToken = refreshToken,
+                RefreshExpiresOn = DateTime.UtcNow.AddDays(Convert.ToDouble(_configuration["RefreshToken:Expiration_days"]))
             };
         }
+
+        public async Task<AuthenticationResponse?> CheckAndUpdateRefreshTokenAsync(string refreshToken)
+        {
+            ApplicationUser? user = await _userManager.Users.FirstOrDefaultAsync(u=> u.RefreshToken == refreshToken);
+            if(user == null || user.RefreshTokenExpiryTime < DateTime.UtcNow)
+            {
+                return null;
+            }
+            return await GetAccessToken(user);
+        }
+
 
         private string GenerateRefreshToken()
         {

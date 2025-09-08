@@ -11,5 +11,6 @@ namespace Bank.API.Application.DTOs.Identity
         public string AccessToken { get; set; }
         public DateTime AccessExpiresOn { get; set; }
         public string RefreshToken { get; set; }
+        public DateTime RefreshExpiresOn { get; set; }
     }
 }
