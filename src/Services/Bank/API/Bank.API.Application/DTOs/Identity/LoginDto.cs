@@ -16,9 +16,5 @@ namespace Bank.API.Application.DTOs.Identity
         [Required(ErrorMessage = "{0} has to be provided")]
         [Display(Name = "Password")]
         public string Password { get; set; }
-
-        [Required(ErrorMessage = "{0} has to be provided")]
-        [Display(Name = "Remember me")]
-        public bool RememberMe { get; set; }
     }
 }

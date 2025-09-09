@@ -43,7 +43,7 @@ namespace Bank.API.WebUI.Controllers
         {
             if(await _identityService.IsEmailUniqueAsync(loginDto.Email))
             {
-                return BadRequest("Wrong email or password!");
+                return Unauthorized("Wrong email or password!");
             }
             bool passwordResult = await _userManager.CheckPasswordAsync(await _identityService.GetUserByEmailAsync(loginDto.Email), loginDto.Password);
 
@@ -55,7 +55,7 @@ namespace Bank.API.WebUI.Controllers
             }
             else
             {
-                return BadRequest("Wrong email or password!");
+                return Unauthorized("Wrong email or password!");
             }
         }
 

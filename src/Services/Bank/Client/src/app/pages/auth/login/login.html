@@ -2,22 +2,20 @@
   <div class="auth-card">
     <h1 class="auth-title">Sign in to NeoBank</h1>
 
-    <form action="/login" method="post" class="auth-form" novalidate>
+    <form action="/login" method="post" class="auth-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <input type="hidden" name="ReturnUrl" />
 
       <div class="val-summary"></div>
 
       <div class="field">
         <label for="email">Email</label>
-        <input id="email" name="email" type="email" autocomplete="email"
-               placeholder="Enter your email" />
+        <input id="email" formControlName="email" name="email" type="email" autocomplete="email" placeholder="Enter your email" />
         <span class="val"></span>
       </div>
 
       <div class="field">
         <label for="password">Password</label>
-        <input id="password" name="password" type="password" autocomplete="current-password"
-               placeholder="Enter your password" />
+        <input id="password" formControlName="password" name="password" type="password" autocomplete="current-password"placeholder="Enter your password" />
         <span class="val"></span>
       </div>
 
