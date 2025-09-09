@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { Footer } from "../../../common-ui/footer/footer";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../../../services/auth/auth-service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../data/services/auth/auth-service';
 
 @Component({
   selector: 'app-login',

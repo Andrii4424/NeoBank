@@ -1,9 +1,8 @@
-import { Login } from './../../pages/auth/login/login';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { IAccessToken } from '../../data/interfaces/auth/access-token.interface';
 import { tap } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
+import { IAccessToken } from '../../interfaces/auth/access-token.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +40,6 @@ export class AuthService {
         this.cookieService.set("accessTokenExpires", new Date(val.expirationTime).toISOString())
       })
     )
-
   }
 
 }

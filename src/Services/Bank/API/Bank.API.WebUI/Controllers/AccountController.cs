@@ -98,5 +98,11 @@ namespace Bank.API.WebUI.Controllers
             return Ok(new AccessTokenDto(result.AccessToken, result.AccessExpiresOn));
         }
 
+        [HttpPost]
+        public async Task<IActionResult> TestRequest()
+        {
+            return NoContent();
+        }
+        
     }
 }
