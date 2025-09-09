@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Footer } from "../../../common-ui/footer/footer";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../../services/auth/auth-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,8 @@ import { AuthService } from '../../../services/auth/auth-service';
   styleUrl: './login.scss'
 })
 export class Login {
-  authService = inject(AuthService)
+  authService = inject(AuthService);
+  router = inject(Router);
 
   loginForm = new FormGroup({
     email: new FormControl(null, Validators.required),
@@ -23,6 +25,7 @@ export class Login {
       this.authService.login(this.loginForm.value).subscribe({
         next:(res)=>{
           console.log("Success!", res)
+          this.router.navigate([''])          
         }, 
         error: (err)=>{
           console.error('Login failed', err);

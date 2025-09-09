@@ -11,10 +11,10 @@ namespace Bank.API.Application.DTOs.Identity
         public string AccessToken { get; set; }
         public DateTime ExpirationTime { get; set; }
 
-        public AccessTokenDto(string accessToken, DateTime expirationTime)
+        public AccessTokenDto(string AccessToken, DateTime ExpirationTime)
         {
-            AccessToken = accessToken;
-            ExpirationTime = expirationTime;
+            this.AccessToken = AccessToken;
+            this.ExpirationTime = ExpirationTime;
         }
     }
 }
