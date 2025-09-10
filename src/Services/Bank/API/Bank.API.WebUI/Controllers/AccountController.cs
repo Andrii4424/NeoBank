@@ -67,7 +67,6 @@ namespace Bank.API.WebUI.Controllers
             return NoContent();
         }
 
-
         [HttpPost]
         public async Task<IActionResult> Refresh()
         {
@@ -92,17 +91,12 @@ namespace Bank.API.WebUI.Controllers
             {
                 HttpOnly = true,
                 Secure = true,
-                SameSite = SameSiteMode.Lax,
+                SameSite = SameSiteMode.None,
                 Expires = result.RefreshExpiresOn
             });
-            return Ok(new AccessTokenDto(result.AccessToken, result.AccessExpiresOn));
-        }
 
-        [HttpPost]
-        public async Task<IActionResult> TestRequest()
-        {
-            return NoContent();
-        }
-        
+
+            return Ok(new AccessTokenDto(result.AccessToken, result.AccessExpiresOn));
+        }        
     }
 }

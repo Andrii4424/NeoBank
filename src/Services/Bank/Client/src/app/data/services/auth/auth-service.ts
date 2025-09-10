@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { tap } from 'rxjs';
+import { catchError, tap, throwError } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { IAccessToken } from '../../interfaces/auth/access-token.interface';
 
@@ -37,7 +37,33 @@ export class AuthService {
     ).pipe(
       tap(val=>{
         this.cookieService.set("accessToken", val.accessToken);
-        this.cookieService.set("accessTokenExpires", new Date(val.expirationTime).toISOString())
+        this.cookieService.set("accessTokenExpires", new Date(val.expirationTime).toISOString());
+        
+        this.accessToken = val.accessToken;
+        this.expiresOn = new Date(val.expirationTime);
+        console.log(new Date(val.expirationTime));
+      })
+    )
+  }
+
+  refresh(){
+    return this.http.post<IAccessToken>(`${this.baseUrl}Refresh`, null, {withCredentials: true,})
+    .pipe(
+      catchError(err =>{
+        this.cookieService.delete("accessToken");
+        this.cookieService.delete("accessTokenExpires");
+
+        this.accessToken=null;
+        this.expiresOn=null;
+
+        return throwError(() => err);
+      }),
+      tap(val=>{
+          this.accessToken = val.accessToken;
+          this.expiresOn = new Date(val.expirationTime);
+
+          this.cookieService.set("accessToken", val.accessToken);
+          this.cookieService.set("accessTokenExpires", new Date(val.expirationTime).toISOString())
       })
     )
   }

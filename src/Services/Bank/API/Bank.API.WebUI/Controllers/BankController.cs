@@ -43,5 +43,12 @@ namespace Bank.API.WebUI.Controllers
                 return BadRequest(result.ErrorMessage);
             }
         }
+
+
+        [HttpPost]
+        public async Task<IActionResult> TestRequest()
+        {
+            return NoContent();
+        }
     }
 }

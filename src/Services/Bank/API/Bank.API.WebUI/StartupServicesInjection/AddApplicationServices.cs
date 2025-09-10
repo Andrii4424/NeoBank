@@ -62,7 +62,7 @@ namespace Bank.API.WebUI.StartupServicesInjection
                     ValidIssuer = configuration["AccessToken:Issuer"],
                     ValidAudience = configuration["AccessToken:Audience"],
                     IssuerSigningKey = new SymmetricSecurityKey(Convert.FromBase64String(configuration["AccessToken:Key"]!)),
-                    ClockSkew = TimeSpan.FromMinutes(2)
+                    ClockSkew = TimeSpan.FromMinutes(0)
                 };
             });
             services.AddAuthorization(options => {});

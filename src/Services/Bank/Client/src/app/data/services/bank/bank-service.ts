@@ -9,6 +9,6 @@ export class BankService {
 
 
   testRequest(){
-    return this.http.post('https://localhost:7280/api/Account/TestRequest', "");
+    return this.http.post('https://localhost:7280/api/Bank', "");
   }
 }
