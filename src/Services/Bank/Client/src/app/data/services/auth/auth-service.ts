@@ -3,13 +3,15 @@ import { inject, Injectable } from '@angular/core';
 import { catchError, tap, throwError } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { IAccessToken } from '../../interfaces/auth/access-token.interface';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  http = inject(HttpClient)
-  cookieService = inject(CookieService)
+  http = inject(HttpClient);
+  router = inject(Router)
+  cookieService = inject(CookieService);
   
   baseUrl = "https://localhost:7280/api/Account/";
 
@@ -55,7 +57,8 @@ export class AuthService {
 
         this.accessToken=null;
         this.expiresOn=null;
-
+        
+        this.router.navigate(['/login'], {queryParams: {error: "sessionExpired"}})
         return throwError(() => err);
       }),
       tap(val=>{

@@ -1,5 +1,6 @@
 <section class="auth-wrap">
-  <div class="auth-card">
+  <span [class.disabled]="!displaySessionError()" class="error mb-8">Your session has expired. Please sign in again.</span>
+  <div class="auth-card" (click)="displaySessionError.set(false)">
     <h1 class="auth-title">Sign in to NeoBank</h1>
 
     <form action="/login" method="post" class="auth-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">

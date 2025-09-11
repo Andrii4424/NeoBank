@@ -1,7 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Footer } from "../../../common-ui/footer/footer";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../data/services/auth/auth-service';
 
 @Component({
@@ -13,6 +13,19 @@ import { AuthService } from '../../../data/services/auth/auth-service';
 export class Login {
   authService = inject(AuthService);
   router = inject(Router);
+  displaySessionError = signal<boolean>(false)
+  constructor(private activatedRoute: ActivatedRoute){
+    
+  }
+
+  ngOnInit(){
+    this.activatedRoute.queryParams.subscribe(params =>{
+      if(params["error"]==="sessionExpired"){
+        this.displaySessionError.set(true);
+      }
+    });
+  }
+
 
   loginForm = new FormGroup({
     email: new FormControl(null, Validators.required),
@@ -37,5 +50,4 @@ export class Login {
       console.log("Not valid form")
     }
   }
-
 }

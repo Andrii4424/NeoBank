@@ -12,6 +12,7 @@
   --heavy-dark-primary-color: #102A5A;
   --heaviest-dark-primary-color: #0B1220;
   --gray-primary-color: #5a606e;
+  --primary-red-color:#B71C1C;
 }
 
 html, body {
@@ -41,7 +42,21 @@ h1, h2, h3, h4, h5, h6 {
 footer {
   margin-top: auto;
 }
+//Margins
+.mb-8{
+  margin-bottom: 8px;
+}
+.mt-8{
+  margin-top: 8px;
+}
+.mr-8{
+  margin-right: 8px;
+}
+.ml-8{
+  margin-left: 8px;
+}
 
+//Fonts
 .heading{
   color: var(--heavy-dark-primary-color);
   font-size: 24px;
@@ -71,6 +86,7 @@ footer {
   font-size: 14px;
 }
 
+//Buttons
 .btn-light-primary{
   border-radius: 8px;
   background-color: var(--light-primary-color);
@@ -96,6 +112,7 @@ footer {
   font-weight: 600;
 }
 
+//Additional common styles
 .object-info-card{
   width: 70dvw;
   max-width: 1120px;
@@ -104,6 +121,13 @@ footer {
   border-radius: 8px; 
   padding: 16px 20px; 
   box-shadow: 0 4px 14px rgba(16,42,90,.05);
+}
+
+.error{
+  color: var(--primary-red-color);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 30px;
 }
 
 @media (max-width: 768px) {
