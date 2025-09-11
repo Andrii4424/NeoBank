@@ -130,6 +130,18 @@ footer {
   line-height: 30px;
 }
 
+.error-block{
+  display: flex;
+  align-items: center;
+}
+.error-block span{
+  text-align: center;
+  color: var(--primary-red-color);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
 @media (max-width: 768px) {
   .object-info-card{
     width: 100dvw;

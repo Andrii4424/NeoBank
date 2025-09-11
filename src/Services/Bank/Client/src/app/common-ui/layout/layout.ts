@@ -1,12 +1,12 @@
 import { Component, ElementRef, Host, HostListener, inject, signal, ViewChild } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { Footer } from "../footer/footer";
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { SharedService } from '../../data/services/shared-service';
 
 @Component({
   selector: 'app-layout',
-  imports: [RouterOutlet, Footer],
+  imports: [RouterOutlet, Footer, RouterLink],
   templateUrl: './layout.html',
   styleUrl: './layout.scss'
 })

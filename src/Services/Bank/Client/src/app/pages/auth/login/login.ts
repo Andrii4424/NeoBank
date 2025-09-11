@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, ContentChild, ElementRef, inject, signal, ViewChild } from '@angular/core';
 import { Footer } from "../../../common-ui/footer/footer";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -13,7 +13,10 @@ import { AuthService } from '../../../data/services/auth/auth-service';
 export class Login {
   authService = inject(AuthService);
   router = inject(Router);
-  displaySessionError = signal<boolean>(false)
+  displaySessionError = signal<boolean>(false);
+  displayLoginError = signal<boolean>(false);
+  loginFormErrorMessage :string |null =null;
+
   constructor(private activatedRoute: ActivatedRoute){
     
   }
@@ -41,13 +44,16 @@ export class Login {
           this.router.navigate([''])          
         }, 
         error: (err)=>{
-          console.error('Login failed', err);
+          this.displayLoginError.set(true);
+          this.loginFormErrorMessage=err.error;
+          ;
         }
 
       })
     }
     else{
-      console.log("Not valid form")
+      this.displayLoginError.set(true);
+      console.log("Not valid form");
     }
   }
 }

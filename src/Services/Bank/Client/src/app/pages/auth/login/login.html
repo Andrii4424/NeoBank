@@ -1,6 +1,6 @@
 <section class="auth-wrap">
   <span [class.disabled]="!displaySessionError()" class="error mb-8">Your session has expired. Please sign in again.</span>
-  <div class="auth-card" (click)="displaySessionError.set(false)">
+  <div class="auth-card" (click)="displaySessionError.set(false); displayLoginError.set(false)" >
     <h1 class="auth-title">Sign in to NeoBank</h1>
 
     <form action="/login" method="post" class="auth-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -20,12 +20,8 @@
         <span class="val"></span>
       </div>
 
-      <div class="field row">
-        <label class="chk">
-          <input id="remember" name="rememberMe" type="checkbox" />
-          <span>Remember me</span>
-        </label>
-        <a class="muted" href="#">Forgot password?</a>
+      <div class="field row error-block">
+        <span [class.disabled]="!displayLoginError()">{{loginFormErrorMessage}}</span>
       </div>
 
       <button type="submit" class="btn btn-primary">Sign In</button>
@@ -36,6 +32,7 @@
     <p class="auth-switch">
       Don’t have an account?
       <a href="/signup" class="auth-link">Sign up</a>
+      <a class="muted" href="#">Forgot password?</a>
     </p>
   </div>
 </section>

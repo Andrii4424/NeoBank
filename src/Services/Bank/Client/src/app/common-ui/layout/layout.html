@@ -1,7 +1,7 @@
 <div class="page">
     <header class="layout-header">
         <div class="logo">
-            <a href="/">
+            <a [routerLink]="['/']">
                 <img src="assets/images/bank-logo.png" alt="bank-logo" class="bank-logo">
             </a>
 
@@ -24,7 +24,7 @@
         </div>
     </header>
     <aside class="sidebar menu" #adaptiveMenu id="adaptive-menu" [class.compact]="compact" [class.labtop]="labtop()" [class.mobile]="mobile()">
-        <a href="/bank-info">About Bank</a>
+        <a [routerLink]="['/bank-info']">About Bank</a>
         <a href="#">Cards</a>
         <a href="#">Deposits</a>
         <a href="#">Credits</a>
