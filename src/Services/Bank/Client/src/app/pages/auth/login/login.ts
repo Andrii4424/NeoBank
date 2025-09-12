@@ -1,21 +1,24 @@
+import { SharedService } from './../../../data/services/shared-service';
 import { Component, ContentChild, ElementRef, inject, signal, ViewChild } from '@angular/core';
 import { Footer } from "../../../common-ui/footer/footer";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../data/services/auth/auth-service';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-login',
-  imports: [Footer, ReactiveFormsModule],
+  imports: [Footer, ReactiveFormsModule, RouterLink],
   templateUrl: './login.html',
   styleUrl: './login.scss'
 })
 export class Login {
+  sharedService = inject(SharedService);
   authService = inject(AuthService);
   router = inject(Router);
   displaySessionError = signal<boolean>(false);
   displayLoginError = signal<boolean>(false);
-  loginFormErrorMessage :string |null =null;
+  loginFormErrorMessage :string[] =[];
 
   constructor(private activatedRoute: ActivatedRoute){
     
@@ -39,21 +42,19 @@ export class Login {
     if(this.loginForm.valid){
       //@ts-ignore
       this.authService.login(this.loginForm.value).subscribe({
-        next:(res)=>{
-          console.log("Success!", res)
+        next:()=>{
           this.router.navigate([''])          
         }, 
         error: (err)=>{
           this.displayLoginError.set(true);
-          this.loginFormErrorMessage=err.error;
-          ;
+          this.loginFormErrorMessage=this.sharedService.serverResponseErrorToArray(err);
         }
 
       })
     }
     else{
       this.displayLoginError.set(true);
-      this.loginFormErrorMessage="All login fields must be filled in";
+      this.loginFormErrorMessage.push("All login fields must be filled in");
     }
   }
 }

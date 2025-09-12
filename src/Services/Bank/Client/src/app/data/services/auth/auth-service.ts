@@ -43,7 +43,6 @@ export class AuthService {
         
         this.accessToken = val.accessToken;
         this.expiresOn = new Date(val.expirationTime);
-        console.log(new Date(val.expirationTime));
       })
     )
   }
@@ -71,4 +70,22 @@ export class AuthService {
     )
   }
 
+  register(payload:{email: string |null, password:string |null, confirmPassword:string |null}){
+    const fd = new FormData();
+    fd.append("Email", payload.email!);
+    fd.append("Password", payload.password!);
+    fd.append("ConfirmPassword", payload.confirmPassword!);
+
+    return this.http.post<IAccessToken>(`${this.baseUrl}Register`, fd).pipe(
+      tap({
+        next: (res=>{
+          this.cookieService.set("accessToken", res.accessToken);
+          this.cookieService.set("accessTokenExpires", new Date(res.expirationTime).toISOString());
+          
+          this.accessToken = res.accessToken;
+          this.expiresOn = new Date(res.expirationTime);
+        })
+      })
+    );
+  }
 }

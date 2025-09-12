@@ -11,20 +11,20 @@
       <div class="field">
         <label for="email">Email</label>
         <input id="email" formControlName="email" name="email" type="email" autocomplete="email" placeholder="Enter your email" />
-        <span class="val"></span>
       </div>
 
       <div class="field">
         <label for="password">Password</label>
         <input id="password" formControlName="password" name="password" type="password" autocomplete="current-password"placeholder="Enter your password" />
-        <span class="val"></span>
       </div>
 
       <div class="field error-block">
         <a class="muted" href="#">Forgot password?</a>
 
-        <ul [class.disabled]="!displayLoginError()">
-          <li>{{loginFormErrorMessage}}</li>
+        <ul class="error-list" [class.disabled]="!displayLoginError()">
+          @for (error of loginFormErrorMessage; track $index) {
+            <li>{{error}}</li>
+          }
         </ul>
       </div>
 
@@ -35,7 +35,7 @@
 
     <p class="auth-switch">
       Don’t have an account?
-      <a href="/signup" class="auth-link">Sign up</a>
+      <a routerLink="/signup" class="auth-link">Sign up</a>
     </p>
   </div>
 </section>

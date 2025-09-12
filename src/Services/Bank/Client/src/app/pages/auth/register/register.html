@@ -1,39 +1,41 @@
 <section class="auth-wrap">
-  <div class="auth-card">
+  <div class="auth-card" (click)="displayRegisterError.set(false)">
     <h1 class="auth-title">Create your account</h1>
 
-    <form action="/register" method="post" novalidate>
+    <form action="/register" method="post" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <input type="hidden" name="ReturnUrl" />
       <div class="val-summary"></div>
 
       <div class="field">
         <label for="email">Email</label>
-        <input id="email" name="Email" type="email" autocomplete="email"
-               placeholder="Enter your email" />
-        <span class="val"></span>
+        <input id="email" name="Email" type="email" autocomplete="email" placeholder="Enter your email" formControlName="email" />
       </div>
 
       <div class="field">
         <label for="password">Password</label>
-        <input id="password" name="Password" type="password" autocomplete="new-password"
-               placeholder="Create a password" />
-        <span class="val"></span>
+        <input id="password" name="Password" type="password" autocomplete="new-password" placeholder="Create a password" formControlName="password" />
       </div>
 
       <div class="field">
         <label for="confirmPassword">Confirm Password</label>
-        <input id="confirmPassword" name="ConfirmPassword" type="password" autocomplete="new-password"
-               placeholder="Confirm your password" />
-        <span class="val"></span>
+        <input id="confirmPassword" name="ConfirmPassword" type="password" autocomplete="new-password" placeholder="Confirm your password" formControlName="confirmPassword"/>
       </div>
 
+      <div class="field error-block">
+        <ul [class.enabled]="displayRegisterError()" class="error-list">
+          @for (error of registerErrorMessage; track $index) {
+            <li>{{error}}</li>
+          }
+        </ul>
+      </div>
+      
       <button type="submit" class="btn btn-primary">Sign up</button>
     </form>
 
     <div class="divider"></div>
     <p class="auth-switch">
       Already have an account?
-      <a href="/login" class="auth-link">Sign in</a>
+      <a routerLink="/login" class="auth-link">Sign in</a>
     </p>
   </div>
 </section>

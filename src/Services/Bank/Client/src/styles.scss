@@ -345,7 +345,10 @@ footer {
 .field.error-block{
   margin-top: -10px;
 }
-
+.error-list{
+  list-style-type: disc;
+  padding-left: 20px; 
+}
 @media (max-width:360px) {
   .auth-card {
     padding: 14px;
