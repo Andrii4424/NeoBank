@@ -1,3 +1,4 @@
+using Bank.API.Infrastructure.Identity.Seed;
 using Bank.API.WebUI.StartupServicesInjection;
 using DotNetEnv;
 
@@ -22,6 +23,8 @@ else
 //Swagger available in production because its a pet project
 app.UseSwagger();
 app.UseSwaggerUI();
+
+await RoleSeeder.SeedAsync(app.Services, builder.Configuration);
 
 app.UseRouting();
 

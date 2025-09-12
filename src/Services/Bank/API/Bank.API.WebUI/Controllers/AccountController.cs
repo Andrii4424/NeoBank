@@ -81,24 +81,6 @@ namespace Bank.API.WebUI.Controllers
             return await TokenHelper(result);
         }
 
-
-        //Profile
-        [HttpGet]
-        public async Task<IActionResult> GetOwnProfile()
-        {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier) ?? User.FindFirstValue("sub");
-            if (userId == null) { 
-                return NotFound();
-            }
-            ProfileDto? user = await _identityService.GetProfile(userId.ToString());
-            if (user == null)
-            {
-                return NotFound();
-            }
-            return Ok(user);
-        }
-
-
         //Cheks Authentication Response, writes down cookie and return authorization status
         private async Task<IActionResult> TokenHelper(AuthenticationResponse? result)
         {
@@ -117,6 +99,25 @@ namespace Bank.API.WebUI.Controllers
 
 
             return Ok(new AccessTokenDto(result.AccessToken, result.AccessExpiresOn));
-        }        
+        }
+
+        //Profile
+        [HttpGet]
+        public async Task<IActionResult> Me()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier) ?? User.FindFirstValue("sub");
+            if (userId == null) { 
+                return NotFound();
+            }
+            ProfileDto? user = await _identityService.GetProfile(userId.ToString());
+            if (user == null)
+            {
+                return NotFound();
+
+            }
+            user.Role = User.FindFirst(ClaimTypes.Role)?.Value;
+
+            return Ok(user);
+        }     
     }
 }

@@ -1,19 +1,20 @@
-﻿using Bank.API.Application.DTOs.Identity;
+﻿using AutoMapper;
+using Bank.API.Application.DTOs.Identity;
 using Bank.API.Application.ServiceContracts;
 using Bank.API.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using System.IdentityModel.Tokens.Jwt;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.Extensions.Configuration;
-using System.Security.Cryptography;
-using Microsoft.EntityFrameworkCore;
-using AutoMapper;
 
 namespace Bank.API.Application.Services
 {
@@ -46,7 +47,9 @@ namespace Bank.API.Application.Services
             };
 
             IdentityResult result = await _userManager.CreateAsync(user, registerDto.Password);
-
+            if (result.Succeeded) { 
+                await _userManager.AddToRoleAsync(user, "User"); 
+            }
             return result;
         }
 
@@ -77,14 +80,26 @@ namespace Bank.API.Application.Services
 
         public async Task<AuthenticationResponse> GetAccessToken(ApplicationUser user)
         {
+
             //Access Token
-            Claim[] claim = new Claim[]
+            var claim = new List<Claim>
             {
+
                 new Claim(JwtRegisteredClaimNames.Sub, Convert.ToString(user.Id)),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim(JwtRegisteredClaimNames.Iat, EpochTime.GetIntDate(DateTime.UtcNow).ToString(),ClaimValueTypes.Integer64)
             };
+
+            var userClaims = await _userManager.GetClaimsAsync(user);
+            claim.AddRange(userClaims.Where(c =>
+                !string.Equals(c.Type, ClaimTypes.Role, StringComparison.OrdinalIgnoreCase) &&
+                !string.Equals(c.Type, "role", StringComparison.OrdinalIgnoreCase) &&
+                !string.Equals(c.Type, "roles", StringComparison.OrdinalIgnoreCase)));
+
+            var userRoles = await _userManager.GetRolesAsync(user);
+            foreach (var role in userRoles.Distinct(StringComparer.OrdinalIgnoreCase))
+                claim.Add(new Claim(ClaimTypes.Role, role));
 
             SymmetricSecurityKey securityKey = new SymmetricSecurityKey(Convert.FromBase64String(_configuration["AccessToken:Key"]!));
 

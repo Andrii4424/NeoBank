@@ -14,7 +14,9 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 using System.Reflection;
+using System.Security.Claims;
 
 namespace Bank.API.WebUI.StartupServicesInjection
 {
@@ -62,7 +64,9 @@ namespace Bank.API.WebUI.StartupServicesInjection
                     ValidIssuer = configuration["AccessToken:Issuer"],
                     ValidAudience = configuration["AccessToken:Audience"],
                     IssuerSigningKey = new SymmetricSecurityKey(Convert.FromBase64String(configuration["AccessToken:Key"]!)),
-                    ClockSkew = TimeSpan.FromMinutes(0)
+                    RoleClaimType = ClaimTypes.Role,
+                    NameClaimType = JwtRegisteredClaimNames.Sub,
+                    ClockSkew = TimeSpan.FromMinutes(5)
                 };
             });
             services.AddAuthorization(options => {});

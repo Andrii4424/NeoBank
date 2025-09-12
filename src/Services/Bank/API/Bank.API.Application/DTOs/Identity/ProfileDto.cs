@@ -19,5 +19,7 @@ namespace Bank.API.Application.DTOs.Identity
         public string? TaxId { get; set; }
 
         public string? AvatarPath { get; set; }
+
+        public string? Role { get; set; }
     }
 }
