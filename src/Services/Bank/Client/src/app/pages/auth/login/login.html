@@ -20,8 +20,12 @@
         <span class="val"></span>
       </div>
 
-      <div class="field row error-block">
-        <span [class.disabled]="!displayLoginError()">{{loginFormErrorMessage}}</span>
+      <div class="field error-block">
+        <a class="muted" href="#">Forgot password?</a>
+
+        <ul [class.disabled]="!displayLoginError()">
+          <li>{{loginFormErrorMessage}}</li>
+        </ul>
       </div>
 
       <button type="submit" class="btn btn-primary">Sign In</button>
@@ -32,9 +36,8 @@
     <p class="auth-switch">
       Don’t have an account?
       <a href="/signup" class="auth-link">Sign up</a>
-      <a class="muted" href="#">Forgot password?</a>
     </p>
   </div>
 </section>
-    
+
 <app-footer></app-footer>

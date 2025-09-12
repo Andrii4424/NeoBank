@@ -53,7 +53,7 @@ export class Login {
     }
     else{
       this.displayLoginError.set(true);
-      console.log("Not valid form");
+      this.loginFormErrorMessage="All login fields must be filled in";
     }
   }
 }
