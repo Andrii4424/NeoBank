@@ -17,5 +17,6 @@ namespace Bank.API.Application.ServiceContracts
         public Task<ApplicationUser> GetUserByEmailAsync(string email);
         public Task<AuthenticationResponse> GetAccessToken(ApplicationUser user);
         public Task<AuthenticationResponse?> CheckAndUpdateRefreshTokenAsync(string refreshToken);
+        public Task<ProfileDto?> GetProfile(string id);
     }
 }

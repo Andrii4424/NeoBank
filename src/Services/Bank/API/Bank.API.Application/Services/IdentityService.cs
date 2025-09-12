@@ -13,6 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
 using System.Security.Cryptography;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 
 namespace Bank.API.Application.Services
 {
@@ -21,14 +22,17 @@ namespace Bank.API.Application.Services
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<ApplicationRole> _roleManager;
         private readonly IConfiguration _configuration;
+        private readonly IMapper _mapper;
 
-        public IdentityService(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager, IConfiguration configuration)
+        public IdentityService(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager, IConfiguration configuration, IMapper mapper)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _configuration = configuration;
+            _mapper = mapper;
         }
 
+        //Auth
         public async Task<IdentityResult> RegisterAsync(RegisterDto registerDto)
         {
             if (!await IsEmailUniqueAsync(registerDto.Email))
@@ -136,6 +140,14 @@ namespace Bank.API.Application.Services
             user.RefreshToken = refreshToken;
             user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(Convert.ToDouble(_configuration["RefreshToken:Expiration_days"]));
             await _userManager.UpdateAsync(user);
+        }
+
+        //Profile
+        public async Task<ProfileDto?> GetProfile(string id)
+        {
+            ApplicationUser? user = await _userManager.FindByIdAsync(id);
+            if(user == null) return null;
+            return _mapper.Map<ProfileDto>(user);
         }
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Sprache;
+using System.Security.Claims;
 
 namespace Bank.API.WebUI.Controllers
 {
@@ -22,6 +23,7 @@ namespace Bank.API.WebUI.Controllers
             _identityService = identityService;
         }
 
+        //Auth
         [HttpPost]
         public async Task<IActionResult> Register([FromForm] RegisterDto registerDto)
         {
@@ -78,6 +80,24 @@ namespace Bank.API.WebUI.Controllers
 
             return await TokenHelper(result);
         }
+
+
+        //Profile
+        [HttpGet]
+        public async Task<IActionResult> GetOwnProfile()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier) ?? User.FindFirstValue("sub");
+            if (userId == null) { 
+                return NotFound();
+            }
+            ProfileDto? user = await _identityService.GetProfile(userId.ToString());
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user);
+        }
+
 
         //Cheks Authentication Response, writes down cookie and return authorization status
         private async Task<IActionResult> TokenHelper(AuthenticationResponse? result)
