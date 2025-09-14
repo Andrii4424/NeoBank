@@ -27,7 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\Uploads\DefaultPhoto\" />
     <Folder Include="wwwroot\Uploads\ProfilePhotos\" />
   </ItemGroup>
 

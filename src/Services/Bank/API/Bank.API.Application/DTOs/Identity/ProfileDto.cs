@@ -21,5 +21,7 @@ namespace Bank.API.Application.DTOs.Identity
         public string? AvatarPath { get; set; }
 
         public string? Role { get; set; }
+
+        public bool? IsVerified { get; set; }
     }
 }

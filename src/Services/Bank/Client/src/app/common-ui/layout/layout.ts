@@ -3,10 +3,11 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { Footer } from "../footer/footer";
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { SharedService } from '../../data/services/shared-service';
+import { OwnProfile } from "../own-profile/own-profile";
 
 @Component({
   selector: 'app-layout',
-  imports: [RouterOutlet, Footer, RouterLink],
+  imports: [RouterOutlet, Footer, RouterLink, OwnProfile],
   templateUrl: './layout.html',
   styleUrl: './layout.scss'
 })

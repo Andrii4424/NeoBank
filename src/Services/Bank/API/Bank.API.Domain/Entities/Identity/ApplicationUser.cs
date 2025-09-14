@@ -22,5 +22,7 @@ namespace Bank.API.Domain.Entities.Identity
         public string? RefreshToken { get; set; }
 
         public DateTime? RefreshTokenExpiryTime { get; set; }
+
+        public bool? IsVerified { get; set; }
     }
 }

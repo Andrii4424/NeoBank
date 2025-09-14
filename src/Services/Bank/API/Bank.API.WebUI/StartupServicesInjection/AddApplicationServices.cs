@@ -85,6 +85,10 @@ namespace Bank.API.WebUI.StartupServicesInjection
                 .AddEntityFrameworkStores<BankAppContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddAuthorizationBuilder()
+                .AddPolicy("AdminsOnly", p => p.RequireRole("Admin"))
+                .AddPolicy("AdminOrUser", p => p.RequireRole("Admin", "User"));
+
             //Repositories injection
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped(typeof(IBankRepository), typeof(BankRepository));

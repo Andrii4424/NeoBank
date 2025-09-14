@@ -88,4 +88,8 @@ export class AuthService {
       })
     );
   }
+
+  getAccessToken():string |null{
+    return this.cookieService.get("accessToken");
+  }
 }
