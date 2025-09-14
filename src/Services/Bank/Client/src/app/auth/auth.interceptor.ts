@@ -8,7 +8,7 @@ export const authTokenInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(AuthService);
   const isRefresh = req.url.toLowerCase().includes('/refresh');
 
-  const reqWithAuth = isRefresh ? req : setTokenHeaders(req, authService.accessToken, authService);
+  const reqWithAuth = isRefresh ? req : setTokenHeaders(req, authService.getAccessToken(), authService);
 
   return next(reqWithAuth).pipe(
     catchError(err => {
@@ -21,7 +21,9 @@ export const authTokenInterceptor: HttpInterceptorFn = (req, next) => {
 };
 
 const setTokenHeaders = (req: HttpRequest<any>, token: string | null, authService:AuthService) => {
-  if (!token) return req;
+  if (!token){
+    return req;
+  }
   return req.clone({
     withCredentials: true,
     setHeaders: { 
