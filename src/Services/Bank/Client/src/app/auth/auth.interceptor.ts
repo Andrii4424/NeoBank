@@ -1,4 +1,4 @@
-import { catchError, switchMap } from 'rxjs/operators';
+import { catchError, debounceTime, switchMap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { AuthService } from '../data/services/auth/auth-service';
 import { inject } from '@angular/core';
@@ -10,13 +10,17 @@ export const authTokenInterceptor: HttpInterceptorFn = (req, next) => {
   const isRefresh = req.url.toLowerCase().includes('/refresh');
   const skipLoginRedirect = req.context.get(SKIP_LOGIN_REDIRECT);
 
-
   const reqWithAuth = isRefresh ? req : setTokenHeaders(req, authService.getAccessToken(), authService);
 
   return next(reqWithAuth).pipe(
     catchError(err => {
       if (err.status === 401 && !isRefresh) {
-        return refreshAndProceed(req, authService, next, skipLoginRedirect);
+        return authService.refresh(skipLoginRedirect).pipe(
+          switchMap(token => {
+            const retried = setTokenHeaders(req, token, authService);
+            return next(retried);
+          })
+        );
       }
       return throwError(() => err);
     })

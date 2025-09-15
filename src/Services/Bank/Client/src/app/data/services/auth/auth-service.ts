@@ -1,7 +1,7 @@
 import { SKIP_LOGIN_REDIRECT } from './../../../auth/skip-login-redirect.token';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { catchError, tap, throwError } from 'rxjs';
+import { catchError, finalize, map, Observable, shareReplay, tap, throwError } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { IAccessToken } from '../../interfaces/auth/access-token.interface';
 import { Router } from '@angular/router';
@@ -13,8 +13,8 @@ export class AuthService {
   http = inject(HttpClient);
   router = inject(Router)
   cookieService = inject(CookieService);
-  
   baseUrl = "https://localhost:7280/api/Account/";
+  private refresh$?: Observable<string>;
 
   accessToken :string | null = null;
   expiresOn :Date | null = null;
@@ -48,29 +48,39 @@ export class AuthService {
     )
   }
 
-  refresh(skipLoginRedirect :boolean){
-    return this.http.post<IAccessToken>(`${this.baseUrl}Refresh`, null, {withCredentials: true,})
-    .pipe(
-      catchError(err =>{
-        this.cookieService.delete("accessToken");
-        this.cookieService.delete("accessTokenExpires");
+  refresh(skipLoginRedirect: boolean): Observable<string> {
+    if (!this.refresh$) {
+      this.refresh$ = this.http
+        .post<IAccessToken>(`${this.baseUrl}Refresh`, null, { withCredentials: true })
+        .pipe(
+          map(val => {
+            this.accessToken = val.accessToken;
+            this.expiresOn = new Date(val.expirationTime);
 
-        this.accessToken=null;
-        this.expiresOn=null;
-        if(!skipLoginRedirect){
-          this.router.navigate(['/login'], {queryParams: {error: "sessionExpired"}})
-        }
-        
-        return throwError(() => err);
-      }),
-      tap(val=>{
-          this.accessToken = val.accessToken;
-          this.expiresOn = new Date(val.expirationTime);
+            this.cookieService.set('accessToken', val.accessToken);
+            this.cookieService.set('accessTokenExpires', new Date(val.expirationTime).toISOString());
 
-          this.cookieService.set("accessToken", val.accessToken);
-          this.cookieService.set("accessTokenExpires", new Date(val.expirationTime).toISOString())
-      })
-    )
+            return val.accessToken;
+          }),
+          shareReplay(1),
+          catchError(err => {
+            this.cookieService.delete('accessToken');
+            this.cookieService.delete('accessTokenExpires');
+            this.accessToken = null;
+            this.expiresOn = null;
+
+            if (!skipLoginRedirect) {
+              this.router.navigate(['/login'], { queryParams: { error: 'sessionExpired' } });
+            }
+            this.refresh$ = undefined;
+            return throwError(() => err);
+          }),
+          finalize(() => {
+            this.refresh$ = undefined;
+          })
+        );
+    }
+    return this.refresh$;
   }
 
   register(payload:{email: string |null, password:string |null, confirmPassword:string |null}){

@@ -77,7 +77,6 @@ namespace Bank.API.WebUI.Controllers
                 return Unauthorized();
             }
             AuthenticationResponse? result = await _identityService.CheckAndUpdateRefreshTokenAsync(oldRefreshToken);
-
             return await TokenHelper(result);
         }
 
@@ -88,6 +87,7 @@ namespace Bank.API.WebUI.Controllers
             {
                 return Unauthorized();
             }
+
             //Save refresh token to Http-Only cookie
             Response.Cookies.Append("refresh_token", result.RefreshToken, new CookieOptions
             {
