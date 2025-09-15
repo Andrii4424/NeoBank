@@ -13,6 +13,8 @@
   --heaviest-dark-primary-color: #0B1220;
   --gray-primary-color: #5a606e;
   --primary-red-color:#B71C1C;
+  --green-color: #16A34A;
+  --ligth-red-color:  #DC2626;
 }
 
 html, body {
@@ -375,16 +377,101 @@ footer {
   background-color: #fff;
   border-radius: 8px;
   border: 1px solid var(--dark-gray-background);
+  width: min(72dvw, 880px);   
+  padding: 20px 24px;         /* чуть больше воздуха */
 }
 
 .profile-divider{
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: 2;
+  grid-template-columns: auto 1fr;
+  gap:24px;
+  justify-content: center;
 }
 
 .profile-divider img{
   width: 120px;
   height: auto;
+
+}
+
+.profile-info{
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 10px 20px;
+}
+
+.profile-info input{
+  width: 14dvw;
+  height: 28px;
+  background-color: var(--gray-background);
+  border: 1px solid var(--gray-primary-color);
+  border-radius: 6px;
+}
+
+
+.perosonal-info, .contact-info{
+  display: grid;
+  grid-template-columns: 180px 1fr; 
+  column-gap: 12px;
+  row-gap: 10px;
+  align-items: center;
+}
+
+.profile-img{
+  display: flex;
+  flex-direction: column;
+}
+.profile-img h4{
+  padding: 3px 5px;
+  border-radius: 8px;
+}
+
+.user-titles{
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+
+.verified{
+  background-color: var(--green-color);
+  color: white;
+}
+
+.not-verified{
+  background-color:  var(--ligth-red-color);
+  color: white;
+}
+.role{
+  background-color: #1899E6;
+  color: white;
+}
+
+//Profile buttons
+.profile-action-buttons{
+  margin-top: 24px;
+  display: flex;
+  flex-direction: row;
+  gap:16px;
+}
+
+.profile-action-buttons button{
+  padding: 8px 12px;
+  width: 140px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+
+.update{
+  background-color: var(--dark-primary-color);
+  color: white;
+  border: none;
+}
+
+.logout{
+  border: 1px solid var(--ligth-red-color);
+  color: var(--ligth-red-color);
 }
