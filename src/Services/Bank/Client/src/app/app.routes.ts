@@ -6,12 +6,14 @@ import { Register } from './pages/auth/register/register';
 import { BankInfo } from './pages/products/bank/bank-info/bank-info';
 import { UpdateBank } from './pages/products/bank/update-bank/update-bank';
 import { CanActivateAuth } from './auth/access.guard';
+import { UsersOwnProfile } from './pages/profile/users-own-profile/users-own-profile';
 
 export const routes: Routes = [
     {path: '', component: Layout, children: [
         {path: '', component: Home},
         {path: 'bank-info', component: BankInfo},
-        {path: 'update-bank', component: UpdateBank, canActivate: [CanActivateAuth]}
+        {path: 'update-bank', component: UpdateBank, canActivate: [CanActivateAuth]},
+        {path: 'my-profile', component: UsersOwnProfile, canActivate: [CanActivateAuth]}
     ]},
     {path: 'login', component: Login},
     {path: 'signup', component: Register}

@@ -365,3 +365,26 @@ footer {
     height: 36px;
   }
 }
+
+//Profiles
+.profile-section{
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid var(--dark-gray-background);
+}
+
+.profile-divider{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 2;
+}
+
+.profile-divider img{
+  width: 120px;
+  height: auto;
+}

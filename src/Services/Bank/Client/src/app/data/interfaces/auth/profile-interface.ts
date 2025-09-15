@@ -9,6 +9,7 @@ export interface IProfile{
     AvatarPath: string | null;
     Role: string | null;
     IsVerified: boolean | null;
+    PhoneNumber: string | null;
 }
 
 

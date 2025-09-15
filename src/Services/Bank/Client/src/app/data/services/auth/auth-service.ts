@@ -1,3 +1,4 @@
+import { SKIP_LOGIN_REDIRECT } from './../../../auth/skip-login-redirect.token';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, tap, throwError } from 'rxjs';
@@ -47,7 +48,7 @@ export class AuthService {
     )
   }
 
-  refresh(){
+  refresh(skipLoginRedirect :boolean){
     return this.http.post<IAccessToken>(`${this.baseUrl}Refresh`, null, {withCredentials: true,})
     .pipe(
       catchError(err =>{
@@ -56,8 +57,10 @@ export class AuthService {
 
         this.accessToken=null;
         this.expiresOn=null;
+        if(!skipLoginRedirect){
+          this.router.navigate(['/login'], {queryParams: {error: "sessionExpired"}})
+        }
         
-        this.router.navigate(['/login'], {queryParams: {error: "sessionExpired"}})
         return throwError(() => err);
       }),
       tap(val=>{

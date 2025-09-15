@@ -23,10 +23,26 @@ namespace Bank.API.WebUI.Controllers
 
         //Profile
         [HttpGet]
-        [AllowAnonymous]
         public async Task<IActionResult> Me()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier) ?? User.FindFirstValue("sub");
+            if (userId == null)
+            {
+                return NotFound();
+            }
+            ProfileDto? user = await _identityService.GetProfile(userId.ToString());
+            if (user == null)
+            {
+                return NotFound();
+            }
+            user.Role = User.FindFirst(ClaimTypes.Role)?.Value;
+
+            return Ok(user);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ProfileInfo([FromRoute] Guid? userId)
+        {
             if (userId == null)
             {
                 return NotFound();

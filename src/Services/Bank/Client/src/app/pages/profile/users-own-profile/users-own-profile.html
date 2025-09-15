@@ -1,0 +1,44 @@
+<div class="profile-section">
+    <form class="profile-divider">
+        @if(profile?.AvatarPath!==null && profile?.AvatarPath!==undefined){
+        <a routerLink="my-profile">
+            <img src="https://localhost:7280/Uploads/DefaultPhoto/profile-photo.svg" alt="profile">
+        </a>
+        }
+        @else {
+            <a routerLink="my-profile">
+                <img src="https://localhost:7280/Uploads/DefaultPhoto/profile-photo.svg" alt="profile">
+            </a>
+        }
+
+        <div class="profile-info">
+            <span>Personal Information</span>
+            <label for="FirstName">First Name</label>
+            <input name="FirstName" type="text" [value]="profile?.FirstName">
+
+            <label for="LastName">Last Name</label>
+            <input name="LastName" type="text" [value]="profile?.LastName">
+
+            <label for="Patronymic">Patronymic</label>
+            <input name="Patronymic" type="text" [value]="profile?.Patronymic">
+
+            <label for="DateOfBirth">Date Of Birth</label>
+            <input name="DateOfBirth" type="date" [value]="profile?.DateOfBirth">
+
+            <label for="TaxId">Tax Id</label>
+            <input name="TaxId" type="text" [value]="profile?.TaxId">
+
+            <span>Contact Information</span>
+            <label for="Email">Email</label>
+            <input name="Email" type="email" [value]="profile?.Email">
+
+            <label for="PhoneNumber">Financal Phone Number</label>
+            <input name="PhoneNumber" type="tel" [value]="profile?.PhoneNumber">
+
+
+        </div>
+    </form>
+</div>
+
+    Role: string | null;
+    IsVerified: boolean | null;

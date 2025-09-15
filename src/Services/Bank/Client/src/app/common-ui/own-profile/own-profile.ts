@@ -17,7 +17,7 @@ export class OwnProfile {
 
 
   ngOnInit(){
-    this.profileService.getOwnProfile().subscribe({
+    this.profileService.getOwnProfile(true).subscribe({
       next:(val)=>{
         this.profile=val;
       },
