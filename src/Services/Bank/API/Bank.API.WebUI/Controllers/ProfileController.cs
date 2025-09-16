@@ -57,5 +57,11 @@ namespace Bank.API.WebUI.Controllers
             return Ok(user);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> UpdateOwnProfile()
+        {
+            return Ok();
+        }
+
     }
 }

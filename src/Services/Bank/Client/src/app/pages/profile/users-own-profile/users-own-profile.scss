@@ -1,0 +1,26 @@
+.verify-text-error{
+    padding: 4px 0 14px 0; 
+    color: var(--primary-red-color);
+    font-size: 18px;
+}
+
+.profile-img{
+    position: relative;
+}
+
+.update-logo{
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    padding: 3px;
+    border: 2px solid var(--dark-gray-background);
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: white;
+}
+
+.update-logo img{
+    width: 22px;
+    height: auto;
+
+}

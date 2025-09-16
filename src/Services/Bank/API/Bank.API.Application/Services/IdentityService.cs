@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Bank.API.Application.DTOs.Identity;
+using Bank.API.Application.Helpers.HelperClasses;
 using Bank.API.Application.ServiceContracts;
 using Bank.API.Domain.Entities.Identity;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -164,5 +166,54 @@ namespace Bank.API.Application.Services
             if(user == null) return null;
             return _mapper.Map<ProfileDto>(user);
         }
+
+        public async Task<OperationResult> UpdateProfile(ProfileDto profile, IFormFile? avatar)
+        {
+            ApplicationUser? user = await _userManager.FindByIdAsync(profile.Id.ToString());
+            if(user == null)
+            {
+                throw new ArgumentException($"User with id {profile.Id} doesnt exist");
+            }
+            await _userManager.SetUserNameAsync(user, profile.Email);
+            user = MapProfile(profile, user);
+
+            if (avatar != null) { 
+                
+            }
+
+
+            await _userManager.UpdateAsync(user);
+
+            return OperationResult.Ok();
+        }
+
+        private ApplicationUser MapProfile(ProfileDto profile, ApplicationUser user)
+        {
+            user.Email = profile.Email;
+            user.FirstName = profile.FirstName;
+            user.Surname = profile.Surname;
+            user.Patronymic = profile.Patronymic;
+            user.DateOfBirth = profile.DateOfBirth;
+            user.TaxId = profile.TaxId;
+            user.PhoneNumber = profile.PhoneNumber;
+            
+            if(user.IsVerified ==false || user.IsVerified == null)
+            {
+
+                user.IsVerified =
+                    ((user.AvatarPath != null) || (profile.AvatarPath != null)) &&
+                    ((user.Email != null) || (profile.Email != null)) &&
+                    ((user.FirstName != null) || (profile.FirstName != null)) &&
+                    ((user.Surname != null) || (profile.Surname != null)) &&
+                    ((user.Patronymic != null) || (profile.Patronymic != null)) &&
+                    ((user.TaxId != null) || (profile.TaxId != null)) &&
+                    ((user.PhoneNumber != null) || (profile.PhoneNumber != null)) &&
+                    ((user.DateOfBirth != null) || (profile.DateOfBirth != null));
+            }
+
+            return user;
+
+        }
+
     }
 }

@@ -1,28 +1,35 @@
 <div class="profile-section">
+    @if (!profile?.isVerified) {
+        <h4 class="verify-text-error">You are not verified. To verify account please enter your personal information</h4>
+    }
     <form class="profile-divider">
-        <div class="profile-img">
-            @if(profile?.AvatarPath!==null && profile?.AvatarPath!==undefined){
-                <a routerLink="my-profile">
-                    <img src="https://localhost:7280/Uploads/DefaultPhoto/profile-photo.svg" alt="profile">
-                </a>
-            }
-            @else {
-                <a routerLink="my-profile">
-                    <img src="https://localhost:7280/Uploads/DefaultPhoto/profile-photo.svg" alt="profile">
-                </a>
-            }
+        <div class="logo-section">
+            <div class="profile-img">
+                @if(updatedAvatarFile!=null){
+                    <img class="profile-logo" [src]="updatedAvatarSrc" alt="profile">
+                }
+                @else if(profile?.avatarPath!==null && profile?.avatarPath!==undefined){
+                    <img class="profile-logo" src="https://localhost:7280/Uploads/DefaultPhoto/profile-photo.svg" alt="profile">
+                }
+                @else {
+                    <img class="profile-logo" src="https://localhost:7280/Uploads/DefaultPhoto/profile-photo.svg" alt="profile">
+                }
+                <label class="update-logo" [class.none]="!updateMode()" for="logo">
+                    <img src="assets/images/update-icon.svg" alt="update">
+                    <input name="logo" type="file" id="logo" hidden accept="image/*" (change)="uploadPhoto($event)">
+                </label>
+            </div>
+
 
             <div class="user-titles">
-                <h4 class="role">User {{profile?.Role}}</h4>
-                @if (profile?.IsVerified) {
+                <h4 class="role">{{profile?.role}}</h4>
+                @if (profile?.isVerified) {
                     <h4 class="verified">Verified</h4>
                 }
                 @else {
                     <h4 class="not-verified">Not Verified</h4>
                 }
             </div>
-
-            
         </div>
 
 
@@ -30,36 +37,37 @@
             <h2 class="subheading">Personal Information</h2>
 
             <div class="perosonal-info">
-                <label class="description-without-lh" for="FirstName">First Name</label>
-                <input name="FirstName" type="text" [value]="profile?.FirstName" disabled>
+                <label class="description-without-lh" for="firstName">First Name</label>
+                <input name="firstName" id="firstName" type="text" [value]="profile?.firstName" [disabled]="!updateMode()">
 
-                <label class="description-without-lh" for="LastName">Last Name</label>
-                <input name="LastName" type="text" [value]="profile?.LastName" disabled>
+                <label class="description-without-lh" for="surname">Surname</label>
+                <input name="surname" id="surname" type="text" [value]="profile?.surname" [disabled]="!updateMode()">
 
-                <label class="description-without-lh" for="Patronymic">Patronymic</label>
-                <input name="Patronymic" type="text" [value]="profile?.Patronymic" disabled>
+                <label class="description-without-lh" for="patronymic">Patronymic</label>
+                <input name="patronymic" id="patronymic" type="text" [value]="profile?.patronymic" [disabled]="!updateMode()">
 
-                <label class="description-without-lh" for="DateOfBirth">Date Of Birth</label>
-                <input name="DateOfBirth" type="date" [value]="profile?.DateOfBirth" disabled>
+                <label class="description-without-lh" for="dateOfBirth">Date Of Birth</label>
+                <input name="dateOfBirth" id="dateOfBirth" type="date" [value]="profile?.dateOfBirth" [disabled]="!updateMode()">
                 
-                <label class="description-without-lh" for="TaxId">Tax Id</label>
-                <input name="TaxId" type="text" [value]="profile?.TaxId" disabled>
+                <label class="description-without-lh" for="taxId">Tax Id</label>
+                <input name="taxId" id="taxId" type="text" [value]="profile?.taxId" [disabled]="!updateMode()">
             </div>
 
             <h2 class="subheading">Contact Information</h2>
             <div class="contact-info">
-                <label class="description-without-lh" for="Email">Email</label>
-                <input name="Email" type="email" [value]="profile?.Email" disabled>
+                <label class="description-without-lh" for="email">Email</label>
+                <input name="email" id="email" type="email" [value]="profile?.email" [disabled]="!updateMode()">
 
-                <label class="description-without-lh" for="PhoneNumber">Financal Phone Number</label>
-                <input name="PhoneNumber" type="tel" [value]="profile?.PhoneNumber" disabled>
+                <label class="description-without-lh" for="phoneNumber">Financal Phone Number</label>
+                <input name="phoneNumber" id="phoneNumber" type="tel" [value]="profile?.phoneNumber" [disabled]="!updateMode()">
             </div>
         </div>
     </form>
 
     <div class="profile-action-buttons">
-        
-        <button class="update">Update Data</button>
+        <button [class.none]="!updateMode()" (click)="cancelChanges()" class="cancel-btn">Cancel</button>
+        <button [class.none]="updateMode()" (click)="toUpdateMode()" class="update">Update Data</button>
+        <button [class.none]="!updateMode()" class="update">Save Changes</button>
         <button class="logout">Log Out</button>
     </div>
 </div>

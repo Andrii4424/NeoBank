@@ -17,6 +17,8 @@ namespace Bank.API.Application.Helpers.Mapping
         public MappingProfile() {
             //User profile
             CreateMap<ApplicationUser, ProfileDto>();
+            CreateMap<ProfileDto, ApplicationUser>();
+
 
             //Bank
             CreateMap<BankEntity, BankDto>();

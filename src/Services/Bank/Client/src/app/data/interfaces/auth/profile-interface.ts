@@ -1,15 +1,15 @@
 export interface IProfile{
-    Id: string;
-    Email: string | null;
-    FirstName: string| null;
-    LastName: string | null;
-    Patronymic: string | null;
-    DateOfBirth: string | null;
-    TaxId: string | null;
-    AvatarPath: string | null;
-    Role: string | null;
-    IsVerified: boolean | null;
-    PhoneNumber: string | null;
+    id: string;
+    email: string | null;
+    firstName: string| null;
+    surname: string | null;
+    patronymic: string | null;
+    dateOfBirth: string | null;
+    taxId: string | null;
+    avatarPath: string | null;
+    role: string | null;
+    isVerified: boolean | null;
+    phoneNumber: string | null;
 }
 
 
