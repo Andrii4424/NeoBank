@@ -1,5 +1,7 @@
 ﻿using Bank.API.Application.DTOs.Identity;
+using Bank.API.Application.Helpers.HelperClasses;
 using Bank.API.Domain.Entities.Identity;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -18,5 +20,6 @@ namespace Bank.API.Application.ServiceContracts
         public Task<AuthenticationResponse> GetAccessToken(ApplicationUser user);
         public Task<AuthenticationResponse?> CheckAndUpdateRefreshTokenAsync(string refreshToken);
         public Task<ProfileDto?> GetProfile(string id);
+        public Task<OperationResult> UpdateProfile(ProfileDto profile);
     }
 }

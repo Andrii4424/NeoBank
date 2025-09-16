@@ -10,6 +10,7 @@ export interface IProfile{
     role: string | null;
     isVerified: boolean | null;
     phoneNumber: string | null;
+    
 }
 
 

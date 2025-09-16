@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using Bank.API.Application.DTO;
 using Bank.API.Application.DTOs.Identity;
 using Bank.API.Application.Helpers.HelperClasses;
 using Bank.API.Application.ServiceContracts;
 using Bank.API.Domain.Entities.Identity;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -25,14 +27,17 @@ namespace Bank.API.Application.Services
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<ApplicationRole> _roleManager;
         private readonly IConfiguration _configuration;
+        private readonly IWebHostEnvironment _env;
         private readonly IMapper _mapper;
 
-        public IdentityService(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager, IConfiguration configuration, IMapper mapper)
+        public IdentityService(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager, IConfiguration configuration, 
+            IMapper mapper, IWebHostEnvironment env)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _configuration = configuration;
             _mapper = mapper;
+            _env = env;
         }
 
         //Auth
@@ -167,21 +172,46 @@ namespace Bank.API.Application.Services
             return _mapper.Map<ProfileDto>(user);
         }
 
-        public async Task<OperationResult> UpdateProfile(ProfileDto profile, IFormFile? avatar)
+        public async Task<OperationResult> UpdateProfile(ProfileDto profile)
         {
+            var allowedAvatarExtension = new[] { ".jpg", ".jpeg", ".png", ".webp", ".svg" };
             ApplicationUser? user = await _userManager.FindByIdAsync(profile.Id.ToString());
             if(user == null)
             {
                 throw new ArgumentException($"User with id {profile.Id} doesnt exist");
             }
+            if(profile.Email == null)
+            {
+                return OperationResult.Error("Email has to be provided");
+            }
             await _userManager.SetUserNameAsync(user, profile.Email);
             user = MapProfile(profile, user);
 
-            if (avatar != null) { 
-                
+            if (profile.Avatar != null) {
+                //Delete old photo if exists
+                if (profile.AvatarPath!=null)
+                {
+                    string deletePath = Path.Combine(_env.WebRootPath, profile.AvatarPath);
+                    if (File.Exists(deletePath))
+                    {
+                        File.Delete(deletePath);
+                    }
+                }
+
+                //Add new photo
+                var ext = Path.GetExtension(profile.Avatar.FileName).ToLowerInvariant();
+                if (!allowedAvatarExtension.Contains(ext)) {
+                    return OperationResult.Error("Invalid image format. Allowed: JPG/JPEG, PNG, WEBP");
+                }
+                string fileName = $"{profile.Id}{profile.Avatar.FileName.ToLower()}";
+                string absolutePath =Path.Combine(_env.WebRootPath, "uploads", "profile-photos", fileName);
+                using (var stream = new FileStream(absolutePath, FileMode.Create))
+                {
+                    await profile.Avatar.CopyToAsync(stream);
+                }
+                profile.AvatarPath = $"uploads/profile-photos/{fileName}";
             }
-
-
+            user = MapProfile(profile,user);
             await _userManager.UpdateAsync(user);
 
             return OperationResult.Ok();
@@ -189,6 +219,7 @@ namespace Bank.API.Application.Services
 
         private ApplicationUser MapProfile(ProfileDto profile, ApplicationUser user)
         {
+            user.AvatarPath = profile.AvatarPath;
             user.Email = profile.Email;
             user.FirstName = profile.FirstName;
             user.Surname = profile.Surname;
@@ -212,8 +243,6 @@ namespace Bank.API.Application.Services
             }
 
             return user;
-
         }
-
     }
 }

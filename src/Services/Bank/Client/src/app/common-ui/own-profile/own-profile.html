@@ -7,12 +7,12 @@
 @else {
     @if(profile.avatarPath!==null && profile.avatarPath!==undefined){
         <a [routerLink]="['/my-profile']" class="profile-link own-photo">
-            <img src="https://localhost:7280/Uploads/DefaultPhoto/profile-photo.svg" alt="profile">
+            <img src="https://localhost:7280/Uploads/default-photo/profile-photo.svg" alt="profile">
         </a>
     }
     @else {
         <a routerLink="my-profile" class="profile-link">
-            <img src="https://localhost:7280/Uploads/DefaultPhoto/profile-photo.svg" alt="profile">
+            <img src="https://localhost:7280/Uploads/default-photo/profile-photo.svg" alt="profile">
         </a>
     }
 }

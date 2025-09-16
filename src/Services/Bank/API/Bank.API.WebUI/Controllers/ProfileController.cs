@@ -1,4 +1,5 @@
 ﻿using Bank.API.Application.DTOs.Identity;
+using Bank.API.Application.Helpers.HelperClasses;
 using Bank.API.Application.ServiceContracts;
 using Bank.API.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Authorization;
@@ -58,9 +59,15 @@ namespace Bank.API.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateOwnProfile()
+        public async Task<IActionResult> UpdateOwnProfile([FromForm]ProfileDto profile)
         {
-            return Ok();
+            OperationResult result = await _identityService.UpdateProfile(profile);
+            if (!result.Success) {
+                return BadRequest(result.ErrorMessage);
+            }
+
+            ProfileDto? updatedProfile = await _identityService.GetProfile(profile.Id.ToString());
+            return Ok(updatedProfile);
         }
 
     }

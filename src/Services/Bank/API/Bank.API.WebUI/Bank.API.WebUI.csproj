@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\Uploads\ProfilePhotos\" />
+    <Folder Include="wwwroot\uploads\profile-photos\" />
   </ItemGroup>
 
 </Project>

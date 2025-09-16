@@ -9,10 +9,10 @@
                     <img class="profile-logo" [src]="updatedAvatarSrc" alt="profile">
                 }
                 @else if(profile?.avatarPath!==null && profile?.avatarPath!==undefined){
-                    <img class="profile-logo" src="https://localhost:7280/Uploads/DefaultPhoto/profile-photo.svg" alt="profile">
+                    <img class="profile-logo" src="https://localhost:7280/Uploads/default-photo/profile-photo.svg" alt="profile">
                 }
                 @else {
-                    <img class="profile-logo" src="https://localhost:7280/Uploads/DefaultPhoto/profile-photo.svg" alt="profile">
+                    <img class="profile-logo" src="https://localhost:7280/Uploads/default-photo/profile-photo.svg" alt="profile">
                 }
                 <label class="update-logo" [class.none]="!updateMode()" for="logo">
                     <img src="assets/images/update-icon.svg" alt="update">
