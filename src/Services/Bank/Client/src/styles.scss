@@ -490,3 +490,22 @@ footer {
   border: 1px solid var(--gray-primary-color);
   color: black;
 }
+
+//Validation status
+.validation-message{
+  margin-top: 10px;
+  margin-bottom: -20px;
+}
+
+.success-message{
+  color: var(--green-color);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.errors-list li{
+  color: var(--primary-red-color);
+  font-size: 16px;
+  font-weight: 500;
+  padding-top: 6px;
+}

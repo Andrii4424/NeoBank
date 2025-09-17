@@ -1,18 +1,18 @@
-<div class="profile-section">
+<div class="profile-section" (click)="hideValidationResult()">
     @if (!profile?.isVerified) {
         <h4 class="verify-text-error">You are not verified. To verify account please enter your personal information</h4>
     }
-    <form class="profile-divider">
+    <form class="profile-divider" [formGroup]="profileForm">
         <div class="logo-section">
             <div class="profile-img">
                 @if(updatedAvatarFile!=null){
                     <img class="profile-logo" [src]="updatedAvatarSrc" alt="profile">
                 }
                 @else if(profile?.avatarPath!==null && profile?.avatarPath!==undefined){
-                    <img class="profile-logo" src="https://localhost:7280/Uploads/default-photo/profile-photo.svg" alt="profile">
+                    <img class="profile-logo" [src]="baseUrl+profile?.avatarPath" alt="profile">
                 }
                 @else {
-                    <img class="profile-logo" src="https://localhost:7280/Uploads/default-photo/profile-photo.svg" alt="profile">
+                    <img class="profile-logo" [src]="baseUrl+'uploads/default-photo/profile-photo.svg'" alt="profile">
                 }
                 <label class="update-logo" [class.none]="!updateMode()" for="logo">
                     <img src="assets/images/update-icon.svg" alt="update">
@@ -38,36 +38,44 @@
 
             <div class="perosonal-info">
                 <label class="description-without-lh" for="firstName">First Name</label>
-                <input name="firstName" id="firstName" type="text" [value]="profile?.firstName" [disabled]="!updateMode()">
+                <input name="firstName" id="firstName" formControlName="firstName" type="text" [readonly]="!updateMode()">
 
                 <label class="description-without-lh" for="surname">Surname</label>
-                <input name="surname" id="surname" type="text" [value]="profile?.surname" [disabled]="!updateMode()">
+                <input name="surname" id="surname" formControlName="surname" [readonly]="!updateMode()">
 
                 <label class="description-without-lh" for="patronymic">Patronymic</label>
-                <input name="patronymic" id="patronymic" type="text" [value]="profile?.patronymic" [disabled]="!updateMode()">
+                <input name="patronymic" id="patronymic" type="text" formControlName="patronymic" [readonly]="!updateMode()">
 
                 <label class="description-without-lh" for="dateOfBirth">Date Of Birth</label>
-                <input name="dateOfBirth" id="dateOfBirth" type="date" [value]="profile?.dateOfBirth" [disabled]="!updateMode()">
+                <input name="dateOfBirth" id="dateOfBirth" type="date" formControlName="dateOfBirth" [readonly]="!updateMode()">
                 
                 <label class="description-without-lh" for="taxId">Tax Id</label>
-                <input name="taxId" id="taxId" type="text" [value]="profile?.taxId" [disabled]="!updateMode()">
+                <input name="taxId" id="taxId" type="text" formControlName="taxId" [readonly]="!updateMode()">
             </div>
 
             <h2 class="subheading">Contact Information</h2>
             <div class="contact-info">
                 <label class="description-without-lh" for="email">Email</label>
-                <input name="email" id="email" type="email" [value]="profile?.email" [disabled]="!updateMode()">
+                <input name="email" id="email" type="email" formControlName="email" [readonly]="!updateMode()">
 
                 <label class="description-without-lh" for="phoneNumber">Financal Phone Number</label>
-                <input name="phoneNumber" id="phoneNumber" type="tel" [value]="profile?.phoneNumber" [disabled]="!updateMode()">
+                <input name="phoneNumber" id="phoneNumber" type="tel" formControlName="phoneNumber" [readonly]="!updateMode()">
             </div>
         </div>
     </form>
+    <div class="validation-message">
+        <h4 class="success-message" [class.none]="!showValidationResult()">Your profile has been successfully updated!</h4>
+        <ul class="errors-list" [class.none]="!showValidationResult()">
+            @for (error of validationErrors; track $index) {
+                <li>error</li>
+            }
+        </ul>
 
+    </div>
     <div class="profile-action-buttons">
         <button [class.none]="!updateMode()" (click)="cancelChanges()" class="cancel-btn">Cancel</button>
         <button [class.none]="updateMode()" (click)="toUpdateMode()" class="update">Update Data</button>
-        <button [class.none]="!updateMode()" class="update">Save Changes</button>
+        <button [class.none]="!updateMode()" (click)="submitForm()" class="update">Save Changes</button>
         <button class="logout">Log Out</button>
     </div>
 </div>

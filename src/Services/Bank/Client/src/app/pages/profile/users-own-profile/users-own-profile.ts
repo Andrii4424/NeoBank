@@ -2,21 +2,41 @@ import { ChangeDetectorRef, Component, ElementRef, inject, signal, ViewChild } f
 import { ProfileService } from '../../../data/services/auth/profile-service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IProfile } from '../../../data/interfaces/auth/profile-interface';
+import { FormControl, FormGroup, ɵInternalFormsSharedModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedService } from '../../../data/services/shared-service';
 
 @Component({
   selector: 'app-users-own-profile',
-  imports: [],
+  imports: [ɵInternalFormsSharedModule, ReactiveFormsModule],
   templateUrl: './users-own-profile.html',
   styleUrl: './users-own-profile.scss'
 })
 export class UsersOwnProfile {
+  //Services
   profileService = inject(ProfileService);
+  sharedService = inject(SharedService);
+  baseUrl = 'https://localhost:7280/';
+
+
+  //Local variables
   router = inject(Router);
   profile! :IProfile |null;
   updateMode = signal<boolean>(false);
   updatedAvatarFile :File |null = null;
   updatedAvatarSrc : string | null = null;
   validationErrors: string[] =[];
+  validationSuccess = signal<boolean>(false);
+  showValidationResult = signal<boolean>(false);
+
+  profileForm = new FormGroup({
+    email: new FormControl<string | null>(null),
+    firstName: new FormControl<string | null>(null),
+    surname: new FormControl<string | null>(null),
+    patronymic: new FormControl<string | null>(null),
+    dateOfBirth: new FormControl<string | null>(null),
+    taxId: new FormControl<string | null>(null),
+    phoneNumber: new FormControl<string | null>(null)
+  });
 
 
   constructor(private cd: ChangeDetectorRef, private routeId: ActivatedRoute) {
@@ -30,6 +50,15 @@ export class UsersOwnProfile {
         if(this.profile.role===null){
           this.profile.role ="User";
         }
+        this.profileForm.patchValue({
+          email: this.profile.email,
+          firstName: this.profile.firstName,
+          surname: this.profile.surname,
+          patronymic: this.profile.patronymic,
+          dateOfBirth: this.profile.dateOfBirth,
+          taxId: this.profile.taxId,
+          phoneNumber: this.profile.phoneNumber
+        });
       },
       error: (err)=>{
         this.profile=null;
@@ -45,6 +74,7 @@ export class UsersOwnProfile {
   }
 
   cancelChanges(){
+    this.updatedAvatarFile = null;
     this.updateMode.set(false);
   }
 
@@ -58,5 +88,36 @@ export class UsersOwnProfile {
     this.updatedAvatarSrc = URL.createObjectURL(file);
     this.cd.detectChanges();
     input.value = '';
+  }
+
+  submitForm(){
+    const formValues = this.profileForm.getRawValue();
+    const payload: IProfile = {          
+      ...formValues,
+      id: this.profile!.id,
+      avatarPath: this.profile!.avatarPath,
+      role: this.profile!.role,
+      isVerified: this.profile!.isVerified,
+      avatar: this.updatedAvatarFile ?? null
+    };
+
+    this.profileService.updateUser(payload).subscribe({
+      next: () =>{
+        this.validationSuccess.set(true);
+      },
+      error: (err)=>{
+        this.validationSuccess.set(false);
+        this.validationErrors = this.sharedService.serverResponseErrorToArray(err);
+      },
+      complete:() =>{
+        this.showValidationResult.set(true);
+      }
+    });
+  }
+
+  hideValidationResult(){
+    this.showValidationResult.set(false);
+    this.validationSuccess.set(false);
+    this.validationErrors=[];
   }
 }

@@ -12,6 +12,7 @@ import { RouterLink } from '@angular/router';
 export class OwnProfile {
   profileService = inject(ProfileService);
   profile?: IProfile;
+  baseUrl = 'https://localhost:7280/';
   
   constructor(private cd: ChangeDetectorRef) {}
 
