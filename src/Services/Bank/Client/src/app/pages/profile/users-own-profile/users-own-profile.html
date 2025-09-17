@@ -63,19 +63,22 @@
             </div>
         </div>
     </form>
+
     <div class="validation-message">
-        <h4 class="success-message" [class.none]="!showValidationResult()">Your profile has been successfully updated!</h4>
+        @if(validationSuccess()){
+            <h4 class="success-message" [class.none]="!showValidationResult()">Your profile has been successfully updated!</h4>
+        }
         <ul class="errors-list" [class.none]="!showValidationResult()">
             @for (error of validationErrors; track $index) {
-                <li>error</li>
+                <li>{{error}}</li>
             }
         </ul>
-
     </div>
+
     <div class="profile-action-buttons">
         <button [class.none]="!updateMode()" (click)="cancelChanges()" class="cancel-btn">Cancel</button>
         <button [class.none]="updateMode()" (click)="toUpdateMode()" class="update">Update Data</button>
         <button [class.none]="!updateMode()" (click)="submitForm()" class="update">Save Changes</button>
-        <button class="logout">Log Out</button>
+        <button class="logout" (click)="logout()">Log Out</button>
     </div>
 </div>

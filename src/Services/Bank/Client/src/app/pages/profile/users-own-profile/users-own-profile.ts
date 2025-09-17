@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IProfile } from '../../../data/interfaces/auth/profile-interface';
 import { FormControl, FormGroup, ɵInternalFormsSharedModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedService } from '../../../data/services/shared-service';
+import { AuthService } from '../../../data/services/auth/auth-service';
 
 @Component({
   selector: 'app-users-own-profile',
@@ -15,6 +16,7 @@ export class UsersOwnProfile {
   //Services
   profileService = inject(ProfileService);
   sharedService = inject(SharedService);
+  authService = inject(AuthService);
   baseUrl = 'https://localhost:7280/';
 
 
@@ -50,15 +52,8 @@ export class UsersOwnProfile {
         if(this.profile.role===null){
           this.profile.role ="User";
         }
-        this.profileForm.patchValue({
-          email: this.profile.email,
-          firstName: this.profile.firstName,
-          surname: this.profile.surname,
-          patronymic: this.profile.patronymic,
-          dateOfBirth: this.profile.dateOfBirth,
-          taxId: this.profile.taxId,
-          phoneNumber: this.profile.phoneNumber
-        });
+        this.patchFormValues();
+        this.profileService.updateProfileSignal(val);
       },
       error: (err)=>{
         this.profile=null;
@@ -76,6 +71,7 @@ export class UsersOwnProfile {
   cancelChanges(){
     this.updatedAvatarFile = null;
     this.updateMode.set(false);
+    this.patchFormValues();
   }
 
   uploadPhoto(event :Event){
@@ -102,12 +98,17 @@ export class UsersOwnProfile {
     };
 
     this.profileService.updateUser(payload).subscribe({
-      next: () =>{
+      next: (val) =>{
+        this.profileService.updateProfileSignal(val);
+        this.profile=val;
         this.validationSuccess.set(true);
+        this.updateMode.set(false);
       },
       error: (err)=>{
-        this.validationSuccess.set(false);
         this.validationErrors = this.sharedService.serverResponseErrorToArray(err);
+        this.validationSuccess.set(false);
+        this.showValidationResult.set(true);
+
       },
       complete:() =>{
         this.showValidationResult.set(true);
@@ -119,5 +120,23 @@ export class UsersOwnProfile {
     this.showValidationResult.set(false);
     this.validationSuccess.set(false);
     this.validationErrors=[];
+  }
+
+  patchFormValues(){
+    this.profileForm.patchValue({
+      email: this.profile!.email,
+      firstName: this.profile!.firstName,
+      surname: this.profile!.surname,
+      patronymic: this.profile!.patronymic,
+      dateOfBirth: this.profile!.dateOfBirth,
+      taxId: this.profile!.taxId,
+      phoneNumber: this.profile!.phoneNumber
+    });
+  }
+
+  logout(){
+    this.authService.logout().subscribe({
+      
+    });
   }
 }

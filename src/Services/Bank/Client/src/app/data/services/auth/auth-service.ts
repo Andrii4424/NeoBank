@@ -102,6 +102,22 @@ export class AuthService {
     );
   }
 
+  logout(){
+    return this.http.post(`${this.baseUrl}Logout`, '').pipe(
+      tap({
+        next:(res=>{
+          this.cookieService.delete("accessToken");
+          this.cookieService.delete("accessTokenExpires");
+
+          this.accessToken = null;
+          this.expiresOn = null;
+
+          this.router.navigate(['/login']);
+        })
+      })
+    )
+  }
+
   getAccessToken():string |null{
     return this.cookieService.get("accessToken");
   }

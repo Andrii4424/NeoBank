@@ -11,7 +11,6 @@ import { RouterLink } from '@angular/router';
 })
 export class OwnProfile {
   profileService = inject(ProfileService);
-  profile?: IProfile;
   baseUrl = 'https://localhost:7280/';
   
   constructor(private cd: ChangeDetectorRef) {}
@@ -20,10 +19,10 @@ export class OwnProfile {
   ngOnInit(){
     this.profileService.getOwnProfile(true).subscribe({
       next:(val)=>{
-        this.profile=val;
+        this.profileService.updateProfileSignal(val)
       },
       error: (err)=>{
-        this.profile=undefined;
+        this.profileService.updateProfileSignal(undefined);
       }, 
       complete:()=>{
         this.cd.detectChanges();

@@ -1,6 +1,6 @@
 import { IProfile } from './../../interfaces/auth/profile-interface';
 import { HttpClient, HttpContext } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { SKIP_LOGIN_REDIRECT } from '../../../auth/skip-login-redirect.token';
 import { F } from '@angular/cdk/keycodes';
 
@@ -10,7 +10,8 @@ import { F } from '@angular/cdk/keycodes';
 
 export class ProfileService {
   http = inject(HttpClient);
-  
+  profileSignal = signal<IProfile | null  | undefined>(null);
+
   baseUrl ='https://localhost:7280/api/Profile/';
 
   getOwnProfile(skipRedirect: boolean){
@@ -42,6 +43,10 @@ export class ProfileService {
 
 
     return this.http.post<IProfile>(`${this.baseUrl}UpdateOwnProfile`, fd);    
+  }
+
+  updateProfileSignal(profile : IProfile |null |undefined){
+    this.profileSignal.set(profile);
   }
 
   private capitalizeFirstLetter(str: string) {

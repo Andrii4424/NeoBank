@@ -67,6 +67,8 @@ namespace Bank.API.WebUI.Controllers
             }
 
             ProfileDto? updatedProfile = await _identityService.GetProfile(profile.Id.ToString());
+            updatedProfile.Role = User.FindFirst(ClaimTypes.Role)?.Value;
+
             return Ok(updatedProfile);
         }
 

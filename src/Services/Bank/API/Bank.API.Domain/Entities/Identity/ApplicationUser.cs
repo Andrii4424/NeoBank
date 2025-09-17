@@ -13,7 +13,7 @@ namespace Bank.API.Domain.Entities.Identity
         public string? Surname { get; set; }
         public string? Patronymic { get; set; }
 
-        public DateTime? DateOfBirth { get; set; }
+        public DateOnly? DateOfBirth { get; set; }
 
         public string? TaxId { get; set; }
 

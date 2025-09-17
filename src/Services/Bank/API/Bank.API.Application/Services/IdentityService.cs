@@ -176,14 +176,23 @@ namespace Bank.API.Application.Services
         {
             var allowedAvatarExtension = new[] { ".jpg", ".jpeg", ".png", ".webp", ".svg" };
             ApplicationUser? user = await _userManager.FindByIdAsync(profile.Id.ToString());
-            if(user == null)
+            if (user == null)
             {
                 throw new ArgumentException($"User with id {profile.Id} doesnt exist");
             }
-            if(profile.Email == null)
+            else if (profile.Email == null)
             {
                 return OperationResult.Error("Email has to be provided");
             }
+            else if (profile.DateOfBirth!=null && DateOnly.FromDateTime(DateTime.Today).Year-profile.DateOfBirth.Value.Year <14)
+            {
+                return OperationResult.Error("You must be 14 years or older to use the NeoBank");
+            }
+            else if (profile.Email!= user.Email && !await IsEmailUniqueAsync(profile.Email))
+            {
+                return OperationResult.Error("Email is already in use.");
+            }
+
             await _userManager.SetUserNameAsync(user, profile.Email);
             user = MapProfile(profile, user);
 
@@ -232,7 +241,6 @@ namespace Bank.API.Application.Services
             {
 
                 user.IsVerified =
-                    ((user.AvatarPath != null) || (profile.AvatarPath != null)) &&
                     ((user.Email != null) || (profile.Email != null)) &&
                     ((user.FirstName != null) || (profile.FirstName != null)) &&
                     ((user.Surname != null) || (profile.Surname != null)) &&
