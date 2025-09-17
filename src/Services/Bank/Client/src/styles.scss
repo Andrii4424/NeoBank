@@ -509,3 +509,45 @@ footer {
   font-weight: 500;
   padding-top: 6px;
 }
+
+
+@media (max-width: 1024px) {
+  .profile-divider{
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .profile-info{
+    align-items: center;
+    gap: 14px;
+  }
+
+  .profile-section{
+    width: 84dvw;   
+  }
+
+  .profile-info input{
+    width: 28dvw;
+  }
+
+
+}
+@media (max-width: 768px) {
+  .profile-section{
+    width: 92dvw;   
+  }
+
+  .profile-info{
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-info input{
+    width: 38dvw;
+  }
+
+  .profile-info{
+    gap: 4px;
+  }
+}
