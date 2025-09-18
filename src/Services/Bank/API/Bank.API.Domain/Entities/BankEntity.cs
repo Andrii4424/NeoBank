@@ -35,9 +35,6 @@ namespace Bank.API.Domain.Entities
 
         public int ActiveClientsCount { get; set; }
 
-        [StringLength(100)]
-        public string? WebsiteUrl { get; set; }
-
         [StringLength(20)]
         public string ContactPhone { get; set; }
 

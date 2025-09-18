@@ -1,4 +1,4 @@
-export interface bank{
+export interface IBank{
   id: string,
   name: string,
   rating: number,
@@ -10,7 +10,6 @@ export interface bank{
   blockedClientsCount: number,
   clientsCount: number,
   activeClientsCount: number,
-  websiteUrl: string,
   contactPhone: string,
   establishedDate: string,
   legalAddress: string,

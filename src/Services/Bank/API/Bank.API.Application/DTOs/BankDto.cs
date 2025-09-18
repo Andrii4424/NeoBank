@@ -49,9 +49,6 @@ namespace Bank.API.Application.DTO
         [BindNever]
         public int ActiveClientsCount { get; set; }
 
-        [StringLength(100)]
-        public string? WebsiteUrl { get; set; }
-
         [Required(ErrorMessage = "{0} has to be provided")]
         [StringLength(20, ErrorMessage = "{0} character limit exceeded {1}")]
         [Display(Name = "Contact Phone")]

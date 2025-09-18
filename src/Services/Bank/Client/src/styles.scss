@@ -15,6 +15,10 @@
   --primary-red-color:#B71C1C;
   --green-color: #16A34A;
   --ligth-red-color:  #DC2626;
+  --medium-gray-color: #EEF0F5;
+  --medium-gray-border-color: #E6E8EF;
+
+
 }
 
 html, body {
@@ -149,7 +153,7 @@ footer {
 
 @media (max-width: 768px) {
   .object-info-card{
-    width: 100dvw;
+    width: 90dvw;
     border-radius: 0px; 
   }
   
@@ -515,6 +519,7 @@ footer {
   .profile-divider{
     display: grid;
     grid-template-columns: 1fr;
+    gap: 0px;
   }
 
   .profile-info{
@@ -551,3 +556,39 @@ footer {
     gap: 4px;
   }
 }
+
+//table
+.object-info-card{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.object-info-card td{
+  color:var(--heavy-dark-primary-color);
+  font-size: 16px;
+  font-weight: 500;
+  padding: 10px 20px;
+}
+
+.colored{
+  background-color: var(--medium-gray-color);
+}
+.info-table{
+  width: 90%;
+  padding: 8px 16px;
+  border: 1px solid var(--medium-gray-border-color);
+}
+.entity-action-buttons {
+  margin: 34px 0 12px 0;
+}
+
+.entity-action-buttons a, .entity-action-buttons button {
+  border-radius: 8px;
+  padding: 12px 24px;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+}
+

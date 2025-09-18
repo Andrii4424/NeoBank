@@ -22,8 +22,13 @@
 
 
             <div class="user-titles">
-                <h4 class="role">{{profile?.role}}</h4>
-                @if (profile?.isVerified) {
+                @if(profile?.role===null){
+                    <h4 class="role">User</h4>
+                }
+                @else{
+                    <h4 class="role">{{profile?.role}}</h4>
+                }
+                @if (profile?.isVerified ) {
                     <h4 class="verified">Verified</h4>
                 }
                 @else {

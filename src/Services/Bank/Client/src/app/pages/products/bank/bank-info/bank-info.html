@@ -1,42 +1,105 @@
 <header>
-    <h1 class="heading">Bank information</h1>
+    <h1 class="heading">Bank Information</h1>
 </header>
 
 <section class="object-info-card">
-    <table class="info-table">
-        <tr class="colored">
-            <th>Full name</th>
-            <td>NeoBank</td>
-        </tr>
-        <tr>
-            <th></th>
-            <td></td>
-        </tr>
-        <tr class="colored">
-            <th></th>
-            <td></td>
-        </tr>
-        <tr>
-            <th></th>
-            <td></td>
-        </tr>
-        <tr class="colored">
-            <th></th>
-            <td></td>
-        </tr>
-        <tr>
-            <th></th>
-            <td></td>
-        </tr>
-        <tr class="colored">
-            <th></th>
-            <td></td>
-        </tr>
-        <tr>
-            <th></th>
-            <td></td>
-        </tr>
-    </table>
+    @if(bank$ | async; as bank){
+        <table class="info-table">
+            <tr class="colored">
+                <td>Field</td>
+                <td>Value</td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>{{bank.name}}</td>
+            </tr>
+            <tr class="colored">
+                <td>Rating</td>
+                <td>{{bank.rating}}</td>
+            </tr>
+            <tr>
+                <td>Has License</td>
+                <td>
+                    @if(bank.hasLicense){
+                        Yes
+                    }
+                    @else {
+                        No
+                    }
+                </td>
+            </tr>
+            <tr class="colored">
+                <td>Founder Name</td>
+                <td>{{bank.bankFounderFullName}}</td>
+            </tr>
+            <tr>
+                <td>Director Name</td>
+                <td>{{bank.bankDirectorFullName}}</td>
+            </tr>
+            <tr class="colored">
+                <td>Capitalization</td>
+                <td>{{bank.capitalization}}</td>
+            </tr>
+            <tr>
+                <td>Employee Count</td>
+                <td>{{bank.employeesCount}}</td>
+            </tr>
+            <tr class="colored">
+                <td>Clients Count</td>
+                <td>{{bank.clientsCount}}</td>
+            </tr>
+            <tr>
+                <td>Active Clients Count</td>
+                <td>{{bank.activeClientsCount}}</td>
+            </tr>
+            <tr class="colored">
+                <td>Blocked Clients Count</td>
+                <td>{{bank.blockedClientsCount}}</td>
+            </tr>
+            <tr>
+                <td>Contact Phone</td>
+                <td>{{bank.contactPhone}}</td>
+            </tr>
+            <tr class="colored">
+                <td>Established Date</td>
+                <td>{{bank.establishedDate}}</td>
+            </tr>
+            <tr>
+                <td>Legal Address</td>
+                <td>{{bank.legalAddress}}</td>
+            </tr>
+            <tr class="colored">
+                <td>Percentage Commission For Buying Currency</td>
+                <td>{{bank.percentageCommissionForBuyingCurrency}}%</td>
+            </tr>
+            <tr>
+                <td>Percentage Commission For Selling Currency</td>
+                <td>{{bank.percentageCommissionForSellingCurrency}}%</td>
+            </tr>
+            <tr class="colored">
+                <td>Swift Code</td>
+                <td>{{bank.swiftCode}}</td>
+            </tr>
+            <tr>
+                <td>Mfo Code</td>
+                <td>{{bank.mfoCode}}</td>
+            </tr>
+            <tr class="colored">
+                <td>Tax Id</td>
+                <td>{{bank.taxId}}</td>
+            </tr>
+            <tr>
+                <td>Contact Email</td>
+                <td>{{bank.contactEmail}}</td>
+            </tr>
+            <tr class="colored">
+                <td>Last Update Time</td>
+                <td>{{bank.updatedAt}}</td>
+            </tr>
+        </table>
+    }
 
-    <a href="/update-bank">Update Bank</a>
+    <div class="entity-action-buttons">
+        <a routerLink="/update-bank" class="update">Update Bank</a>
+    </div>
 </section>
