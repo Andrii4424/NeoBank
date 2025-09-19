@@ -135,8 +135,8 @@ export class UsersOwnProfile {
   }
 
   logout(){
+    localStorage.removeItem("role");
     this.authService.logout().subscribe({
-      
     });
   }
 }

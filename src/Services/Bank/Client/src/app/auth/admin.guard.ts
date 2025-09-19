@@ -8,7 +8,7 @@ export const adminGuard: CanActivateFn =()=>{
     const profileService = inject(ProfileService);
     const router = inject(Router);
     
-    if(profileService.role()?.toLowerCase()==='admin'){
+    if(profileService.getRole()?.toLowerCase()==='admin'){
         return true;
     }
     router.navigate(['/']);

@@ -14,7 +14,6 @@ export class ProfileService {
   http = inject(HttpClient);
   profileSignal = signal<IProfile | null  | undefined>(null);
   baseUrl ='https://localhost:7280/api/Profile/';
-  role= signal<string | null>(null);
 
   getOwnProfile(skipRedirect: boolean){
     return this.http.get<IProfile>(`${this.baseUrl}Me`, {
@@ -45,8 +44,6 @@ export class ProfileService {
     if (payload.avatar) {
       fd.append("Avatar", payload.avatar);
     }
-
-
     return this.http.post<IProfile>(`${this.baseUrl}UpdateOwnProfile`, fd);    
   }
 
@@ -66,13 +63,17 @@ export class ProfileService {
     .pipe(
       tap({
         next:(val)=>{
-          this.role.set(val.role);
+          localStorage.setItem( "role", val.role ?? "");
         },
         error:()=>{
-          this.role.set(null);
+          localStorage.setItem("role", "");
         }
       })
     ).subscribe();
+  }
+
+  getRole(){
+    return localStorage.getItem("role");
   }
 }
 
