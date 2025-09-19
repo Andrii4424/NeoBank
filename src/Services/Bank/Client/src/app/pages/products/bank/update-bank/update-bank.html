@@ -6,7 +6,7 @@
     <form [formGroup]="bankForm" class="update-entity-form" (click)="closeValidationStatus()" (ngSubmit)="onSubmit()">
         <div class="update-entity-form-fields">
             <label for="rating">Rating</label>
-            <input id="rating" name="rating" type="number" step="0.1" formControlName="rating" />
+            <input id="rating" name="rating" type="number" step="0.1" (change)="onRatingChange($event)" formControlName="rating" />
 
             <label for="hasLicense">Has License</label>
             <input id="hasLicense" class="checkbox" name="hasLicense" type="checkbox" formControlName="hasLicense" />
@@ -18,7 +18,7 @@
             <input id="bankDirectorFullName" name="bankDirectorFullName" type="text" formControlName="bankDirectorFullName" />
 
             <label for="capitalization">Capitalization (in usd)</label>
-            <input id="capitalization" name="capitalization" type="number" formControlName="capitalization" />
+            <input id="capitalization" name="capitalization" type="number" min="0" max="2084597250" (change)="onCapitalizationChange($event)" formControlName="capitalization" />
 
             <label for="contactPhone">Contact Phone</label>
             <input id="contactPhone" name="contactPhone" type="text" formControlName="contactPhone" />
@@ -32,16 +32,18 @@
                 name="percentageCommissionForBuyingCurrency"
                 type="number"
                 formControlName="percentageCommissionForBuyingCurrency"
-                 min="0"
+                min="0"
+                (change)="onPercentForBuyingChange($event)"
             />
 
-            <label for="percentageCommissionForSellingCurrency">Percentage Commission For Selling Currency (in %)</label>
+            <label for="percentageCommissionForSellingCurrency" >Percentage Commission For Selling Currency (in %)</label>
             <input
                 id="percentageCommissionForSellingCurrency"
                 name="percentageCommissionForSellingCurrency"
                 type="number"
                 formControlName="percentageCommissionForSellingCurrency"
                 min="0"
+                (change)="onPercentForSellingChange($event)"
             />
 
             <label for="swiftCode">Swift Code</label>

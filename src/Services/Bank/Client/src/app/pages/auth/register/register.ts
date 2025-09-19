@@ -45,9 +45,11 @@ export class Register {
         error:(err)=>{
           this.displayRegisterError.set(true);
           this.registerErrorMessage=this.sharedService.serverResponseErrorToArray(err);
+        },
+        complete:()=>{
+          this.profileService.updateRole();
         }
       });
-      this.profileService.updateRole();
     }
     else{
       this.displayRegisterError.set(true);

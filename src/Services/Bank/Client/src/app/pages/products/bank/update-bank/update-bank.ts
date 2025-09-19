@@ -91,4 +91,39 @@ export class UpdateBank {
       this.showValidationResult.set(true);
     }
   }
+
+
+  onCapitalizationChange(event : Event){
+    const input = event.target as HTMLInputElement;
+    let value = Number(input.value);
+    if(value<0) value=0;
+    else if(value>2084597250) value = 2084597250;
+
+    this.bankForm.get('capitalization')?.setValue(value, { emitEvent: false });
+  }
+
+  onRatingChange(event : Event){
+    const input = event.target as HTMLInputElement;
+    let value = Number(input.value);
+    if(value<1) value=1;
+    else if(value>5.0) value = 5.0;
+
+    this.bankForm.get('rating')?.setValue(value, { emitEvent: false });
+  }
+
+  onPercentForBuyingChange(event : Event){
+    const input = event.target as HTMLInputElement;
+    let value = Number(input.value);
+    if(value<0) value=0;
+
+    this.bankForm.get('percentageCommissionForBuyingCurrency')?.setValue(value, { emitEvent: false });
+  }
+
+  onPercentForSellingChange(event : Event){
+    const input = event.target as HTMLInputElement;
+    let value = Number(input.value);
+    if(value<0) value=0;
+    this.bankForm.get('percentageCommissionForSellingCurrency')?.setValue(value, { emitEvent: false });
+  }
+  
 }
