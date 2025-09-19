@@ -24,8 +24,12 @@ namespace Bank.API.Application.Helpers.Mapping
             CreateMap<BankEntity, BankDto>();
             CreateMap<BankDto, BankEntity>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
-                .ForMember(dest => dest.Name, opt => opt.Ignore());
-
+                .ForMember(dest => dest.Name, opt => opt.Ignore())
+                .ForMember(dest => dest.ClientsCount, opt => opt.Ignore())
+                .ForMember(dest => dest.ActiveClientsCount, opt => opt.Ignore())
+                .ForMember(dest => dest.BlockedClientsCount, opt => opt.Ignore())
+                .ForMember(dest => dest.EstablishedDate, opt => opt.Ignore())
+                .ForMember(dest => dest.EmployeesCount, opt => opt.Ignore());
         }
 
     }

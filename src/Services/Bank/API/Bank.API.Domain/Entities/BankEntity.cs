@@ -25,7 +25,7 @@ namespace Bank.API.Domain.Entities
         [StringLength(40)]
         public string BankDirectorFullName { get; set; }
 
-        public double Capitalization { get; set; }
+        public long Capitalization { get; set; }
 
         public int EmployeesCount { get; set; }
 

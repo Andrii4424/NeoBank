@@ -18,6 +18,4 @@ export class BankInfo {
   constructor (){
     this.bank$ = this.bankService.getBank();
   }
-
-
 }

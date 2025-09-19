@@ -96,10 +96,7 @@ namespace Bank.API.WebUI.StartupServicesInjection
             //Services injection
             //Identity
             services.AddScoped<IIdentityService, IdentityService>();
-
-            services.AddScoped<IBankReadService, BankReadService>();
-            services.AddScoped<IBankUpdateService, BankUpdateService>();
-
+            services.AddScoped<IBankService, BankService>();
 
             //AutoMapper
             services.AddAutoMapper(typeof(MappingProfile));

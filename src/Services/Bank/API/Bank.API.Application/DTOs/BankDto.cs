@@ -34,8 +34,9 @@ namespace Bank.API.Application.DTO
         public string BankDirectorFullName { get; set; }
 
         [Required(ErrorMessage = "{0} has to be provided")]
+        [Range(0, int.MaxValue, ErrorMessage = "{0} cant be {1} or lesser")]
         [Display(Name = "Capitalization")]
-        public double Capitalization { get; set; }
+        public long Capitalization { get; set; }
 
         [BindNever]
         public int EmployeesCount { get; set; }
@@ -63,9 +64,11 @@ namespace Bank.API.Application.DTO
         public string LegalAddress { get; set; }
 
         [Range(0, 10.0, ErrorMessage = "{0} must be between {1} and {2}")]
+        [Display(Name = "Percentage Commission For Buying Currency")]
         public double PercentageCommissionForBuyingCurrency { get; set; }
 
         [Range(0, 10.0, ErrorMessage = "{0} must be between {1} and {2}")]
+        [Display(Name = "Percentage Commission For Selling Currency ")]
         public double PercentageCommissionForSellingCurrency { get; set; }
 
         [Required(ErrorMessage = "{0} has to be provided")]

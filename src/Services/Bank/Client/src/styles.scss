@@ -534,8 +534,6 @@ footer {
   .profile-info input{
     width: 28dvw;
   }
-
-
 }
 @media (max-width: 768px) {
   .profile-section{
@@ -590,5 +588,83 @@ footer {
   cursor: pointer;
   font-size: 16px;
   font-weight: 500;
+}
+
+//Update form
+.update-entity-form{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--medium-gray-color);
+  border: 1px solid var(--medium-gray-border-color);
+  padding: 20px 25px;
+  border-radius: 8px;
+  width: 90%;
+}
+
+.update-entity-form-fields{
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 10px;
+}
+
+.update-entity-form-fields input{
+  width: 14dvw;
+  height: 28px;
+  background-color: var(--gray-background);
+  border: 1px solid var(--gray-primary-color);
+  border-radius: 8px;
+}
+.update-entity-form-fields label{
+  color: var(--gray-primary-color);
+  font-size: 14px;
+}
+
+.entity-update{
+  margin-top: 24px;
+  background-color: var(--dark-primary-color);
+  font-weight: 500;
+  font-size: 16px;
+  padding: 8px 16px;
+  color: white;
+  border-radius: 8px;
+  border: 1px solid var(--heavy-dark-primary-color);
+  cursor: pointer;
+}
+
+.checkbox{
+  width: 18px !important;
+  height: auto;
+}
+
+.validation-result{
+  margin-top: 24px;
+  margin-bottom: -8px;
+}
+
+@media (max-width: 1024px) {
+  .update-entity-form-fields{
+    grid-template-columns: 180px 1fr;
+  }
+
+  .update-entity-form-fields input{
+    width: 24dvw;
+  }
+}
+@media (max-width: 480px) {
+  .update-entity-form-fields{
+    gap: 8px;
+    grid-template-columns: 140px 1fr;
+  }
+
+  .update-entity-form-fields input{
+    width: 34dvw;
+  }
+  .update-entity-form{
+    padding: 15px 10px;
+  }
+  .update-entity-form{
+    width: 100%;
+  }
 }
 

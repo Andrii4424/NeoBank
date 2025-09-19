@@ -2,6 +2,7 @@
 using Bank.API.Application.Helpers.HelperClasses;
 using Bank.API.Application.ServiceContracts.BankServiceContracts;
 using Bank.API.Domain.Entities;
+using Bank.API.WebUI.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,20 +13,18 @@ namespace Bank.API.WebUI.Controllers
     [ApiController]
     public class BankController : ControllerBase
     {
-        private readonly IBankReadService _bankReadService;
-        private readonly IBankUpdateService _bankUpdateService;
+        private readonly IBankService _bankService;
 
-        public BankController (IBankReadService bankReadService, IBankUpdateService bankUpdateService)
+        public BankController (IBankService bankService)
         {
-            _bankReadService = bankReadService;
-            _bankUpdateService = bankUpdateService;
+            _bankService = bankService;
         }
 
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> BankInfo()
         {
-            BankDto bankDto = await _bankReadService.GetBankInfo();
+            BankDto bankDto = await _bankService.GetBankInfo();
             return Ok(bankDto);
         }
 
@@ -33,7 +32,7 @@ namespace Bank.API.WebUI.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateBank([FromBody] BankDto bankDto)
         {
-            OperationResult result = await _bankUpdateService.UpdateBank(bankDto);
+            OperationResult result = await _bankService.UpdateBank(bankDto);
             if (result.Success)
             {
                 return Ok();
@@ -42,13 +41,6 @@ namespace Bank.API.WebUI.Controllers
             {
                 return BadRequest(result.ErrorMessage);
             }
-        }
-
-
-        [HttpPost]
-        public async Task<IActionResult> TestRequest()
-        {
-            return NoContent();
         }
     }
 }

@@ -13,7 +13,7 @@ export class BankService {
     return this.http.get<IBank>(this.baseUrl);
   }
 
-  testRequest(){
-    return this.http.post('https://localhost:7280/api/Bank', "");
+  updateBank(bank: IBank){
+    return this.http.put<IBank>(`${this.baseUrl}`, bank);
   }
 }
