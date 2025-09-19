@@ -1,5 +1,5 @@
-import { Component, ElementRef, Host, HostListener, inject, signal, ViewChild } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Component, ElementRef, Host, HostListener, inject, signal, ViewChild, ViewChildren } from '@angular/core';
+import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { Footer } from "../footer/footer";
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { SharedService } from '../../data/services/shared-service';
@@ -7,7 +7,7 @@ import { OwnProfile } from "../own-profile/own-profile";
 
 @Component({
   selector: 'app-layout',
-  imports: [RouterOutlet, Footer, RouterLink, OwnProfile],
+  imports: [RouterOutlet, Footer, RouterLink, OwnProfile, RouterModule],
   templateUrl: './layout.html',
   styleUrl: './layout.scss'
 })
@@ -35,6 +35,8 @@ export class Layout {
   @ViewChild('openMenu') openMenu!: ElementRef<HTMLImageElement> ;
   @ViewChild('closeMenu') closeMenu!: ElementRef<HTMLImageElement> ;
   @ViewChild('adaptiveMenu') adaptiveMenu!: ElementRef<HTMLElement> ;
+  @ViewChild('main') main!: ElementRef<HTMLElement> ;
+
 
   @HostListener('window:click', ['$event'])
   onWindowClick(event: Event) {
@@ -44,7 +46,8 @@ export class Layout {
       this.closeMenu.nativeElement.classList.add('chosen');
       this.adaptiveMenu.nativeElement.classList.add('opened');
     }
-    else if (this.closeMenu.nativeElement.contains(event.target as Node)) {
+    else if (this.closeMenu.nativeElement.contains(event.target as Node) || this.main.nativeElement.contains(event.target as Node)) {
+
       this.openMenu.nativeElement.classList.add('chosen');
       this.closeMenu.nativeElement.classList.remove('chosen');
       this.adaptiveMenu.nativeElement.classList.remove('opened');

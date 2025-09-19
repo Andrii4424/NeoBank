@@ -92,7 +92,6 @@ export class UpdateBank {
     }
   }
 
-
   onCapitalizationChange(event : Event){
     const input = event.target as HTMLInputElement;
     let value = Number(input.value);
@@ -125,5 +124,4 @@ export class UpdateBank {
     if(value<0) value=0;
     this.bankForm.get('percentageCommissionForSellingCurrency')?.setValue(value, { emitEvent: false });
   }
-  
 }

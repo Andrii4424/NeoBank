@@ -24,17 +24,16 @@
         </div>
     </header>
     <aside class="sidebar menu" #adaptiveMenu id="adaptive-menu" [class.compact]="compact" [class.labtop]="labtop()" [class.mobile]="mobile()">
-        <a [routerLink]="['/bank-info']">About Bank</a>
-        <a href="#">Cards</a>
-        <a href="#">Deposits</a>
-        <a href="#">Credits</a>
-        <a href="#">Clients</a>
-        <a href="#">Employees</a>
-        <a href="#">Vacancies</a>
-        <a href="#">Currency Rates</a>
+        <a [routerLink]="['/about']" routerLinkActive="active">About Bank</a>
+        <a href="#" routerLinkActive="active">Cards</a>
+        <a href="#" routerLinkActive="active">Deposits</a>
+        <a href="#" routerLinkActive="active">Credits</a>
+        <a href="#" routerLinkActive="active">Clients</a>
+        <a href="#" routerLinkActive="active">Employees</a>
+        <a href="#" routerLinkActive="active">Vacancies</a>
+        <a href="#" routerLinkActive="active">Currency Rates</a>
     </aside>
-
-    <main class="content">
+    <main #main class="content">
         <router-outlet></router-outlet>
     </main>
 

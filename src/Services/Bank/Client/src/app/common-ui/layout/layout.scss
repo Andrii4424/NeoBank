@@ -53,7 +53,7 @@
 .sidebar{
     position: sticky;
     transform: scaleY(1);
-    top: calc(var(--header-height) + 1px); /*+1px for header border*/
+    top: var(--header-height); 
     border-bottom: 1px solid var(--light-gray-color);
     background-color: white;
     z-index: 1000;
@@ -164,4 +164,8 @@
     padding-top: calc(var(--header-height) + 34px); 
     padding-bottom: 40px;
     background-color: var(--gray-background);
+}
+a.active{
+    background-color: var(--light-gray-color);
+    border-radius: 14px;
 }

@@ -12,8 +12,8 @@ import { adminGuard } from './auth/admin.guard';
 export const routes: Routes = [
     {path: '', component: Layout, children: [
         {path: '', component: Home},
-        {path: 'bank-info', component: BankInfo},
-        {path: 'update-bank', component: UpdateBank, canActivate: [adminGuard]},
+        {path: 'about', component: BankInfo },
+        {path: 'about/update', component: UpdateBank, canActivate: [adminGuard]},
         {path: 'my-profile', component: UsersOwnProfile, canActivate: [CanActivateAuth]}
     ]},
     {path: 'login', component: Login},
