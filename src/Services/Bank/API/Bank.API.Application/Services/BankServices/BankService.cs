@@ -33,7 +33,7 @@ namespace Bank.API.Application.Services.BankServices
             BankEntity bank = await _bankRepository.GetValueByIdAsync(bankDto.Id);
 
            _mapper.Map(bankDto, bank);
-            bank.UpdatedAt = DateTime.UtcNow;
+            bank.UpdatedAt = DateOnly.FromDateTime(DateTime.Now);
             _bankRepository.UpdateObject(bank);
             await _bankRepository.SaveAsync();
 

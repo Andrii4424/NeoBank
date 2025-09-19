@@ -2,7 +2,6 @@
 using Bank.API.Application.Helpers.HelperClasses;
 using Bank.API.Application.ServiceContracts.BankServiceContracts;
 using Bank.API.Domain.Entities;
-using Bank.API.WebUI.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

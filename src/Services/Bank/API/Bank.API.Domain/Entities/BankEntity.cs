@@ -38,7 +38,7 @@ namespace Bank.API.Domain.Entities
         [StringLength(20)]
         public string ContactPhone { get; set; }
 
-        public DateTime EstablishedDate { get; set; }
+        public DateOnly EstablishedDate { get; set; }
 
         [StringLength(100)]
         public string LegalAddress { get; set; }
@@ -59,6 +59,6 @@ namespace Bank.API.Domain.Entities
         [StringLength(100)]
         public string ContactEmail { get; set; }
 
-        public DateTime UpdatedAt { get; set; }
+        public DateOnly UpdatedAt { get; set; }
     }
 }
