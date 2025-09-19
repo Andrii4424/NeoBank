@@ -38,7 +38,7 @@
             </tr>
             <tr class="colored">
                 <td>Capitalization</td>
-                <td>{{bank.capitalization}}$</td>
+                <td>{{bank.capitalization}} $</td>
             </tr>
             <tr>
                 <td>Employee Count</td>
@@ -98,8 +98,9 @@
             </tr>
         </table>
     }
-
-    <div class="entity-action-buttons">
-        <a routerLink="/update-bank" class="update">Update Bank</a>
-    </div>
+    @if(profileService.role()?.toLowerCase()==='admin'){
+        <div class="entity-action-buttons">
+            <a routerLink="/update-bank" class="update">Update Bank</a>
+        </div>
+    }
 </section>

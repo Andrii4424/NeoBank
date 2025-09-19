@@ -1,14 +1,15 @@
-import { SKIP_LOGIN_REDIRECT } from './../../../auth/skip-login-redirect.token';
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { catchError, finalize, map, Observable, shareReplay, tap, throwError } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { IAccessToken } from '../../interfaces/auth/access-token.interface';
 import { Router } from '@angular/router';
+import { IRole } from '../../interfaces/auth/role-interface';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
   http = inject(HttpClient);
   router = inject(Router)
@@ -19,10 +20,10 @@ export class AuthService {
   accessToken :string | null = null;
   expiresOn :Date | null = null;
 
+
   IsLoggedIn(){
     this.accessToken = this.cookieService.get("accessToken");
-    if(this.accessToken!==null && this.accessToken!==""){// && this.expiresOn!==null && this.expiresOn.getTime()>Date.now()){
-      console.log(this.accessToken);
+    if(this.accessToken!==null && this.accessToken!==""){
       return true;
     }
     return false;

@@ -1,3 +1,4 @@
+import { ProfileService } from './../../../data/services/auth/profile-service';
 import { Component, inject, signal } from '@angular/core';
 import { Footer } from "../../../common-ui/footer/footer";
 import { Router, RouterLink } from "@angular/router";
@@ -20,9 +21,11 @@ export type RegisterDto = {
 
 export class Register {
   authService = inject(AuthService);
-  sharedService = inject(SharedService)
+  sharedService = inject(SharedService);
+  profileService = inject(ProfileService);
   router = inject(Router);
   displayRegisterError = signal<boolean>(false);
+  
   registerErrorMessage :string[] = [];
 
   registerForm = new FormGroup({
@@ -43,7 +46,8 @@ export class Register {
           this.displayRegisterError.set(true);
           this.registerErrorMessage=this.sharedService.serverResponseErrorToArray(err);
         }
-      })
+      });
+      this.profileService.updateRole();
     }
     else{
       this.displayRegisterError.set(true);

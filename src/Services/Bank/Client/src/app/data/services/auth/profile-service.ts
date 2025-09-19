@@ -3,6 +3,8 @@ import { HttpClient, HttpContext } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { SKIP_LOGIN_REDIRECT } from '../../../auth/skip-login-redirect.token';
 import { F } from '@angular/cdk/keycodes';
+import { IRole } from '../../interfaces/auth/role-interface';
+import { tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +13,8 @@ import { F } from '@angular/cdk/keycodes';
 export class ProfileService {
   http = inject(HttpClient);
   profileSignal = signal<IProfile | null  | undefined>(null);
-
   baseUrl ='https://localhost:7280/api/Profile/';
+  role= signal<string | null>(null);
 
   getOwnProfile(skipRedirect: boolean){
     return this.http.get<IProfile>(`${this.baseUrl}Me`, {
@@ -21,6 +23,9 @@ export class ProfileService {
     });
   }
 
+  constructor(){
+    this.updateRole();
+  }
 
   getUserProfile(userId:string){
     return this.http.get<IProfile>(`${this.baseUrl}ProfileInfo/${userId}`);
@@ -51,6 +56,23 @@ export class ProfileService {
 
   private capitalizeFirstLetter(str: string) {
     return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
+  updateRole(){
+    this.http.get<IRole>(`https://localhost:7280/api/Account/GetRole`,{
+      context: new HttpContext()
+        .set(SKIP_LOGIN_REDIRECT, true)
+    })
+    .pipe(
+      tap({
+        next:(val)=>{
+          this.role.set(val.role);
+        },
+        error:()=>{
+          this.role.set(null);
+        }
+      })
+    ).subscribe();
   }
 }
 

@@ -5,6 +5,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../data/services/auth/auth-service';
 import { RouterLink } from "@angular/router";
+import { ProfileService } from '../../../data/services/auth/profile-service';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ export class Login {
   displaySessionError = signal<boolean>(false);
   displayLoginError = signal<boolean>(false);
   loginFormErrorMessage :string[] =[];
+  profileService = inject(ProfileService);
 
   constructor(private activatedRoute: ActivatedRoute){
     
@@ -48,9 +50,11 @@ export class Login {
         error: (err)=>{
           this.displayLoginError.set(true);
           this.loginFormErrorMessage=this.sharedService.serverResponseErrorToArray(err);
+        },
+        complete: ()=>{
+          this.profileService.updateRole();
         }
-
-      })
+      });
     }
     else{
       this.displayLoginError.set(true);

@@ -27,8 +27,8 @@ namespace Bank.API.WebUI.Controllers
             return Ok(bankDto);
         }
 
-
         [HttpPut]
+        [Authorize(Policy = "AdminsOnly")]
         public async Task<IActionResult> UpdateBank([FromBody] BankDto bankDto)
         {
             OperationResult result = await _bankService.UpdateBank(bankDto);
