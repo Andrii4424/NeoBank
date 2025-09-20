@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Bank.API.Domain.Enums.CardEnums
+{
+    public enum PaymentSystem
+    {
+        Visa = 1,
+        Mastercard = 2
+    }
+}

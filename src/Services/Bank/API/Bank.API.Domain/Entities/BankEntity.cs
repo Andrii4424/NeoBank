@@ -1,4 +1,5 @@
 ﻿using Bank.API.Domain.Abstractions;
+using Bank.API.Domain.Entities.Cards;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -60,5 +61,7 @@ namespace Bank.API.Domain.Entities
         public string ContactEmail { get; set; }
 
         public DateOnly UpdatedAt { get; set; }
+
+        public ICollection<CardTariffsEntity> Cards { get; set; }
     }
 }
