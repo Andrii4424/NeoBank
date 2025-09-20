@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Bank.API.Application.DTO;
+using Bank.API.Application.DTOs.BankProducts;
 using Bank.API.Application.DTOs.Identity;
 using Bank.API.Domain.Entities;
+using Bank.API.Domain.Entities.Cards;
 using Bank.API.Domain.Entities.Identity;
 using System;
 using System.Collections.Generic;
@@ -19,7 +21,6 @@ namespace Bank.API.Application.Helpers.Mapping
             CreateMap<ApplicationUser, ProfileDto>();
             CreateMap<ProfileDto, ApplicationUser>();
 
-
             //Bank
             CreateMap<BankEntity, BankDto>();
             CreateMap<BankDto, BankEntity>()
@@ -30,7 +31,12 @@ namespace Bank.API.Application.Helpers.Mapping
                 .ForMember(dest => dest.BlockedClientsCount, opt => opt.Ignore())
                 .ForMember(dest => dest.EstablishedDate, opt => opt.Ignore())
                 .ForMember(dest => dest.EmployeesCount, opt => opt.Ignore());
-        }
 
+            //CardTariffs
+            CreateMap<CardTariffsEntity, CardTariffsDto>();
+            CreateMap<CardTariffsDto, CardTariffsEntity>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore()); 
+
+        }
     }
 }

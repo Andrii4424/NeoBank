@@ -11,10 +11,13 @@ namespace Bank.API.Application.Services
 {
     public static class SharedMethods
     {
-        //Bank methods
         public static Guid GetBankGuid()
         {
             return Guid.Parse("E2A4A522-8486-46F7-9437-5F5B7E539502");
         }
+
+        public static int GetDefaultPageCount() {
+            return 10;
+        } 
     }
 }
