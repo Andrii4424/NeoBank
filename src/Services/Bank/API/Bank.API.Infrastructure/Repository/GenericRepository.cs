@@ -63,14 +63,25 @@ namespace Bank.API.Infrastructure.Repository
         {
             var query = _dbSet.AsQueryable();
             if(searchFilter != null) query = query.Where(searchFilter);
-            foreach(var filter in filters)
+            if (filters != null)
             {
-                query = query.Where(filter);
+                filters = filters.Where(v => v != null).ToList();
+                foreach (var filter in filters)
+                {
+                    query = query.Where(filter);
+                }
             }
-            query = ascending ? query.OrderBy(sortValue).ThenBy(obj => obj.Id) : query.OrderByDescending(sortValue).ThenBy(obj => obj.Id);
+            if(sortValue != null)
+            {
+                query = ascending ? query.OrderBy(sortValue).ThenBy(obj => obj.Id) : query.OrderByDescending(sortValue).ThenBy(obj => obj.Id);
+            }
+            else
+            {
+                query = query.OrderBy(obj=> obj.Id);
+            }
 
             return query
-                .Skip(pageNumber-1 * pageSize)
+                .Skip((pageNumber-1) * pageSize)
                 .Take(pageSize)
                 .ToList();
         }
@@ -79,9 +90,13 @@ namespace Bank.API.Infrastructure.Repository
         {
             var query = _dbSet.AsQueryable();
             if (searchFilter != null) query = query.Where(searchFilter);
-            foreach (var filter in filters)
+            if (filters != null)
             {
-                query = query.Where(filter);
+                filters = filters.Where(v => v != null).ToList();
+                foreach (var filter in filters)
+                {
+                    query = query.Where(filter);
+                }
             }
 
             return await query.CountAsync();

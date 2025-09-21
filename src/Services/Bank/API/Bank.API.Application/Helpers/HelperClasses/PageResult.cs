@@ -10,6 +10,7 @@ namespace Bank.API.Application.Helpers.HelperClasses
     {
         public IEnumerable<T> Items { get; set; } = Enumerable.Empty<T>();
         public int TotalCount { get; set; }
+        public int PageCount { get; set; } 
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
 
@@ -23,6 +24,7 @@ namespace Bank.API.Application.Helpers.HelperClasses
             TotalCount = totalCount;
             PageNumber = pageNumber;
             PageSize = pageSize;
+            PageCount = (int)Math.Ceiling(totalCount /10.0);
         }
     }
 }

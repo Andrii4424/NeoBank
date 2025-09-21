@@ -36,7 +36,7 @@ namespace Bank.API.Application.Services.BankServices.BankProducts
             return cardsResult;
         }
 
-        public async Task<PageResult<CardTariffsDto>> GetCardsAsync(CardTariffsFilter filters)
+        public async Task<PageResult<CardTariffsDto>> GetCardsPageAsync(CardTariffsFilter filters)
         {
             FiltersDto<CardTariffsEntity> filtersDto = filters.ToGeneralFilters();
 
@@ -49,6 +49,11 @@ namespace Bank.API.Application.Services.BankServices.BankProducts
             return cardsResult;
         }
 
+        public async Task<CardTariffsDto?> GetCardAsync(Guid cardId)
+        {
+            return _mapper.Map<CardTariffsDto>(await _cardTariffsRepository.GetValueByIdAsync(cardId));
+        }
+
         //Create operations
         public async Task<OperationResult> AddAsync(CardTariffsDto cardDto)
         {
@@ -56,7 +61,10 @@ namespace Bank.API.Application.Services.BankServices.BankProducts
             {
                 return OperationResult.Error("Card with same name is already exists. Please provide unique name");
             }
+            cardDto.BankId = SharedMethods.GetBankGuid();
+
             await _cardTariffsRepository.AddAsync(_mapper.Map<CardTariffsEntity>(cardDto));
+            await _cardTariffsRepository.SaveAsync();
 
             return OperationResult.Ok();
         }
@@ -73,7 +81,9 @@ namespace Bank.API.Application.Services.BankServices.BankProducts
             {
                 return OperationResult.Error("Card with this id doesnt exist");
             }
+            cardDto.BankId= SharedMethods.GetBankGuid();
             _cardTariffsRepository.UpdateObject(_mapper.Map(cardDto, card));
+            await _cardTariffsRepository.SaveAsync();
 
             return OperationResult.Ok();
         }
@@ -88,8 +98,10 @@ namespace Bank.API.Application.Services.BankServices.BankProducts
                 return OperationResult.Error("Card with this id doesnt exist");
             }
             _cardTariffsRepository.DeleteElement(card);
-            return OperationResult.Ok();
+            await _cardTariffsRepository.SaveAsync();
 
+
+            return OperationResult.Ok();
         }
     }
 }
