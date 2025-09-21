@@ -8,7 +8,7 @@ namespace Bank.API.Domain.Enums.CardEnums
 {
     public enum CardLevel
     {
-        Normal,
-        Premium
+        Normal=0,
+        Premium=1
     }
 }

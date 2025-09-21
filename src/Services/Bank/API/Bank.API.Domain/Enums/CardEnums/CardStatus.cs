@@ -8,8 +8,8 @@ namespace Bank.API.Domain.Enums.CardEnums
 {
     public enum CardStatus
     {
-        Active,
-        Blocked,
-        Expired
+        Active=0,
+        Blocked=1,
+        Expired=2
     }
 }

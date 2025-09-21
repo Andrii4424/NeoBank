@@ -8,7 +8,7 @@ namespace Bank.API.Domain.Enums.CardEnums
 {
     public enum CardType
     {
-        Debit,
-        Credit
+        Debit=0,
+        Credit=1
     }
 }
