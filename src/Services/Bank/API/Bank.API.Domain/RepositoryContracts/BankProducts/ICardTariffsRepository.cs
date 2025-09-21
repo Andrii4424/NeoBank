@@ -9,6 +9,6 @@ namespace Bank.API.Domain.RepositoryContracts.BankProducts
 {
     public interface ICardTariffsRepository : IGenericRepository<CardTariffsEntity>
     {
-
+        public Task<bool> IsNameUniqueAsync(string name);
     }
 }

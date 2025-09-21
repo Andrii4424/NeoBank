@@ -1,8 +1,10 @@
 ﻿using Bank.API.Application.Helpers.Mapping;
 using Bank.API.Application.ServiceContracts;
 using Bank.API.Application.ServiceContracts.BankServiceContracts;
+using Bank.API.Application.ServiceContracts.BankServiceContracts.BankProducts;
 using Bank.API.Application.Services;
 using Bank.API.Application.Services.BankServices;
+using Bank.API.Application.Services.BankServices.BankProducts;
 using Bank.API.Domain.Entities.Identity;
 using Bank.API.Domain.RepositoryContracts;
 using Bank.API.Domain.RepositoryContracts.BankProducts;
@@ -101,6 +103,7 @@ namespace Bank.API.WebUI.StartupServicesInjection
             services.AddScoped<IIdentityService, IdentityService>();
             //Bank and bank products
             services.AddScoped<IBankService, BankService>();
+            services.AddScoped<ICardTariffsService, CardTariffsService>();
 
             //AutoMapper
             services.AddAutoMapper(typeof(MappingProfile));
