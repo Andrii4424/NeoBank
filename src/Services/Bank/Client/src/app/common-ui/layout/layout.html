@@ -25,7 +25,7 @@
     </header>
     <aside class="sidebar menu" #adaptiveMenu id="adaptive-menu" [class.compact]="compact" [class.labtop]="labtop()" [class.mobile]="mobile()">
         <a [routerLink]="['/about']" routerLinkActive="active">About Bank</a>
-        <a href="#" routerLinkActive="active">Cards</a>
+        <a [routerLink]="['/cards']" routerLinkActive="active">Cards</a>
         <a href="#" routerLinkActive="active">Deposits</a>
         <a href="#" routerLinkActive="active">Credits</a>
         <a href="#" routerLinkActive="active">Clients</a>

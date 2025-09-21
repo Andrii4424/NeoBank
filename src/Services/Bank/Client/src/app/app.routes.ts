@@ -8,13 +8,20 @@ import { UpdateBank } from './pages/products/bank/update-bank/update-bank';
 import { CanActivateAuth } from './auth/access.guard';
 import { UsersOwnProfile } from './pages/profile/users-own-profile/users-own-profile';
 import { adminGuard } from './auth/admin.guard';
+import { CardTariffs } from './pages/cards/card-tariffs/card-tariffs';
+import { UserCards } from './pages/cards/user-cards/user-cards';
+import { CardsLayout } from './pages/cards/cards-layout/cards-layout';
 
 export const routes: Routes = [
     {path: '', component: Layout, children: [
         {path: '', component: Home},
         {path: 'about', component: BankInfo },
         {path: 'about/update', component: UpdateBank, canActivate: [adminGuard]},
-        {path: 'my-profile', component: UsersOwnProfile, canActivate: [CanActivateAuth]}
+        {path: 'my-profile', component: UsersOwnProfile, canActivate: [CanActivateAuth]},
+        {path: 'cards', component: CardsLayout, children:[
+            {path: '', component: CardTariffs},
+            {path: 'my-cards', component: UserCards, canActivate: [CanActivateAuth]}
+        ]},
     ]},
     {path: 'login', component: Login},
     {path: 'signup', component: Register}
