@@ -16,8 +16,12 @@ namespace Bank.API.Application.Services
             return Guid.Parse("E2A4A522-8486-46F7-9437-5F5B7E539502");
         }
 
-        public static int GetDefaultPageCount() {
+        public static int GetDefaultPageSize() {
             return 10;
-        } 
+        }
+
+        public static int GetDefaultPageCount(int totalCount, int pageSize) {
+            return (int)Math.Ceiling(totalCount / (double)pageSize); ;
+        }
     }
 }

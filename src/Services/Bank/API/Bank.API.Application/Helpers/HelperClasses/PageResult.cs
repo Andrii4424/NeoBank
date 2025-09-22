@@ -24,7 +24,7 @@ namespace Bank.API.Application.Helpers.HelperClasses
             TotalCount = totalCount;
             PageNumber = pageNumber;
             PageSize = pageSize;
-            PageCount = (int)Math.Ceiling(totalCount /10.0);
+            PageCount = (int)Math.Ceiling(totalCount /(double)pageSize);
         }
     }
 }

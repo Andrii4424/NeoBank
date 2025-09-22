@@ -18,7 +18,7 @@ namespace Bank.API.Application.Services.BankServices.BankProducts
     {
         private readonly ICardTariffsRepository _cardTariffsRepository;
         private readonly IMapper _mapper;
-        private readonly int _pageCount = SharedMethods.GetDefaultPageCount();
+        private readonly int _pageSize = SharedMethods.GetDefaultPageSize();
 
         public CardTariffsService(ICardTariffsRepository cardTariffsRepository, IMapper mapper) { 
             _cardTariffsRepository = cardTariffsRepository;
@@ -28,10 +28,11 @@ namespace Bank.API.Application.Services.BankServices.BankProducts
         //Read Operations
         public async Task<PageResult<CardTariffsDto>> GetDefaultPageAsync()
         {
-            List<CardTariffsEntity> cards = await _cardTariffsRepository.GetFilteredListAsync(1, _pageCount, null, true, null, null);
+            int elementsCount= await _cardTariffsRepository.GetCountAsync(null, null);
+            List<CardTariffsEntity> cards = await _cardTariffsRepository.GetFilteredListAsync(1, _pageSize, null, true, null, null);
 
             PageResult<CardTariffsDto> cardsResult = new PageResult<CardTariffsDto>(_mapper.Map<List<CardTariffsDto>>(cards),
-                await _cardTariffsRepository.GetCountAsync(null, null), 1, _pageCount);
+                await _cardTariffsRepository.GetCountAsync(null, null), 1, _pageSize);
 
             return cardsResult;
         }
@@ -44,7 +45,7 @@ namespace Bank.API.Application.Services.BankServices.BankProducts
                 filtersDto.Ascending, filtersDto.SortValue, filtersDto.Filters);
 
             PageResult<CardTariffsDto> cardsResult = new PageResult<CardTariffsDto>(_mapper.Map<List<CardTariffsDto>>(cards), 
-                await _cardTariffsRepository.GetCountAsync(filtersDto.SearchFilter, filtersDto.Filters), filters.PageNumber, _pageCount);
+                await _cardTariffsRepository.GetCountAsync(filtersDto.SearchFilter, filtersDto.Filters), filters.PageNumber, _pageSize);
 
             return cardsResult;
         }

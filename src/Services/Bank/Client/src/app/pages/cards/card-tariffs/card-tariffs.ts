@@ -4,10 +4,11 @@ import { ICardTariffs } from '../../../data/interfaces/bank/bank-products/card-t
 import { IPageResult } from '../../../data/interfaces/page-inteface';
 import { CardTariffsService } from './../../../data/services/bank/bank-products/card-tariffs-service';
 import { ChangeDetectorRef, Component, ElementRef, inject, QueryList, ViewChildren } from '@angular/core';
+import { PageSwitcher } from "../../../common-ui/page-switcher/page-switcher";
 
 @Component({
   selector: 'app-card-tariffs',
-  imports: [],
+  imports: [PageSwitcher],
   templateUrl: './card-tariffs.html',
   styleUrl: './card-tariffs.scss'
 })
@@ -31,8 +32,6 @@ export class CardTariffs {
       }
     });
   }
-
-
 
   private updateCardTextColors(): void {
     this.cardElements?.forEach(cardRef => {
@@ -62,5 +61,4 @@ export class CardTariffs {
     if (!match) return null;
     return [parseInt(match[1]), parseInt(match[2]), parseInt(match[3])];
   }
-
 }

@@ -29,3 +29,10 @@
         </a>
     }
 </section>
+
+<app-page-switcher 
+[currentPage]="cards?.pageNumber"
+[hasNextPage]="cards?.hasNextPage"
+[hasPreviousPage]="cards?.hasPreviousPage"
+[pageCount]="cards?.pageCount"
+> </app-page-switcher>
