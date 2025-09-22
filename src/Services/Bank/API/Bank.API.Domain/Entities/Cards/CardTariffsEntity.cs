@@ -36,7 +36,7 @@ namespace Bank.API.Domain.Entities.Cards
 
         public double? InterestRate { get; set; }
 
-        public List<Currency> EnableCurency { get; set; }
+        public List<Currency> EnableCurrency { get; set; }
 
         public int AnnualMaintenanceCost { get; set; }
 

@@ -1,4 +1,4 @@
 export enum CardLevel{
-    Normal =1,
-    Premium =2
+    Normal =0,
+    Premium =1
 }

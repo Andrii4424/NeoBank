@@ -13,7 +13,7 @@ export interface ICardTariffs{
     maxCreditLimit: number| null;
     enabledPaymentSystems: PaymentSystem[] | null;
     interestRate: number | null;
-    enableCurency: Currency[] | null;
+    enableCurrency: Currency[] | null;
     annualMaintenanceCost: number | null;
     p2PInternalCommission: number | null;
     bin: string | null;

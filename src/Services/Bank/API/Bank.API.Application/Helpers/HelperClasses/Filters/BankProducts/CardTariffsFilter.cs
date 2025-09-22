@@ -58,14 +58,13 @@ namespace Bank.API.Application.Helpers.HelperClasses.Filters.BankProducts
 
             List<Expression<Func<CardTariffsEntity, bool>>>? filters = new();
 
-
             if (ChosenPaymentSystems != null)
             {
                 filters.Add(c => c.EnabledPaymentSystems.Any(paymentsystem => ChosenPaymentSystems.Contains(paymentsystem)));
             }
             if (ChosenCurrency != null)
             {
-                filters.Add(c => c.EnableCurency.Any(currency => ChosenCurrency.Contains(currency)));
+                filters.Add(c => c.EnableCurrency.Any(currency => ChosenCurrency.Contains(currency)));
             }
             if (ChosenLevels != null)
             {

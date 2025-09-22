@@ -46,7 +46,7 @@ namespace Bank.API.Application.DTOs.BankProducts
 
         [Required(ErrorMessage = "{0} has to be provided")]
         [Display(Name = "Curency")]
-        public List<Currency> EnableCurency { get; set; }
+        public List<Currency> EnableCurrency { get; set; }
 
         [Required(ErrorMessage = "{0} has to be provided")]
         [Display(Name = "Annual maintenance cost")]

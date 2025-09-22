@@ -1,1 +1,31 @@
-<p>card-tariffs works!</p>
+<section class="card-tariffs">
+    @for(card of cards?.items; track $index){
+        <a #card class="card" [style.background-color]="card.cardColor">
+            <div class="card-info-divider">
+                <div class="card-name">
+                    <img src="assets/images/bank-logo.png" alt="">
+                    <h1>{{card.cardName}}</h1>
+                </div>
+                <div class="card-right-side">
+                    <div>
+                        @if(card.enabledPaymentSystems?.includes(PaymentSystem.Visa)){
+                            <img src="assets/images/bank-products/payment-systems/visa.svg" alt="Mastercard">
+                        }
+                        @if(card.enabledPaymentSystems?.includes(PaymentSystem.Mastercard)){
+                            <img src="assets/images/bank-products/payment-systems/mastercard.svg" alt="Mastercard">
+                        }
+                    </div>
+
+                    <div>
+                        @if(card.type===CardType.Credit){
+                            <h4>Credit</h4>
+                        }
+                        @else if(card.type===CardType.Debit) {
+                            <h4>Debit</h4>
+                        }
+                    </div>
+                </div>
+            </div>
+        </a>
+    }
+</section>
