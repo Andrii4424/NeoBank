@@ -1,0 +1,28 @@
+<div class="search-block">
+
+    <div class="filters">
+        <div class="checkbox">
+            <input #allFilters name="filters" id="all" type="checkbox" hidden checked>
+            <label for="all" class="filters-label">All</label>
+        </div>
+        @for(item of filterValues; track $index){
+            <div class="checkbox">
+                <input #filter name="filters" [id]="item.id" type="checkbox" (change)="submitFilters()" [value]="item.value" hidden>
+                <label class="filters-label" [htmlFor]="item.id">{{item.description}}</label>
+            </div>
+        }
+    </div>
+
+    <div class="search-section">
+        <input type="text" class="search-input d-block" [placeholder]="searchPlaceholder">
+
+        <select class="d-block sort">
+            @for (item of sortValues; track $index) {
+                <option [value]="item.name">{{item.description}}</option>
+            }
+        </select>
+    </div>
+
+    <div>
+    </div>
+</div>

@@ -1,6 +1,19 @@
+<app-search 
+[searchPlaceholder]="searchPlaceholder"
+[sortValues]="sortValues"
+[filterValues]="filterValues"
+>
+
+</app-search>
+
 <div class="child-pages-links">
     <a [routerLink]="['/cards']" routerLinkActive="chosen-child-link" [routerLinkActiveOptions]="{ exact: true }">Card Tariffs</a>
     <a [routerLink]="['/cards/my-cards']" routerLinkActive="chosen-child-link" [routerLinkActiveOptions]="{ exact: true }">My Cards</a>
 </div>
 
-<router-outlet></router-outlet>
+
+
+<router-outlet
+>
+
+</router-outlet>
