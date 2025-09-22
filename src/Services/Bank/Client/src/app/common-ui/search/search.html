@@ -1,8 +1,7 @@
 <div class="search-block">
-
     <div class="filters">
         <div class="checkbox">
-            <input #allFilters name="filters" id="all" type="checkbox" hidden checked>
+            <input #allFilters name="filters" id="all" type="checkbox" (click)="deleteFilters()" hidden checked>
             <label for="all" class="filters-label">All</label>
         </div>
         @for(item of filterValues; track $index){
@@ -23,6 +22,5 @@
         </select>
     </div>
 
-    <div>
-    </div>
+    <div class="wrap-block"></div>
 </div>

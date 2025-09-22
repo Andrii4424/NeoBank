@@ -23,4 +23,10 @@ export class Search {
       }
     });
   }
+  deleteFilters(){
+    this.allFilters.nativeElement.checked=true;
+    this.filtersInputs.forEach(element => {
+      element.nativeElement.checked=false;
+    });
+  }
 }
