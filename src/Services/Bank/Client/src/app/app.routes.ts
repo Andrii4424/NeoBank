@@ -18,10 +18,8 @@ export const routes: Routes = [
         {path: 'about', component: BankInfo },
         {path: 'about/update', component: UpdateBank, canActivate: [adminGuard]},
         {path: 'my-profile', component: UsersOwnProfile, canActivate: [CanActivateAuth]},
-        {path: 'cards', component: CardsLayout, children:[
-            {path: '', component: CardTariffs},
-            {path: 'my-cards', component: UserCards, canActivate: [CanActivateAuth]}
-        ]},
+        {path: 'cards', component: CardTariffs},
+        {path: 'cards/my-cards', component: UserCards, canActivate: [CanActivateAuth]}
     ]},
     {path: 'login', component: Login},
     {path: 'signup', component: Register}

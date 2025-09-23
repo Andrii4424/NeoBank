@@ -1,3 +1,16 @@
+<app-search 
+[searchPlaceholder]="searchPlaceholder"
+[sortValues]="sortValues"
+[filterValues]="filterValues"
+(sortChange)="onSortChange($event)"
+(searchChange)="onSearchChange($event)"
+(filterChange)="onFiltersChange($event)"
+(filterChange)="onFiltersChange($event)"
+>
+</app-search>
+
+<app-cards-layout></app-cards-layout>
+
 <section class="card-tariffs">
     @for(card of cards?.items; track $index){
         <a #card class="card" [style.background-color]="card.cardColor">

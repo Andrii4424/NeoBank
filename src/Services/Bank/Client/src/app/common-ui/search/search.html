@@ -6,14 +6,15 @@
         </div>
         @for(item of filterValues; track $index){
             <div class="checkbox">
-                <input #filter name="filters" [id]="item.id" type="checkbox" (change)="submitFilters()" [value]="item.value" hidden>
+                <input #filter name="filters" [id]="item.id" type="checkbox" (change)="submitFilters()" [value]="item.value" hidden  
+                [attr.data-filter-name]="item.filterName">
                 <label class="filters-label" [htmlFor]="item.id">{{item.description}}</label>
             </div>
         }
     </div>
 
     <div class="search-section">
-        <input type="text" class="search-input d-block" [placeholder]="searchPlaceholder">
+        <input type="text" (submit)="onSearchChange($event)" class="search-input d-block" [placeholder]="searchPlaceholder">
 
         <select class="d-block sort" (change)="onSortChange($event)">
             @for (item of sortValues; track $index) {

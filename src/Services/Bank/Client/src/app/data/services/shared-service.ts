@@ -1,10 +1,15 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { IFilter } from '../interfaces/filters/filter-interface';
+import { IQueryArray } from '../interfaces/filters/query-array-interface';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedService {
+  route = inject(ActivatedRoute);
+
   copyText(text:string){
     return navigator.clipboard.writeText(text);
   }
@@ -46,4 +51,37 @@ export class SharedService {
     return out;
   }
 
+
+  toQueryMatrix(filters: IFilter[]){
+    let keysArray: string[] = [];
+    filters.forEach(filter => {
+      if(!keysArray.includes(filter.filterName)) keysArray.push(filter.filterName);
+    });
+
+    let queryMatrix: IQueryArray[] =[];
+    keysArray.forEach(arrayKey => {
+      let keyValues: string[] =[];
+      filters.forEach(filter => {
+        if(filter.filterName===arrayKey){
+          keyValues.push(filter.value);
+        }
+      });
+      queryMatrix.push({key: arrayKey, values: keyValues});
+    });
+    return queryMatrix;
+  }
+
+  getQueryList(filters: IFilter[]){
+    const queryParams: any = {};
+    let queryList: IQueryArray[] = this.toQueryMatrix(filters);
+    queryList.forEach(element => {
+      queryParams[element.key] = element.values;
+    });
+    queryParams["page"] = this.route.snapshot.queryParams["page"];
+    queryParams["search"] = this.route.snapshot.queryParams["search"];
+    queryParams["sortBy"] = this.route.snapshot.queryParams["sortBy"];
+
+
+    return queryParams;
+  }
 }
