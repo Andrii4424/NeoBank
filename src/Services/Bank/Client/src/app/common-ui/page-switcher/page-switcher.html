@@ -1,26 +1,28 @@
 <div class="page-switcher-block">
     <div class="pages">
-        <a class="previous-page">❮ Previous</a>
+        <a class="previous-page" (click)="changePage(currentPage!-1)">❮ Previous</a>
         @if(currentPage===1 && pageCount!>4){
-            <a class="chosen">1</a>
-            <a>2</a>
-            <a>3</a>
+            <a (click)="changePage(1)" class="chosen">1</a>
+            <a (click)="changePage(2)">2</a>
+            <a (click)="changePage(3)">3</a>
             <a class="inactive">...</a>
             <a>{{pageCount}}</a>
         }
         @else if(currentPage!==1 && pageCount!>4){
             <a class="inactive">...</a>
+            <a (click)="changePage(currentPage!-1)">{{currentPage!-1}}</a>
             <a class="chosen">{{currentPage}}</a>
+            <a (click)="changePage(currentPage!+1)">{{currentPage!+1}}</a>
             <a class="inactive">...</a>
         }
         @else if(pageCount!<=4){
             <a [class.chosen]="currentPage===1">1</a>
 
             @for(item of getElementsCountArray(); track $index){
-                <a [class.chosen]="currentPage===item">{{item}}</a>
+                <a (click)="changePage(item)" [class.chosen]="currentPage===item">{{item}}</a>
             }
         }
         
-        <a class="next-page">Next ❯</a>
+        <a class="next-page" (click)="changePage(currentPage!+1)">Next ❯</a>
     </div>
 </div>

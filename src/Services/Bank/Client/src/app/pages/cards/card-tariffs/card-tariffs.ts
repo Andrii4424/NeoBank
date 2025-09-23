@@ -83,6 +83,14 @@ export class CardTariffs {
     });
   }
 
+  onPageChange(pageNumber: number){
+    this.router.navigate([],{
+      relativeTo: this.route,
+      queryParams: {page : pageNumber},
+      queryParamsHandling: 'merge'
+    });
+  }
+
   onFiltersChange(filters: IFilter[] | null){
     if(filters===null){
       const savedParamsKeys =["page", "search", "sortBy"];
