@@ -13,7 +13,6 @@ import { CardLevel } from '../../../data/enums/card-level';
 import { Currency } from '../../../data/enums/currency';
 import { CardsLayout } from "../cards-layout/cards-layout";
 import { ActivatedRoute, Router } from '@angular/router';
-import { IQueryArray } from '../../../data/interfaces/filters/query-array-interface';
 
 @Component({
   selector: 'app-card-tariffs',

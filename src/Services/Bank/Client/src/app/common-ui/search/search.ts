@@ -14,10 +14,12 @@ export class Search {
   @Input() filterValues: IFilter[] =[];
   @ViewChildren('filter') filtersInputs!: QueryList<ElementRef<HTMLInputElement>>;
   @ViewChild('allFilters') allFilters!: ElementRef<HTMLInputElement>;
+  @ViewChild('searchInput') searchInput!: ElementRef<HTMLInputElement>;
   @Output() sortChange= new EventEmitter<string>();
   @Output() searchChange= new EventEmitter<string>();
   @Output() filterChange= new EventEmitter<IFilter[] | null>();
   
+
   submitFilters(){
     this.allFilters.nativeElement.checked=true;
     let filters: IFilter[] = [];
@@ -51,5 +53,9 @@ export class Search {
   onSearchChange(event: Event){
     const input = event.target as HTMLInputElement;
     this.searchChange.emit(input.value);
+  }
+
+  onSearchSubmit(){
+    this.searchChange.emit(this.searchInput.nativeElement.value);
   }
 }

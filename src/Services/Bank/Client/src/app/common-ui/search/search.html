@@ -14,7 +14,10 @@
     </div>
 
     <div class="search-section">
-        <input type="text" (submit)="onSearchChange($event)" class="search-input d-block" [placeholder]="searchPlaceholder">
+        <div class="serch-field">
+            <input #searchInput type="text" (keyup.enter)="onSearchChange($event)" class="search-input d-block" [placeholder]="searchPlaceholder">
+            <button (click)="onSearchSubmit()" class="search-button">Search</button>
+        </div>
 
         <select class="d-block sort" (change)="onSortChange($event)">
             @for (item of sortValues; track $index) {

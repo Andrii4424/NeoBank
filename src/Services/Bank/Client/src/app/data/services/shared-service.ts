@@ -1,8 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { IFilter } from '../interfaces/filters/filter-interface';
-import { IQueryArray } from '../interfaces/filters/query-array-interface';
 import { ActivatedRoute } from '@angular/router';
+import { IQueryArray } from '../interfaces/filters/query-array-interface';
 
 @Injectable({
   providedIn: 'root'
