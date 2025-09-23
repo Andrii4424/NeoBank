@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { IFilter } from '../../data/filters/filter-interface';
 import { ISort } from '../../data/filters/sort-interface';
 
@@ -14,7 +14,8 @@ export class Search {
   @Input() filterValues: IFilter[] =[];
   @ViewChildren('filter') filtersInputs!: QueryList<ElementRef<HTMLInputElement>>;
   @ViewChild('allFilters') allFilters!: ElementRef<HTMLInputElement>;
-
+  @Output() sortEmmiter= new EventEmitter<string>();
+  
   submitFilters(){
     this.allFilters.nativeElement.checked=true;
     this.filtersInputs.forEach(element => {
@@ -28,5 +29,10 @@ export class Search {
     this.filtersInputs.forEach(element => {
       element.nativeElement.checked=false;
     });
+  }
+
+  onSortChange(event: Event){
+    const select = event.target as HTMLSelectElement;
+    this.sortEmmiter.emit(select.value);
   }
 }

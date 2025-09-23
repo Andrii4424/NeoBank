@@ -15,7 +15,7 @@
     <div class="search-section">
         <input type="text" class="search-input d-block" [placeholder]="searchPlaceholder">
 
-        <select class="d-block sort">
+        <select class="d-block sort" (change)="onSortChange($event)">
             @for (item of sortValues; track $index) {
                 <option [value]="item.name">{{item.description}}</option>
             }
