@@ -72,7 +72,7 @@ export class CardTariffs {
   onSortChange(sortMethod: string){
     this.router.navigate([],{
       relativeTo: this.route,
-      queryParams: {SortValue : sortMethod, page: 1},
+      queryParams: {SortValue : sortMethod, PageNumber: 1},
       queryParamsHandling: 'merge'
     });
   }
@@ -80,7 +80,7 @@ export class CardTariffs {
   onSearchChange(serchValue: string){
     this.router.navigate([],{
       relativeTo: this.route,
-      queryParams: {SearchValue : serchValue, page: 1},
+      queryParams: {SearchValue : serchValue, PageNumber: 1},
       queryParamsHandling: 'merge'
     });
   }
@@ -97,7 +97,7 @@ export class CardTariffs {
     if(filters===null){
       const savedParamsKeys =["PageNumber", "SearchValue", "SortValue"];
       const params= this.route.snapshot.queryParams;
-      const newParams: any = { ...params, page: 1 };
+      const newParams: any = { ...params, PageNumber: 1 };
       Object.keys(params).forEach(key => {
         if(!savedParamsKeys.includes(key)){
           newParams[key] = null;

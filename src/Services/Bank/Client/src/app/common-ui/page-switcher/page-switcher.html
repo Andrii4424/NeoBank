@@ -1,28 +1,30 @@
-<div class="page-switcher-block">
-    <div class="pages">
-        <a class="previous-page" (click)="changePage(currentPage!-1)">❮ Previous</a>
-        @if(currentPage===1 && pageCount!>4){
-            <a (click)="changePage(1)" class="chosen">1</a>
-            <a (click)="changePage(2)">2</a>
-            <a (click)="changePage(3)">3</a>
-            <a class="inactive">...</a>
-            <a>{{pageCount}}</a>
-        }
-        @else if(currentPage!==1 && pageCount!>4){
-            <a class="inactive">...</a>
-            <a (click)="changePage(currentPage!-1)">{{currentPage!-1}}</a>
-            <a class="chosen">{{currentPage}}</a>
-            <a (click)="changePage(currentPage!+1)">{{currentPage!+1}}</a>
-            <a class="inactive">...</a>
-        }
-        @else if(pageCount!<=4){
-            <a [class.chosen]="currentPage===1">1</a>
+@if(pageCount!>1){
+    <div class="page-switcher-block">
+        <div class="pages">
+            <a class="previous-page" [class.inactive-page-switcher]="currentPage===1" (click)="changePage(currentPage!-1)">❮ Previous</a>
+            @if(pageCount!<=4){
+                <a [class.chosen]="currentPage===1" (click)="changePage(1)">1</a>
 
-            @for(item of getElementsCountArray(); track $index){
-                <a (click)="changePage(item)" [class.chosen]="currentPage===item">{{item}}</a>
+                @for(item of getElementsCountArray(); track $index){
+                    <a (click)="changePage(item)" [class.chosen]="currentPage===item">{{item}}</a>
+                }
             }
-        }
-        
-        <a class="next-page" (click)="changePage(currentPage!+1)">Next ❯</a>
+            @else if(pageCount!>4){
+                <a (click)="changePage(1)" [class.chosen]="currentPage===1">1</a>
+                @if(currentPage! >3){
+                    <a class="inactive">...</a>
+
+                }
+                @for(item of getPagesArray(); track $index){
+                    <a (click)="changePage(item)" [class.chosen]="currentPage===item">{{item}}</a>
+                }
+                @if(pageCount! -2 > currentPage!){
+                    <a class="inactive">...</a>
+                }
+                <a (click)="changePage(pageCount!)" [class.chosen]="currentPage===pageCount">{{pageCount}}</a>
+            }
+            
+            <a class="next-page" [class.inactive-page-switcher]="currentPage===pageCount" (click)="changePage(currentPage!+1)">Next ❯</a>
+        </div>
     </div>
-</div>
+}
