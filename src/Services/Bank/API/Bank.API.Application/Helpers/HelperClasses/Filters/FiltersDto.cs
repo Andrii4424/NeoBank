@@ -9,8 +9,8 @@ namespace Bank.API.Application.Helpers.HelperClasses.Filters
 {
     public class FiltersDto<T> where T : class
     {
-        public int PageNumber { get; set; }
-        public int PageSize { get; set; }
+        public int? PageNumber { get; set; }
+        public int? PageSize { get; set; }
 
         public Expression<Func<T, bool>>? SearchFilter { get; set; }
 
@@ -20,7 +20,7 @@ namespace Bank.API.Application.Helpers.HelperClasses.Filters
 
         public List<Expression<Func<T, bool>>>? Filters { get; set; }
 
-        public FiltersDto(int pageNumber, int pageSize, Expression<Func<T, bool>>? searchFilter, 
+        public FiltersDto(int? pageNumber, int? pageSize, Expression<Func<T, bool>>? searchFilter, 
             Expression<Func<T, object>>? sortValue, bool ascending, List<Expression<Func<T, bool>>>? filters)
         {
             PageNumber = pageNumber;

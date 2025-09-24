@@ -1,7 +1,7 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { IFilter } from '../interfaces/filters/filter-interface';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IQueryArray } from '../interfaces/filters/query-array-interface';
 
 @Injectable({
@@ -9,6 +9,7 @@ import { IQueryArray } from '../interfaces/filters/query-array-interface';
 })
 export class SharedService {
   route = inject(ActivatedRoute);
+  router = inject(Router);
 
   copyText(text:string){
     return navigator.clipboard.writeText(text);
@@ -77,10 +78,10 @@ export class SharedService {
     queryList.forEach(element => {
       queryParams[element.key] = element.values;
     });
-    queryParams["page"] = this.route.snapshot.queryParams["page"];
-    queryParams["search"] = this.route.snapshot.queryParams["search"];
-    queryParams["sortBy"] = this.route.snapshot.queryParams["sortBy"];
-
+    queryParams["PageNumber"] = 1;
+    queryParams["SearchValue"] = this.route.snapshot.queryParams["SearchValue"];
+    queryParams["SortValue"] = this.route.snapshot.queryParams["SearchValue"];
+    queryParams["PageSize"] = this.route.snapshot.queryParams["PageSize"];
 
     return queryParams;
   }

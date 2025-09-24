@@ -25,29 +25,18 @@ namespace Bank.API.Application.Services.BankServices.BankProducts
             _mapper = mapper;
         }
 
-        //Read Operations
-        public async Task<PageResult<CardTariffsDto>> GetDefaultPageAsync()
+        public async Task<PageResult<CardTariffsDto>> GetCardsPageAsync(CardTariffsFilter? filters)
         {
-            int elementsCount= await _cardTariffsRepository.GetCountAsync(null, null);
-            List<CardTariffsEntity> cards = await _cardTariffsRepository.GetFilteredListAsync(1, _pageSize, null, true, null, null);
-
-            PageResult<CardTariffsDto> cardsResult = new PageResult<CardTariffsDto>(_mapper.Map<List<CardTariffsDto>>(cards),
-                await _cardTariffsRepository.GetCountAsync(null, null), 1, _pageSize);
-
-            return cardsResult;
-        }
-
-        public async Task<PageResult<CardTariffsDto>> GetCardsPageAsync(CardTariffsFilter filters)
-        {
+            filters.PageNumber = filters.PageNumber ?? 1;
             FiltersDto<CardTariffsEntity> filtersDto = filters.ToGeneralFilters();
 
-            List<CardTariffsEntity> cards =  await _cardTariffsRepository.GetFilteredListAsync(filtersDto.PageNumber, filtersDto.PageSize, filtersDto.SearchFilter, 
+            List<CardTariffsEntity> cards =  await _cardTariffsRepository.GetFilteredListAsync(filtersDto.PageNumber.Value, _pageSize, filtersDto.SearchFilter, 
                 filtersDto.Ascending, filtersDto.SortValue, filtersDto.Filters);
 
-            PageResult<CardTariffsDto> cardsResult = new PageResult<CardTariffsDto>(_mapper.Map<List<CardTariffsDto>>(cards), 
-                await _cardTariffsRepository.GetCountAsync(filtersDto.SearchFilter, filtersDto.Filters), filters.PageNumber, _pageSize);
+            PageResult<CardTariffsDto> pageResult = new PageResult<CardTariffsDto>(_mapper.Map<List<CardTariffsDto>>(cards), 
+                await _cardTariffsRepository.GetCountAsync(filtersDto.SearchFilter, filtersDto.Filters), filters.PageNumber.Value, _pageSize);
 
-            return cardsResult;
+            return pageResult;
         }
 
         public async Task<CardTariffsDto?> GetCardAsync(Guid cardId)

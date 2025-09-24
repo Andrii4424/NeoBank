@@ -11,8 +11,8 @@ namespace Bank.API.Application.Helpers.HelperClasses.Filters.BankProducts
 {
     public class CardTariffsFilter
     {
-        public int PageNumber { get; set; }
-        public int PageSize { get; set; }
+        public int? PageNumber { get; set; }
+        public int? PageSize { get; set; }
 
         public string? SearchValue { get; set; }
 
@@ -26,7 +26,7 @@ namespace Bank.API.Application.Helpers.HelperClasses.Filters.BankProducts
 
         public FiltersDto<CardTariffsEntity> ToGeneralFilters()
         {
-            Expression<Func<CardTariffsEntity, bool>>? searchFilter = SearchValue != null ? c => c.CardName.Contains(SearchValue.Trim()) : null;
+            Expression<Func<CardTariffsEntity, bool>>? searchFilter = String.IsNullOrWhiteSpace(SearchValue)? null : c => c.CardName.Contains(SearchValue.Trim());
 
             Expression<Func<CardTariffsEntity, object>>? sortExpression;
             bool ascending;

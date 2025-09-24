@@ -41,8 +41,8 @@ export class CardTariffs {
   filterValues: IFilter[]=[
     {filterName:"ChosenLevels", id: "premium", description: "Premium", value: CardLevel.Premium, chosen: false },
     {filterName:"ChosenLevels", id: "usual", description: "Usual", value: CardLevel.Normal, chosen: false },
-    {filterName:"chosenPaymentSystems", id: "mastercard", description: "Mastercard", value: PaymentSystem.Mastercard, chosen: false },
-    {filterName:"chosenPaymentSystems", id: "visa", description: "Visa",value: PaymentSystem.Visa, chosen: false},
+    {filterName:"ChosenPaymentSystems", id: "mastercard", description: "Mastercard", value: PaymentSystem.Mastercard, chosen: false },
+    {filterName:"ChosenPaymentSystems", id: "visa", description: "Visa",value: PaymentSystem.Visa, chosen: false},
     {filterName:"ChosenTypes", id: "credit", description: "Credit", value: CardType.Credit, chosen: false },
     {filterName:"ChosenTypes", id: "debit", description: "Debit", value: CardType.Debit, chosen: false },
     {filterName:"ChosenCurrency", id: "uah", description: "UAH", value: Currency.UAH, chosen: false },
@@ -57,12 +57,14 @@ export class CardTariffs {
   CardType = CardType;
   
   ngOnInit(){
-    this.cardTariffsService.getDefaultCardTarifs().subscribe({
-      next:(val)=>{
-        this.cards=val;
-        this.cdr.detectChanges();
-        this.updateCardTextColors();
-      }
+    this.route.queryParams.subscribe(params =>{
+      this.cardTariffsService.getCardTariffs(params).subscribe({
+        next: (val) => {
+          this.cards = val;
+          this.cdr.detectChanges();
+          this.updateCardTextColors();
+        }
+      });
     });
   }
 
@@ -70,7 +72,7 @@ export class CardTariffs {
   onSortChange(sortMethod: string){
     this.router.navigate([],{
       relativeTo: this.route,
-      queryParams: {sortBy : sortMethod},
+      queryParams: {SortValue : sortMethod, page: 1},
       queryParamsHandling: 'merge'
     });
   }
@@ -78,7 +80,7 @@ export class CardTariffs {
   onSearchChange(serchValue: string){
     this.router.navigate([],{
       relativeTo: this.route,
-      queryParams: {search : serchValue},
+      queryParams: {SearchValue : serchValue, page: 1},
       queryParamsHandling: 'merge'
     });
   }
@@ -86,16 +88,16 @@ export class CardTariffs {
   onPageChange(pageNumber: number){
     this.router.navigate([],{
       relativeTo: this.route,
-      queryParams: {page : pageNumber},
+      queryParams: {PageNumber : pageNumber},
       queryParamsHandling: 'merge'
     });
   }
 
   onFiltersChange(filters: IFilter[] | null){
     if(filters===null){
-      const savedParamsKeys =["page", "search", "sortBy"];
+      const savedParamsKeys =["PageNumber", "SearchValue", "SortValue"];
       const params= this.route.snapshot.queryParams;
-      const newParams: any = { ...params };
+      const newParams: any = { ...params, page: 1 };
       Object.keys(params).forEach(key => {
         if(!savedParamsKeys.includes(key)){
           newParams[key] = null;
@@ -116,6 +118,7 @@ export class CardTariffs {
       });
     }
   }
+
 
   //Color methods
   private updateCardTextColors(): void {

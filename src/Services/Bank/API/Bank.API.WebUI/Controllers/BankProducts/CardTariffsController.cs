@@ -30,14 +30,7 @@ namespace Bank.API.WebUI.Controllers.BankProducts
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> GetDefaultPage()
-        {
-            return Ok(await _cardTariffsService.GetDefaultPageAsync());
-        }
-
-        [HttpGet]
-        [AllowAnonymous]
-        public async Task<IActionResult> GetPage([FromBody] CardTariffsFilter filters)
+        public async Task<IActionResult> GetPage([FromQuery] CardTariffsFilter? filters)
         {
             return Ok(await _cardTariffsService.GetCardsPageAsync(filters));
         }
