@@ -12,11 +12,11 @@ import { IFilter } from '../../../data/interfaces/filters/filter-interface';
 import { CardLevel } from '../../../data/enums/card-level';
 import { Currency } from '../../../data/enums/currency';
 import { CardsLayout } from "../cards-layout/cards-layout";
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-card-tariffs',
-  imports: [PageSwitcher, Search, CardsLayout],
+  imports: [PageSwitcher, Search, CardsLayout, RouterLink],
   templateUrl: './card-tariffs.html',
   styleUrl: './card-tariffs.scss'
 })
@@ -65,6 +65,7 @@ export class CardTariffs {
           this.updateCardTextColors();
         }
       });
+      this.updateCardTextColors();
     });
   }
 

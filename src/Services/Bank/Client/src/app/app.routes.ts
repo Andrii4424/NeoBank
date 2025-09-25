@@ -11,6 +11,7 @@ import { adminGuard } from './auth/admin.guard';
 import { CardTariffs } from './pages/cards/card-tariffs/card-tariffs';
 import { UserCards } from './pages/cards/user-cards/user-cards';
 import { CardsLayout } from './pages/cards/cards-layout/cards-layout';
+import { CardTariffsInfo } from './pages/cards/card-tariffs-info/card-tariffs-info';
 
 export const routes: Routes = [
     {path: '', component: Layout, children: [
@@ -19,7 +20,8 @@ export const routes: Routes = [
         {path: 'about/update', component: UpdateBank, canActivate: [adminGuard]},
         {path: 'my-profile', component: UsersOwnProfile, canActivate: [CanActivateAuth]},
         {path: 'cards', component: CardTariffs},
-        {path: 'cards/my-cards', component: UserCards, canActivate: [CanActivateAuth]}
+        {path: 'cards/my-cards', component: UserCards, canActivate: [CanActivateAuth]},
+        {path: 'cards/info/:id', component: CardTariffsInfo}
     ]},
     {path: 'login', component: Login},
     {path: 'signup', component: Register}

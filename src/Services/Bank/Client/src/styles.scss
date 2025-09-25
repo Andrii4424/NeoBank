@@ -490,6 +490,12 @@ footer {
   background-color: var(--dark-primary-color);
   color: white;
   border: none;
+
+}
+.delete{
+  background-color: var(--ligth-red-color);
+  color: white;
+  border: none;
 }
 
 .logout{
@@ -586,6 +592,9 @@ footer {
 }
 .entity-action-buttons {
   margin: 34px 0 12px 0;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
 }
 
 .entity-action-buttons a, .entity-action-buttons button {

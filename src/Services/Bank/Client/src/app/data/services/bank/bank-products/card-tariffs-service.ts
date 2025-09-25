@@ -14,4 +14,8 @@ export class CardTariffsService {
   getCardTariffs(params: Params){
     return this.http.get<IPageResult<ICardTariffs>>(`${this.baseUrl}GetPage`, {params})
   }
+
+  getCardTariffsInfo(id: string){
+    return this.http.get<ICardTariffs>(`${this.baseUrl}GetCardTariffs/${id}`);
+  }
 }

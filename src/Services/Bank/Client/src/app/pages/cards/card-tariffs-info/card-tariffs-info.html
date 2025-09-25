@@ -1,0 +1,101 @@
+@if(card$ | async; as card){
+    <header>
+        <h1 class="heading">{{card.cardName}} Information</h1>
+    </header>
+
+    <section class="object-info-card">
+
+            <table class="info-table">
+                <tr class="colored">
+                    <td>Field</td>
+                    <td>Value</td>
+                </tr>
+                <tr>
+                    <td>Name</td>
+                    <td>{{card.cardName}}</td>
+                </tr>
+                <tr class="colored">
+                    <td>Card Type</td>
+                    <td>
+                        @if(card.type === CardType.Debit){
+                            Debit
+                        }
+                        @else if(card.type === CardType.Credit){
+                            Credit
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td>Card Level</td>
+                    <td>
+                        @if(card.level === CardLevel.Premium){
+                            Premium
+                        }
+                        @else if(card.level === CardLevel.Normal){
+                            Usual
+                        }
+                    </td>
+                </tr>
+                <tr class="colored">
+                    <td>Validity Period</td>
+                    <td>{{card.validityPeriod}} years</td>
+                </tr>
+                <tr>
+                    <td>Max Credit Limit</td>
+                    <td>{{card.maxCreditLimit}} UAH</td>
+                </tr>
+                <tr class="colored">
+                    <td>Enabled Payment Systems</td>
+                    <td>
+                        @if(card.enabledPaymentSystems?.includes(PaymentSystem.Mastercard)){
+                            Mastercard
+                        }
+                        @if(card.enabledPaymentSystems?.includes(PaymentSystem.Visa)){
+                            Visa
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td>Interest Rate</td>
+                    <td>{{card.interestRate}}%</td>
+                </tr>
+                <tr class="colored">
+                    <td>Enable Currency</td>
+                    <td>
+                        @if(card.enableCurrency?.includes(Currency.UAH)){
+                            UAH
+                        }
+                        @if(card.enableCurrency?.includes(Currency.USD)){
+                            USD
+                        }
+                        @if(card.enableCurrency?.includes(Currency.EUR)){
+                            EUR
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td>Annual Maintenance Cost</td>
+                    <td>{{card.annualMaintenanceCost}}</td>
+                </tr>
+                <tr class="colored">
+                    <td>P2P Internal Commission</td>
+                    <td>{{card.p2PInternalCommission}}%</td>
+                </tr>
+                <tr>
+                    <td>BIN</td>
+                    <td>{{card.bin}}</td>
+                </tr>
+                <tr class="colored">
+                    <td>Card Color</td>
+                    <td>{{card.cardColor}}</td>
+                </tr>
+            </table>
+        @if(profileService.getRole()?.toLowerCase()==='admin'){
+            <div class="entity-action-buttons">
+                <a routerLink="" class="update">Update Card</a>
+                <a routerLink="" class="delete">Delete Card</a>
+            </div>
+        }
+    </section>
+}
+

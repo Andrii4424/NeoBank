@@ -13,7 +13,7 @@
 
 <section class="card-tariffs">
     @for(card of cards?.items; track $index){
-        <a #card class="card" [style.background-color]="card.cardColor">
+        <a [routerLink]="['/cards/info', card.id]" #card class="card" [style.background-color]="card.cardColor">
             <div class="card-info-divider">
                 <div class="card-name">
                     <img class="card-bank-logo" src="assets/images/bank-logo.png" alt="">
