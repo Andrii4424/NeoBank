@@ -29,7 +29,7 @@
 }
 
 .filters-label:hover {
-    background: var(--dark-primary-color);
+    background: var(--medium-heavy-gray-primary-color);
     color: #fff;
     transition: background .2s, color .2s;
 }
@@ -45,6 +45,8 @@
     height: 34px;
     border-radius: 10px;
     border: 1px solid var(--heavy-dark-primary-color);
+    padding-left: 8px;
+    font-weight: 500;
 }
 
 .sort{
@@ -52,6 +54,7 @@
     height: 30px;
     border-radius: 8px;
     border: 1px solid var(--heavy-dark-primary-color);
+    font-weight: 500;
 }
 
 .search-section{

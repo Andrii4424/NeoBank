@@ -4,7 +4,7 @@ import { PaymentSystem } from '../../../data/enums/payment-system';
 import { ICardTariffs } from '../../../data/interfaces/bank/bank-products/card-tariffs.interface';
 import { IPageResult } from '../../../data/interfaces/page-inteface';
 import { CardTariffsService } from './../../../data/services/bank/bank-products/card-tariffs-service';
-import { ChangeDetectorRef, Component, ElementRef, inject, QueryList, ViewChildren } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, inject, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { PageSwitcher } from "../../../common-ui/page-switcher/page-switcher";
 import { Search } from "../../../common-ui/search/search";
 import { ISort } from '../../../data/interfaces/filters/sort-interface';
@@ -128,6 +128,10 @@ export class CardTariffs {
       const bgColor = style.backgroundColor;
       const rgb = this.extractRGB(bgColor);
       if (!rgb) {
+        const child = el.querySelector('.card-bank-logo');
+        if(child){
+          (child as HTMLImageElement).src="assets/images/bank-logo.png";
+        }
         el.style.color = '#102A5A';
         return;
       }
@@ -137,8 +141,16 @@ export class CardTariffs {
       const brightness = (r * 299 + g * 587 + b * 114) / 1000;
 
       if (brightness < 128) {
-        el.style.color = 'white'; 
+        const child = el.querySelector('.card-bank-logo');
+        if(child){
+          (child as HTMLImageElement).src="assets/images/white-bank-logo.png";
+        }
+        el.style.color = 'white';
       } else {
+        const child = el.querySelector('.card-bank-logo');
+        if(child){
+          (child as HTMLImageElement).src="assets/images/bank-logo.png";
+        }
         el.style.color = '#102A5A'; 
       }
     });
