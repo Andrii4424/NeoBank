@@ -10,7 +10,6 @@
 .pages{
     display: flex;
     justify-content: space-between;
-
     border: 1px solid var(--medium-light-gray-primary-color);
     border-radius: 8px;
 }
@@ -43,4 +42,12 @@ a.inactive{
 }
 .inactive-page-switcher{
     cursor: default !important;
+}
+@media (max-width: 768px) {
+    .pages a{
+        padding: 8px 12px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+    }
 }
