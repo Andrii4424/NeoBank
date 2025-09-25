@@ -8,10 +8,10 @@ import { UpdateBank } from './pages/products/bank/update-bank/update-bank';
 import { CanActivateAuth } from './auth/access.guard';
 import { UsersOwnProfile } from './pages/profile/users-own-profile/users-own-profile';
 import { adminGuard } from './auth/admin.guard';
-import { CardTariffs } from './pages/cards/card-tariffs/card-tariffs';
 import { UserCards } from './pages/cards/user-cards/user-cards';
 import { CardsLayout } from './pages/cards/cards-layout/cards-layout';
-import { CardTariffsInfo } from './pages/cards/card-tariffs-info/card-tariffs-info';
+import { CardTariffsInfo } from './pages/cards/tariffs/card-tariffs-info/card-tariffs-info';
+import { CardTariffs } from './pages/cards/tariffs/card-tariffs/card-tariffs';
 
 export const routes: Routes = [
     {path: '', component: Layout, children: [
