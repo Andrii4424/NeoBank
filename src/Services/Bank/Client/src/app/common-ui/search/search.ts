@@ -1,6 +1,7 @@
-import { Component, ElementRef, EventEmitter, Input, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, ElementRef, EventEmitter, inject, input, Input, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { IFilter } from '../../data/interfaces/filters/filter-interface';
 import { ISort } from '../../data/interfaces/filters/sort-interface';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -9,16 +10,39 @@ import { ISort } from '../../data/interfaces/filters/sort-interface';
   styleUrl: './search.scss'
 })
 export class Search {
+  route = inject(ActivatedRoute);
+  queryParams: Record<string, any> = {}
+
   @Input() sortValues: ISort[] = [];
   @Input() searchPlaceholder: string ="";
   @Input() filterValues: IFilter[] =[];
   @ViewChildren('filter') filtersInputs!: QueryList<ElementRef<HTMLInputElement>>;
   @ViewChild('allFilters') allFilters!: ElementRef<HTMLInputElement>;
   @ViewChild('searchInput') searchInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('sortSelector') sortSelector!: ElementRef<HTMLInputElement>;
   @Output() sortChange= new EventEmitter<string>();
   @Output() searchChange= new EventEmitter<string>();
   @Output() filterChange= new EventEmitter<IFilter[] | null>();
   
+  ngAfterViewInit(){
+    this.queryParams = { ...this.route.snapshot.queryParams };
+    Object.keys(this.queryParams).forEach(query =>{
+      this.filtersInputs.forEach(filter => {
+        if(filter.nativeElement.dataset['filterName'] ===query){
+          this.allFilters.nativeElement.checked=false;
+          if(filter.nativeElement.value ===this.queryParams[query]){
+            filter.nativeElement.checked = true;
+          }
+        }
+      });
+      if(query==="SearchValue"){
+          this.searchInput.nativeElement.value = this.queryParams[query];
+        }
+      else if(query==="SortValue" && this.queryParams[query]!==""){
+        this.sortSelector.nativeElement.value = this.queryParams[query];
+      }
+    });
+  }
 
   submitFilters(){
     this.allFilters.nativeElement.checked=true;

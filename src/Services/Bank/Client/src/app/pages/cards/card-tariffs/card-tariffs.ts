@@ -77,10 +77,10 @@ export class CardTariffs {
     });
   }
 
-  onSearchChange(serchValue: string){
+  onSearchChange(searchValue: string){
     this.router.navigate([],{
       relativeTo: this.route,
-      queryParams: {SearchValue : serchValue, PageNumber: 1},
+      queryParams: {SearchValue : searchValue, PageNumber: 1},
       queryParamsHandling: 'merge'
     });
   }

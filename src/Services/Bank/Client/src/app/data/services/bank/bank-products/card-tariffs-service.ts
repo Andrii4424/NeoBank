@@ -12,7 +12,6 @@ export class CardTariffsService {
   baseUrl="https://localhost:7280/api/CardTariffs/";
 
   getCardTariffs(params: Params){
-    console.log(params);
     return this.http.get<IPageResult<ICardTariffs>>(`${this.baseUrl}GetPage`, {params})
   }
 }

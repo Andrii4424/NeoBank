@@ -19,7 +19,7 @@
             <button (click)="onSearchSubmit()" class="search-button">Search</button>
         </div>
 
-        <select class="d-block sort" (change)="onSortChange($event)">
+        <select #sortSelector class="d-block sort" (change)="onSortChange($event)">
             @for (item of sortValues; track $index) {
                 <option [value]="item.name">{{item.description}}</option>
             }
