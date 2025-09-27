@@ -17,6 +17,7 @@ namespace Bank.API.Infrastructure.Data
 
         public DbSet<BankEntity> BankInfo { get; set; }
         public DbSet<CardTariffsEntity> CardTariffs { get; set; }
+        public DbSet<UserCardsEntity> UserCards { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -29,6 +30,18 @@ namespace Bank.API.Infrastructure.Data
                 .HasOne(c => c.Bank)
                 .WithMany(b => b.Cards)
                 .HasForeignKey(c => c.BankId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<UserCardsEntity>()
+                .HasOne(uc => uc.User)
+                .WithMany(u => u.UserCards)
+                .HasForeignKey(uc => uc.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<UserCardsEntity>()
+                .HasOne(u => u.CardTariff)
+                .WithMany(c => c.UserCards)
+                .HasForeignKey(u => u.CardTariffId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

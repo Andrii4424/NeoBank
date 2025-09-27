@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Bank.API.Domain.Entities.Cards;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,5 +25,7 @@ namespace Bank.API.Domain.Entities.Identity
         public DateTime? RefreshTokenExpiryTime { get; set; }
 
         public bool? IsVerified { get; set; }
+
+        public ICollection<UserCardsEntity> UserCards { get; set; }
     }
 }

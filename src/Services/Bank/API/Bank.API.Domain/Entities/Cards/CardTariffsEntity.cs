@@ -18,7 +18,6 @@ namespace Bank.API.Domain.Entities.Cards
 
         public Guid BankId { get; private set; }
 
-        [ForeignKey("BankId")]
         public BankEntity Bank { get; private set; }
 
         [StringLength(40)]
@@ -47,5 +46,7 @@ namespace Bank.API.Domain.Entities.Cards
 
         [StringLength(6)]
         public string BIN { get; set; }
+
+        public ICollection<UserCardsEntity> UserCards { get; set; }
     }
 }
