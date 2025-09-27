@@ -1,3 +1,4 @@
+import { ProfileService } from './../../../../data/services/auth/profile-service';
 import { ChangeDetectorRef, Component, ElementRef, inject, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { CardsLayout } from "../../cards-layout/cards-layout";
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -21,6 +22,7 @@ import { Currency } from '../../../../data/enums/currency';
   styleUrl: './card-tariffs.scss'
 })
 export class CardTariffs {
+  profileService = inject(ProfileService);
   cardTariffsService = inject(CardTariffsService);
   router = inject(Router);
   route = inject(ActivatedRoute);

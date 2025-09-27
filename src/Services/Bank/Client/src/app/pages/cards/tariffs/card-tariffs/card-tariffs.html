@@ -11,7 +11,7 @@
 
 <app-cards-layout></app-cards-layout>
 
-<section class="card-tariffs">
+<section class="card-tariffs" [class.with-last-child]="cards?.items!.length%2 !==0">
     @for(card of cards?.items; track $index){
         <a [routerLink]="['/cards/info', card.id]" #card class="card" [style.background-color]="card.cardColor">
             <div class="card-info-divider">
@@ -42,6 +42,13 @@
         </a>
     }
 </section>
+
+@if(profileService.getRole()?.toLowerCase()==='admin'){
+    <div class="add-block">
+        <a [routerLink]="['/cards/add']" class="add-item">Add Card</a>
+    </div>
+
+}
 
 <app-page-switcher 
 [currentPage]="cards?.pageNumber"

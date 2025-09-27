@@ -1,22 +1,21 @@
-import { SharedService } from './../../../../data/services/shared-service';
 import { ChangeDetectorRef, Component, ElementRef, inject, signal, ViewChild } from '@angular/core';
-import { CardTariffsService } from '../../../../data/services/bank/bank-products/card-tariffs-service';
 import { ICardTariffs } from '../../../../data/interfaces/bank/bank-products/card-tariffs.interface';
 import { ActivatedRoute } from '@angular/router';
-import { Form, FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CardType } from '../../../../data/enums/card-type';
-import { CardLevel } from '../../../../data/enums/card-level';
+import { CardTariffsService } from '../../../../data/services/bank/bank-products/card-tariffs-service';
+import { SharedService } from '../../../../data/services/shared-service';
 import { PaymentSystem } from '../../../../data/enums/payment-system';
 import { Currency } from '../../../../data/enums/currency';
-import { C } from '@angular/cdk/keycodes';
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CardType } from '../../../../data/enums/card-type';
+import { CardLevel } from '../../../../data/enums/card-level';
 
 @Component({
-  selector: 'app-update-tariffs',
+  selector: 'app-add-card-tariffs',
   imports: [ReactiveFormsModule],
-  templateUrl: './update-tariffs.html',
-  styleUrl: './update-tariffs.scss'
+  templateUrl: './add-card-tariffs.html',
+  styleUrl: './add-card-tariffs.scss'
 })
-export class UpdateTariffs {
+export class AddCardTariffs {
   cardTariffsService = inject(CardTariffsService);
   cards: ICardTariffs | null = null;
   route = inject(ActivatedRoute);
@@ -34,9 +33,11 @@ export class UpdateTariffs {
   @ViewChild('interestRate') interestRate!: ElementRef<HTMLInputElement>;
   @ViewChild('cardColor') cardColor!: ElementRef<HTMLInputElement>;
 
+  constructor(private cdr: ChangeDetectorRef){}
+
   cardForm = new FormGroup({
-    id: new FormControl<string | null>(null, [Validators.required]),
-    bankId: new FormControl<string | null>(null, [Validators.required]),
+    id: new FormControl<string | null>(null),
+    bankId: new FormControl<string | null>(null),
     cardName: new FormControl<string | null>(null, [Validators.required]),
     type: new FormControl<CardType | null>(null, [Validators.required]),
     level: new FormControl<CardLevel | null>(null, [Validators.required]),
@@ -48,29 +49,15 @@ export class UpdateTariffs {
     annualMaintenanceCost: new FormControl<number | null>(null, [Validators.required]),
     p2PInternalCommission: new FormControl<number | null>(null, [Validators.required]),
     bin: new FormControl<string | null>(null, [Validators.required]),
-    cardColor: new FormControl<string | null>(null, [Validators.required]),
+    cardColor: new FormControl<string | null>(null),
   });
+
 
   //Enums
   CardType = CardType;
   CardLevel = CardLevel;
   PaymentSystem = PaymentSystem;
   Currency = Currency;
-
-  constructor(private cdr: ChangeDetectorRef){}
-
-  ngOnInit(){
-    this.cardTariffsService.getCardTariffsInfo(this.route.snapshot.paramMap.get('id')!).subscribe(
-      {next:(val)=>{
-        this.cards = val;
-        this.patchFormValues();
-        this.chosenPaymentSystems =this.cards.enabledPaymentSystems!;
-        this.chosenCurrencies =this.cards.enableCurrency!;
-        this.cdr.detectChanges();
-        this.changeCardType(this.cards.type!);
-    }});
-  }
-
 
   closeValidationStatus(){
     this.showValidationResult.set(false);
@@ -86,7 +73,7 @@ export class UpdateTariffs {
       formValue.enableCurrency = this.chosenCurrencies;
       formValue.cardColor = this.cardColor.nativeElement.value;
       console.log(formValue);
-      this.cardTariffsService.updateCardTariffs(formValue).subscribe({
+      this.cardTariffsService.addCardTariffs(formValue).subscribe({
         next: (res) => {
           this.successStatus.set(true);
           this.showValidationResult.set(true);
@@ -101,6 +88,11 @@ export class UpdateTariffs {
       });
     }
     else{
+      const formValue = this.cardForm.value as ICardTariffs;
+      formValue.enabledPaymentSystems = this.chosenPaymentSystems;
+      formValue.enableCurrency = this.chosenCurrencies;
+      formValue.cardColor = this.cardColor.nativeElement.value;
+      console.log(formValue);
       this.validationErrors = [];
       this.validationErrors.push("All fields has to be provided!");
       this.successStatus.set(false);
@@ -109,7 +101,7 @@ export class UpdateTariffs {
     }
   }
 
-  onPaymentSystemChange(event: Event) {
+    onPaymentSystemChange(event: Event) {
     const checkbox = event.target as HTMLInputElement;
     const paymentSystem = Number(checkbox.value) as PaymentSystem;
     if(checkbox.checked) {
@@ -122,6 +114,15 @@ export class UpdateTariffs {
         this.chosenPaymentSystems = this.chosenPaymentSystems.filter(ps => ps !== paymentSystem);
       }
     }
+  }
+
+  onValidityPeriodChange(event: Event) {
+    const input = event.target as HTMLInputElement;
+    let value = Number(input.value);
+    if (value%1!==0.5 || value%1!==0) {
+      value = Math.round(value * 2) / 2;
+    }
+    this.cardForm.patchValue({ validityPeriod: value });
   }
 
   onCurrencyChange(event: Event) {
@@ -159,15 +160,6 @@ export class UpdateTariffs {
   }
 
   //Validatiors
-  onValidityPeriodChange(event: Event) {
-    const input = event.target as HTMLInputElement;
-    let value = Number(input.value);
-    if (value%1!==0.5 || value%1!==0) {
-      value = Math.round(value * 2) / 2;
-    }
-    this.cardForm.patchValue({ validityPeriod: value });
-  }
-
   onCreditLimitChange(event: Event) {
     const input = event.target as HTMLInputElement;
     let value = Number(input.value);
@@ -210,27 +202,5 @@ export class UpdateTariffs {
       value = 0;
     }
     this.cardForm.patchValue({ annualMaintenanceCost: value });
-  }
-
-  patchFormValues() {
-    if (!this.cards) return;
-    this.cardForm.patchValue({
-      id: this.cards.id,
-      bankId: this.cards.bankId,
-      cardName: this.cards.cardName,
-      type: this.cards.type,
-      level: this.cards.level,
-      validityPeriod: this.cards.validityPeriod,
-      maxCreditLimit: this.cards.maxCreditLimit,
-      enabledPaymentSystems: this.cards.enabledPaymentSystems!,
-      interestRate: this.cards.interestRate,
-      enableCurrency: this.cards.enableCurrency!,
-      annualMaintenanceCost: this.cards.annualMaintenanceCost,
-      p2PInternalCommission: this.cards.p2PInternalCommission,
-      bin: this.cards.bin,
-      cardColor: this.cards.cardColor,
-    });
-    this.currentCreditLimit = this.cards.maxCreditLimit!;
-    this.currentInterestRate = this.cards.interestRate!;
   }
 }

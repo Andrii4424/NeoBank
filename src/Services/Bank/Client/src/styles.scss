@@ -784,3 +784,22 @@ footer {
 a.chosen-child-link::after {
 	width: 90%;
 }
+
+.add-block{
+	margin-top: 34px;
+	margin-bottom: -10px;
+	display: flex;
+	width: 100%;
+	justify-content: center;
+}
+.add-item{
+	background-color: var(--green-color);
+	color: white;
+	border: none;
+	font-size: 16px;
+	font-weight: 500;
+	padding: 14px 48px;
+	cursor: pointer;
+	border-radius: 14px;
+	text-decoration: none;
+}

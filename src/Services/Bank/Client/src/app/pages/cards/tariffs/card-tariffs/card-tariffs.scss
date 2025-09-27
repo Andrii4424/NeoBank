@@ -7,6 +7,10 @@
     margin: 0 auto;      
     max-width: 920px;           
 }
+.with-last-child > :last-child {
+  place-self: center;
+  grid-column: 1 / -1;
+}
 
 .card {
   width: 400px;

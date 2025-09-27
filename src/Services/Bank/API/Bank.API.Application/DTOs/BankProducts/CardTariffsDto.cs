@@ -11,11 +11,9 @@ namespace Bank.API.Application.DTOs.BankProducts
 {
     public class CardTariffsDto :IValidatableObject
     {
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
 
-        [Required(ErrorMessage = "{0} has to be provided")]
-        [Display(Name = "Bank Id")]
-        public Guid BankId { get; set; }
+        public Guid? BankId { get; set; }
 
         [Required(ErrorMessage = "{0} has to be provided")]
         [StringLength(40)]

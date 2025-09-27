@@ -62,7 +62,7 @@ namespace Bank.API.Application.Services.BankServices.BankProducts
         //Update operations
         public async Task<OperationResult> UpdateAcync(CardTariffsDto cardDto)
         {
-            CardTariffsEntity? card = await _cardTariffsRepository.GetValueByIdAsync(cardDto.Id);
+            CardTariffsEntity? card = await _cardTariffsRepository.GetValueByIdAsync(cardDto.Id.Value);
 
             if (card == null)
             {

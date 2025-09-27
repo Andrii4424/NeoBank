@@ -23,6 +23,10 @@ export class CardTariffsService {
     return this.http.put(`${this.baseUrl}UpdateCard`, card);
   }
 
+  addCardTariffs(card: ICardTariffs){
+    return this.http.post(`${this.baseUrl}AddCard`, card);
+  }
+
   deleteCardTariffs(id: string){
     return this.http.delete(`${this.baseUrl}DeleteCard/${id}`);
   }
