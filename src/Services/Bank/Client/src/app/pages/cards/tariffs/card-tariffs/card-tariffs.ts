@@ -63,6 +63,16 @@ export class CardTariffs {
           this.cards = val;
           this.cdr.detectChanges();
           this.updateCardTextColors();
+        },
+        complete:()=>{
+          const pageNumber = this.route.snapshot.queryParams['PageNumber'];
+          if(this.cardElements?.length===0 && pageNumber>1){
+            this.router.navigate([],{
+              relativeTo: this.route,
+              queryParams: {PageNumber : pageNumber-1},
+              queryParamsHandling: 'merge'
+            });
+          }
         }
       });
       this.updateCardTextColors();

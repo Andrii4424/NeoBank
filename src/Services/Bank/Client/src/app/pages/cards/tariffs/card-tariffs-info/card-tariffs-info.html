@@ -93,9 +93,16 @@
         @if(profileService.getRole()?.toLowerCase()==='admin'){
             <div class="entity-action-buttons">
                 <a [routerLink]="['/cards/update', card.id]" class="update">Update Card</a>
-                <a routerLink="" class="delete">Delete Card</a>
+                <a (click)="showDeleteDialog.set(true)" class="delete">Delete Card</a>
             </div>
         }
     </section>
+    
+    <app-confirm-delete
+    [itemName]="card.cardName!"
+    [class.none]="!showDeleteDialog()"
+    (confirm)="onDelete()"
+    (cancel)="onCancel()"
+    ></app-confirm-delete>
 }
 

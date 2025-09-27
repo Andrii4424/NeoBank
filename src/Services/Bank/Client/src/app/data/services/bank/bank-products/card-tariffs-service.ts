@@ -22,4 +22,8 @@ export class CardTariffsService {
   updateCardTariffs(card: ICardTariffs){
     return this.http.put(`${this.baseUrl}UpdateCard`, card);
   }
+
+  deleteCardTariffs(id: string){
+    return this.http.delete(`${this.baseUrl}DeleteCard/${id}`);
+  }
 }
