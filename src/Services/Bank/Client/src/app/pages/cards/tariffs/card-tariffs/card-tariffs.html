@@ -20,9 +20,9 @@
                     <h1>{{card.cardName}}</h1>
                 </div>
                 <div class="card-right-side">
-                    <div>
+                    <div class="payment-systems">
                         @if(card.enabledPaymentSystems?.includes(PaymentSystem.Visa)){
-                            <img src="assets/images/bank-products/payment-systems/visa.svg" alt="Mastercard">
+                            <img src="assets/images/bank-products/payment-systems/visa.svg" class="visa" alt="Mastercard">
                         }
                         @if(card.enabledPaymentSystems?.includes(PaymentSystem.Mastercard)){
                             <img src="assets/images/bank-products/payment-systems/mastercard.svg" alt="Mastercard">
