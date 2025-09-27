@@ -62,15 +62,17 @@ namespace Bank.API.Application.Services.BankServices.BankProducts
         //Update operations
         public async Task<OperationResult> UpdateAcync(CardTariffsDto cardDto)
         {
-            if (!await _cardTariffsRepository.IsNameUniqueAsync(cardDto.CardName))
-            {
-                return OperationResult.Error("Card with same name is already exists. Please provide unique name");
-            }
             CardTariffsEntity? card = await _cardTariffsRepository.GetValueByIdAsync(cardDto.Id);
-            if (card==null)
+
+            if (card == null)
             {
                 return OperationResult.Error("Card with this id doesnt exist");
             }
+            if (card.CardName!=cardDto.CardName && !await _cardTariffsRepository.IsNameUniqueAsync(cardDto.CardName))
+            {
+                return OperationResult.Error("Card with same name is already exists. Please provide unique name");
+            }
+
             cardDto.BankId= SharedMethods.GetBankGuid();
             _cardTariffsRepository.UpdateObject(_mapper.Map(cardDto, card));
             await _cardTariffsRepository.SaveAsync();

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Bank.API.Application.DTOs.BankProducts
 {
-    public class CardTariffsDto 
+    public class CardTariffsDto :IValidatableObject
     {
         public Guid Id { get; set; }
 
@@ -69,12 +69,15 @@ namespace Bank.API.Application.DTOs.BankProducts
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (Type == CardType.Debit && MaxCreditLimit > 0) yield return new ValidationResult("Debit card cant have credit limit");
-            if (Type == CardType.Debit && InterestRate != null) yield return new ValidationResult("Debit card cant have interest rate");
+            if (Type == CardType.Debit && InterestRate >0) yield return new ValidationResult("Debit card cant have interest rate");
             if (ValidityPeriod % 0.5 != 0) yield return new ValidationResult("The card validity period must be a multiple of 1 year " +
                 "or half a year (0.5)");
             if (BIN.Length != 6) yield return new ValidationResult("BIN must contain 6 digits");
             if (Type == CardType.Credit && MaxCreditLimit <= 0) yield return new ValidationResult("Credit card must have credit limit");
             if (Type == CardType.Credit && InterestRate <= 0) yield return new ValidationResult("Interest rate cant be 0 or lesser for credit card");
+            if(EnableCurrency ==null || EnableCurrency.Count == 0) yield return new ValidationResult("At least one currency has to be chosen");
+            if (EnabledPaymentSystems == null || EnabledPaymentSystems.Count == 0) yield return new ValidationResult("At least one payment system has to be chosen");
+
         }
     }
 }

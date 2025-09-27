@@ -1,1 +1,108 @@
-<p>update-tariffs works!</p>
+<header>
+    <h1 class="heading">Update Card</h1>
+</header>
+
+<section class="object-info-card">
+    <form [formGroup]="cardForm" class="update-entity-form" (click)="closeValidationStatus()" (ngSubmit)="onSubmit()">
+        <div class="update-entity-form-fields">
+            <label for="cardName">Card Name</label>
+            <input id="cardName" name="cardName" type="text" formControlName="cardName" />
+
+            <h4 class="checkboxes-title">Card Type</h4>
+            <div class="radios checkboxes">
+                <div class="checkbox-items">
+                    <input (change)="changeCardType(CardType.Credit)" id="credit" type="radio" [value]="CardType.Credit" formControlName="type" />
+                    <label for="credit">Credit</label>
+                </div>
+                    
+                <div class="checkbox-items">
+                    <input (change)="changeCardType(CardType.Debit)" id="debit" type="radio" [value]="CardType.Debit" formControlName="type" />
+                    <label for="debit">Debit</label>
+                </div>
+            </div>
+
+
+            <h4 class="checkboxes-title">Card Level</h4>
+            <div class="radios checkboxes">
+                <div class="checkbox-items">
+                    <input id="normal-level" type="radio" [value]="CardLevel.Normal" formControlName="level" />
+                    <label for="normal-level">Usual</label>
+                </div>
+                    
+                <div class="checkbox-items">
+                    <input id="premium-level" type="radio" [value]="CardLevel.Premium" formControlName="level" />
+                    <label for="premium-level">Premium</label>
+                </div>
+            </div>
+
+
+            <label for="validityPeriod">Validity Period</label>
+            <input id="validityPeriod" name="validityPeriod" type="number" formControlName="validityPeriod" />
+
+            <label for="maxCreditLimit">Max Credit Limit (in UAH)</label>
+            <input id="maxCreditLimit" #maxCreditLimit name="maxCreditLimit" (change)="onCreditLimitChange($event)" type="number" min="0" max="2084597250" 
+            formControlName="maxCreditLimit" />
+
+            <h4 class="checkboxes-title">Enabled Payment Systems</h4>
+            <div class="checkboxes">
+                <div class="checkbox-items">
+                    <input id="mastercard" name="enabledPaymentSystems" (change)="onPaymentSystemChange($event)" type="checkbox" [value]="PaymentSystem.Mastercard" 
+                    [checked]="cards?.enabledPaymentSystems?.includes(PaymentSystem.Mastercard)"/>
+                    <label for="mastercard">Mastercard</label>
+                </div>
+                <div class="checkbox-items">
+                    <input id="visa" name="enabledPaymentSystems" (change)="onPaymentSystemChange($event)"  type="checkbox" [value]="PaymentSystem.Visa"
+                    [checked]="cards?.enabledPaymentSystems?.includes(PaymentSystem.Visa)"/>
+                    <label for="visa">Visa</label>
+                </div>  
+            </div>
+
+            <label for="interestRate">Interest Rate (monthly)</label>
+            <input id="interestRate" #interestRate name="interestRate" min="0" max="25" (change)="onInterestRateChange($event)" type="text" formControlName="interestRate" />
+
+            <h4 class="checkboxes-title">Enable Currency</h4>
+            <div class="checkboxes">
+                <div class="checkbox-items">
+                    <input id="uah" [value]="Currency.UAH" [checked]="cards?.enableCurrency?.includes(Currency.UAH)" (change)="onCurrencyChange($event)" 
+                    name="enableCurrency" type="checkbox"/>
+                    <label for="uah">UAH</label>
+                </div>
+                <div class="checkbox-items">
+                    <input id="usd" [value]="Currency.USD" [checked]="cards?.enableCurrency?.includes(Currency.USD)" (change)="onCurrencyChange($event)"  
+                    name="enableCurrency" type="checkbox"/>
+                    <label for="usd">USD</label>
+                </div>
+                <div class="checkbox-items">
+                    <input id="eur" [value]="Currency.EUR" [checked]="cards?.enableCurrency?.includes(Currency.USD)" (change)="onCurrencyChange($event)" 
+                    name="enableCurrency" type="checkbox"/>
+                    <label for="eur">EUR</label>
+                </div>
+            </div>
+
+            <label for="annualMaintenanceCost">Annual Maintenance Cost (in UAH)</label>
+            <input id="annualMaintenanceCost" min="0" (change)="onMaintenanceChange($event)" name="annualMaintenanceCost" type="text" formControlName="annualMaintenanceCost" />
+
+            <label for="p2PInternalCommission">P2P Internal Commission (in %)</label>
+            <input id="p2PInternalCommission" name="p2PInternalCommission" min="0" (change)="onP2PComissionChange($event)" 
+            type="number" formControlName="p2PInternalCommission" />
+
+            <label for="bin">BIN</label>
+            <input id="bin" name="bin" type="text" formControlName="bin" />
+
+            <label for="cardColor">Card Color</label>
+            <input id="cardColor" #cardColor name="cardColor" class="color-input" type="color" [value]="cards?.cardColor" />
+        </div>
+
+        <div [class.none]="!showValidationResult()" class="validation-result">
+            <span [class.none]="!successStatus()" class="success-message">Card has been successfully updated!</span>
+            <ul class="errors-list" [class.none]="!showValidationResult()">
+                @for (error of validationErrors; track $index) {
+                    <li>{{error}}</li>
+                }
+            </ul>
+        </div>
+
+        <button type="submit" class="entity-update">Save Changes</button>
+    </form>
+</section>
+

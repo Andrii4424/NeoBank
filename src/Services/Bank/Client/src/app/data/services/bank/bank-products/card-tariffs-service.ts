@@ -18,4 +18,8 @@ export class CardTariffsService {
   getCardTariffsInfo(id: string){
     return this.http.get<ICardTariffs>(`${this.baseUrl}GetCardTariffs/${id}`);
   }
+
+  updateCardTariffs(card: ICardTariffs){
+    return this.http.put(`${this.baseUrl}UpdateCard`, card);
+  }
 }
