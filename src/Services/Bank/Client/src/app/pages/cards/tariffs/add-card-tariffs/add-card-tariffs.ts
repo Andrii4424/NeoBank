@@ -72,7 +72,6 @@ export class AddCardTariffs {
       formValue.enabledPaymentSystems = this.chosenPaymentSystems;
       formValue.enableCurrency = this.chosenCurrencies;
       formValue.cardColor = this.cardColor.nativeElement.value;
-      console.log(formValue);
       this.cardTariffsService.addCardTariffs(formValue).subscribe({
         next: (res) => {
           this.successStatus.set(true);
