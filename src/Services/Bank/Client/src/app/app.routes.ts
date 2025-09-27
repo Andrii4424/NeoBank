@@ -12,6 +12,7 @@ import { UserCards } from './pages/cards/user-cards/user-cards';
 import { CardsLayout } from './pages/cards/cards-layout/cards-layout';
 import { CardTariffsInfo } from './pages/cards/tariffs/card-tariffs-info/card-tariffs-info';
 import { CardTariffs } from './pages/cards/tariffs/card-tariffs/card-tariffs';
+import { UpdateTariffs } from './pages/cards/tariffs/update-tariffs/update-tariffs';
 
 export const routes: Routes = [
     {path: '', component: Layout, children: [
@@ -21,7 +22,8 @@ export const routes: Routes = [
         {path: 'my-profile', component: UsersOwnProfile, canActivate: [CanActivateAuth]},
         {path: 'cards', component: CardTariffs},
         {path: 'cards/my-cards', component: UserCards, canActivate: [CanActivateAuth]},
-        {path: 'cards/info/:id', component: CardTariffsInfo}
+        {path: 'cards/info/:id', component: CardTariffsInfo},
+        {path: 'cards/update/:id', component: UpdateTariffs, canActivate: [adminGuard]}
     ]},
     {path: 'login', component: Login},
     {path: 'signup', component: Register}

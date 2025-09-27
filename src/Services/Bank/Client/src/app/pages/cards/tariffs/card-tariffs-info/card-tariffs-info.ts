@@ -1,5 +1,5 @@
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
@@ -13,7 +13,7 @@ import { Currency } from '../../../../data/enums/currency';
 
 @Component({
   selector: 'app-card-tariffs-info',
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, RouterLink],
   templateUrl: './card-tariffs-info.html',
   styleUrl: './card-tariffs-info.scss'
 })

@@ -40,11 +40,11 @@
                     <td>Validity Period</td>
                     <td>{{card.validityPeriod}} years</td>
                 </tr>
-                <tr>
+                <tr [class.none]="card.type === CardType.Debit">
                     <td>Max Credit Limit</td>
                     <td>{{card.maxCreditLimit}} UAH</td>
                 </tr>
-                <tr class="colored">
+                <tr [class.colored]="card.type !== CardType.Debit">
                     <td>Enabled Payment Systems</td>
                     <td>
                         @if(card.enabledPaymentSystems?.includes(PaymentSystem.Mastercard)){
@@ -55,7 +55,7 @@
                         }
                     </td>
                 </tr>
-                <tr>
+                <tr [class.none]="card.type === CardType.Debit">
                     <td>Interest Rate</td>
                     <td>{{card.interestRate}}%</td>
                 </tr>
@@ -75,7 +75,7 @@
                 </tr>
                 <tr>
                     <td>Annual Maintenance Cost</td>
-                    <td>{{card.annualMaintenanceCost}}</td>
+                    <td>{{card.annualMaintenanceCost}} UAH</td>
                 </tr>
                 <tr class="colored">
                     <td>P2P Internal Commission</td>
@@ -87,12 +87,12 @@
                 </tr>
                 <tr class="colored">
                     <td>Card Color</td>
-                    <td>{{card.cardColor}}</td>
+                    <td><div class="card-color" [style.background-color]="card.cardColor"></div></td>
                 </tr>
             </table>
         @if(profileService.getRole()?.toLowerCase()==='admin'){
             <div class="entity-action-buttons">
-                <a routerLink="" class="update">Update Card</a>
+                <a [routerLink]="['/cards/update', card.id]" class="update">Update Card</a>
                 <a routerLink="" class="delete">Delete Card</a>
             </div>
         }
