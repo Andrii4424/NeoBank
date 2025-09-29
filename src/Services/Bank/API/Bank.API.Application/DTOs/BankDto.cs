@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Bank.API.Application.DTO
 {
-    public class BankDto
+    public class BankDto : IValidatableObject
     {
         public Guid Id { get; private set; } = Guid.Parse("E2A4A522-8486-46F7-9437-5F5B7E539502");
 
@@ -67,7 +67,7 @@ namespace Bank.API.Application.DTO
         [Display(Name = "Percentage Commission For Buying Currency")]
         public double PercentageCommissionForBuyingCurrency { get; set; }
 
-        [Range(0, 10.0, ErrorMessage = "{0} must be between {1} and {2}")]
+        [Range(0, 15.0, ErrorMessage = "{0} must be between {1} and {2}")]
         [Display(Name = "Percentage Commission For Selling Currency ")]
         public double PercentageCommissionForSellingCurrency { get; set; }
 
@@ -93,5 +93,11 @@ namespace Bank.API.Application.DTO
 
         [BindNever]
         public DateOnly UpdatedAt { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if(PercentageCommissionForSellingCurrency<= PercentageCommissionForBuyingCurrency) yield return new ValidationResult(
+                    "Percentage Commission For Selling Currency must be greater than Percentage Commission For Buying Currency");
+        }
     }
 }

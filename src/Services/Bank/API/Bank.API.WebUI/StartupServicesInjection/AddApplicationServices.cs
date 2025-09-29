@@ -113,6 +113,8 @@ namespace Bank.API.WebUI.StartupServicesInjection
             //AutoMapper
             services.AddAutoMapper(typeof(MappingProfile));
 
+            services.AddMemoryCache();
+
             return services;
         }
     }
