@@ -31,7 +31,7 @@
         <a href="#" routerLinkActive="active">Clients</a>
         <a href="#" routerLinkActive="active">Employees</a>
         <a href="#" routerLinkActive="active">Vacancies</a>
-        <a href="#" routerLinkActive="active">Currency Rates</a>
+        <a [routerLink]="['/currency-rates']" routerLinkActive="active">Currency Rates</a>
     </aside>
     <main #main class="content">
         <router-outlet></router-outlet>

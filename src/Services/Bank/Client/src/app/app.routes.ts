@@ -14,6 +14,7 @@ import { CardTariffsInfo } from './pages/cards/tariffs/card-tariffs-info/card-ta
 import { CardTariffs } from './pages/cards/tariffs/card-tariffs/card-tariffs';
 import { UpdateTariffs } from './pages/cards/tariffs/update-tariffs/update-tariffs';
 import { AddCardTariffs } from './pages/cards/tariffs/add-card-tariffs/add-card-tariffs';
+import { CurrencyRates } from './pages/products/currency-rates/currency-rates';
 
 export const routes: Routes = [
     {path: '', component: Layout, children: [
@@ -26,6 +27,8 @@ export const routes: Routes = [
         {path: 'cards/info/:id', component: CardTariffsInfo},
         {path: 'cards/update/:id', component: UpdateTariffs, canActivate: [adminGuard]},
         {path: 'cards/add', component: AddCardTariffs, canActivate: [adminGuard]},
+        {path: 'currency-rates', component: CurrencyRates},
+
     ]},
     {path: 'login', component: Login},
     {path: 'signup', component: Register}

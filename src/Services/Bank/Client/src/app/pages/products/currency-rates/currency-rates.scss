@@ -1,0 +1,42 @@
+.currencies-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  border: 1px solid var(--heaviest-dark-primary-color);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.currencies-table tr:first-child {
+  font-weight: bold;
+  color: var(--heavy-dark-primary-color);
+}
+
+.currencies-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.currencies-table tr:last-child td {
+  border-bottom: none;
+}
+
+.currencies-table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.exchange{
+    background-color: var(--dark-primary-color);
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}

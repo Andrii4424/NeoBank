@@ -4,6 +4,7 @@ using Bank.API.Application.Helpers.HelperClasses;
 using Bank.API.Application.ServiceContracts.BankServiceContracts;
 using Bank.API.Domain.Entities;
 using Bank.API.Domain.RepositoryContracts;
+using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +17,13 @@ namespace Bank.API.Application.Services.BankServices
     {
         private readonly IBankRepository _bankRepository;
         private readonly IMapper _mapper;
+        private readonly string currencyCacheKey = "CurrencyData";
+        private readonly IMemoryCache _memoryCache;
 
-        public BankService(IBankRepository bankRepository, IMapper mapper) {
+        public BankService(IBankRepository bankRepository, IMapper mapper, IMemoryCache memoryCache) {
             _bankRepository = bankRepository;
             _mapper = mapper;
+            _memoryCache = memoryCache;
         }
 
         public async Task<BankDto> GetBankInfo()
@@ -36,6 +40,7 @@ namespace Bank.API.Application.Services.BankServices
             bank.UpdatedAt = DateOnly.FromDateTime(DateTime.Now);
             _bankRepository.UpdateObject(bank);
             await _bankRepository.SaveAsync();
+            _memoryCache.Remove(currencyCacheKey);
 
             return OperationResult.Ok();
         }
