@@ -1,4 +1,5 @@
-﻿using Bank.API.Domain.Entities.Cards;
+﻿using Bank.API.Application.DTOs.BankProducts;
+using Bank.API.Domain.Entities.Cards;
 using Bank.API.Domain.Entities.Identity;
 using Bank.API.Domain.Enums.CardEnums;
 using System;
@@ -18,7 +19,8 @@ namespace Bank.API.Application.DTOs.Users
 
         public Guid CardTariffId { get; set; }
 
-        [StringLength(16)]
+        public CardTariffsDto? CardTariffs { get; set; }
+
         public string CardNumber { get; set; }
 
         public DateOnly ExpiryDate { get; set; }
@@ -27,12 +29,10 @@ namespace Bank.API.Application.DTOs.Users
 
         public Currency ChosenCurrency { get; set; }
 
-        [StringLength(4)]
         public string Pin { get; set; }
 
         public CardStatus Status { get; set; }
 
-        [StringLength(3)]
         public string CVV { get; set; }
 
         public decimal Balance { get; set; }

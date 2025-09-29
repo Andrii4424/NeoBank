@@ -2,9 +2,11 @@
 using Bank.API.Application.ServiceContracts;
 using Bank.API.Application.ServiceContracts.BankServiceContracts;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.BankProducts;
+using Bank.API.Application.ServiceContracts.BankServiceContracts.Users;
 using Bank.API.Application.Services;
 using Bank.API.Application.Services.BankServices;
 using Bank.API.Application.Services.BankServices.BankProducts;
+using Bank.API.Application.Services.BankServices.Users;
 using Bank.API.Domain.Entities.Identity;
 using Bank.API.Domain.RepositoryContracts;
 using Bank.API.Domain.RepositoryContracts.BankProducts;
@@ -108,7 +110,7 @@ namespace Bank.API.WebUI.StartupServicesInjection
             services.AddScoped<IBankService, BankService>();
             services.AddScoped<ICardTariffsService, CardTariffsService>();
             services.AddScoped<ICurrencyService, CurrencyService>();
-
+            services.AddScoped<IUserCardService, UserCardService>();
 
             //AutoMapper
             services.AddAutoMapper(typeof(MappingProfile));

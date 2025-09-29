@@ -33,6 +33,25 @@ namespace Bank.API.Domain.Entities.Cards
         public CardStatus Status { get; set; }
         [StringLength(3)]
         public string CVV { get; set; }
+        public decimal CreditLimit { get; set; }
         public decimal Balance { get; set; }
+
+        public UserCardsEntity() { }
+
+        public UserCardsEntity(Guid userId, Guid cardTariffId, string cardNumber, DateOnly expiryDate, PaymentSystem chosedPaymentSystem, 
+            Currency chosenCurrency, string pin, string cvv)
+        {
+            UserId = userId;
+            CardTariffId = cardTariffId;
+            CardNumber = cardNumber;
+            ExpiryDate = expiryDate;
+            ChosedPaymentSystem = chosedPaymentSystem;
+            ChosenCurrency = chosenCurrency;
+            Pin = pin;
+            CVV = cvv;
+            Status = CardStatus.Active;
+            Balance = 0;
+            CreditLimit = 0;
+        }
     }
 }

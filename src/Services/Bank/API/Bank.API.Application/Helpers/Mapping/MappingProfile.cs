@@ -2,6 +2,7 @@
 using Bank.API.Application.DTO;
 using Bank.API.Application.DTOs.BankProducts;
 using Bank.API.Application.DTOs.Identity;
+using Bank.API.Application.DTOs.Users;
 using Bank.API.Domain.Entities;
 using Bank.API.Domain.Entities.Cards;
 using Bank.API.Domain.Entities.Identity;
@@ -31,6 +32,11 @@ namespace Bank.API.Application.Helpers.Mapping
                 .ForMember(dest => dest.BlockedClientsCount, opt => opt.Ignore())
                 .ForMember(dest => dest.EstablishedDate, opt => opt.Ignore())
                 .ForMember(dest => dest.EmployeesCount, opt => opt.Ignore());
+
+            //UserCards
+            CreateMap<UserCardsEntity, UserCardsDto>();
+            CreateMap<UserCardsDto, UserCardsEntity>();
+
 
             //CardTariffs
             CreateMap<CardTariffsEntity, CardTariffsDto>();
