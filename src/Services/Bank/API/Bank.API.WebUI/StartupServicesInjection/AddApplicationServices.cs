@@ -8,9 +8,11 @@ using Bank.API.Application.Services.BankServices.BankProducts;
 using Bank.API.Domain.Entities.Identity;
 using Bank.API.Domain.RepositoryContracts;
 using Bank.API.Domain.RepositoryContracts.BankProducts;
+using Bank.API.Domain.RepositoryContracts.Users;
 using Bank.API.Infrastructure.Data;
 using Bank.API.Infrastructure.Repository;
 using Bank.API.Infrastructure.Repository.BankProducts;
+using Bank.API.Infrastructure.Repository.Users;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -97,6 +99,7 @@ namespace Bank.API.WebUI.StartupServicesInjection
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped(typeof(IBankRepository), typeof(BankRepository));
             services.AddScoped(typeof(ICardTariffsRepository), typeof(CardTariffsRepository));
+            services.AddScoped(typeof(IUserCardsRepository), typeof(UserCardsRepository));
 
             //Services injection
             //Identity
