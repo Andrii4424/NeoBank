@@ -44,6 +44,18 @@ namespace Bank.API.Application.Services.BankServices.Users
             return userCards;
         }
 
+        public async Task<UserCardsDto?> GetCardByIdAsync(Guid cardId)
+        {
+            UserCardsEntity? card = await _userCardsRepository.GetValueByIdAsync(cardId);
+            if(card == null)
+            {
+                return null;
+            }
+            UserCardsDto userCard = _mapper.Map<UserCardsDto>(card);
+            userCard.CardTariffs = _mapper.Map<CardTariffsDto>(await _cardTariffsRepository.GetValueByIdAsync(card.CardTariffId));
+            return userCard;
+        }
+
         //Create
         public async Task<OperationResult> CreateCardAsync(CreateUserCardDto cardParams)
         {
@@ -51,7 +63,11 @@ namespace Bank.API.Application.Services.BankServices.Users
             {
                 return OperationResult.Error("Card tariffs not found");
             }
-            if(!await _userCardsRepository.IsCardUnique(cardParams.UserId, cardParams.CardTariffId, cardParams.ChosenCurrency))
+            if(cardParams.UserId == null)
+            {
+                return OperationResult.Error("User is not found");
+            }
+            if (!await _userCardsRepository.IsCardUnique(cardParams.UserId.Value, cardParams.CardTariffId, cardParams.ChosenCurrency))
             {
                 return OperationResult.Error("User already has this card in the chosen currency");
             }
@@ -74,7 +90,7 @@ namespace Bank.API.Application.Services.BankServices.Users
 
             string cvv = GenerateCVV();
 
-            UserCardsEntity userCard = new UserCardsEntity(cardParams.UserId, cardParams.CardTariffId, cardNumber, expieryDate,
+            UserCardsEntity userCard = new UserCardsEntity(cardParams.UserId.Value, cardParams.CardTariffId, cardNumber, expieryDate,
                 cardParams.ChosenPaymentSystem, cardParams.ChosenCurrency, cardParams.Pin, cvv);
 
             await _userCardsRepository.AddAsync(userCard);

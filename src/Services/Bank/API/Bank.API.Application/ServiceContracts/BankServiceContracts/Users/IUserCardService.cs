@@ -1,4 +1,9 @@
-﻿using System;
+﻿using Bank.API.Application.DTOs.BankProducts;
+using Bank.API.Application.DTOs.Users;
+using Bank.API.Application.Helpers.HelperClasses;
+using Bank.API.Domain.Entities.Cards;
+using Bank.API.Domain.Enums.CardEnums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +13,13 @@ namespace Bank.API.Application.ServiceContracts.BankServiceContracts.Users
 {
     public interface IUserCardService
     {
-
+        public Task<List<UserCardsDto>?> GetUserCardsAsync(Guid userId);
+        public Task<UserCardsDto?> GetCardByIdAsync(Guid cardId);
+        public Task<OperationResult> CreateCardAsync(CreateUserCardDto cardParams);
+        public Task<OperationResult> UpdateCardStatusAsync(Guid cardId, CardStatus status);
+        public Task<OperationResult> UpdateCardPinAsync(Guid cardId, string newPin);
+        public Task<OperationResult> UpdateCardBalanceAsync(Guid cardId, decimal amount);
+        public Task<OperationResult> UpdateCardCreditLimitAsync(Guid cardId, decimal newCreditLimit);
+        public Task<OperationResult> DeleteCardAsync(Guid cardId);
     }
 }

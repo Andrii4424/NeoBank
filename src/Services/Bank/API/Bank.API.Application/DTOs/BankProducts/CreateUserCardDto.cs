@@ -10,7 +10,7 @@ namespace Bank.API.Application.DTOs.BankProducts
 {
     public class CreateUserCardDto :IValidatableObject
     {
-        public Guid UserId { get; set; }
+        public Guid? UserId { get; set; }
 
         [Required(ErrorMessage = "{0} has to be provided")]
         [Display(Name = "Card Tariffs")]
