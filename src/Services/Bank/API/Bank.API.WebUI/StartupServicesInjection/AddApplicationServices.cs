@@ -107,6 +107,8 @@ namespace Bank.API.WebUI.StartupServicesInjection
             //Bank and bank products
             services.AddScoped<IBankService, BankService>();
             services.AddScoped<ICardTariffsService, CardTariffsService>();
+            services.AddScoped<ICurrencyService, CurrencyService>();
+
 
             //AutoMapper
             services.AddAutoMapper(typeof(MappingProfile));
