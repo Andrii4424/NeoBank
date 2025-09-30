@@ -77,6 +77,7 @@ export class CardTariffs {
               queryParamsHandling: 'merge'
             });
           }
+          this.updateCardTextColors();
         }
       });
       this.updateCardTextColors();

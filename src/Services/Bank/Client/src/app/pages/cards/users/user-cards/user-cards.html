@@ -2,13 +2,13 @@
 
 <app-cards-layout></app-cards-layout>
 
-@if(userCards$ | async; as cards) {
-    @if(cards.length===0){
-        <h1 class="subheading-without-lh zero-items mb-4">No cards available. Open first card by button below</h1>
-    }
-    <div class="cards-info" [class.with-last-child]="cards.length%2 !==0 && cards.length>0">
 
-        @for (card of cards; track $index) {
+@if(userCards?.length===0){
+    <h1 class="subheading-without-lh zero-items mb-4">No cards available. Open first card by button below</h1>
+}
+<div class="cards-info" [class.with-last-child]="userCards !==null && userCards!.length%2 !==0 && userCards!.length>0">
+    @for (card of userCards; track $index) {
+        <a [routerLink]="['']" #card class="card" [style.background-color]="card.cardTariffs.cardColor">
             <div class="card-info-divider">
                 <div class="card-name">
                     <img class="card-bank-logo" src="assets/images/bank-logo.png" alt="">
@@ -34,10 +34,27 @@
                     </div>
                 </div>
             </div>
-        }
-    </div>
-}
+
+            <div class="card-number">
+                {{ card.cardNumber.slice(0,4) }} 
+                {{ card.cardNumber.slice(4,8) }} 
+                {{ card.cardNumber.slice(8,12) }} 
+                {{ card.cardNumber.slice(12,16) }}
+            </div>
+        </a>
+    }
+</div>
 
 <div class="add-block">
     <a [routerLink]="['/cards/my-cards/add/options']" class="add-item">Open Card</a>
 </div>
+
+@if(success()){
+    <app-success-message
+        message="Success!"
+        secondMessage="Card has been created!"
+    >
+
+    </app-success-message>
+
+}
