@@ -1,0 +1,58 @@
+@if(!isCardTariffsChosen()){
+    <app-card-tariffs
+    [isHelper]="true"
+    (chosenTariffs)="choseTariffs($event)"
+    >
+    </app-card-tariffs>
+}
+@else{
+    <div class="object-info-card">
+        <form class="update-entity-form" [formGroup]="createCardForm">
+            <div class="update-entity-form-fields form-padding">
+                <label>Chosen Tariffs: <span class="bold">{{chosenTariffsName}}</span></label>
+                <button class="back-button" (click)="rechoseTariffs()"><span>&larr;</span> Change Tariffs</button>
+
+                <h4 class="checkboxes-title">Chose Currency</h4>
+                <div class="radios checkboxes">
+                    @if(cardTariffs?.enableCurrency?.includes(Currency.UAH)){
+                        <div class="checkbox-items">
+                            <input id="uah" name="currency" type="radio" [value]="Currency.UAH" formControlName="chosenCurrency" />
+                            <label for="uah">UAH</label>
+                        </div>
+                    }
+                    @if(cardTariffs?.enableCurrency?.includes(Currency.USD)){
+                        <div class="checkbox-items">
+                            <input id="usd" name="currency" type="radio" [value]="Currency.USD" formControlName="chosenCurrency" />
+                            <label for="usd">USD</label>
+                        </div>
+                    }
+                    @if(cardTariffs?.enableCurrency?.includes(Currency.UAH)){
+                        <div class="checkbox-items">
+                            <input id="eur" name="currency" type="radio" [value]="Currency.EUR" formControlName="chosenCurrency" />
+                            <label for="eur">EUR</label>
+                        </div>
+                    }
+                </div>
+
+                <h4 class="checkboxes-title">Chose Payment System</h4>
+                <div class="radios checkboxes">
+                    @if(cardTariffs?.enabledPaymentSystems?.includes(PaymentSystem.Mastercard)){
+                        <div class="checkbox-items">
+                            <input id="mastercard" name="payment-systems" type="radio" [value]="PaymentSystem.Mastercard" formControlName="chosenPaymentSystem" />
+                            <label for="mastercard">Mastercard</label>
+                        </div>
+                        <div class="checkbox-items">
+                            <input id="visa" name="payment-systems" type="radio" [value]="PaymentSystem.Visa" formControlName="chosenPaymentSystem" />
+                            <label for="visa">Visa</label>
+                        </div>
+                    }
+                </div>
+
+                <label for="pin">PIN code</label>
+                <input id="pin" type="text" maxlength="4" (change)="onPinInput($event)" formControlName="pin"/>
+            </div>
+
+            <button type="submit" class="entity-update">Create Card</button>
+        </form>
+    </div>
+}

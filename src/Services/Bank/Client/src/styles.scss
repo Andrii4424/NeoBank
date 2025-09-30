@@ -53,7 +53,12 @@ h1, h2, h3, h4, h5, h6 {
 footer {
 	margin-top: auto;
 }
-
+.text-center{
+	text-align: center;
+}
+.bold{
+	font-weight: 600;
+}
 .mb-8 {
 	margin-bottom: 8px;
 }
@@ -62,6 +67,9 @@ footer {
 	margin-top: 8px;
 }
 
+.mt-24{
+	margin-top: 24px;
+}
 .mr-8 {
 	margin-right: 8px;
 }
@@ -920,4 +928,23 @@ a.chosen-child-link::after {
 .zero-items{
 	width: 100%;
 	text-align: center;
+}
+
+.form-padding{
+	padding: 14px 24px;
+}
+
+.back-button{
+	background-color: var(--dark-primary-color);
+	color: white;
+	border: 2px solid var(--heavy-dark-primary-color);
+	border-radius: 8px;
+	width: 140px;
+	height: 24px;
+	cursor: pointer;
+}
+
+.back-button span{
+	font-size: 16px;   
+	line-height: 1; 
 }

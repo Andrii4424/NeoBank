@@ -1,5 +1,5 @@
 import { ProfileService } from './../../../../data/services/auth/profile-service';
-import { ChangeDetectorRef, Component, ElementRef, inject, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, Input, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { CardsLayout } from "../../cards-layout/cards-layout";
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { SharedService } from '../../../../data/services/shared-service';
@@ -28,6 +28,8 @@ export class CardTariffs {
   route = inject(ActivatedRoute);
   sharedService = inject(SharedService);
   cards?:IPageResult<ICardTariffs>;
+  @Input() isHelper? : boolean;
+  @Output() chosenTariffs = new EventEmitter<ICardTariffs>
   @ViewChildren('card') cardElements? : QueryList<ElementRef<HTMLDivElement>>
 
   //Filters values
@@ -132,6 +134,14 @@ export class CardTariffs {
     }
   }
 
+  acceptTariffs(cardId: string, cardName: string){
+    if(this.isHelper){
+      let cardOptions : ICardTariffs ={} as ICardTariffs;
+      cardOptions.id = cardId;
+      cardOptions.cardName = cardName
+      this.chosenTariffs.emit(cardOptions);
+    }
+  }
 
   //Color methods
   private updateCardTextColors(): void {

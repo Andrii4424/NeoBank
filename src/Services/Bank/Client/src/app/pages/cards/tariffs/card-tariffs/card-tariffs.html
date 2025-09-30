@@ -9,11 +9,17 @@
 >
 </app-search>
 
-<app-cards-layout></app-cards-layout>
-
+@if(!isHelper){
+    <app-cards-layout></app-cards-layout>
+}
+@if(isHelper){
+    <h1 class="heading mt-24 text-center">Chose Cards Tariffs For Your Card</h1>
+}
 <section class="cards-info" [class.with-last-child]="cards?.items!.length%2 !==0">
+
     @for(card of cards?.items; track $index){
-        <a [routerLink]="['/cards/info', card.id]" #card class="card" [style.background-color]="card.cardColor">
+        <a [routerLink]="!isHelper ? ['/cards/info', card.id]: null" (click)="acceptTariffs(card.id!, card.cardName!)" [class.mt-24]="isHelper" #card class="card" 
+        [style.background-color]="card.cardColor">
             <div class="card-info-divider">
                 <div class="card-name">
                     <img class="card-bank-logo" src="assets/images/bank-logo.png" alt="">
@@ -43,11 +49,10 @@
     }
 </section>
 
-@if(profileService.getRole()?.toLowerCase()==='admin'){
+@if(profileService.getRole()?.toLowerCase()==='admin' && !isHelper){
     <div class="add-block">
         <a [routerLink]="['/cards/add']" class="add-item">Add Card</a>
     </div>
-
 }
 
 <app-page-switcher 

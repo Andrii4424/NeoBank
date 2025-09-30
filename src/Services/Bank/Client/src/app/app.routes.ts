@@ -8,13 +8,13 @@ import { UpdateBank } from './pages/products/bank/update-bank/update-bank';
 import { CanActivateAuth } from './auth/access.guard';
 import { UsersOwnProfile } from './pages/profile/users-own-profile/users-own-profile';
 import { adminGuard } from './auth/admin.guard';
-import { UserCards } from './pages/cards/user-cards/user-cards';
-import { CardsLayout } from './pages/cards/cards-layout/cards-layout';
 import { CardTariffsInfo } from './pages/cards/tariffs/card-tariffs-info/card-tariffs-info';
 import { CardTariffs } from './pages/cards/tariffs/card-tariffs/card-tariffs';
 import { UpdateTariffs } from './pages/cards/tariffs/update-tariffs/update-tariffs';
 import { AddCardTariffs } from './pages/cards/tariffs/add-card-tariffs/add-card-tariffs';
 import { CurrencyRates } from './pages/products/currency-rates/currency-rates';
+import { UserCards } from './pages/cards/users/user-cards/user-cards';
+import { ChoseCardOptions } from './pages/cards/users/chose-card-options/chose-card-options';
 
 export const routes: Routes = [
     {path: '', component: Layout, children: [
@@ -28,6 +28,7 @@ export const routes: Routes = [
         {path: 'cards/update/:id', component: UpdateTariffs, canActivate: [adminGuard]},
         {path: 'cards/add', component: AddCardTariffs, canActivate: [adminGuard]},
         {path: 'currency-rates', component: CurrencyRates},
+        {path: 'cards/my-cards/add/options', component: ChoseCardOptions, canActivate: [CanActivateAuth]},
 
     ]},
     {path: 'login', component: Login},
