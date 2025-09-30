@@ -951,7 +951,25 @@ a.chosen-child-link::after {
 }
 
 .card-number{
+	display: flex;
+	flex-direction: row;
+	gap: 8px;
 	position: absolute;
 	bottom: 60px;
 	left: 24px;
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.card-number img{
+	margin-top: -5px;
+	height: 24px;
+	width: auto;
+}
+.balance{
+	position: absolute;
+	bottom: 24px;
+	left: 24px;
+	font-size: 16px;
+	font-weight: 500;
 }

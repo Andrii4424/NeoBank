@@ -9,6 +9,7 @@ import { Component, Input, signal } from '@angular/core';
 export class SuccessMessage {
   @Input() message: string = '';
   @Input() secondMessage: string = '';
+  
   visible = signal<boolean>(true);
 
   ngOnInit() {

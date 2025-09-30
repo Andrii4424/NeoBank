@@ -8,7 +8,7 @@
 }
 <div class="cards-info" [class.with-last-child]="userCards !==null && userCards!.length%2 !==0 && userCards!.length>0">
     @for (card of userCards; track $index) {
-        <a [routerLink]="['']" #card class="card" [style.background-color]="card.cardTariffs.cardColor">
+        <a #card class="card" [style.background-color]="card.cardTariffs.cardColor">
             <div class="card-info-divider">
                 <div class="card-name">
                     <img class="card-bank-logo" src="assets/images/bank-logo.png" alt="">
@@ -36,10 +36,25 @@
             </div>
 
             <div class="card-number">
-                {{ card.cardNumber.slice(0,4) }} 
-                {{ card.cardNumber.slice(4,8) }} 
-                {{ card.cardNumber.slice(8,12) }} 
-                {{ card.cardNumber.slice(12,16) }}
+                {{ card.cardNumber | cardFormat}} 
+                <img (click)="copyCardNumber(card.cardNumber)" src="assets/images/copy.svg" alt="Copy">
+            </div>
+
+            <div class="balance">
+                <span>{{ card.balance}} </span>
+                @switch (card.chosenCurrency) {
+                    @case (Currency.UAH) {
+                        <span>₴</span>
+                    }
+                    @case (Currency.USD) {
+                        <span>$</span>
+                    }
+                    @case (Currency.EUR) {
+                        <span>€</span>
+                    
+                    }
+                    @default {}
+                }
             </div>
         </a>
     }
@@ -54,7 +69,12 @@
         message="Success!"
         secondMessage="Card has been created!"
     >
-
     </app-success-message>
-
+}
+@if(copied()){
+    <app-success-message
+        message="Success!"
+        secondMessage="Card number has been copied!"
+    >
+    </app-success-message>
 }

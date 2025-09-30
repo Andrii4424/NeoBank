@@ -1,3 +1,4 @@
+import { SharedService } from './../../../../data/services/shared-service';
 
 import { ChangeDetectorRef, Component, ElementRef, Inject, inject, QueryList, signal, ViewChildren } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterOutlet, Params, Router } from '@angular/router';
@@ -13,17 +14,20 @@ import { CardStatus } from '../../../../data/enums/card-status';
 import { UserCardsService } from '../../../../data/services/bank/bank-products/user-cards-service';
 import { IUserCards } from '../../../../data/interfaces/bank/bank-products/cards/user-cards-interface';
 import { SuccessMessage } from "../../../../common-ui/success-message/success-message";
+import { CardFormatPipe } from '../../../../data/pipes/card-format.pipe';
 
 
 @Component({
   selector: 'app-user-cards',
-  imports: [CardsLayout, Search, RouterLink, SuccessMessage],
+  imports: [CardsLayout, Search, RouterLink, SuccessMessage, CardFormatPipe],
   templateUrl: './user-cards.html',
   styleUrl: './user-cards.scss'
 })
 export class UserCards {
   userCardsService = inject(UserCardsService);
+  sharedService = inject(SharedService);
   userCards: IUserCards[] | null= null;
+  copied = signal<boolean>(false);
   route = inject(ActivatedRoute);
   router = inject(Router);
   success = signal<boolean>(false);
@@ -62,7 +66,12 @@ export class UserCards {
     });
   }
 
-
+  copyCardNumber(cardNumber : string){
+    this.copied.set(false);
+    this.sharedService.copyText(cardNumber);
+    this.copied.set(true);
+    setTimeout(() => this.copied.set(false), 3000);
+  }
 
 
     //Color methods
