@@ -6,7 +6,6 @@ import { SharedService } from '../../../../data/services/shared-service';
 import { PageSwitcher } from '../../../../common-ui/page-switcher/page-switcher';
 import { Search } from '../../../../common-ui/search/search';
 import { CardTariffsService } from '../../../../data/services/bank/bank-products/card-tariffs-service';
-import { ICardTariffs } from '../../../../data/interfaces/bank/bank-products/card-tariffs.interface';
 import { IPageResult } from '../../../../data/interfaces/page-inteface';
 import { ISort } from '../../../../data/interfaces/filters/sort-interface';
 import { IFilter } from '../../../../data/interfaces/filters/filter-interface';
@@ -14,6 +13,7 @@ import { CardLevel } from '../../../../data/enums/card-level';
 import { PaymentSystem } from '../../../../data/enums/payment-system';
 import { CardType } from '../../../../data/enums/card-type';
 import { Currency } from '../../../../data/enums/currency';
+import { ICardTariffs } from '../../../../data/interfaces/bank/bank-products/cards/card-tariffs.interface';
 
 @Component({
   selector: 'app-card-tariffs',

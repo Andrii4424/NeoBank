@@ -1,7 +1,6 @@
 import { SharedService } from './../../../../data/services/shared-service';
 import { ChangeDetectorRef, Component, ElementRef, inject, signal, ViewChild } from '@angular/core';
 import { CardTariffsService } from '../../../../data/services/bank/bank-products/card-tariffs-service';
-import { ICardTariffs } from '../../../../data/interfaces/bank/bank-products/card-tariffs.interface';
 import { ActivatedRoute } from '@angular/router';
 import { Form, FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CardType } from '../../../../data/enums/card-type';
@@ -9,6 +8,7 @@ import { CardLevel } from '../../../../data/enums/card-level';
 import { PaymentSystem } from '../../../../data/enums/payment-system';
 import { Currency } from '../../../../data/enums/currency';
 import { C } from '@angular/cdk/keycodes';
+import { ICardTariffs } from '../../../../data/interfaces/bank/bank-products/cards/card-tariffs.interface';
 
 @Component({
   selector: 'app-update-tariffs',
@@ -64,10 +64,10 @@ export class UpdateTariffs {
       {next:(val)=>{
         this.cards = val;
         this.patchFormValues();
-        this.chosenPaymentSystems =this.cards.enabledPaymentSystems!;
-        this.chosenCurrencies =this.cards.enableCurrency!;
+        this.chosenPaymentSystems =this.cards!.enabledPaymentSystems!;
+        this.chosenCurrencies =this.cards!.enableCurrency!;
         this.cdr.detectChanges();
-        this.changeCardType(this.cards.type!);
+        this.changeCardType(this.cards!.type!);
     }});
   }
 

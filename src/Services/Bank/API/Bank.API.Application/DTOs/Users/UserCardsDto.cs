@@ -36,5 +36,7 @@ namespace Bank.API.Application.DTOs.Users
         public string CVV { get; set; }
 
         public decimal Balance { get; set; }
+
+        public decimal CreditLimit { get; set; }
     }
 }

@@ -1,5 +1,4 @@
 import { ChangeDetectorRef, Component, ElementRef, inject, signal, ViewChild } from '@angular/core';
-import { ICardTariffs } from '../../../../data/interfaces/bank/bank-products/card-tariffs.interface';
 import { ActivatedRoute } from '@angular/router';
 import { CardTariffsService } from '../../../../data/services/bank/bank-products/card-tariffs-service';
 import { SharedService } from '../../../../data/services/shared-service';
@@ -8,6 +7,7 @@ import { Currency } from '../../../../data/enums/currency';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CardType } from '../../../../data/enums/card-type';
 import { CardLevel } from '../../../../data/enums/card-level';
+import { ICardTariffs } from '../../../../data/interfaces/bank/bank-products/cards/card-tariffs.interface';
 
 @Component({
   selector: 'app-add-card-tariffs',

@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { ICardTariffs } from '../../../interfaces/bank/bank-products/card-tariffs.interface';
 import { IPageResult } from '../../../interfaces/page-inteface';
 import { Params } from '@angular/router';
+import { ICardTariffs } from '../../../interfaces/bank/bank-products/cards/card-tariffs.interface';
 
 @Injectable({
   providedIn: 'root'

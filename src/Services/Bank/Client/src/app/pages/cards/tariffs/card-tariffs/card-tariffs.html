@@ -11,7 +11,7 @@
 
 <app-cards-layout></app-cards-layout>
 
-<section class="card-tariffs" [class.with-last-child]="cards?.items!.length%2 !==0">
+<section class="cards-info" [class.with-last-child]="cards?.items!.length%2 !==0">
     @for(card of cards?.items; track $index){
         <a [routerLink]="['/cards/info', card.id]" #card class="card" [style.background-color]="card.cardColor">
             <div class="card-info-divider">

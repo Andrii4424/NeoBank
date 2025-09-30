@@ -4,13 +4,13 @@ import { ChangeDetectorRef, Component, inject, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { CardTariffsService } from '../../../../data/services/bank/bank-products/card-tariffs-service';
-import { ICardTariffs } from '../../../../data/interfaces/bank/bank-products/card-tariffs.interface';
 import { ProfileService } from '../../../../data/services/auth/profile-service';
 import { CardType } from '../../../../data/enums/card-type';
 import { CardLevel } from '../../../../data/enums/card-level';
 import { PaymentSystem } from '../../../../data/enums/payment-system';
 import { Currency } from '../../../../data/enums/currency';
 import { ConfirmDelete } from "../../../../common-ui/confirm-delete/confirm-delete";
+import { ICardTariffs } from '../../../../data/interfaces/bank/bank-products/cards/card-tariffs.interface';
 
 @Component({
   selector: 'app-card-tariffs-info',

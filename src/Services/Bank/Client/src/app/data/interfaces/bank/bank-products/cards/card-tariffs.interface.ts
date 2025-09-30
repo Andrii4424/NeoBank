@@ -1,7 +1,7 @@
-import { CardLevel } from "../../../enums/card-level";
-import { CardType } from "../../../enums/card-type";
-import { Currency } from "../../../enums/currency";
-import { PaymentSystem } from "../../../enums/payment-system";
+import { CardLevel } from "../../../../enums/card-level";
+import { CardType } from "../../../../enums/card-type";
+import { Currency } from "../../../../enums/currency";
+import { PaymentSystem } from "../../../../enums/payment-system";
 
 export interface ICardTariffs{
     id: string | null;
