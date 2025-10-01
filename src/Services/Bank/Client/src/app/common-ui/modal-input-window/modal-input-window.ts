@@ -12,6 +12,8 @@ export class ModalInputWindow {
   @Input() subTittleMessage: string ="";
   @Input() isAddFunds: boolean = false;
   @Input() isChangePin: boolean = false;
+  @Input() isChangeCreditLimit: boolean = false;
+  @Input() maxCreditLimit: number = 0;
   @Output() submitValue = new EventEmitter<number>();
   @Output() submitPin = new EventEmitter<string>();
   @Output() closeWindow = new EventEmitter<void>();

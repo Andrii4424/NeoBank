@@ -17,7 +17,7 @@
 }
 <div class="cards-info" [class.with-last-child]="userCards !==null && userCards!.items.length%2 !==0 && userCards!.items.length>0">
     @for (card of userCards?.items; track $index) {
-        <a [routerLink]="['/cards/my-card', card.id]" #card class="card" [style.background-color]="card.cardTariffs.cardColor">
+        <a [routerLink]="['/cards/my-card', card.id]" #card class="card-link" [style.background-color]="card.cardTariffs.cardColor">
             <div class="card-info-divider">
                 <div class="card-name">
                     <img class="card-bank-logo" src="assets/images/bank-logo.png" alt="">

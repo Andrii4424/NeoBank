@@ -18,7 +18,7 @@
 <section class="cards-info" [class.with-last-child]="cards?.items!.length%2 !==0">
 
     @for(card of cards?.items; track $index){
-        <a [routerLink]="!isHelper ? ['/cards/info', card.id]: null" (click)="acceptTariffs(card.id!, card.cardName!)" [class.mt-24]="isHelper" #card class="card" 
+        <a [routerLink]="!isHelper ? ['/cards/info', card.id]: null" (click)="acceptTariffs(card.id!, card.cardName!)" [class.mt-24]="isHelper" #card class="card-link" 
         [style.background-color]="card.cardColor">
             <div class="card-info-divider">
                 <div class="card-name">

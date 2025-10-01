@@ -856,7 +856,7 @@ a.chosen-child-link::after {
   grid-column: 1 / -1;
 }
 
-.card {
+.card-link{
 	position: relative;
 	width: 400px;
 	height: 200px;
@@ -869,13 +869,13 @@ a.chosen-child-link::after {
 		0 6px 6px -2px rgba(0, 0, 0, 0.25); 
 }
 
-.card h1, .card h4 {
+.card-link h1, .card-link h4 {
   margin: 0;             
   padding: 0;
   font-size: 16px;
 }
 
-.card img {
+.card-link img {
   height: 40px;
   width: auto;
   display: inline-block;
@@ -924,7 +924,7 @@ a.chosen-child-link::after {
 }
 @media (max-width:480px) {
 
-  .card {
+  .card-link {
     width: 340px;
     height: 180px;
     border-radius: 12px;
@@ -935,7 +935,7 @@ a.chosen-child-link::after {
 
 @media (max-width:420px) {
 
-  .card {
+  .card-link {
     width: 300px;
     height: 160px;
     border-radius: 12px;

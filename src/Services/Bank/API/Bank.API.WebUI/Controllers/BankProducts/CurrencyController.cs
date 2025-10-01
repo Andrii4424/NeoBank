@@ -25,5 +25,7 @@ namespace Bank.API.WebUI.Controllers.BankProducts
             return Ok(await _currencyService.GetCurrencyData());
         }
 
+
+
     }
 }

@@ -28,6 +28,7 @@ export class UserCardInfo {
   userCard$: Observable<IUserCards> = this.userCardsService.getCardInfo(this.cardId);
   openAddFoundsWindow = signal<boolean>(false);
   openAddChangePinWindow = signal<boolean>(false);
+  openChangeCreditLimit = signal<boolean>(false);
   openErrorMessage = signal<boolean>(false);
   openSuccessMessage = signal<boolean>(false);
   errorMessage: string = "";

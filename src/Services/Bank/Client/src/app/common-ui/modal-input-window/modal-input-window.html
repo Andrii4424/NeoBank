@@ -14,5 +14,9 @@
       <input [(ngModel)]="pin" class="modal__input" type="text" maxlength="4" (keyup.enter)="onPinSubmit()"  (change)="onPinInput($event)"/>
       <button class="modal__button" (click)="onPinSubmit()">Confirm</button>
     }
+    <!--@if(isChangePin){
+      <input [(ngModel)]="pin" class="modal__input" type="text" maxlength="4" (keyup.enter)="onPinSubmit()"  (change)="onPinInput($event)"/>
+      <button class="modal__button" (click)="onPinSubmit()">Confirm</button>
+    }-->
   </div>
 </div>

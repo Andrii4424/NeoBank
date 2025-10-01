@@ -1,6 +1,8 @@
 ﻿using Bank.API.Application.DTOs.BankProducts;
+using Bank.API.Application.DTOs.Users.CardOperations;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.BankProducts;
 using Bank.API.Domain.Entities;
+using Bank.API.Domain.Enums.CardEnums;
 using Bank.API.Domain.RepositoryContracts;
 using Microsoft.Extensions.Caching.Memory;
 using System;
@@ -59,5 +61,27 @@ namespace Bank.API.Application.Services.BankServices.BankProducts
                 return allRates;
             }
         }
+
+
+        /*public async Task<decimal> ExchangeCurrency(ExchangeCurrencyDto exchangeParams)
+        {
+            List<CurrencyDto> rates = await GetCurrencyData();
+            double fromRate;
+            switch (exchangeParams.From)
+            {
+                case Currency.USD
+                {
+                    fromRate = rates.FirstOrDefault(c => c.cc == "USD").NeoBankSellCource.Value;
+                    break;
+                }
+            }
+            double usdRate = rates.FirstOrDefault(c => c.cc == "USD").NeoBankSellCource.Value;
+            double eurRate = rates.FirstOrDefault(c => c.cc == "EUR").NeoBankSellCource.Value;
+            double uahRate = 1;
+
+
+
+
+        }*/
     }
 }

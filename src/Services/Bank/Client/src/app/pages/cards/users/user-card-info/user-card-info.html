@@ -103,7 +103,7 @@
             <button class="green-btn" (click)="openAddFoundsWindow.set(true)">💳 Add Funds</button>
             <button class="blue-btn" (click)="openAddChangePinWindow.set(true)">🔑 Change PIN</button>
             @if(card.cardTariffs.type === CardType.Credit){
-                <button class="blue-btn">📈 Change Credit Limit</button>
+                <button class="blue-btn" (click)="openChangeCreditLimit.set(true)">📈 Change Credit Limit</button>
             }
             <button class="blue-btn">🔄 Card Reissue</button>
             @if(card.status===CardStatus.Active){
