@@ -1,4 +1,5 @@
 ﻿using Bank.API.Application.DTOs.BankProducts;
+using Bank.API.Application.DTOs.Users.CardOperations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,6 @@ namespace Bank.API.Application.ServiceContracts.BankServiceContracts.BankProduct
     public interface ICurrencyService
     {
         public Task<List<CurrencyDto>> GetCurrencyData();
-
+        public Task<decimal?> ExchangeCurrency(ExchangeCurrencyDto exchangeParams);
     }
 }

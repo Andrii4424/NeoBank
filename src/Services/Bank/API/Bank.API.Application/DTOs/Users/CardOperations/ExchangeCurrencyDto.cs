@@ -11,6 +11,6 @@ namespace Bank.API.Application.DTOs.Users.CardOperations
     {
         public Currency From;
         public Currency To;
-        public decimal Amount;
+        public double Amount;
     }
 }

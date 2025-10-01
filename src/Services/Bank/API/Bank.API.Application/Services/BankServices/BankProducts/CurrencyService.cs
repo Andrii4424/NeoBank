@@ -63,25 +63,28 @@ namespace Bank.API.Application.Services.BankServices.BankProducts
         }
 
 
-        /*public async Task<decimal> ExchangeCurrency(ExchangeCurrencyDto exchangeParams)
+        public async Task<decimal?> ExchangeCurrency(ExchangeCurrencyDto exchangeParams)
         {
             List<CurrencyDto> rates = await GetCurrencyData();
-            double fromRate;
-            switch (exchangeParams.From)
+            Dictionary<Currency, double?> sellRates = new Dictionary<Currency, double?> {
+                {Currency.UAH, 1 },
+                {Currency.USD, rates.FirstOrDefault(c=>c.cc=="USD").NeoBankSellCource.Value},
+                {Currency.EUR, rates.FirstOrDefault(c=>c.cc=="EUR").NeoBankSellCource.Value}
+            };
+            Dictionary<Currency, double?> buyRates = new Dictionary<Currency, double?> {
+                {Currency.UAH, 1 },
+                {Currency.USD, rates.FirstOrDefault(c=>c.cc=="USD").NeoBankBuyCource.Value},
+                {Currency.EUR, rates.FirstOrDefault(c=>c.cc=="EUR").NeoBankBuyCource.Value}
+            };
+            double? fromCource = buyRates[exchangeParams.From]; 
+            double? toCource = sellRates[exchangeParams.To];
+
+            if(fromCource==null || toCource == null)
             {
-                case Currency.USD
-                {
-                    fromRate = rates.FirstOrDefault(c => c.cc == "USD").NeoBankSellCource.Value;
-                    break;
-                }
+                return null;
             }
-            double usdRate = rates.FirstOrDefault(c => c.cc == "USD").NeoBankSellCource.Value;
-            double eurRate = rates.FirstOrDefault(c => c.cc == "EUR").NeoBankSellCource.Value;
-            double uahRate = 1;
 
-
-
-
-        }*/
+            return Math.Round((decimal)(fromCource / toCource) * (decimal)exchangeParams.Amount, 2);
+        }
     }
 }
