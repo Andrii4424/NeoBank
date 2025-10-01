@@ -72,7 +72,22 @@
             </tr>
             <tr>
                 <td>Balance</td>
-                <td>{{card.balance}}</td>
+                <td>
+                    <span>{{card.balance}}</span>
+                    @switch (card.chosenCurrency) {
+                        @case (Currency.UAH) {
+                            <span>₴</span>
+                        }
+                        @case (Currency.USD) {
+                            <span>$</span>
+                        }
+                        @case (Currency.EUR) {
+                            <span>€</span>
+                        
+                        }
+                        @default {}
+                    }
+                </td>
             </tr>
             <tr class="colored">
                 <td>Credit Limit</td>
@@ -112,3 +127,9 @@
     </app-modal-input-window>
 }
 
+@if(successAddingFunds()){
+    <app-success-message
+    message="Success!"
+    secondMessage="Successful card replenishment!">
+    </app-success-message>
+}

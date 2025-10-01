@@ -1,5 +1,6 @@
 ﻿using Bank.API.Application.DTOs.BankProducts;
 using Bank.API.Application.DTOs.Users;
+using Bank.API.Application.DTOs.Users.CardOperations;
 using Bank.API.Application.Helpers.HelperClasses;
 using Bank.API.Application.Helpers.HelperClasses.Filters.User;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.Users;
@@ -73,6 +74,16 @@ namespace Bank.API.WebUI.Controllers.BankProducts
             var result = await _userCardService.CreateCardAsync(cardParams);
             if (!result.Success)
             {
+                return BadRequest(result.ErrorMessage);
+            }
+            return Ok();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddFunds([FromBody] AddFundsDto operationParams)
+        {
+            OperationResult result= await _userCardService.UpdateCardBalanceAsync(operationParams.cardId, operationParams.amount);
+            if (!result.Success) {
                 return BadRequest(result.ErrorMessage);
             }
             return Ok();

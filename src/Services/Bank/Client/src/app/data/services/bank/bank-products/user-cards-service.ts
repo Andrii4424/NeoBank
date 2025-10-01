@@ -4,6 +4,7 @@ import { inject, Injectable } from '@angular/core';
 import { IUserCards } from '../../../interfaces/bank/bank-products/cards/user-cards-interface';
 import { IPageResult } from '../../../interfaces/page-inteface';
 import { Params } from '@angular/router';
+import { IAddFunds } from '../../../interfaces/bank/bank-products/cards/add-funds-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,9 @@ export class UserCardsService {
 
   getCardInfo(cardId: string){
     return this.http.get<IUserCards>(`${this.baseUrl}GetUsersCardInfo/${cardId}`)
+  }
+
+  addFunds(addFundsParams: IAddFunds){
+    return this.http.post(`${this.baseUrl}AddFunds`, addFundsParams);
   }
 }
