@@ -19,4 +19,8 @@ export class UserCardsService {
   createCard(cardDto: ICreateCard){
     return this.http.post(`${this.baseUrl}CreateCard`,cardDto);
   }
+
+  getCardInfo(cardId: string){
+    return this.http.get<IUserCards>(`${this.baseUrl}GetUsersCardInfo/${cardId}`)
+  }
 }

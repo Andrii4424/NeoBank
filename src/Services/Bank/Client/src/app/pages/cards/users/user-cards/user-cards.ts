@@ -91,7 +91,10 @@ export class UserCards {
     });
   }
 
-  copyCardNumber(cardNumber : string){
+  copyCardNumber(cardNumber : string, event: Event){
+    event.stopPropagation();   // остановили всплытие
+    event.preventDefault();    // отключили переход по ссылке
+
     this.copied.set(false);
     this.sharedService.copyText(cardNumber);
     this.copied.set(true);

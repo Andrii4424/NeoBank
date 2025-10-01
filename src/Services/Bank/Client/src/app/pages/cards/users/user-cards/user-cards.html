@@ -17,7 +17,7 @@
 }
 <div class="cards-info" [class.with-last-child]="userCards !==null && userCards!.items.length%2 !==0 && userCards!.items.length>0">
     @for (card of userCards?.items; track $index) {
-        <a #card class="card" [style.background-color]="card.cardTariffs.cardColor">
+        <a [routerLink]="['/cards/my-card', card.id]" #card class="card" [style.background-color]="card.cardTariffs.cardColor">
             <div class="card-info-divider">
                 <div class="card-name">
                     <img class="card-bank-logo" src="assets/images/bank-logo.png" alt="">
@@ -46,7 +46,7 @@
 
             <div class="card-number">
                 {{ card.cardNumber | cardFormat}} 
-                <img (click)="copyCardNumber(card.cardNumber)" src="assets/images/copy.svg" alt="Copy">
+                <img (click)="copyCardNumber(card.cardNumber, $event)" src="assets/images/copy.svg" alt="Copy">
             </div>
 
             <div class="balance">

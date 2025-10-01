@@ -1,0 +1,103 @@
+<section class="object-info-card">
+    @if(userCard$ | async; as card){
+        <table class="info-table">
+            <tr class="colored">
+                <td>Field</td>
+                <td>Value</td>
+            </tr>
+            <tr>
+                <td>Card tariffs</td>
+                <td><a [routerLink]="['/cards/info/', card.cardTariffId]">{{card.cardTariffs.cardName}}</a></td>
+            </tr>
+            <tr class="colored">
+                <td>Card Number</td>
+                <td>{{card.cardNumber}}</td>
+            </tr>
+            <tr>
+                <td>Expiry Date</td>
+                <td>{{card.expiryDate}}</td>
+            </tr>
+            <tr class="colored">
+                <td>Payment System</td>
+                <td>
+                    @if (card.chosedPaymentSystem === PaymentSystem.Mastercard) {
+                        <span>Mastercard</span>
+                    }
+                    @else if (card.chosedPaymentSystem === PaymentSystem.Visa) {
+                        <span>Visa</span>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>Currency</td>
+                <td>
+                    @switch (card.chosenCurrency) {
+                        @case(Currency.UAH){
+                            <span>UAH</span>
+                        }
+                        @case(Currency.EUR){
+                            <span>EUR</span>
+                        }
+                        @case(Currency.USD){
+                            <span>USD</span>
+                        }
+                        @default {}
+                    }
+                </td>
+            </tr>
+            <tr class="colored">
+                <td>Pin</td>
+                <td>{{card.pin}}</td>
+            </tr>
+            <tr>
+                <td>Card Status</td>
+                <td>
+                    @switch (card.status) {
+                        @case(CardStatus.Active){
+                            <span>Active</span>
+                        }
+                        @case(CardStatus.Expired){
+                            <span>Expired</span>
+                        }
+                        @case(CardStatus.Blocked){
+                            <span>Blocked</span>
+                        }
+                        @default {}
+                    }
+                </td>
+            </tr>
+            <tr class="colored">
+                <td>CVV</td>
+                <td>{{card.cvv}}</td>
+            </tr>
+            <tr>
+                <td>Balance</td>
+                <td>{{card.balance}}</td>
+            </tr>
+            <tr class="colored">
+                <td>Credit Limit</td>
+                <td>{{card.CreditLimit}}
+                    @if(card.CreditLimit ===null){
+                        <span>0</span>
+                    }
+                </td>
+            </tr>
+        </table>
+
+        <div class="card-action-buttons">
+            <button class="green-btn">💳 Add Funds</button>
+            <button class="blue-btn">🔑 Change PIN</button>
+            @if(card.cardTariffs.type === CardType.Credit){
+                <button class="blue-btn">📈 Change Credit Limit</button>
+            }
+            <button class="blue-btn">🔄 Card Reissue</button>
+            @if(card.status===CardStatus.Active){
+                <button class="red-btn">🔒 Block</button>
+            }
+            @else if(card.status===CardStatus.Blocked){
+                <button class="red-btn">🔓 Unblock</button>
+            }
+        </div>
+    }
+</section>
+

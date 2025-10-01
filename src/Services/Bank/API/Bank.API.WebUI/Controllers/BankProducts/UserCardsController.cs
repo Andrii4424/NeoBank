@@ -41,7 +41,7 @@ namespace Bank.API.WebUI.Controllers.BankProducts
         }
 
         [HttpGet("{cardId}")]
-        public async Task<IActionResult> GetMyCard(Guid cardId)
+        public async Task<IActionResult> GetUsersCardInfo(Guid cardId)
         {
             UserCardsDto? card = await _userCardService.GetCardByIdAsync(cardId);
             if(card == null)
