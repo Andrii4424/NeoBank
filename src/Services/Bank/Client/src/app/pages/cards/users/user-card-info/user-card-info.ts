@@ -4,14 +4,15 @@ import { CardStatus } from './../../../../data/enums/card-status';
 import { PaymentSystem } from './../../../../data/enums/payment-system';
 import { Observable } from 'rxjs';
 import { UserCardsService } from './../../../../data/services/bank/bank-products/user-cards-service';
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { IUserCards } from '../../../../data/interfaces/bank/bank-products/cards/user-cards-interface';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
+import { ModalInputWindow } from "../../../../common-ui/modal-input-window/modal-input-window";
 
 @Component({
   selector: 'app-user-card-info',
-  imports: [AsyncPipe, RouterLink],
+  imports: [AsyncPipe, RouterLink, ModalInputWindow],
   templateUrl: './user-card-info.html',
   styleUrl: './user-card-info.scss'
 })
@@ -19,6 +20,7 @@ export class UserCardInfo {
   userCardsService = inject(UserCardsService);
   route = inject(ActivatedRoute);
   userCard$: Observable<IUserCards> = this.userCardsService.getCardInfo(this.route.snapshot.paramMap.get("id")!);
+  openAddFoundsWindow = signal<boolean>(false);
   
   //Enums
   PaymentSystem = PaymentSystem;
@@ -26,5 +28,11 @@ export class UserCardInfo {
   Currency = Currency;
   CardType = CardType;
 
+  closeModalWindow(){
+    this.openAddFoundsWindow.set(false);
+  }
 
+  addFunds(fundsCount: number){
+    console.log(fundsCount);
+  }
 }

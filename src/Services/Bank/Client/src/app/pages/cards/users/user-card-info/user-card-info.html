@@ -85,7 +85,7 @@
         </table>
 
         <div class="card-action-buttons">
-            <button class="green-btn">💳 Add Funds</button>
+            <button class="green-btn" (click)="openAddFoundsWindow.set(true)">💳 Add Funds</button>
             <button class="blue-btn">🔑 Change PIN</button>
             @if(card.cardTariffs.type === CardType.Credit){
                 <button class="blue-btn">📈 Change Credit Limit</button>
@@ -100,4 +100,15 @@
         </div>
     }
 </section>
+
+@if(openAddFoundsWindow()){
+    <app-modal-input-window
+    headerMessage="Add Funds"
+    subTittleMessage="To proceed, enter a value from 0 to 200 000 000 and press the Confirm button."
+    (closeWindow)="closeModalWindow()"
+    (submitValue)="addFunds($event)"
+    >
+
+    </app-modal-input-window>
+}
 
