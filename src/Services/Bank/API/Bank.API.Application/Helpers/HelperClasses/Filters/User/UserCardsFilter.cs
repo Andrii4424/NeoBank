@@ -47,7 +47,7 @@ namespace Bank.API.Application.Helpers.HelperClasses.Filters.User
                     sortExpression = c => c.ExpiryDate;
                     break;
                 default:
-                    ascending = true;
+                    ascending = false;
                     sortExpression = c => c.Balance;
                     break;
             }

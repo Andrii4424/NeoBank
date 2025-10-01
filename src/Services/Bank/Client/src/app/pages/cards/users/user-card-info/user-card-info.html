@@ -133,3 +133,11 @@
     secondMessage="Successful card replenishment!">
     </app-success-message>
 }
+
+@if(openErrorMessage()){
+    <app-error-message
+    message="Error"
+    [secondMessage]="errorMessage">
+
+    </app-error-message>
+}

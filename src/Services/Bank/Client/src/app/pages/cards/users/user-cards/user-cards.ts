@@ -45,9 +45,9 @@ export class UserCards {
   constructor(private cdr: ChangeDetectorRef){}
 
     //Filters values
-      sortValues: ISort[]=[
-      {name: "balance-ascending", description: "By Balance ▲"},
+    sortValues: ISort[]=[
       {name: "balance-descending", description: "By Balance ▼"},
+      {name: "balance-ascending", description: "By Balance ▲"},
       {name: "validity-period", description: "By Expiry Date"},
     ];
     
@@ -92,8 +92,8 @@ export class UserCards {
   }
 
   copyCardNumber(cardNumber : string, event: Event){
-    event.stopPropagation();   // остановили всплытие
-    event.preventDefault();    // отключили переход по ссылке
+    event.stopPropagation();
+    event.preventDefault();
 
     this.copied.set(false);
     this.sharedService.copyText(cardNumber);

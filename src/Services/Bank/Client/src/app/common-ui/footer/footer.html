@@ -1,37 +1,48 @@
-    <footer class="site-footer" role="contentinfo">
-        <div class="footer-container">
-            <section class="footer-col">
-                <h3>About Us</h3>
+<footer class="site-footer" role="contentinfo">
+    <div class="footer-container">
+        <section class="footer-col">
+            <h3>About Us</h3>
 
-                <ul class="social">
-                    <li>
-                        <a href="https://github.com/Andrii4424" target="_blank" class="icn" aria-label="GitHub">
-                            <img src="assets/images/social-media-icons/github-logo.svg" alt="GitHub" class="icn-img">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://t.me/Pipsqueak3" target="_blank" class="icn" aria-label="Telegram">
-                            <img src="assets/images/social-media-icons/telegram-logo.svg" alt="Telegram" class="icn-img">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="viber://chat?number=%2B380639615125" target="_blank" class="icn" aria-label="Viber">
-                            <img src="assets/images/social-media-icons/viber-logo.svg" alt="Viber" class="icn-img" >
-                        </a>
-                    </li>
-                </ul>
-            </section>
+            <ul class="social">
+                <li>
+                    <a href="https://github.com/Andrii4424" target="_blank" class="icn" aria-label="GitHub">
+                        <img src="assets/images/social-media-icons/github-logo.svg" alt="GitHub" class="icn-img">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://t.me/Pipsqueak3" target="_blank" class="icn" aria-label="Telegram">
+                        <img src="assets/images/social-media-icons/telegram-logo.svg" alt="Telegram" class="icn-img">
+                    </a>
+                </li>
+                <li>
+                    <a href="viber://chat?number=%2B380639615125" target="_blank" class="icn" aria-label="Viber">
+                        <img src="assets/images/social-media-icons/viber-logo.svg" alt="Viber" class="icn-img" >
+                    </a>
+                </li>
+            </ul>
+        </section>
 
-            <section class="footer-col">
-                <h3>Contact Us</h3>
-                <ul class="contact">
-                    <li>Telegram: <span (click)="copyToClipboard('@Pipsqueak3')">Pipsqueak3</span></li>
-                    <li><span (click)="copyToClipboard('andreyfalchevskiy@gmail.com')">andreyfalchevskiy@gmail.com</span></li>
-                </ul>
-            </section>
-        </div>
+        <section class="footer-col">
+            <h3>Contact Us</h3>
+            <ul class="contact">
+                <li>Telegram: <span (click)="copyToClipboard('@Pipsqueak3')">Pipsqueak3</span></li>
+                <li><span (click)="copyToClipboard('andreyfalchevskiy@gmail.com')">andreyfalchevskiy@gmail.com</span></li>
+            </ul>
+        </section>
+    </div>
 
-        <div class="footer-bottom">
-            <small>© 2025 NeoBank</small>
-        </div>
-    </footer>
+    <div class="footer-bottom">
+        <small>© 2025 NeoBank</small>
+    </div>
+</footer>
+
+@if(showErrorMessage()){
+    <app-error-message
+    message="Error!"
+    secondMessage="Copying failed, please try again."></app-error-message>
+}
+@if(showSuccessMessage()){
+    <app-success-message
+    message="Success!"
+    secondMessage="Text successfully copied!"></app-success-message>
+}

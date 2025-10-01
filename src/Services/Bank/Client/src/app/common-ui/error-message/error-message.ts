@@ -1,12 +1,12 @@
 import { Component, Input, signal } from '@angular/core';
 
 @Component({
-  selector: 'app-success-message',
+  selector: 'app-error-message',
   imports: [],
-  templateUrl: './success-message.html',
-  styleUrl: './success-message.scss'
+  templateUrl: './error-message.html',
+  styleUrl: './error-message.scss'
 })
-export class SuccessMessage {
+export class ErrorMessage {
   @Input() message: string = '';
   @Input() secondMessage: string = '';
   
@@ -15,6 +15,7 @@ export class SuccessMessage {
   ngOnInit() {
     setTimeout(() => this.visible.set(false), 3000);
   }
+
   close(){
     this.visible.set(false);
   }

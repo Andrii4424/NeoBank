@@ -6,11 +6,10 @@
   padding: 10px 15px;
   background-color: #ffffff;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-
   position: fixed;       
   bottom: 68px;         
-  right: 34px;           
-  
+  right: 34px;         
+
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -23,7 +22,7 @@
   left: -31px;
   top: 32px;
   width: 80px;
-  fill: #04e4003a;
+  fill: #fc0c0c3a;
 }
 .icon-container {
   width: 35px;
@@ -31,14 +30,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #04e40048;
+  background-color: #fc0c0c48;
   border-radius: 50%;
   margin-left: 8px;
 }
 .icon {
   width: 17px;
   height: 17px;
-  color: #269b24;
+  color: #d10d0d;
 }
 .message-text-container {
   display: flex;
@@ -53,7 +52,7 @@
   cursor: default;
 }
 .message-text {
-  color: #269b24;
+  color: #d10d0d;
   font-size: 17px;
   font-weight: 700;
 }

@@ -1,3 +1,4 @@
+import { SharedService } from './../../../../data/services/shared-service';
 import { IAddFunds } from './../../../../data/interfaces/bank/bank-products/cards/add-funds-interface';
 import { CardType } from './../../../../data/enums/card-type';
 import { Currency } from './../../../../data/enums/currency';
@@ -11,19 +12,23 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 import { ModalInputWindow } from "../../../../common-ui/modal-input-window/modal-input-window";
 import { SuccessMessage } from "../../../../common-ui/success-message/success-message";
+import { ErrorMessage } from "../../../../common-ui/error-message/error-message";
 
 @Component({
   selector: 'app-user-card-info',
-  imports: [AsyncPipe, RouterLink, ModalInputWindow, SuccessMessage],
+  imports: [AsyncPipe, RouterLink, ModalInputWindow, SuccessMessage, ErrorMessage],
   templateUrl: './user-card-info.html',
   styleUrl: './user-card-info.scss'
 })
 export class UserCardInfo {
   userCardsService = inject(UserCardsService);
   route = inject(ActivatedRoute);
+  sharedService = inject(SharedService)
   cardId = this.route.snapshot.paramMap.get("id")!;
   userCard$: Observable<IUserCards> = this.userCardsService.getCardInfo(this.cardId);
   openAddFoundsWindow = signal<boolean>(false);
+  openErrorMessage = signal<boolean>(false);
+  errorMessage: string = "";
   successAddingFunds = signal<boolean>(false);
   
   //Enums
@@ -47,7 +52,10 @@ export class UserCardInfo {
           setTimeout(() => this.successAddingFunds.set(false), 3000); 
         },
         error:(err)=>{
-          console.log(err);
+          this.errorMessage=this.sharedService.serverResponseErrorToArray(err)[0];
+          this.openErrorMessage.set(true);
+
+          setTimeout(()=> this.openErrorMessage.set(false), 3000);
         }
       })
     }
