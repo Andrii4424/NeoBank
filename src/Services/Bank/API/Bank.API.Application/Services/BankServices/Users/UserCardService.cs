@@ -80,7 +80,7 @@ namespace Bank.API.Application.Services.BankServices.Users
             }
             if (!await _userCardsRepository.IsCardUnique(cardParams.UserId.Value, cardParams.CardTariffId, cardParams.ChosenCurrency))
             {
-                return OperationResult.Error("User already has this card in the chosen currency");
+                return OperationResult.Error("Youe already has this card in the chosen currency");
             }
 
             //Generate personal card information
@@ -91,7 +91,7 @@ namespace Bank.API.Application.Services.BankServices.Users
             }
 
             double validityPeriod = (await _cardTariffsRepository.GetValueByIdAsync(cardParams.CardTariffId))!.ValidityPeriod;
-            DateOnly expieryDate = DateOnly.FromDateTime(DateTime.Now.AddYears((int)validityPeriod%1));
+            DateOnly expieryDate = DateOnly.FromDateTime(DateTime.Now.AddYears((int)validityPeriod/1));
             if(validityPeriod%1 == 0.5)
             {
                 expieryDate = expieryDate.AddMonths(6);
