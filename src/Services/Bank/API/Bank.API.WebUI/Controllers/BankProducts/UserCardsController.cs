@@ -88,5 +88,16 @@ namespace Bank.API.WebUI.Controllers.BankProducts
             }
             return Ok();
         }
+
+        [HttpPut]
+        public async Task<IActionResult> ChangePin([FromBody] ChangePinDto pinParams)
+        {
+            OperationResult result = await _userCardService.UpdateCardPinAsync(pinParams.cardId, pinParams.newPin);
+            if (!result.Success)
+            {
+                return BadRequest(result.ErrorMessage);
+            }
+            return Ok();
+        }
     }
 }

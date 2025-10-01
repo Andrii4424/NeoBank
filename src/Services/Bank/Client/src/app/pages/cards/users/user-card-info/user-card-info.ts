@@ -27,8 +27,11 @@ export class UserCardInfo {
   cardId = this.route.snapshot.paramMap.get("id")!;
   userCard$: Observable<IUserCards> = this.userCardsService.getCardInfo(this.cardId);
   openAddFoundsWindow = signal<boolean>(false);
+  openAddChangePinWindow = signal<boolean>(false);
   openErrorMessage = signal<boolean>(false);
+  openSuccessMessage = signal<boolean>(false);
   errorMessage: string = "";
+  successMessage: string = ""
   successAddingFunds = signal<boolean>(false);
   
   //Enums
@@ -40,6 +43,7 @@ export class UserCardInfo {
   constructor(private cdr: ChangeDetectorRef){}
   closeModalWindow(){
     this.openAddFoundsWindow.set(false);
+    this.openAddChangePinWindow.set(false);
   }
 
   addFunds(fundsCount: number){
@@ -52,13 +56,42 @@ export class UserCardInfo {
           setTimeout(() => this.successAddingFunds.set(false), 3000); 
         },
         error:(err)=>{
-          this.errorMessage=this.sharedService.serverResponseErrorToArray(err)[0];
-          this.openErrorMessage.set(true);
-
-          setTimeout(()=> this.openErrorMessage.set(false), 3000);
+          this.showErrorMessage(this.sharedService.serverResponseErrorToArray(err)[0]);
         }
       })
     }
-    this.openAddFoundsWindow.set(false);
+    this.closeModalWindow();
+  }
+
+  changePin(newPin: string){
+    if(newPin.length !==4){
+      this.showErrorMessage("PIN must be 4 digits. Please try again.");
+    }
+    else{
+      this.userCardsService.changePin({cardId: this.cardId, newPin: newPin}).subscribe({
+        next:()=>{
+          this.userCard$ = this.userCardsService.getCardInfo(this.cardId);
+          this.showSuccessMessage("PIN has been changed!");
+        },
+        error:(err)=>{
+          this.showErrorMessage(this.sharedService.serverResponseErrorToArray(err)[0]);
+        }
+      });
+    }
+    this.closeModalWindow();
+  }
+
+  private showErrorMessage(message: string){
+    this.openSuccessMessage.set(false)
+    this.errorMessage=message;
+    this.openErrorMessage.set(true);
+    setTimeout(()=> this.openErrorMessage.set(false), 3000);
+  }
+
+  private showSuccessMessage(message: string){
+    this.openErrorMessage.set(false)
+    this.successMessage=message;
+    this.openSuccessMessage.set(true);
+    setTimeout(()=> this.openSuccessMessage.set(false), 3000);
   }
 }

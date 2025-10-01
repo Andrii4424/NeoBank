@@ -10,9 +10,13 @@ import { FormsModule } from '@angular/forms';
 export class ModalInputWindow {
   @Input() headerMessage: string ="";
   @Input() subTittleMessage: string ="";
+  @Input() isAddFunds: boolean = false;
+  @Input() isChangePin: boolean = false;
   @Output() submitValue = new EventEmitter<number>();
+  @Output() submitPin = new EventEmitter<string>();
   @Output() closeWindow = new EventEmitter<void>();
   amount : number = 0;
+  pin: string ="";
 
   onModalInputChange(value: number){
     if (value < 0) {
@@ -32,5 +36,16 @@ export class ModalInputWindow {
 
   onSubmit(){
     this.submitValue.emit(this.amount);
+  }
+
+  onPinSubmit(){
+    this.submitPin.emit(this.pin);
+  }
+
+  onPinInput(event: Event) {
+    const input = (event.target as HTMLInputElement).value;
+    let pinInput ='';
+    pinInput = input.replace(/\D/g, '').slice(0, 4);
+    this.pin= pinInput;
   }
 }

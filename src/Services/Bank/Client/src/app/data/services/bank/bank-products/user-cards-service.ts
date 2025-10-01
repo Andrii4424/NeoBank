@@ -28,4 +28,8 @@ export class UserCardsService {
   addFunds(addFundsParams: IAddFunds){
     return this.http.post(`${this.baseUrl}AddFunds`, addFundsParams);
   }
+
+  changePin(payload:{cardId: string, newPin: string}){
+    return this.http.put(`${this.baseUrl}ChangePin`, payload);
+  }
 }

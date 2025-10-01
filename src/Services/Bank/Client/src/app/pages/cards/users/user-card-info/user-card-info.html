@@ -101,7 +101,7 @@
 
         <div class="card-action-buttons">
             <button class="green-btn" (click)="openAddFoundsWindow.set(true)">💳 Add Funds</button>
-            <button class="blue-btn">🔑 Change PIN</button>
+            <button class="blue-btn" (click)="openAddChangePinWindow.set(true)">🔑 Change PIN</button>
             @if(card.cardTariffs.type === CardType.Credit){
                 <button class="blue-btn">📈 Change Credit Limit</button>
             }
@@ -122,15 +122,32 @@
     subTittleMessage="To proceed, enter a value from 0 to 200 000 000 and press the Confirm button."
     (closeWindow)="closeModalWindow()"
     (submitValue)="addFunds($event)"
+    [isAddFunds]="true"
     >
-
+    </app-modal-input-window>
+}
+@if(openAddChangePinWindow()){
+    <app-modal-input-window
+    headerMessage="Change PIN"
+    subTittleMessage="Please enter a new PIN-code."
+    (closeWindow)="closeModalWindow()"
+    (submitPin)="changePin($event)"
+    [isChangePin]="true"
+    >
     </app-modal-input-window>
 }
 
+<!--Status messages-->
 @if(successAddingFunds()){
     <app-success-message
     message="Success!"
     secondMessage="Successful card replenishment!">
+    </app-success-message>
+}
+@if(openSuccessMessage()){
+    <app-success-message
+    message="Success!"
+    [secondMessage]="successMessage">
     </app-success-message>
 }
 
@@ -138,6 +155,6 @@
     <app-error-message
     message="Error"
     [secondMessage]="errorMessage">
-
     </app-error-message>
 }
+
