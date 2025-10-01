@@ -2,6 +2,8 @@
 using Bank.API.Application.DTOs.BankProducts;
 using Bank.API.Application.DTOs.Users;
 using Bank.API.Application.Helpers.HelperClasses;
+using Bank.API.Application.Helpers.HelperClasses.Filters;
+using Bank.API.Application.Helpers.HelperClasses.Filters.User;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.Users;
 using Bank.API.Domain.Entities.Cards;
 using Bank.API.Domain.Entities.Identity;
@@ -23,6 +25,7 @@ namespace Bank.API.Application.Services.BankServices.Users
         private readonly IUserCardsRepository _userCardsRepository;
         private readonly ICardTariffsRepository _cardTariffsRepository;
         private readonly IMapper _mapper;
+        private readonly int _pageSize = SharedMethods.GetDefaultPageSize(); 
 
         public UserCardService(IUserCardsRepository userCardsRepository, IMapper mapper, ICardTariffsRepository cardTariffsRepository)
         {
@@ -32,16 +35,24 @@ namespace Bank.API.Application.Services.BankServices.Users
         }
 
         //Read
-        public async Task<List<UserCardsDto>?> GetUserCardsAsync(Guid userId)
+        public async Task<PageResult<UserCardsDto>?> GetUserCardsAsync(Guid userId, UserCardsFilter? filters)
         {
-            List<UserCardsDto>? userCards = _mapper.Map<List<UserCardsDto>>(await _userCardsRepository.GetUserCardsAsync(userId));
+            filters.PageNumber = filters.PageNumber ?? 1;
+            FiltersDto<UserCardsEntity> filtersDto = filters.ToGeneralFilters();
+            List<UserCardsDto>? userCards = _mapper.Map<List<UserCardsDto>>(await 
+                _userCardsRepository.GetUserCardsAsync(userId, filtersDto.PageNumber.Value, _pageSize, filtersDto.SearchFilter,
+                filtersDto.Ascending, filtersDto.SortValue, filtersDto.Filters));
 
             List<CardTariffsDto> cardTariffs = _mapper.Map<List<CardTariffsDto>>(await _cardTariffsRepository.GetAllValuesAsync());
             foreach (UserCardsDto card in userCards)
             {
                 card.CardTariffs = cardTariffs.FirstOrDefault(ct => ct.Id == card.CardTariffId);
             }
-            return userCards;
+
+            PageResult<UserCardsDto> pageResult = new PageResult<UserCardsDto>(userCards,
+                await _userCardsRepository.GetUserCardsCountAsync(userId, filtersDto.SearchFilter, filtersDto.Filters), filters.PageNumber.Value, _pageSize);
+
+            return pageResult;
         }
 
         public async Task<UserCardsDto?> GetCardByIdAsync(Guid cardId)

@@ -15,18 +15,22 @@ import { UserCardsService } from '../../../../data/services/bank/bank-products/u
 import { IUserCards } from '../../../../data/interfaces/bank/bank-products/cards/user-cards-interface';
 import { SuccessMessage } from "../../../../common-ui/success-message/success-message";
 import { CardFormatPipe } from '../../../../data/pipes/card-format.pipe';
+import { ISort } from '../../../../data/interfaces/filters/sort-interface';
+import { IFilter } from '../../../../data/interfaces/filters/filter-interface';
+import { IPageResult } from '../../../../data/interfaces/page-inteface';
+import { PageSwitcher } from "../../../../common-ui/page-switcher/page-switcher";
 
 
 @Component({
   selector: 'app-user-cards',
-  imports: [CardsLayout, Search, RouterLink, SuccessMessage, CardFormatPipe],
+  imports: [CardsLayout, Search, RouterLink, SuccessMessage, CardFormatPipe, PageSwitcher],
   templateUrl: './user-cards.html',
   styleUrl: './user-cards.scss'
 })
 export class UserCards {
   userCardsService = inject(UserCardsService);
   sharedService = inject(SharedService);
-  userCards: IUserCards[] | null= null;
+  userCards: IPageResult<IUserCards> | null= null;
   copied = signal<boolean>(false);
   route = inject(ActivatedRoute);
   router = inject(Router);
@@ -38,8 +42,29 @@ export class UserCards {
   CardLevel = CardLevel;
   @ViewChildren('card') cardElements? : QueryList<ElementRef<HTMLDivElement>>
 
-
   constructor(private cdr: ChangeDetectorRef){}
+
+    //Filters values
+      sortValues: ISort[]=[
+      {name: "balance-ascending", description: "By Balance ▲"},
+      {name: "balance-descending", description: "By Balance ▼"},
+      {name: "validity-period", description: "By Expiry Date"},
+    ];
+    
+    searchPlaceholder: string ="Enter the card name";
+    
+    filterValues: IFilter[]=[
+      {filterName:"ChosenLevels", id: "premium", description: "Premium", value: CardLevel.Premium, chosen: false },
+      {filterName:"ChosenLevels", id: "usual", description: "Usual", value: CardLevel.Normal, chosen: false },
+      {filterName:"ChosenPaymentSystems", id: "mastercard", description: "Mastercard", value: PaymentSystem.Mastercard, chosen: false },
+      {filterName:"ChosenPaymentSystems", id: "visa", description: "Visa",value: PaymentSystem.Visa, chosen: false},
+      {filterName:"ChosenTypes", id: "credit", description: "Credit", value: CardType.Credit, chosen: false },
+      {filterName:"ChosenTypes", id: "debit", description: "Debit", value: CardType.Debit, chosen: false },
+      {filterName:"ChosenCurrency", id: "uah", description: "UAH", value: Currency.UAH, chosen: false },
+      {filterName:"ChosenCurrency", id: "usd", description: "USD", value: Currency.USD, chosen: false },
+      {filterName:"ChosenCurrency", id: "eur", description: "EUR", value: Currency.EUR, chosen: false },
+    ]
+  
 
   ngOnInit(){
     this.route.queryParams.subscribe((params: Params) => {
@@ -53,7 +78,7 @@ export class UserCards {
         });
       }
 
-      this.userCardsService.getMyCards().subscribe({
+      this.userCardsService.getMyCards(params).subscribe({
         next:(val)=>{
 
           this.userCards = val;
@@ -74,7 +99,59 @@ export class UserCards {
   }
 
 
-    //Color methods
+
+  //Filters and pagination handlers
+  onSortChange(sortMethod: string){
+    this.router.navigate([],{
+      relativeTo: this.route,
+      queryParams: {SortValue : sortMethod, PageNumber: 1},
+      queryParamsHandling: 'merge'
+    });
+  }
+
+  onSearchChange(searchValue: string){
+    this.router.navigate([],{
+      relativeTo: this.route,
+      queryParams: {SearchValue : searchValue, PageNumber: 1},
+      queryParamsHandling: 'merge'
+    });
+  }
+
+  onPageChange(pageNumber: number){
+    this.router.navigate([],{
+      relativeTo: this.route,
+      queryParams: {PageNumber : pageNumber},
+      queryParamsHandling: 'merge'
+    });
+  }
+
+  onFiltersChange(filters: IFilter[] | null){
+    if(filters===null){
+      const savedParamsKeys =["PageNumber", "SearchValue", "SortValue"];
+      const params= this.route.snapshot.queryParams;
+      const newParams: any = { ...params, PageNumber: 1 };
+      Object.keys(params).forEach(key => {
+        if(!savedParamsKeys.includes(key)){
+          newParams[key] = null;
+        }
+      });
+
+      this.router.navigate([],{
+        relativeTo: this.route,
+        queryParams: newParams,
+        queryParamsHandling: 'merge'
+      });
+    }
+    else{
+      const params = this.sharedService.getQueryList(filters);
+      this.router.navigate([],{
+        relativeTo: this.route,
+        queryParams: params,
+      });
+    }
+  }
+
+  //Color methods
   private updateCardTextColors(): void {
     this.cardElements?.forEach(cardRef => {
       const el = cardRef.nativeElement;

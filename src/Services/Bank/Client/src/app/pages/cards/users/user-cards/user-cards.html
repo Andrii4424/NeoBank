@@ -1,13 +1,22 @@
-<app-search></app-search>
+<app-search 
+[searchPlaceholder]="searchPlaceholder"
+[sortValues]="sortValues"
+[filterValues]="filterValues"
+(sortChange)="onSortChange($event)"
+(searchChange)="onSearchChange($event)"
+(filterChange)="onFiltersChange($event)"
+(filterChange)="onFiltersChange($event)"
+>
+</app-search>
 
 <app-cards-layout></app-cards-layout>
 
 
-@if(userCards?.length===0){
+@if(userCards?.items?.length===0){
     <h1 class="subheading-without-lh zero-items mb-4">No cards available. Open first card by button below</h1>
 }
-<div class="cards-info" [class.with-last-child]="userCards !==null && userCards!.length%2 !==0 && userCards!.length>0">
-    @for (card of userCards; track $index) {
+<div class="cards-info" [class.with-last-child]="userCards !==null && userCards!.items.length%2 !==0 && userCards!.items.length>0">
+    @for (card of userCards?.items; track $index) {
         <a #card class="card" [style.background-color]="card.cardTariffs.cardColor">
             <div class="card-info-divider">
                 <div class="card-name">
@@ -78,3 +87,11 @@
     >
     </app-success-message>
 }
+
+<app-page-switcher 
+[currentPage]="userCards?.pageNumber"
+[hasNextPage]="userCards?.hasNextPage"
+[hasPreviousPage]="userCards?.hasPreviousPage"
+[pageCount]="userCards?.pageCount"
+(pageChange)="onPageChange($event)"
+> </app-page-switcher>

@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,9 +19,50 @@ namespace Bank.API.Infrastructure.Repository.Users
             _dbSet = context.Set<UserCardsEntity>();
         }
 
-        public async Task<List<UserCardsEntity>> GetUserCardsAsync(Guid userId)
+        public async Task<List<UserCardsEntity>> GetUserCardsAsync(Guid userId, int pageNumber, int pageSize, Expression<Func<UserCardsEntity, bool>>? searchFilter,
+            bool ascending, Expression<Func<UserCardsEntity, object>>? sortValue, List<Expression<Func<UserCardsEntity, bool>>>? filters)
         {
-            return await _dbSet.Where(uc => uc.UserId == userId).ToListAsync();
+            var query = _dbSet.AsQueryable();
+            if (searchFilter != null) query = query.Where(searchFilter);
+            if (filters != null)
+            {
+                filters = filters.Where(v => v != null).ToList();
+                foreach (var filter in filters)
+                {
+                    query = query.Where(filter);
+                }
+            }
+            query.Where(uc => uc.UserId == userId);
+            if (sortValue != null)
+            {
+                query = ascending ? query.OrderBy(sortValue).ThenBy(obj => obj.Id) : query.OrderByDescending(sortValue).ThenBy(obj => obj.Id);
+            }
+            else
+            {
+                query = query.OrderBy(obj => obj.Id);
+            }
+
+            return await query
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+        }
+
+        public async Task<int> GetUserCardsCountAsync(Guid userId, Expression<Func<UserCardsEntity, bool>>? searchFilter, 
+            List<Expression<Func<UserCardsEntity, bool>>>? filters)
+        {
+            var query = _dbSet.AsQueryable();
+            if (searchFilter != null) query = query.Where(searchFilter);
+            if (filters != null)
+            {
+                filters = filters.Where(v => v != null).ToList();
+                foreach (var filter in filters)
+                {
+                    query = query.Where(filter);
+                }
+            }
+            query = query.Where(uc=> uc.Id==userId);
+            return await query.CountAsync();
         }
 
         public async Task<bool> IsCardUnique(Guid userId, Guid cardId, Currency chosenCurrency)

@@ -1,5 +1,7 @@
 ﻿using Bank.API.Application.DTOs.BankProducts;
 using Bank.API.Application.DTOs.Users;
+using Bank.API.Application.Helpers.HelperClasses;
+using Bank.API.Application.Helpers.HelperClasses.Filters.User;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.Users;
 using Bank.API.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Authorization;
@@ -26,14 +28,14 @@ namespace Bank.API.WebUI.Controllers.BankProducts
 
 
         [HttpGet]
-        public async Task<IActionResult> GetMyCards()
+        public async Task<IActionResult> GetMyCards([FromQuery] UserCardsFilter? filters)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier) ?? User.FindFirstValue("sub");
             if (userId == null)
             {
                 return Unauthorized();
             }
-            List<UserCardsDto>? cards = await _userCardService.GetUserCardsAsync(Guid.Parse(userId));
+            PageResult<UserCardsDto>? cards = await _userCardService.GetUserCardsAsync(Guid.Parse(userId), filters);
 
             return Ok(cards);
         }

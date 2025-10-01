@@ -80,10 +80,10 @@ namespace Bank.API.Infrastructure.Repository
                 query = query.OrderBy(obj=> obj.Id);
             }
 
-            return query
+            return await query
                 .Skip((pageNumber-1) * pageSize)
                 .Take(pageSize)
-                .ToList();
+                .ToListAsync();
         }
 
         public async Task<int> GetCountAsync(Expression<Func<T, bool>>? searchFilter, List<Expression<Func<T, bool>>>? filters)

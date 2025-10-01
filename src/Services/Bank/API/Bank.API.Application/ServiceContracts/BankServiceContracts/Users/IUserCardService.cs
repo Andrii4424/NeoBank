@@ -1,6 +1,7 @@
 ﻿using Bank.API.Application.DTOs.BankProducts;
 using Bank.API.Application.DTOs.Users;
 using Bank.API.Application.Helpers.HelperClasses;
+using Bank.API.Application.Helpers.HelperClasses.Filters.User;
 using Bank.API.Domain.Entities.Cards;
 using Bank.API.Domain.Enums.CardEnums;
 using System;
@@ -13,7 +14,7 @@ namespace Bank.API.Application.ServiceContracts.BankServiceContracts.Users
 {
     public interface IUserCardService
     {
-        public Task<List<UserCardsDto>?> GetUserCardsAsync(Guid userId);
+        public Task<PageResult<UserCardsDto>?> GetUserCardsAsync(Guid userId, UserCardsFilter? filters);
         public Task<UserCardsDto?> GetCardByIdAsync(Guid cardId);
         public Task<OperationResult> CreateCardAsync(CreateUserCardDto cardParams);
         public Task<OperationResult> UpdateCardStatusAsync(Guid cardId, CardStatus status);
