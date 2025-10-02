@@ -33,7 +33,7 @@ export class UserCardInfo {
   userCard$: Observable<IUserCards> = this.userCardsService.getCardInfo(this.cardId).pipe(
     tap(card=>{
       this.cardCurrency= card.chosenCurrency;
-      this.startCreditLimitValue= card.CreditLimit;
+      this.startCreditLimitValue= card.creditLimit;
       if(card.cardTariffs.type===CardType.Credit){
         this.exchangeParams = {from: Currency.UAH , to: card.chosenCurrency, amount: card.cardTariffs.maxCreditLimit!}
       }
@@ -111,6 +111,38 @@ export class UserCardInfo {
   openCreditLimit(){
     this.openChangeCreditLimit.set(true);
     this.cdr.detectChanges();
+  }
+
+  changeCreditLimit(newCreditLimit: number){
+    if(newCreditLimit>=0){
+      this.userCardsService.changeCreditLimit({cardId: this.cardId, newCreditLimit: newCreditLimit}).subscribe({
+        next:()=>{
+          this.userCard$ = this.userCardsService.getCardInfo(this.cardId);
+          this.showSuccessMessage("Credit limit changed!");
+        },
+        error:(err)=>{
+          this.showErrorMessage(this.sharedService.serverResponseErrorToArray(err)[0]);
+        }
+      });
+    }
+    this.closeModalWindow();
+  }
+
+  getCurrencySymbol(){
+    switch (this.cardCurrency) {
+      case (Currency.UAH): {
+        return "₴";
+      }
+      case (Currency.USD): {
+        return "$";
+      }
+      case (Currency.EUR): {
+        return "€";
+      }
+      default: {
+        return "";
+      }
+    }
   }
 
   private showErrorMessage(message: string){

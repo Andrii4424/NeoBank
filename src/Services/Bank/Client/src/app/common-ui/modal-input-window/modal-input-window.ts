@@ -24,6 +24,7 @@ export class ModalInputWindow {
 
   @Output() submitValue = new EventEmitter<number>();
   @Output() submitPin = new EventEmitter<string>();
+  @Output() submitCreditLimit = new EventEmitter<number>();
   @Output() closeWindow = new EventEmitter<void>();
 
   currencyName?: string;
@@ -52,10 +53,10 @@ export class ModalInputWindow {
         break;
       }
     }
-
-    if(this.startCreditLimitValue) this.amount=this.startCreditLimitValue
+    
+    if(this.startCreditLimitValue) this.amount=this.startCreditLimitValue;
+    
     this.checkAndExchangeCreditLimitCurrency();
-
     this.cdr.detectChanges();
   }
 
@@ -100,7 +101,7 @@ export class ModalInputWindow {
   }
 
   onCreditLimitSubmit(){
-
+    this.submitCreditLimit.emit(this.amount);
   }
 
   onPinInput(event: Event) {

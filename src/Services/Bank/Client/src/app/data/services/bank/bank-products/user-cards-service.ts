@@ -37,4 +37,8 @@ export class UserCardsService {
   exchangeCurrency(currencyParams: IExchangeCurrency){
     return this.http.get<number>(`${this.baseUrl}CreditLimitExchange`, {params: currencyParams as any});
   }
+
+  changeCreditLimit(payload: {cardId: string, newCreditLimit: number}){
+    return this.http.put(`${this.baseUrl}ChangeCreditLimit`, payload)
+  }
 }

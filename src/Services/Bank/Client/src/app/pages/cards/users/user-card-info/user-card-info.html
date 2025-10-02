@@ -71,30 +71,18 @@
                 <td>{{card.cvv}}</td>
             </tr>
             <tr>
-                <td>Balance</td>
-                <td>
-                    <span>{{card.balance}}</span>
-                    @switch (card.chosenCurrency) {
-                        @case (Currency.UAH) {
-                            <span>₴</span>
-                        }
-                        @case (Currency.USD) {
-                            <span>$</span>
-                        }
-                        @case (Currency.EUR) {
-                            <span>€</span>
-                        
-                        }
-                        @default {}
+                <td>Balance 
+                    @if(card.cardTariffs.type===CardType.Credit){
+                        <span>(without credit limit)</span>
                     }
+                </td>
+                <td>
+                    <span>{{card.balance}}{{getCurrencySymbol()}}</span>
                 </td>
             </tr>
             <tr class="colored">
                 <td>Credit Limit</td>
-                <td>{{card.CreditLimit}}
-                    @if(card.CreditLimit ===null){
-                        <span>0</span>
-                    }
+                <td>{{card.creditLimit}}{{getCurrencySymbol()}}
                 </td>
             </tr>
         </table>
@@ -145,8 +133,8 @@
     [startCreditLimitValue]="startCreditLimitValue"
     [creditLimitParams]="exchangeParams"
     [isChangeCreditLimit]="true"
+    (submitCreditLimit)="changeCreditLimit($event)"
     >
-
     </app-modal-input-window>
 }
 

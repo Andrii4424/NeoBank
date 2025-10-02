@@ -118,5 +118,16 @@ namespace Bank.API.WebUI.Controllers.BankProducts
             }
             return Ok(amount);
         }
+
+        [HttpPut]
+        public async Task<IActionResult> ChangeCreditLimit([FromBody] ChangeCreditLimitDto limitParams)
+        {
+            OperationResult result = await _userCardService.UpdateCardCreditLimitAsync(limitParams.CardId, limitParams.NewCreditLimit);
+            if (!result.Success)
+            {
+                return BadRequest(result.ErrorMessage);
+            }
+            return Ok();
+        }
     }
 }

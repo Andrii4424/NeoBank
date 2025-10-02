@@ -16,5 +16,5 @@ export interface IUserCards{
     status : CardStatus;
     cvv : string;
     balance : number;
-    CreditLimit: number;
+    creditLimit: number;
 }
