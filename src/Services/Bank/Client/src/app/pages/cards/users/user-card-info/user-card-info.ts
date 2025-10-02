@@ -40,7 +40,6 @@ export class UserCardInfo {
     })
   );
 
-
   openAddFoundsWindow = signal<boolean>(false);
   openAddChangePinWindow = signal<boolean>(false);
   openChangeCreditLimit = signal<boolean>(false);
@@ -57,6 +56,7 @@ export class UserCardInfo {
   CardType = CardType;
 
   constructor(private cdr: ChangeDetectorRef){}
+
   closeModalWindow(){
     this.openAddFoundsWindow.set(false);
     this.openAddChangePinWindow.set(false);
@@ -96,6 +96,21 @@ export class UserCardInfo {
       });
     }
     this.closeModalWindow();
+  }
+
+  openAddFounds(){
+    this.openAddFoundsWindow.set(true);
+    this.cdr.detectChanges();
+  }
+
+  openPin(){
+    this.openAddChangePinWindow.set(true);
+    this.cdr.detectChanges();
+  }
+
+  openCreditLimit(){
+    this.openChangeCreditLimit.set(true);
+    this.cdr.detectChanges();
   }
 
   private showErrorMessage(message: string){

@@ -54,7 +54,9 @@ export class ModalInputWindow {
     }
 
     if(this.startCreditLimitValue) this.amount=this.startCreditLimitValue
-    this.checkAndExchangeCreditLimitCurrency()
+    this.checkAndExchangeCreditLimitCurrency();
+
+    this.cdr.detectChanges();
   }
 
   checkAndExchangeCreditLimitCurrency(){
