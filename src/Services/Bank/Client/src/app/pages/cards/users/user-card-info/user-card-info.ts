@@ -4,7 +4,7 @@ import { CardType } from './../../../../data/enums/card-type';
 import { Currency } from './../../../../data/enums/currency';
 import { CardStatus } from './../../../../data/enums/card-status';
 import { PaymentSystem } from './../../../../data/enums/payment-system';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { UserCardsService } from './../../../../data/services/bank/bank-products/user-cards-service';
 import { ChangeDetectorRef, Component, inject, signal } from '@angular/core';
 import { IUserCards } from '../../../../data/interfaces/bank/bank-products/cards/user-cards-interface';
@@ -13,6 +13,7 @@ import { AsyncPipe } from '@angular/common';
 import { ModalInputWindow } from "../../../../common-ui/modal-input-window/modal-input-window";
 import { SuccessMessage } from "../../../../common-ui/success-message/success-message";
 import { ErrorMessage } from "../../../../common-ui/error-message/error-message";
+import { IExchangeCurrency } from '../../../../data/interfaces/bank/bank-products/cards/exchange-currency-interface';
 
 @Component({
   selector: 'app-user-card-info',
@@ -25,7 +26,21 @@ export class UserCardInfo {
   route = inject(ActivatedRoute);
   sharedService = inject(SharedService)
   cardId = this.route.snapshot.paramMap.get("id")!;
-  userCard$: Observable<IUserCards> = this.userCardsService.getCardInfo(this.cardId);
+  exchangeParams? :IExchangeCurrency;
+  cardCurrency? : Currency;
+  startCreditLimitValue? : number;
+
+  userCard$: Observable<IUserCards> = this.userCardsService.getCardInfo(this.cardId).pipe(
+    tap(card=>{
+      this.cardCurrency= card.chosenCurrency;
+      this.startCreditLimitValue= card.CreditLimit;
+      if(card.cardTariffs.type===CardType.Credit){
+        this.exchangeParams = {from: Currency.UAH , to: card.chosenCurrency, amount: card.cardTariffs.maxCreditLimit!}
+      }
+    })
+  );
+
+
   openAddFoundsWindow = signal<boolean>(false);
   openAddChangePinWindow = signal<boolean>(false);
   openChangeCreditLimit = signal<boolean>(false);
@@ -45,6 +60,7 @@ export class UserCardInfo {
   closeModalWindow(){
     this.openAddFoundsWindow.set(false);
     this.openAddChangePinWindow.set(false);
+    this.openChangeCreditLimit.set(false);
   }
 
   addFunds(fundsCount: number){

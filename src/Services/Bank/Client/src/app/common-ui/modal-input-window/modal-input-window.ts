@@ -1,5 +1,10 @@
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Currency } from './../../data/enums/currency';
+import { UserCardsService } from './../../data/services/bank/bank-products/user-cards-service';
+import { CurrencyService } from './../../data/services/bank/bank-products/currency-service';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, Input, Output, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { IExchangeCurrency } from '../../data/interfaces/bank/bank-products/cards/exchange-currency-interface';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-modal-input-window',
@@ -8,17 +13,65 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './modal-input-window.scss'
 })
 export class ModalInputWindow {
+  userCardsService = inject(UserCardsService);
   @Input() headerMessage: string ="";
   @Input() subTittleMessage: string ="";
   @Input() isAddFunds: boolean = false;
   @Input() isChangePin: boolean = false;
   @Input() isChangeCreditLimit: boolean = false;
-  @Input() maxCreditLimit: number = 0;
+  @Input() creditLimitParams?: IExchangeCurrency;
+  @Input() startCreditLimitValue?: number;
+
   @Output() submitValue = new EventEmitter<number>();
   @Output() submitPin = new EventEmitter<string>();
   @Output() closeWindow = new EventEmitter<void>();
+
+  currencyName?: string;
+  maxCreditLimitAmount? : number;
   amount : number = 0;
   pin: string ="";
+
+  constructor(private cdr: ChangeDetectorRef){}
+
+  ngOnInit(){
+    switch(this.creditLimitParams!.to){
+      case (Currency.UAH):{
+        this.currencyName="₴";
+        break;
+      }
+      case (Currency.USD):{
+        this.currencyName="$";
+        break;
+      }
+      case (Currency.EUR):{
+        this.currencyName="€";
+        break;
+      }
+      default:{
+        this.currencyName="";
+        break;
+      }
+    }
+
+    if(this.startCreditLimitValue) this.amount=this.startCreditLimitValue
+    this.checkAndExchangeCreditLimitCurrency()
+  }
+
+  checkAndExchangeCreditLimitCurrency(){
+    if(this.isChangeCreditLimit){
+      if(this.creditLimitParams?.to===Currency.UAH){
+        this.maxCreditLimitAmount=this.creditLimitParams.amount;
+      }
+      else{
+        this.userCardsService.exchangeCurrency(this.creditLimitParams!).subscribe({
+          next: (val)=> {
+            this.maxCreditLimitAmount = val;
+            this.cdr.detectChanges();
+          }
+        });
+      }
+    }
+  }
 
   onModalInputChange(value: number){
     if (value < 0) {
@@ -42,6 +95,10 @@ export class ModalInputWindow {
 
   onPinSubmit(){
     this.submitPin.emit(this.pin);
+  }
+
+  onCreditLimitSubmit(){
+
   }
 
   onPinInput(event: Event) {

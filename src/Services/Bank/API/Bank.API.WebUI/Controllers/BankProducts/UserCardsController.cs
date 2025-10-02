@@ -3,6 +3,7 @@ using Bank.API.Application.DTOs.Users;
 using Bank.API.Application.DTOs.Users.CardOperations;
 using Bank.API.Application.Helpers.HelperClasses;
 using Bank.API.Application.Helpers.HelperClasses.Filters.User;
+using Bank.API.Application.ServiceContracts.BankServiceContracts.BankProducts;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.Users;
 using Bank.API.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Authorization;
@@ -19,12 +20,16 @@ namespace Bank.API.WebUI.Controllers.BankProducts
     public class UserCardsController : ControllerBase
     {
         private readonly IUserCardService _userCardService;
+        private readonly ICurrencyService _currencyService;
+
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public UserCardsController(IUserCardService userCardService, UserManager<ApplicationUser> userManager)
+        public UserCardsController(IUserCardService userCardService, UserManager<ApplicationUser> userManager,
+            ICurrencyService currencyService)
         {
             _userCardService = userCardService;
             _userManager = userManager;
+            _currencyService = currencyService;
         }
 
 
@@ -98,6 +103,20 @@ namespace Bank.API.WebUI.Controllers.BankProducts
                 return BadRequest(result.ErrorMessage);
             }
             return Ok();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CreditLimitExchange([FromQuery] ExchangeCurrencyDto exchangeParams)
+        {
+            decimal? amount;
+            try
+            {
+                amount = await _currencyService.ExchangeCurrency(exchangeParams);
+            }
+            catch (Exception ex) {
+                return StatusCode(500, "Unexpected error");
+            }
+            return Ok(amount);
         }
     }
 }

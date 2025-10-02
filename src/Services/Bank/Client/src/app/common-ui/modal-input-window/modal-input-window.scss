@@ -38,7 +38,6 @@
   color: #000;
 }
 
-
 .modal__title {
   font-size: 20px;
   font-weight: 600;
@@ -79,6 +78,29 @@
 }
 .modal__button:hover {
   background: #157347;
+}
+
+.range_input{
+  margin-top: -2px;
+  width: 100%;
+  cursor: pointer;
+}
+.slider-labels{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  margin-bottom: 8px;
+}
+
+.left {
+  justify-self: start;
+}
+.center {
+  justify-self: center;
+}
+.right {
+  justify-self: end;
 }
 
 @media (min-width: 480px) {

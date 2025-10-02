@@ -14,9 +14,18 @@
       <input [(ngModel)]="pin" class="modal__input" type="text" maxlength="4" (keyup.enter)="onPinSubmit()"  (change)="onPinInput($event)"/>
       <button class="modal__button" (click)="onPinSubmit()">Confirm</button>
     }
-    <!--@if(isChangePin){
-      <input [(ngModel)]="pin" class="modal__input" type="text" maxlength="4" (keyup.enter)="onPinSubmit()"  (change)="onPinInput($event)"/>
-      <button class="modal__button" (click)="onPinSubmit()">Confirm</button>
-    }-->
+    @if(isChangeCreditLimit){
+      <div class="slider-wrap">
+        <input [(ngModel)]="amount" class="range_input" type="range" step="0.01" min="0" [max]="maxCreditLimitAmount"  
+          (keyup.enter)="onCreditLimitSubmit()"/>
+        <div class="slider-labels">
+          <span class="left">{{0}}{{currencyName}}</span>
+          <span class="center">{{ amount }}{{currencyName}}</span>
+          <span class="right">{{ maxCreditLimitAmount}}{{currencyName}}</span>
+        </div>
+      </div>
+
+      <button class="modal__button" (click)="onCreditLimitSubmit()">Confirm</button>
+    }
   </div>
 </div>

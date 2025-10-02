@@ -137,6 +137,19 @@
     </app-modal-input-window>
 }
 
+@if(openChangeCreditLimit()){
+    <app-modal-input-window
+    headerMessage="Change Credit Limit"
+    subTittleMessage="Please enter a new Credit Limit"
+    (closeWindow)="closeModalWindow()"
+    [startCreditLimitValue]="startCreditLimitValue"
+    [creditLimitParams]="exchangeParams"
+    [isChangeCreditLimit]="true"
+    >
+
+    </app-modal-input-window>
+}
+
 <!--Status messages-->
 @if(successAddingFunds()){
     <app-success-message

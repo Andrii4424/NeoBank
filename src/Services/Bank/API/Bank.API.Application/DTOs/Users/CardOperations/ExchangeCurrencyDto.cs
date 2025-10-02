@@ -9,8 +9,8 @@ namespace Bank.API.Application.DTOs.Users.CardOperations
 {
     public class ExchangeCurrencyDto
     {
-        public Currency From;
-        public Currency To;
-        public double Amount;
+        public Currency From { get; set; }
+        public Currency To { get; set; }
+        public double Amount { get; set; }
     }
 }

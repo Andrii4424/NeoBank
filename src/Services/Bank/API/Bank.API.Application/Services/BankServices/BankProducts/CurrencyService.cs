@@ -81,7 +81,7 @@ namespace Bank.API.Application.Services.BankServices.BankProducts
 
             if(fromCource==null || toCource == null)
             {
-                return null;
+                throw new NullReferenceException("Error with getting NBU currency cource");
             }
 
             return Math.Round((decimal)(fromCource / toCource) * (decimal)exchangeParams.Amount, 2);
