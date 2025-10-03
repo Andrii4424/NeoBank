@@ -13,6 +13,7 @@ namespace Bank.API.Domain.RepositoryContracts.Users
     {
         public Task<List<UserCardsEntity>> GetUserCardsAsync(Guid userId, int pageNumber, int pageSize, Expression<Func<UserCardsEntity, bool>>? searchFilter,
             bool ascending, Expression<Func<UserCardsEntity, object>>? sortValue, List<Expression<Func<UserCardsEntity, bool>>>? filters);
+        public Task<List<UserCardsEntity>> GetAllExpiredUserCardsAsync(Guid userId);
         public Task<bool> IsCardUnique(Guid userId, Guid cardId, Currency chosenCurrency);
         public Task<bool> IsCardNumberUnique(string cardNumber);
         public Task<int> GetUserCardsCountAsync(Guid userId, Expression<Func<UserCardsEntity, bool>>? searchFilter,

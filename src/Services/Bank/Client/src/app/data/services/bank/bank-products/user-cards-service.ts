@@ -6,6 +6,7 @@ import { IPageResult } from '../../../interfaces/page-inteface';
 import { Params } from '@angular/router';
 import { IAddFunds } from '../../../interfaces/bank/bank-products/cards/add-funds-interface';
 import { IExchangeCurrency } from '../../../interfaces/bank/bank-products/cards/exchange-currency-interface';
+import { CardStatus } from '../../../enums/card-status';
 
 @Injectable({
   providedIn: 'root'
@@ -44,5 +45,9 @@ export class UserCardsService {
 
   reissueCard(cardId: string){
     return this.http.put(`${this.baseUrl}ReissueCard/${cardId}`, {})
+  }
+
+  changeStatus(payload:{cardId: string, newStatus: CardStatus}){
+    return this.http.put(`${this.baseUrl}ChangeCardStatus`, payload);
   }
 }

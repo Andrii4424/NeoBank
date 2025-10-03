@@ -95,10 +95,10 @@
             }
             <button class="blue-btn" (click)="reissueCard()">🔄 Card Reissue</button>
             @if(card.status===CardStatus.Active){
-                <button class="red-btn">🔒 Block</button>
+                <button class="red-btn" (click)="blockCard()">🔒 Block</button>
             }
             @else if(card.status===CardStatus.Blocked){
-                <button class="red-btn">🔓 Unblock</button>
+                <button class="red-btn" (click)="unblockCard()">🔓 Unblock</button>
             }
         </div>
     }
@@ -138,6 +138,17 @@
     </app-modal-input-window>
 }
 
+@if(openConfirmWindow()){
+    <app-confirm-window
+    [title]="actionTitle"
+    [subtitle]="actionSubtitle"
+    [action]="action"
+    (confirmAction)="confirmAction()"
+    (cancelAction)="cancelAction()"
+    >
+    </app-confirm-window>
+}
+
 <!--Status messages-->
 @if(successAddingFunds()){
     <app-success-message
@@ -157,16 +168,4 @@
     message="Error"
     [secondMessage]="errorMessage">
     </app-error-message>
-}
-
-@if(openConfirmWindow()){
-    <app-confirm-window
-    title="Confirm Card Reissue"
-    subtitle="Are you sure you want to reissue the card? The action will not be able to be undone."
-    [action]="action"
-    (confirmAction)="confirmAction()"
-    (cancelAction)="cancelAction()"
-
-    >
-    </app-confirm-window>
 }

@@ -1,5 +1,6 @@
 ﻿using Bank.API.Application.DTOs.BankProducts;
 using Bank.API.Application.DTOs.Users;
+using Bank.API.Application.DTOs.Users.CardOperations;
 using Bank.API.Application.Helpers.HelperClasses;
 using Bank.API.Application.Helpers.HelperClasses.Filters.User;
 using Bank.API.Domain.Entities.Cards;
@@ -17,7 +18,7 @@ namespace Bank.API.Application.ServiceContracts.BankServiceContracts.Users
         public Task<PageResult<UserCardsDto>?> GetUserCardsAsync(Guid userId, UserCardsFilter? filters);
         public Task<UserCardsDto?> GetCardByIdAsync(Guid cardId);
         public Task<OperationResult> CreateCardAsync(CreateUserCardDto cardParams);
-        public Task<OperationResult> UpdateCardStatusAsync(Guid cardId, CardStatus status);
+        public Task<OperationResult> UpdateCardStatusAsync(ChangeStatusDto newStatusParams);
         public Task<OperationResult> UpdateCardPinAsync(Guid cardId, string newPin);
         public Task<OperationResult> UpdateCardBalanceAsync(Guid cardId, decimal amount);
         public Task<OperationResult> UpdateCardCreditLimitAsync(Guid cardId, decimal newCreditLimit);

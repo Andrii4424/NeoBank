@@ -47,6 +47,9 @@ export class UserCardInfo {
   openConfirmWindow = signal<boolean>(false);
   openErrorMessage = signal<boolean>(false);
   openSuccessMessage = signal<boolean>(false);
+  
+  actionTitle: string ="";
+  actionSubtitle: string ="";
   action: string ="";
   errorMessage: string = "";
   successMessage: string = ""
@@ -117,17 +120,35 @@ export class UserCardInfo {
   }
 
   reissueCard(){
-    this.openConfirmWindow.set(true);
+    this.actionTitle="Confirm Card Reissue";
+    this.actionSubtitle="Are you sure you want to reissue the card? The action will not be able to be undone.";
     this.action="reissue-card"
+    this.openConfirmWindow.set(true);
     this.cdr.detectChanges();
   }
 
+  blockCard(){
+    this.actionTitle="Confirm Blocking";
+    this.actionSubtitle="Are you sure you want to block the card? Withdrawal operations will be unavailable while the card is blocked.";
+    this.action="block-card"
+    this.openConfirmWindow.set(true);
+    this.cdr.detectChanges();
+  }
+
+  unblockCard(){
+    this.actionTitle="Confirm Unblocking";
+    this.actionSubtitle="Are you sure you want to unblock the card? Withdrawal operations will be available after unblocking";
+    this.action="unblock-card"
+    this.openConfirmWindow.set(true);
+    this.cdr.detectChanges();
+  }
   cancelAction(){
     this.openConfirmWindow.set(false);
+    this.actionSubtitle="";
+    this.actionTitle=""
     this.action="";
   }
   
-
   confirmAction(){
     if(this.action==="reissue-card"){
       this.userCardsService.reissueCard(this.cardId).subscribe({
@@ -140,6 +161,29 @@ export class UserCardInfo {
         }
       });
     }
+    else if(this.action==="block-card"){
+      this.userCardsService.changeStatus({cardId: this.cardId, newStatus: CardStatus.Blocked}).subscribe({
+        next:()=>{
+          this.userCard$ = this.userCardsService.getCardInfo(this.cardId);
+          this.showSuccessMessage("The card status has been changed!");
+        },
+        error:(err)=>{
+          this.showErrorMessage(this.sharedService.serverResponseErrorToArray(err)[0]);
+        }
+      });
+    }
+    else if(this.action==="unblock-card"){
+      this.userCardsService.changeStatus({cardId: this.cardId, newStatus: CardStatus.Active}).subscribe({
+        next:()=>{
+          this.userCard$ = this.userCardsService.getCardInfo(this.cardId);
+          this.showSuccessMessage("The card status has been changed!");
+        },
+        error:(err)=>{
+          this.showErrorMessage(this.sharedService.serverResponseErrorToArray(err)[0]);
+        }
+      });
+    }
+    
     this.cancelAction();
   }
 

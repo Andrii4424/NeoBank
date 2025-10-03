@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Bank.API.Application.DTOs.BankProducts;
 using Bank.API.Application.DTOs.Users;
+using Bank.API.Application.DTOs.Users.CardOperations;
 using Bank.API.Application.Helpers.HelperClasses;
 using Bank.API.Application.Helpers.HelperClasses.Filters;
 using Bank.API.Application.Helpers.HelperClasses.Filters.User;
@@ -37,6 +38,7 @@ namespace Bank.API.Application.Services.BankServices.Users
         //Read
         public async Task<PageResult<UserCardsDto>?> GetUserCardsAsync(Guid userId, UserCardsFilter? filters)
         {
+            await ExpirationStatusCheckerAsync(userId, null);
             filters.PageNumber = filters.PageNumber ?? 1;
             FiltersDto<UserCardsEntity> filtersDto = filters.ToGeneralFilters();
             List<UserCardsDto>? userCards = _mapper.Map<List<UserCardsDto>>(await 
@@ -57,6 +59,7 @@ namespace Bank.API.Application.Services.BankServices.Users
 
         public async Task<UserCardsDto?> GetCardByIdAsync(Guid cardId)
         {
+            await ExpirationStatusCheckerAsync(null, cardId);
             UserCardsEntity? card = await _userCardsRepository.GetValueByIdAsync(cardId);
             if(card == null)
             {
@@ -111,15 +114,21 @@ namespace Bank.API.Application.Services.BankServices.Users
         }
 
         //Update
-        public async Task<OperationResult> UpdateCardStatusAsync(Guid cardId, CardStatus status)
+        public async Task<OperationResult> UpdateCardStatusAsync(ChangeStatusDto newStatusParams)
         {
-            UserCardsEntity? card = await _userCardsRepository.GetValueByIdAsync(cardId);
+            await ExpirationStatusCheckerAsync(null, newStatusParams.CardId);
+            UserCardsEntity? card = await _userCardsRepository.GetValueByIdAsync(newStatusParams.CardId);
             if(card == null)
             {
                 return OperationResult.Error("Card not found");
             }
+            if (card.Status == CardStatus.Expired)
+            {
+                return OperationResult.Error("The card has expired. The card has been blocked for withdrawals, the card cannot be blocked/unblocked at this time. " +
+                    "To remove the expired status, we recommend reissuing the card.");
+            }
 
-            card.Status = status;
+            card.Status = newStatusParams.NewStatus;
             _userCardsRepository.UpdateObject(card);
             await _userCardsRepository.SaveAsync();
 
@@ -281,6 +290,31 @@ namespace Bank.API.Application.Services.BankServices.Users
                 cvv += random.Next(0, 10).ToString();
             }
             return cvv;
+        }
+
+        private async Task ExpirationStatusCheckerAsync(Guid? userId, Guid? cardId)
+        {
+            if (cardId != null)
+            {
+                UserCardsEntity? card = await _userCardsRepository.GetValueByIdAsync(cardId.Value);
+                if (card != null && card.ExpiryDate < DateOnly.FromDateTime(DateTime.Now))
+                {
+                    await ChangeStatusToExpired(card);
+                }
+            }
+            else if (userId != null) { 
+                List<UserCardsEntity> cards= await _userCardsRepository.GetAllExpiredUserCardsAsync(userId.Value);
+                foreach (UserCardsEntity card in cards) {
+                    await ChangeStatusToExpired(card);
+                }
+            }
+        }
+        
+        private async Task ChangeStatusToExpired(UserCardsEntity? card)
+        {
+            card.Status = CardStatus.Expired;
+            _userCardsRepository.UpdateObject(card);
+            await _userCardsRepository.SaveAsync();
         }
     }
 }

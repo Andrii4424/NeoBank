@@ -48,6 +48,12 @@ namespace Bank.API.Infrastructure.Repository.Users
                 .ToListAsync();
         }
 
+        public async Task<List<UserCardsEntity>> GetAllExpiredUserCardsAsync(Guid userId)
+        {
+            return await _dbSet.Where(uc => uc.UserId == userId && uc.ExpiryDate<DateOnly.FromDateTime(DateTime.Now))
+                .ToListAsync();
+        }
+
         public async Task<int> GetUserCardsCountAsync(Guid userId, Expression<Func<UserCardsEntity, bool>>? searchFilter, 
             List<Expression<Func<UserCardsEntity, bool>>>? filters)
         {

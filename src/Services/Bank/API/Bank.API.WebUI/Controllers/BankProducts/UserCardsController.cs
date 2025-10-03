@@ -140,5 +140,17 @@ namespace Bank.API.WebUI.Controllers.BankProducts
             }
             return Ok();
         }
+
+        [HttpPut]
+        public async Task<IActionResult> ChangeCardStatus([FromBody] ChangeStatusDto newStatusParams)
+        {
+            OperationResult result = await _userCardService.UpdateCardStatusAsync(newStatusParams);
+            if (!result.Success)
+            {
+                return BadRequest(result.ErrorMessage);
+            }
+
+            return Ok();
+        }
     }
 }
