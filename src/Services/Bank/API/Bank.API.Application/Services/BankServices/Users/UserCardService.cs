@@ -4,6 +4,7 @@ using Bank.API.Application.DTOs.Users;
 using Bank.API.Application.DTOs.Users.CardOperations;
 using Bank.API.Application.Helpers.HelperClasses;
 using Bank.API.Application.Helpers.HelperClasses.Filters;
+using Bank.API.Application.Helpers.HelperClasses.Filters.BankProducts;
 using Bank.API.Application.Helpers.HelperClasses.Filters.User;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.Users;
 using Bank.API.Domain.Entities.Cards;
@@ -155,7 +156,7 @@ namespace Bank.API.Application.Services.BankServices.Users
             {
                 return OperationResult.Error("Card not found");
             }
-            if(card.Status != CardStatus.Active)
+            if(card.Status != CardStatus.Active && amount<0)
             {
                 return OperationResult.Error("Card is not active");
             }
