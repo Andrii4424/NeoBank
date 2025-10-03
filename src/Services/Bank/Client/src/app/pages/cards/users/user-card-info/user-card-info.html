@@ -93,7 +93,7 @@
             @if(card.cardTariffs.type === CardType.Credit){
                 <button class="blue-btn" (click)="openCreditLimit()">📈 Change Credit Limit</button>
             }
-            <button class="blue-btn">🔄 Card Reissue</button>
+            <button class="blue-btn" (click)="reissueCard()">🔄 Card Reissue</button>
             @if(card.status===CardStatus.Active){
                 <button class="red-btn">🔒 Block</button>
             }
@@ -159,3 +159,14 @@
     </app-error-message>
 }
 
+@if(openConfirmWindow()){
+    <app-confirm-window
+    title="Confirm Card Reissue"
+    subtitle="Are you sure you want to reissue the card? The action will not be able to be undone."
+    [action]="action"
+    (confirmAction)="confirmAction()"
+    (cancelAction)="cancelAction()"
+
+    >
+    </app-confirm-window>
+}

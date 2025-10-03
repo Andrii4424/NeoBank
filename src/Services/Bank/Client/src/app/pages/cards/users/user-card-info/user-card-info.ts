@@ -14,10 +14,11 @@ import { ModalInputWindow } from "../../../../common-ui/modal-input-window/modal
 import { SuccessMessage } from "../../../../common-ui/success-message/success-message";
 import { ErrorMessage } from "../../../../common-ui/error-message/error-message";
 import { IExchangeCurrency } from '../../../../data/interfaces/bank/bank-products/cards/exchange-currency-interface';
+import { ConfirmWindow } from "../../../../common-ui/confirm-window/confirm-window";
 
 @Component({
   selector: 'app-user-card-info',
-  imports: [AsyncPipe, RouterLink, ModalInputWindow, SuccessMessage, ErrorMessage],
+  imports: [AsyncPipe, RouterLink, ModalInputWindow, SuccessMessage, ErrorMessage, ConfirmWindow],
   templateUrl: './user-card-info.html',
   styleUrl: './user-card-info.scss'
 })
@@ -43,8 +44,10 @@ export class UserCardInfo {
   openAddFoundsWindow = signal<boolean>(false);
   openAddChangePinWindow = signal<boolean>(false);
   openChangeCreditLimit = signal<boolean>(false);
+  openConfirmWindow = signal<boolean>(false);
   openErrorMessage = signal<boolean>(false);
   openSuccessMessage = signal<boolean>(false);
+  action: string ="";
   errorMessage: string = "";
   successMessage: string = ""
   successAddingFunds = signal<boolean>(false);
@@ -111,6 +114,25 @@ export class UserCardInfo {
   openCreditLimit(){
     this.openChangeCreditLimit.set(true);
     this.cdr.detectChanges();
+  }
+
+  reissueCard(){
+    this.openConfirmWindow.set(true);
+    this.action="reissue-card"
+    this.cdr.detectChanges();
+  }
+
+  cancelAction(){
+    this.openConfirmWindow.set(false);
+    this.action="";
+  }
+  
+
+  confirmAction(){
+    if(this.action==="reissue-card"){
+
+    }
+    this.cancelAction();
   }
 
   changeCreditLimit(newCreditLimit: number){

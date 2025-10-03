@@ -50,7 +50,7 @@
             </div>
 
             <div class="balance">
-                <span>{{ card.balance}} </span>
+                <span>{{card.balance + card.creditLimit}} </span>
                 @switch (card.chosenCurrency) {
                     @case (Currency.UAH) {
                         <span>₴</span>
