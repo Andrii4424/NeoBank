@@ -50,4 +50,8 @@ export class UserCardsService {
   changeStatus(payload:{cardId: string, newStatus: CardStatus}){
     return this.http.put(`${this.baseUrl}ChangeCardStatus`, payload);
   }
+
+  closeCard(cardId: string){
+    return this.http.delete(`${this.baseUrl}CloseCard/${cardId}`);
+  }
 }

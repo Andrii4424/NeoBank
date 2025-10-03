@@ -8,7 +8,7 @@ import { Observable, tap } from 'rxjs';
 import { UserCardsService } from './../../../../data/services/bank/bank-products/user-cards-service';
 import { ChangeDetectorRef, Component, inject, signal } from '@angular/core';
 import { IUserCards } from '../../../../data/interfaces/bank/bank-products/cards/user-cards-interface';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 import { ModalInputWindow } from "../../../../common-ui/modal-input-window/modal-input-window";
 import { SuccessMessage } from "../../../../common-ui/success-message/success-message";
@@ -25,6 +25,7 @@ import { ConfirmWindow } from "../../../../common-ui/confirm-window/confirm-wind
 export class UserCardInfo {
   userCardsService = inject(UserCardsService);
   route = inject(ActivatedRoute);
+  router= inject(Router);
   sharedService = inject(SharedService)
   cardId = this.route.snapshot.paramMap.get("id")!;
   exchangeParams? :IExchangeCurrency;
@@ -142,6 +143,14 @@ export class UserCardInfo {
     this.openConfirmWindow.set(true);
     this.cdr.detectChanges();
   }
+
+  closeCard(){
+    this.actionTitle="Confirm Close";
+    this.actionSubtitle="Are you sure you want to close the card? The action will not be able to be undone.";
+    this.action="close-card"
+    this.openConfirmWindow.set(true);
+    this.cdr.detectChanges();
+  }
   cancelAction(){
     this.openConfirmWindow.set(false);
     this.actionSubtitle="";
@@ -150,40 +159,59 @@ export class UserCardInfo {
   }
   
   confirmAction(){
-    if(this.action==="reissue-card"){
-      this.userCardsService.reissueCard(this.cardId).subscribe({
-        next:()=>{
-          this.userCard$ = this.userCardsService.getCardInfo(this.cardId);
-          this.showSuccessMessage("The card has been reissued!");
-        },
-        error:(err)=>{
-          this.showErrorMessage(this.sharedService.serverResponseErrorToArray(err)[0]);
-        }
-      });
+    switch (this.action) {
+      case "reissue-card":
+        this.userCardsService.reissueCard(this.cardId).subscribe({
+          next: () => {
+            this.userCard$ = this.userCardsService.getCardInfo(this.cardId);
+            this.showSuccessMessage("The card has been reissued!");
+          },
+          error: (err) => {
+            this.showErrorMessage(this.sharedService.serverResponseErrorToArray(err)[0]);
+          }
+        });
+        break;
+
+      case "block-card":
+        this.userCardsService.changeStatus({ cardId: this.cardId, newStatus: CardStatus.Blocked }).subscribe({
+          next: () => {
+            this.userCard$ = this.userCardsService.getCardInfo(this.cardId);
+            this.showSuccessMessage("The card status has been changed!");
+          },
+          error: (err) => {
+            this.showErrorMessage(this.sharedService.serverResponseErrorToArray(err)[0]);
+          }
+        });
+        break;
+
+      case "unblock-card":
+        this.userCardsService.changeStatus({ cardId: this.cardId, newStatus: CardStatus.Active }).subscribe({
+          next: () => {
+            this.userCard$ = this.userCardsService.getCardInfo(this.cardId);
+            this.showSuccessMessage("The card status has been changed!");
+          },
+          error: (err) => {
+            this.showErrorMessage(this.sharedService.serverResponseErrorToArray(err)[0]);
+          }
+        });
+        break;
+
+      case "close-card":
+        this.userCardsService.closeCard(this.cardId).subscribe({
+          next: () => {
+            this.showSuccessMessage("Card has been deleted!");
+            this.router.navigate(["cards/my-cards"]);
+          },
+          error: (err) => {
+            this.showErrorMessage(this.sharedService.serverResponseErrorToArray(err)[0]);
+          }
+        });
+        break;
+
+      default:
+        break;
     }
-    else if(this.action==="block-card"){
-      this.userCardsService.changeStatus({cardId: this.cardId, newStatus: CardStatus.Blocked}).subscribe({
-        next:()=>{
-          this.userCard$ = this.userCardsService.getCardInfo(this.cardId);
-          this.showSuccessMessage("The card status has been changed!");
-        },
-        error:(err)=>{
-          this.showErrorMessage(this.sharedService.serverResponseErrorToArray(err)[0]);
-        }
-      });
-    }
-    else if(this.action==="unblock-card"){
-      this.userCardsService.changeStatus({cardId: this.cardId, newStatus: CardStatus.Active}).subscribe({
-        next:()=>{
-          this.userCard$ = this.userCardsService.getCardInfo(this.cardId);
-          this.showSuccessMessage("The card status has been changed!");
-        },
-        error:(err)=>{
-          this.showErrorMessage(this.sharedService.serverResponseErrorToArray(err)[0]);
-        }
-      });
-    }
-    
+
     this.cancelAction();
   }
 

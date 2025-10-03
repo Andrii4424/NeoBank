@@ -152,5 +152,17 @@ namespace Bank.API.WebUI.Controllers.BankProducts
 
             return Ok();
         }
+
+        [HttpDelete("{cardId}")]
+        public async Task<IActionResult> CloseCard([FromRoute] Guid cardId)
+        {
+            OperationResult result = await _userCardService.DeleteCardAsync(cardId);
+            if (!result.Success)
+            {
+                return BadRequest(result.ErrorMessage);
+            }
+
+            return Ok();
+        }
     }
 }
