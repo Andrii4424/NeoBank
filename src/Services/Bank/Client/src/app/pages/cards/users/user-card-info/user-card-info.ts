@@ -130,7 +130,15 @@ export class UserCardInfo {
 
   confirmAction(){
     if(this.action==="reissue-card"){
-
+      this.userCardsService.reissueCard(this.cardId).subscribe({
+        next:()=>{
+          this.userCard$ = this.userCardsService.getCardInfo(this.cardId);
+          this.showSuccessMessage("The card has been reissued!");
+        },
+        error:(err)=>{
+          this.showErrorMessage(this.sharedService.serverResponseErrorToArray(err)[0]);
+        }
+      });
     }
     this.cancelAction();
   }

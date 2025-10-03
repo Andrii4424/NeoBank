@@ -129,5 +129,16 @@ namespace Bank.API.WebUI.Controllers.BankProducts
             }
             return Ok();
         }
+
+        [HttpPut("{cardId:guid}")]
+        public async Task<IActionResult> ReissueCard([FromRoute]Guid cardId)
+        {
+            OperationResult result = await _userCardService.ReissueCardAcync(cardId);
+            if (!result.Success)
+            {
+                return BadRequest(result.ErrorMessage);
+            }
+            return Ok();
+        }
     }
 }

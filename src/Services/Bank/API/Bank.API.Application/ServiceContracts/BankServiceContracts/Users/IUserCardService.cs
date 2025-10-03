@@ -22,5 +22,6 @@ namespace Bank.API.Application.ServiceContracts.BankServiceContracts.Users
         public Task<OperationResult> UpdateCardBalanceAsync(Guid cardId, decimal amount);
         public Task<OperationResult> UpdateCardCreditLimitAsync(Guid cardId, decimal newCreditLimit);
         public Task<OperationResult> DeleteCardAsync(Guid cardId);
+        public Task<OperationResult> ReissueCardAcync(Guid cardId);
     }
 }

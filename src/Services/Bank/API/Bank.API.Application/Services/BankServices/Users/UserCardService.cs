@@ -193,6 +193,43 @@ namespace Bank.API.Application.Services.BankServices.Users
             return OperationResult.Ok();
         }
 
+        public async Task<OperationResult> ReissueCardAcync(Guid cardId)
+        {
+            UserCardsEntity? card = await _userCardsRepository.GetValueByIdAsync(cardId);
+            if (card == null) {
+                return OperationResult.Error("Card not found");
+            }
+
+            CardTariffsEntity? cardTariffs = await _cardTariffsRepository.GetValueByIdAsync(card.CardTariffId);
+            if (cardTariffs == null) {
+                throw new NullReferenceException("Card Tariffs not found");
+            }
+
+            string? cardNumber = await GenerateCardNumber((await _cardTariffsRepository.GetValueByIdAsync(card.CardTariffId))!.BIN);
+            if (cardNumber == null)
+            {
+                return OperationResult.Error("Could not generate unique card number, please try again");
+            }
+
+            double validityPeriod = cardTariffs.ValidityPeriod;
+            DateOnly expieryDate = DateOnly.FromDateTime(DateTime.Now.AddYears((int)validityPeriod / 1));
+            if (validityPeriod % 1 == 0.5)
+            {
+                expieryDate = expieryDate.AddMonths(6);
+            }
+            expieryDate = new DateOnly(expieryDate.Year, expieryDate.Month, 1);
+            string cvv = GenerateCVV();
+
+            card.CVV = cvv;
+            card.CardNumber = cardNumber;
+            card.ExpiryDate = expieryDate;
+            card.Status = CardStatus.Active;
+
+            _userCardsRepository.UpdateObject(card);
+            await _userCardsRepository.SaveAsync();
+
+            return OperationResult.Ok();
+        }
 
         //Delete
         public async Task<OperationResult> DeleteCardAsync(Guid cardId)

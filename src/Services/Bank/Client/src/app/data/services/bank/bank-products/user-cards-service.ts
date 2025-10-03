@@ -41,4 +41,8 @@ export class UserCardsService {
   changeCreditLimit(payload: {cardId: string, newCreditLimit: number}){
     return this.http.put(`${this.baseUrl}ChangeCreditLimit`, payload)
   }
+
+  reissueCard(cardId: string){
+    return this.http.put(`${this.baseUrl}ReissueCard/${cardId}`, {})
+  }
 }
