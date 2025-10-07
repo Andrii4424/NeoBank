@@ -13,17 +13,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3562405A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bank", "Bank", "{B0ABCD09-9A82-4EC8-8CBB-21BE8EF542DD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{95BFC8F6-E9CB-4C5E-A5D6-9E3290480818}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BankService", "BankService", "{95BFC8F6-E9CB-4C5E-A5D6-9E3290480818}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{1BEB0E34-1254-4820-8757-73C7F6C636CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank.API.WebUI", "src\Services\Bank\API\Bank.API.WebUI\Bank.API.WebUI.csproj", "{F7EE52F2-54FC-4AEC-B263-312ECB31C146}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank.API.WebUI", "src\Services\Bank\BankService\Bank.API.WebUI\Bank.API.WebUI.csproj", "{F7EE52F2-54FC-4AEC-B263-312ECB31C146}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank.API.Domain", "src\Services\Bank\API\Bank.API.Domain\Bank.API.Domain.csproj", "{690CD71C-D9F8-4C96-9893-E8007EAF1B5A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank.API.Domain", "src\Services\Bank\BankService\Bank.API.Domain\Bank.API.Domain.csproj", "{690CD71C-D9F8-4C96-9893-E8007EAF1B5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank.API.Infrastructure", "src\Services\Bank\API\Bank.API.Infrastructure\Bank.API.Infrastructure.csproj", "{F8DC12D7-53EE-40B8-AE15-D2A52E5FCB71}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank.API.Infrastructure", "src\Services\Bank\BankService\Bank.API.Infrastructure\Bank.API.Infrastructure.csproj", "{F8DC12D7-53EE-40B8-AE15-D2A52E5FCB71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank.API.Application", "src\Services\Bank\API\Bank.API.Application\Bank.API.Application.csproj", "{F6E49A32-D0CA-4597-A5BE-AE6FC92D2C2A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank.API.Application", "src\Services\Bank\BankService\Bank.API.Application\Bank.API.Application.csproj", "{F6E49A32-D0CA-4597-A5BE-AE6FC92D2C2A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TransactionsService", "TransactionsService", "{0EB18071-CDAB-4F53-AD73-577AC39D1319}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,7 @@ Global
 		{690CD71C-D9F8-4C96-9893-E8007EAF1B5A} = {95BFC8F6-E9CB-4C5E-A5D6-9E3290480818}
 		{F8DC12D7-53EE-40B8-AE15-D2A52E5FCB71} = {95BFC8F6-E9CB-4C5E-A5D6-9E3290480818}
 		{F6E49A32-D0CA-4597-A5BE-AE6FC92D2C2A} = {95BFC8F6-E9CB-4C5E-A5D6-9E3290480818}
+		{0EB18071-CDAB-4F53-AD73-577AC39D1319} = {B0ABCD09-9A82-4EC8-8CBB-21BE8EF542DD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {01D0DAB0-008A-4CFB-8403-A9C9681D0A27}
