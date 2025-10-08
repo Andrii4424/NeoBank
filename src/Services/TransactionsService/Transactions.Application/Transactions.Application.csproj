@@ -10,4 +10,11 @@
     <ProjectReference Include="..\Transactions.Domain\Transactions.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DTOs\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="ServiceContracts\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>
