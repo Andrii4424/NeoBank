@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Transactions.Domain.RepositoryContracts;
 using Transactions.Infrastructure.Data;
+using Transactions.Infrastructure.Repository;
 
 namespace Transactions.WebUI.Helpers
 {
@@ -22,6 +24,11 @@ namespace Transactions.WebUI.Helpers
                     options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
                 }
                 );
+
+            //DI
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped(typeof(ITransactionRepository), typeof(TransactionRepository));
+
 
             return services;
         }

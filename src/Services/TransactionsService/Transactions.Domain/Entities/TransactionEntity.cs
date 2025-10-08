@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Transactions.Domain.Abstractions;
 using Transactions.Domain.Enums;
 
 namespace Transactions.Domain.Entities
 {
-    public class TransactionEntity
+    public class TransactionEntity :IHasId
     {
         public Guid Id { get; set; }
 
