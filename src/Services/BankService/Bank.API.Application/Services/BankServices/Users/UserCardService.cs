@@ -262,6 +262,21 @@ namespace Bank.API.Application.Services.BankServices.Users
             return OperationResult.Ok();
         }
 
+        public async Task<TransactionDetailsDto> GetTransactionDetails(TransactionDetailsDto details)
+        {
+            if(details.SenderCardId!=null)
+            {
+                details.SenderId = await GetUserIdByCardAsync(details.SenderCardId.Value);
+                if (details.SenderId == null) throw new NullReferenceException("Sender Card didnt found");
+            }
+            if (details.GetterCardId != null)
+            {
+                details.GetterId = await GetUserIdByCardAsync(details.GetterCardId.Value);
+                if (details.GetterId == null) throw new NullReferenceException("Reciver Card didnt found");
+            }
+            return details;
+        }
+
         //Helpers
         private async Task<string?> GenerateCardNumber(string BIN)
         {
@@ -316,6 +331,13 @@ namespace Bank.API.Application.Services.BankServices.Users
             card.Status = CardStatus.Expired;
             _userCardsRepository.UpdateObject(card);
             await _userCardsRepository.SaveAsync();
+        }
+
+        private async Task<Guid?> GetUserIdByCardAsync(Guid cardId)
+        {
+            UserCardsEntity? card = await _userCardsRepository.GetValueByIdAsync(cardId);
+            if(card ==null) return null;
+            return card.UserId;
         }
     }
 }

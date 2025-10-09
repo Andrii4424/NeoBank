@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Transactions.Application.DTOs;
+using Transactions.Application.ServiceContracts;
 
 namespace Transactions.WebUI.Controllers
 {
@@ -8,11 +10,18 @@ namespace Transactions.WebUI.Controllers
     [ApiController]
     public class TransactionController : ControllerBase
     {
-        [HttpGet]
-        public async Task<IActionResult> Test()
+        private readonly ITransactionService _transactionService;
+
+        public TransactionController(ITransactionService transactionService)
         {
-            return Ok();
+            _transactionService = transactionService;
         }
 
+        [HttpPost]
+        public async Task<IActionResult> GetTransactionDetails([FromBody] TransactionDto transaction)
+        {
+            await _transactionService.ExchangeCurrency(transaction);
+            return Ok();
+        }
     }
 }

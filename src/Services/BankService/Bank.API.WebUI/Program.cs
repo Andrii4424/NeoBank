@@ -28,7 +28,8 @@ await RoleSeeder.SeedAsync(app.Services, builder.Configuration);
 
 app.UseRouting();
 
-app.UseCors(options => options.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200", "https://localhost:4200")
+app.UseCors(options => options.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200", "https://localhost:4200",
+    "https://localhost:7280", "http://localhost:5226")
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials());

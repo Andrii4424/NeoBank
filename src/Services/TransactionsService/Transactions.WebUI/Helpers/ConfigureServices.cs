@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Transactions.Application.ServiceContracts;
+using Transactions.Application.Services;
 using Transactions.Domain.RepositoryContracts;
 using Transactions.Infrastructure.Data;
 using Transactions.Infrastructure.Repository;
@@ -25,9 +27,17 @@ namespace Transactions.WebUI.Helpers
                 }
                 );
 
+
+            services.AddHttpClient("BankApi", client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:7280/api/");
+            });
+
             //DI
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped(typeof(ITransactionRepository), typeof(TransactionRepository));
+
+            services.AddScoped<ITransactionService, TransactionService>();
 
 
             return services;

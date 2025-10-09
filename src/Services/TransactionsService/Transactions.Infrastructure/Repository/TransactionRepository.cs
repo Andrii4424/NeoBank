@@ -9,7 +9,7 @@ using Transactions.Infrastructure.Data;
 
 namespace Transactions.Infrastructure.Repository
 {
-    public class TransactionRepository : GenericRepository<TransactionEntity>
+    public class TransactionRepository : GenericRepository<TransactionEntity>, ITransactionRepository
     {
         public TransactionRepository(TransactionContext context) : base(context)
         {
