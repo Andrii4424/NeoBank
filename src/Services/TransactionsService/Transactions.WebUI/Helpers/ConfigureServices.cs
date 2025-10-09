@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Transactions.Application.ServiceContracts;
 using Transactions.Application.Services;
+using Transactions.Application.Services.MessageServices;
 using Transactions.Domain.RepositoryContracts;
 using Transactions.Infrastructure.Data;
 using Transactions.Infrastructure.Repository;
@@ -38,6 +39,7 @@ namespace Transactions.WebUI.Helpers
             services.AddScoped(typeof(ITransactionRepository), typeof(TransactionRepository));
 
             services.AddScoped<ITransactionService, TransactionService>();
+            services.AddSingleton<IRabbitMqMessageBusService, RabbitMqMessageBusService>();
 
 
             return services;
