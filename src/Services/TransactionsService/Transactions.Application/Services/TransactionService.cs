@@ -21,11 +21,11 @@ namespace Transactions.Application.Services
 
         private readonly ITransactionRepository _transactionRepository;
         private readonly HttpClient _client;
-        private readonly IRabbitMqMessageBusService _rabbitMqMessageBusService;
+        private readonly IRabbitMqProducerService _rabbitMqMessageBusService;
         private readonly string _exchange = "bank.transaction";
 
         public TransactionService(ITransactionRepository transactionRepository, IHttpClientFactory httpClientFactory, 
-            IRabbitMqMessageBusService rabbitMqMessageBusService)
+            IRabbitMqProducerService rabbitMqMessageBusService)
         {
             _transactionRepository = transactionRepository;
             _client = httpClientFactory.CreateClient("BankApi");

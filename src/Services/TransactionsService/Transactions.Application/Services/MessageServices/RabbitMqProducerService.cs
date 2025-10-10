@@ -7,21 +7,23 @@ using Transactions.Application.ServiceContracts;
 
 namespace Transactions.Application.Services.MessageServices
 {
-    public class RabbitMqMessageBusService : IRabbitMqMessageBusService, IAsyncDisposable
+    public class RabbitMqProducerService : IRabbitMqProducerService, IAsyncDisposable
     {
         private readonly IConnection _connection;
         private readonly IChannel _channel;
         private readonly IConfiguration _configuration;
 
-        public RabbitMqMessageBusService(IConfiguration configuration)
+        public RabbitMqProducerService(IConfiguration configuration)
         {
+            _configuration = configuration;
+
             ConnectionFactory factory = new ConnectionFactory()
             {
-                UserName = configuration.GetValue<string>("RabbitMq:Username"),
-                Password = configuration.GetValue<string>("RabbitMq:Password"), 
-                HostName = configuration.GetValue<string>("RabbitMq:Host"),
-                Port = configuration.GetValue<int>("RabbitMq:Port"),
-                VirtualHost = configuration.GetValue<string>("RabbitMq:VirtualHost")
+                UserName = _configuration.GetValue<string>("RabbitMq:Username"),
+                Password = _configuration.GetValue<string>("RabbitMq:Password"), 
+                HostName = _configuration.GetValue<string>("RabbitMq:Host"),
+                Port = _configuration.GetValue<int>("RabbitMq:Port"),
+                VirtualHost = _configuration.GetValue<string>("RabbitMq:VirtualHost")
             };
 
             _connection = factory.CreateConnectionAsync().GetAwaiter().GetResult();
@@ -49,6 +51,9 @@ namespace Transactions.Application.Services.MessageServices
                 body: body
             );
         }
+
+
+
 
         public async ValueTask DisposeAsync()
         {

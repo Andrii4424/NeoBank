@@ -44,7 +44,7 @@ namespace Transactions.WebUI.Helpers
             services.AddScoped(typeof(ITransactionRepository), typeof(TransactionRepository));
 
             services.AddScoped<ITransactionService, TransactionService>();
-            services.AddSingleton<IRabbitMqMessageBusService, RabbitMqMessageBusService>();
+            services.AddSingleton<IRabbitMqProducerService, RabbitMqProducerService>();
 
 
             return services;

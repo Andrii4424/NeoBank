@@ -7,6 +7,7 @@ using Bank.API.Application.Services;
 using Bank.API.Application.Services.BankServices;
 using Bank.API.Application.Services.BankServices.BankProducts;
 using Bank.API.Application.Services.BankServices.Users;
+using Bank.API.Application.Services.MessageServices;
 using Bank.API.Domain.Entities.Identity;
 using Bank.API.Domain.RepositoryContracts;
 using Bank.API.Domain.RepositoryContracts.BankProducts;
@@ -109,6 +110,9 @@ namespace Bank.API.WebUI.StartupServicesInjection
             services.AddScoped(typeof(IUserCardsRepository), typeof(UserCardsRepository));
 
             //Services injection
+            //Background Services
+            services.AddHostedService<RabbitMqConsumerService>();
+
             //Identity
             services.AddScoped<IIdentityService, IdentityService>();
             //Bank and bank products
