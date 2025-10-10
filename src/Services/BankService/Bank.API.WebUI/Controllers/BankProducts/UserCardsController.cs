@@ -85,7 +85,7 @@ namespace Bank.API.WebUI.Controllers.BankProducts
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddFunds([FromBody] AddFundsDto operationParams)
+        public async Task<IActionResult> AddFunds([FromBody] CardOperationDto operationParams)
         {
             OperationResult result= await _userCardService.UpdateCardBalanceAsync(operationParams.cardId, operationParams.amount);
             if (!result.Success) {

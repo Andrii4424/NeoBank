@@ -23,5 +23,15 @@ namespace Transactions.WebUI.Controllers
             await _transactionService.ExchangeCurrency(transaction);
             return Ok();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> MakeP2PTransaction([FromBody] TransactionDto transaction)
+        {
+            OperationResult result = await _transactionService.MakeP2PTransaction(transaction);
+            if (!result.Success) { 
+                return BadRequest(result.ErrorMessage);
+            }
+            return Ok();
+        }
     }
 }

@@ -22,6 +22,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Reflection;
 using System.Security.Claims;
@@ -32,6 +33,10 @@ namespace Bank.API.WebUI.StartupServicesInjection
     {
         public static IServiceCollection AddServices(IServiceCollection services, IConfiguration configuration)
         {
+            var culture = CultureInfo.InvariantCulture;
+            CultureInfo.DefaultThreadCurrentCulture = culture;
+            CultureInfo.DefaultThreadCurrentUICulture = culture;
+
             services.AddControllers(options =>
             {
                 var policy = new Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder()

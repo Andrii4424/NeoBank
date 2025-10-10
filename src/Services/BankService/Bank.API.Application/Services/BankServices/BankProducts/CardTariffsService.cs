@@ -24,6 +24,7 @@ namespace Bank.API.Application.Services.BankServices.BankProducts
             _cardTariffsRepository = cardTariffsRepository;
             _mapper = mapper;
         }
+        //Read Operations
 
         public async Task<PageResult<CardTariffsDto>> GetCardsPageAsync(CardTariffsFilter? filters)
         {
@@ -43,7 +44,7 @@ namespace Bank.API.Application.Services.BankServices.BankProducts
         {
             return _mapper.Map<CardTariffsDto>(await _cardTariffsRepository.GetValueByIdAsync(cardId));
         }
-
+        
         //Create operations
         public async Task<OperationResult> AddAsync(CardTariffsDto cardDto)
         {

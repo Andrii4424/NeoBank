@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 using Transactions.Application.ServiceContracts;
 using Transactions.Application.Services;
 using Transactions.Application.Services.MessageServices;
@@ -12,6 +13,10 @@ namespace Transactions.WebUI.Helpers
     {
         public static IServiceCollection AddServices(IServiceCollection services, IConfiguration configuration)
         {
+            var culture = CultureInfo.InvariantCulture;
+            CultureInfo.DefaultThreadCurrentCulture = culture;
+            CultureInfo.DefaultThreadCurrentUICulture = culture;
+
             services.AddControllers();
 
             services.AddCors();

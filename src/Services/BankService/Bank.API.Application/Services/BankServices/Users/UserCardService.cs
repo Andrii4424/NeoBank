@@ -71,6 +71,25 @@ namespace Bank.API.Application.Services.BankServices.Users
             return userCard;
         }
 
+        public async Task<bool> IsEnoughMoney(CardOperationDto operationInfo)
+        {
+            UserCardsEntity? card = await _userCardsRepository.GetValueByIdAsync(operationInfo.cardId);
+            if (card == null) {
+                throw new ArgumentException("Card not found");
+            }
+            return operationInfo.amount <= card.Balance;
+        }
+
+        public async Task<double> GetP2PComissionByUserCardId(Guid cardId)
+        {
+            UserCardsEntity? card = await _userCardsRepository.GetValueByIdAsync(cardId);
+            if (card == null)
+            {
+                throw new ArgumentException("Card not found");
+            }
+            return (await _cardTariffsRepository.GetValueByIdAsync(card.CardTariffId)).P2PInternalCommission;
+        }
+
         //Create
         public async Task<OperationResult> CreateCardAsync(CreateUserCardDto cardParams)
         {

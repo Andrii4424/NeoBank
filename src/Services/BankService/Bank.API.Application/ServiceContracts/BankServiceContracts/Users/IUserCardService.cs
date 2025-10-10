@@ -25,5 +25,7 @@ namespace Bank.API.Application.ServiceContracts.BankServiceContracts.Users
         public Task<OperationResult> DeleteCardAsync(Guid cardId);
         public Task<OperationResult> ReissueCardAcync(Guid cardId);
         public Task<TransactionDetailsDto> GetTransactionDetails(TransactionDetailsDto details);
+        public Task<bool> IsEnoughMoney(CardOperationDto operationInfo);
+        public Task<double> GetP2PComissionByUserCardId(Guid cardId);
     }
 }
