@@ -25,7 +25,7 @@ namespace Transactions.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<OperationResult> MakeP2PTransaction(TransactionDto transaction)
+        public async Task<OperationResult> MakeTransaction(TransactionDto transaction)
         {
             transaction = await GetTransactionDtoWithIdentifiers(transaction);
             if (transaction.SenderCardId == null)
@@ -51,28 +51,37 @@ namespace Transactions.Application.Services
                 transaction.Commission = 0;
             }
 
-                OperationResult balanceCheckResult = await CheckBalance(transaction.SenderCardId.Value, amountWithComission);
+            OperationResult balanceCheckResult = await CheckBalance(transaction.SenderCardId.Value, amountWithComission);
             if (!balanceCheckResult.Success) { 
+                if(balanceCheckResult.ErrorMessage== "Influent balance")
+                {
+                    transaction.Status = TransactionStatus.Failed;
+                    await CreateTransaction(transaction);
+                }
+
                 return balanceCheckResult;
             }
 
+            double amountToReplenish;
+
+            if (transaction.GetterCurrency != transaction.SenderCurrency)
+            {
+                amountToReplenish = await GetAmountAfterExchange(new ExchangeCurrencyDto { From=transaction.SenderCurrency, To=transaction.GetterCurrency, 
+                Amount = (double)transaction.Amount});
+            }
+            else
+            {
+                amountToReplenish = (double)transaction.Amount;
+            }
             transaction.Status = TransactionStatus.Pending;
 
             Guid transactionId = await CreateTransaction(transaction);
 
             await _rabbitMqMessageBusService.PublishAsync(new UpdateBalanceDto { Id= transactionId, SenderCardId=transaction.SenderCardId,
-            GetterCardId =transaction.GetterCardId, AmountToReplenish = (double)transaction.Amount, AmountToWithdrawn = (double)amountWithComission,
+            GetterCardId =transaction.GetterCardId, AmountToReplenish = amountToReplenish, AmountToWithdrawn = ((double)amountWithComission)*(-1),
             Success=null}, _exchange, "balance.update");
 
             return OperationResult.Ok();
-        }
-
-        public async Task<TransactionDto> ExchangeCurrency(TransactionDto transaction)
-        {
-            transaction = await GetTransactionDtoWithIdentifiers(transaction);
-
-
-            return transaction;
         }
 
         public async Task UpdateTransactionStatus(UpdateBalanceDto? transactionDetails)
@@ -131,6 +140,21 @@ namespace Transactions.Application.Services
                 return await response.Content.ReadFromJsonAsync<double>();
             }
             return 0;
+        }
+
+        private async Task<double> GetAmountAfterExchange(ExchangeCurrencyDto exchangeParams)
+        {
+            if(exchangeParams.From == null || exchangeParams.To ==null)
+            {
+                throw new ArgumentNullException("Currency is not provided for exchange");
+            }
+
+            var response = await _client.GetAsync($"Currency/GetExchangedValue?from={exchangeParams.From}&to={exchangeParams.To}&amount={exchangeParams.Amount}");
+            if (!response.IsSuccessStatusCode) {
+                throw new Exception(await response.Content.ReadAsStringAsync());
+            }
+
+            return await response.Content.ReadFromJsonAsync<double>();
         }
 
         private async Task<Guid> CreateTransaction(TransactionDto transaction)
