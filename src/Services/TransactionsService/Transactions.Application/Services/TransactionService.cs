@@ -1,19 +1,10 @@
-﻿using Microsoft.Extensions.Http;
-using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
-using System.Net.Http;
+﻿using AutoMapper;
 using System.Net.Http.Json;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
-using System.Transactions;
 using Transactions.Application.DTOs;
 using Transactions.Application.ServiceContracts;
+using Transactions.Domain.Entities;
 using Transactions.Domain.Enums;
 using Transactions.Domain.RepositoryContracts;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Transactions.Application.Services
 {
@@ -22,14 +13,16 @@ namespace Transactions.Application.Services
         private readonly ITransactionRepository _transactionRepository;
         private readonly HttpClient _client;
         private readonly IRabbitMqProducerService _rabbitMqMessageBusService;
+        private readonly IMapper _mapper;
         private readonly string _exchange = "bank.transaction";
 
         public TransactionService(ITransactionRepository transactionRepository, IHttpClientFactory httpClientFactory, 
-            IRabbitMqProducerService rabbitMqMessageBusService)
+            IRabbitMqProducerService rabbitMqMessageBusService, IMapper mapper)
         {
             _transactionRepository = transactionRepository;
             _client = httpClientFactory.CreateClient("BankApi");
             _rabbitMqMessageBusService = rabbitMqMessageBusService;
+            _mapper = mapper;
         }
 
         public async Task<OperationResult> MakeP2PTransaction(TransactionDto transaction)
@@ -47,16 +40,27 @@ namespace Transactions.Application.Services
             {
                 return OperationResult.Error("Amount of transfer must be more than 0");
             }
-            double comission = await GetOperationComission(transaction.SenderCardId.Value, transaction.Type);
+            double comissionPercentage = await GetOperationComission(transaction.SenderCardId.Value, transaction.Type);
             decimal amountWithComission = transaction.Amount;
-            if (comission > 0) {
-                amountWithComission = amountWithComission * (((decimal)comission/100)+1);
+            if (comissionPercentage > 0) {
+                amountWithComission = amountWithComission * (((decimal)comissionPercentage / 100)+1);
+                transaction.Commission= amountWithComission - transaction.Amount;
+            }
+            else
+            {
+                transaction.Commission = 0;
             }
 
-            OperationResult balanceCheckResult = await CheckBalance(transaction.SenderCardId.Value, amountWithComission);
+                OperationResult balanceCheckResult = await CheckBalance(transaction.SenderCardId.Value, amountWithComission);
             if (!balanceCheckResult.Success) { 
                 return balanceCheckResult;
             }
+
+            transaction.Status = TransactionStatus.Pending;
+
+            OperationResult transacrtionResult = await CreateTransaction(transaction);
+            if (!transacrtionResult.Success) return transacrtionResult;
+
             await _rabbitMqMessageBusService.PublishAsync(new CardOperationDto { cardId = transaction.SenderId.Value, amount=amountWithComission},
                 _exchange, "balance.update");
 
@@ -109,6 +113,17 @@ namespace Transactions.Application.Services
                 return await response.Content.ReadFromJsonAsync<double>();
             }
             return 0;
+        }
+
+        private async Task<OperationResult> CreateTransaction(TransactionDto transaction)
+        {
+            TransactionEntity transactionEntity = _mapper.Map<TransactionEntity>(transaction);
+            
+            await _transactionRepository.AddAsync(transactionEntity);
+
+            await _transactionRepository.SaveAsync();
+
+            return OperationResult.Ok();
         }
     }
 }

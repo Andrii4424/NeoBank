@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Transactions.Domain.Enums
 {
-    public enum TransactionStatus
+    public enum Currency
     {
-        Completed=0,
-        Failed=1,
-        Pending=2
+        UAH = 0,
+        EUR = 1,
+        USD = 2
     }
 }

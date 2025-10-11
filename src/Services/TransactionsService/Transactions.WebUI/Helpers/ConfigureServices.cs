@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Globalization;
+using Transactions.Application.Helpers;
 using Transactions.Application.ServiceContracts;
 using Transactions.Application.Services;
 using Transactions.Application.Services.MessageServices;
@@ -46,6 +47,9 @@ namespace Transactions.WebUI.Helpers
             services.AddScoped<ITransactionService, TransactionService>();
             services.AddSingleton<IRabbitMqProducerService, RabbitMqProducerService>();
 
+
+            //AutoMapper
+            services.AddAutoMapper(typeof(MappingProfile));
 
             return services;
         }

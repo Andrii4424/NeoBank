@@ -110,16 +110,18 @@ namespace Bank.API.WebUI.StartupServicesInjection
             services.AddScoped(typeof(IUserCardsRepository), typeof(UserCardsRepository));
 
             //Services injection
-            //Background Services
-            services.AddHostedService<RabbitMqConsumerService>();
-
             //Identity
             services.AddScoped<IIdentityService, IdentityService>();
+
             //Bank and bank products
             services.AddScoped<IBankService, BankService>();
             services.AddScoped<ICardTariffsService, CardTariffsService>();
             services.AddScoped<ICurrencyService, CurrencyService>();
             services.AddScoped<IUserCardService, UserCardService>();
+
+
+            //Background Services
+            services.AddHostedService<RabbitMqConsumerService>();
 
             //AutoMapper
             services.AddAutoMapper(typeof(MappingProfile));

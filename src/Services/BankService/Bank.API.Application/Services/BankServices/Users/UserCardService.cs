@@ -190,6 +190,44 @@ namespace Bank.API.Application.Services.BankServices.Users
             return OperationResult.Ok();
         }
 
+        public async Task<TransactionDto> UpdateBalanceAfterTransactionAsync(TransactionDto? transaction)
+        {
+            if (transaction ==null)
+            {
+                throw new ArgumentNullException("Error with sending or getting transaction info: transaction is null");
+            }
+            if (transaction.SenderCardId !=null)
+            {
+                if (transaction.AmountToWithdrawn == null)
+                {
+                    //Log Error with handling transaction, sender card specified, amount to withdrawn unspecified
+                    transaction.Success = false;
+                    return transaction;
+                }
+                if (!(await UpdateCardBalanceAsync(transaction.SenderCardId.Value, (decimal)transaction.AmountToWithdrawn)).Success)
+                {
+                    transaction.Success = false;
+                    return transaction;
+                }
+            }
+            if (transaction.GetterCardId != null)
+            {
+                if (transaction.AmountToReplenish == null)
+                {
+                    //Log Error with handling transaction, getter card specified, amount to repleish unspecified
+                    transaction.Success = false;
+                    return transaction;
+                }
+                if (!(await UpdateCardBalanceAsync(transaction.GetterCardId.Value, (decimal)transaction.AmountToReplenish)).Success)
+                {
+                    transaction.Success = false;
+                    return transaction;
+                }
+            }
+            transaction.Success = true;
+            return transaction;
+        }
+
         public async Task<OperationResult> UpdateCardCreditLimitAsync(Guid cardId, decimal newCreditLimit)
         {
             UserCardsEntity? card = await _userCardsRepository.GetValueByIdAsync(cardId);

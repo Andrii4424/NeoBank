@@ -10,7 +10,7 @@ namespace Transactions.Domain.Entities
 {
     public class TransactionEntity :IHasId
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
 
         public Guid? SenderCardId { get; set; }
 
@@ -20,9 +20,15 @@ namespace Transactions.Domain.Entities
 
         public Guid? GetterId { get; set; }
 
+        public Currency? SenderCurrency { get; set; }
+
+        public Currency? GetterCurrency { get; set; }
+
         public decimal Amount { get; set; } 
 
         public decimal Commission {  get; set; }
+
+        public decimal CurrencyExchangeCommission { get; set; }
 
         public TransactionStatus Status { get; set; }
 

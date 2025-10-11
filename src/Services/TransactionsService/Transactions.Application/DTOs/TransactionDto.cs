@@ -20,6 +20,12 @@ namespace Transactions.Application.DTOs
 
         public Guid? GetterId { get; set; }
 
+        public Currency? SenderCurrency { get; set; }
+
+        public Currency? GetterCurrency { get; set; }
+
+        public decimal CurrencyExchangeCommission { get; set; }
+
         [Required(ErrorMessage ="{0} has to be provided")]
         [Display(Name = "Amount")]
         public decimal Amount { get; set; }

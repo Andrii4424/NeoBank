@@ -1,11 +1,16 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Bank.API.Application.DTOs.Users.CardOperations;
+using Bank.API.Application.ServiceContracts.BankServiceContracts.Users;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Bank.API.Application.Services.MessageServices
@@ -15,18 +20,17 @@ namespace Bank.API.Application.Services.MessageServices
         private IConnection _connection;
         private IChannel _channel;
         private readonly IConfiguration _configuration;
-
+        private readonly IServiceScopeFactory _scopeFactory;
 
         private readonly string _exchangeName = "bank.transaction";
         private readonly string _routingKey = "balance.update";
         private readonly string _queueName = "transaction";
 
-        public RabbitMqConsumerService(IConfiguration configuration)
+        public RabbitMqConsumerService(IConfiguration configuration, IServiceScopeFactory scopeFactory)
         {
             _configuration = configuration;
+            _scopeFactory = scopeFactory;
         }
-
-
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
@@ -52,16 +56,19 @@ namespace Bank.API.Application.Services.MessageServices
             {
                 try
                 {
-                    var body = args.Body.ToArray();
-                    var json = Encoding.UTF8.GetString(body);
-                    Console.WriteLine($"[✔] Received message: {json}");
+                    TransactionDto? operationInfo = JsonSerializer.Deserialize<TransactionDto>(args.Body.Span);
 
-                    //TO DO: Transaction handler
+                    await using (var scope = _scopeFactory.CreateAsyncScope()) { 
+                        var _userCardService = scope.ServiceProvider.GetService<IUserCardService>();
+
+                        operationInfo = await _userCardService.UpdateBalanceAfterTransactionAsync(operationInfo);
+
+                    }
 
                     await _channel.BasicAckAsync(args.DeliveryTag, false);
-
                 }
                 catch (Exception ex) {
+                    //TO DO: Error Log
                     Console.WriteLine(ex.Message);
                     await _channel.BasicNackAsync(args.DeliveryTag, false, requeue: false);
                 }
