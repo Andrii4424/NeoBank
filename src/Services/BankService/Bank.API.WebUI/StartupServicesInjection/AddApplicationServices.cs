@@ -3,6 +3,7 @@ using Bank.API.Application.ServiceContracts;
 using Bank.API.Application.ServiceContracts.BankServiceContracts;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.BankProducts;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.Users;
+using Bank.API.Application.ServiceContracts.MessageServices;
 using Bank.API.Application.Services;
 using Bank.API.Application.Services.BankServices;
 using Bank.API.Application.Services.BankServices.BankProducts;
@@ -118,7 +119,7 @@ namespace Bank.API.WebUI.StartupServicesInjection
             services.AddScoped<ICardTariffsService, CardTariffsService>();
             services.AddScoped<ICurrencyService, CurrencyService>();
             services.AddScoped<IUserCardService, UserCardService>();
-
+            services.AddScoped<IRabbitMqProducerService, RabbitMqProducerService>();
 
             //Background Services
             services.AddHostedService<RabbitMqConsumerService>();

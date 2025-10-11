@@ -1,5 +1,6 @@
 ﻿using Bank.API.Application.DTOs.Users.CardOperations;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.Users;
+using Bank.API.Application.ServiceContracts.MessageServices;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,7 +25,7 @@ namespace Bank.API.Application.Services.MessageServices
 
         private readonly string _exchangeName = "bank.transaction";
         private readonly string _routingKey = "balance.update";
-        private readonly string _queueName = "transaction";
+        private readonly string _queueName = "transaction.balance";
 
         public RabbitMqConsumerService(IConfiguration configuration, IServiceScopeFactory scopeFactory)
         {
@@ -54,20 +55,38 @@ namespace Bank.API.Application.Services.MessageServices
             var consumer = new AsyncEventingBasicConsumer(_channel);
             consumer.ReceivedAsync += async (sender, args) =>
             {
+                TransactionDto? operationInfo = null;
                 try
                 {
-                    TransactionDto? operationInfo = JsonSerializer.Deserialize<TransactionDto>(args.Body.Span);
+                    operationInfo = JsonSerializer.Deserialize<TransactionDto>(args.Body.Span);
 
                     await using (var scope = _scopeFactory.CreateAsyncScope()) { 
-                        var _userCardService = scope.ServiceProvider.GetService<IUserCardService>();
+                        var _userCardService = scope.ServiceProvider.GetRequiredService<IUserCardService>();
 
                         operationInfo = await _userCardService.UpdateBalanceAfterTransactionAsync(operationInfo);
 
+                        var _producerService = scope.ServiceProvider.GetRequiredService<IRabbitMqProducerService>();
+                        await _producerService.PublishAsync(operationInfo, _exchangeName, "status.update");
                     }
 
                     await _channel.BasicAckAsync(args.DeliveryTag, false);
                 }
+                catch(JsonException jsonEx)
+                {
+                    Console.WriteLine($"Invalid JSON format: {jsonEx.Message}");
+                    await _channel.BasicNackAsync(args.DeliveryTag, false, requeue: false);
+                }
                 catch (Exception ex) {
+                    if(operationInfo != null)
+                    {
+                        await using (var scope = _scopeFactory.CreateAsyncScope())
+                        {
+                            operationInfo.Success = false;
+                            var _producerService = scope.ServiceProvider.GetRequiredService<IRabbitMqProducerService>();
+                            await _producerService.PublishAsync(operationInfo, _exchangeName, "status.update");
+                        }
+                    }
+
                     //TO DO: Error Log
                     Console.WriteLine(ex.Message);
                     await _channel.BasicNackAsync(args.DeliveryTag, false, requeue: false);

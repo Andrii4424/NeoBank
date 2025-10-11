@@ -48,6 +48,9 @@ namespace Transactions.WebUI.Helpers
             services.AddSingleton<IRabbitMqProducerService, RabbitMqProducerService>();
 
 
+            //Background Services
+            services.AddHostedService<RabbitMqConsumerService>();
+
             //AutoMapper
             services.AddAutoMapper(typeof(MappingProfile));
 

@@ -58,11 +58,11 @@ namespace Transactions.Application.Services
 
             transaction.Status = TransactionStatus.Pending;
 
-            OperationResult transacrtionResult = await CreateTransaction(transaction);
-            if (!transacrtionResult.Success) return transacrtionResult;
+            Guid transactionId = await CreateTransaction(transaction);
 
-            await _rabbitMqMessageBusService.PublishAsync(new CardOperationDto { cardId = transaction.SenderId.Value, amount=amountWithComission},
-                _exchange, "balance.update");
+            await _rabbitMqMessageBusService.PublishAsync(new UpdateBalanceDto { Id= transactionId, SenderCardId=transaction.SenderCardId,
+            GetterCardId =transaction.GetterCardId, AmountToReplenish = (double)transaction.Amount, AmountToWithdrawn = (double)amountWithComission,
+            Success=null}, _exchange, "balance.update");
 
             return OperationResult.Ok();
         }
@@ -73,6 +73,24 @@ namespace Transactions.Application.Services
 
 
             return transaction;
+        }
+
+        public async Task UpdateTransactionStatus(UpdateBalanceDto? transactionDetails)
+        {
+            if (transactionDetails == null) throw new ArgumentNullException("Resoponse from update balance service is invalid. Transaction Id didnt provided");
+            TransactionEntity? transaction = await _transactionRepository.GetValueByIdAsync(transactionDetails.Id);
+            if (transaction == null) throw new ArgumentException("Resoponse from update balance service is invalid. Wrong transaction id, transaction with id doesnt exist");
+
+            if (transactionDetails.Success == true) { 
+                transaction.Status = TransactionStatus.Completed;
+            }
+            else
+            {
+                transaction.Status = TransactionStatus.Failed;
+            }
+
+            _transactionRepository.UpdateObject(transaction);
+            await _transactionRepository.SaveAsync();
         }
 
         private async Task<TransactionDto> GetTransactionDtoWithIdentifiers(TransactionDto transaction)
@@ -115,7 +133,7 @@ namespace Transactions.Application.Services
             return 0;
         }
 
-        private async Task<OperationResult> CreateTransaction(TransactionDto transaction)
+        private async Task<Guid> CreateTransaction(TransactionDto transaction)
         {
             TransactionEntity transactionEntity = _mapper.Map<TransactionEntity>(transaction);
             
@@ -123,7 +141,7 @@ namespace Transactions.Application.Services
 
             await _transactionRepository.SaveAsync();
 
-            return OperationResult.Ok();
+            return transactionEntity.Id;
         }
     }
 }

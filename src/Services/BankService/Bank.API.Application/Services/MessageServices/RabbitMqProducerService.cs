@@ -1,11 +1,14 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Bank.API.Application.ServiceContracts.MessageServices;
+using Microsoft.Extensions.Configuration;
 using RabbitMQ.Client;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Channels;
-using Transactions.Application.ServiceContracts;
+using System.Threading.Tasks;
 
-namespace Transactions.Application.Services.MessageServices
+namespace Bank.API.Application.Services.MessageServices
 {
     public class RabbitMqProducerService : IRabbitMqProducerService, IAsyncDisposable
     {
@@ -19,11 +22,11 @@ namespace Transactions.Application.Services.MessageServices
 
             ConnectionFactory factory = new ConnectionFactory()
             {
-                UserName = _configuration.GetValue<string>("RabbitMq:Username"),
-                Password = _configuration.GetValue<string>("RabbitMq:Password"), 
-                HostName = _configuration.GetValue<string>("RabbitMq:Host"),
-                Port = _configuration.GetValue<int>("RabbitMq:Port"),
-                VirtualHost = _configuration.GetValue<string>("RabbitMq:VirtualHost")
+                UserName = _configuration.GetValue<string>("TransactionRabbitMq:Username"),
+                Password = _configuration.GetValue<string>("TransactionRabbitMq:Password"),
+                HostName = _configuration.GetValue<string>("TransactionRabbitMq:Host"),
+                Port = _configuration.GetValue<int>("TransactionRabbitMq:Port"),
+                VirtualHost = _configuration.GetValue<string>("TransactionRabbitMq:VirtualHost")
             };
 
             _connection = factory.CreateConnectionAsync().GetAwaiter().GetResult();
@@ -40,7 +43,7 @@ namespace Transactions.Application.Services.MessageServices
             var props = new BasicProperties
             {
                 ContentType = "application/json",
-                DeliveryMode = DeliveryModes.Persistent 
+                DeliveryMode = DeliveryModes.Persistent
             };
 
             await _channel.BasicPublishAsync(
