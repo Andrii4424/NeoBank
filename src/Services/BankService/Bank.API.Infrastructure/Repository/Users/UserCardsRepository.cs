@@ -32,7 +32,7 @@ namespace Bank.API.Infrastructure.Repository.Users
                     query = query.Where(filter);
                 }
             }
-            query.Where(uc => uc.UserId == userId);
+            query = query.Where(uc => uc.UserId == userId);
             if (sortValue != null)
             {
                 query = ascending ? query.OrderBy(sortValue).ThenBy(obj => obj.Id) : query.OrderByDescending(sortValue).ThenBy(obj => obj.Id);

@@ -25,7 +25,7 @@ namespace Transactions.Infrastructure.Repository
         {
             var query = _dbSet.AsQueryable();
 
-            query.Where(t => t.SenderCardId == id || t.GetterCardId == id);
+            query = query.Where(t => t.SenderCardId == id || t.GetterCardId == id);
 
             if(sortValue != null)
             {
@@ -42,7 +42,7 @@ namespace Transactions.Infrastructure.Repository
                 filters = filters.Where(val => val != null).ToList();
                 foreach (var filter in filters)
                 {
-                    query.Where(filter);
+                    query = query.Where(filter);
                 }
             }
 
@@ -57,14 +57,14 @@ namespace Transactions.Infrastructure.Repository
         {
             var query = _dbSet.AsQueryable();
 
-            query.Where(t => t.SenderCardId == id || t.GetterCardId == id);
+            query = query.Where(t => t.SenderCardId == id || t.GetterCardId == id);
 
             if (filters != null)
             {
                 filters = filters.Where(val => val != null).ToList();
                 foreach (var filter in filters)
                 {
-                    query.Where(filter);
+                    query = query.Where(filter);
                 }
             }
 
