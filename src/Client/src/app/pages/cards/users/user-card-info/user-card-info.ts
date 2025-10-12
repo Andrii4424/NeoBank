@@ -15,10 +15,11 @@ import { SuccessMessage } from "../../../../common-ui/success-message/success-me
 import { ErrorMessage } from "../../../../common-ui/error-message/error-message";
 import { IExchangeCurrency } from '../../../../data/interfaces/bank/bank-products/cards/exchange-currency-interface';
 import { ConfirmWindow } from "../../../../common-ui/confirm-window/confirm-window";
+import { Transactions } from "../transactions/transactions";
 
 @Component({
   selector: 'app-user-card-info',
-  imports: [AsyncPipe, RouterLink, ModalInputWindow, SuccessMessage, ErrorMessage, ConfirmWindow],
+  imports: [AsyncPipe, RouterLink, ModalInputWindow, SuccessMessage, ErrorMessage, ConfirmWindow, Transactions],
   templateUrl: './user-card-info.html',
   styleUrl: './user-card-info.scss'
 })

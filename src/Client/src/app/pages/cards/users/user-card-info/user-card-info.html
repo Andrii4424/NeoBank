@@ -1,4 +1,9 @@
+<header>
+    <h1 class="heading">Card Information</h1>
+</header>
+
 <section class="object-info-card">
+
     @if(userCard$ | async; as card){
         <table class="info-table">
             <tr class="colored">
@@ -104,6 +109,13 @@
         </div>
     }
 </section>
+
+<header>
+    <h1 class="heading mt-8">Transactions</h1>
+</header>
+
+<app-transactions></app-transactions>
+
 
 @if(openAddFoundsWindow()){
     <app-modal-input-window

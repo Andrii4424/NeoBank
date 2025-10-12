@@ -1,0 +1,63 @@
+.transaction-filters{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    padding-right: 8px;
+    justify-content: flex-end;
+}
+
+.filters{
+    position: relative;
+}
+
+.filters img{
+    width: 38px;
+    height: auto;
+    cursor: pointer;
+}
+
+.sort{
+    border-radius: 8px;
+    height: 34px;
+}
+
+.filters-block{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    position: absolute;
+    top: 10;
+    left: 0;
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid var(--medium-light-gray-primary-color);
+    padding: 10px 6px;
+}
+
+.filter-inputs{
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.filter-inputs label{
+    color: var(--gray-primary-color);
+    width: 84px;
+    text-align: center;
+}
+
+.filter-inputs input{
+    margin-top: -2px;
+    width: 124px;
+}
+
+.filters-block button{
+    background-color: var(--dark-primary-color);
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    padding: 4px 0;
+    border: none;
+    cursor: pointer;
+}
