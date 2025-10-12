@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Transactions.Application.DTOs;
+using Transactions.Application.Filters;
 using Transactions.Application.ServiceContracts;
 
 namespace Transactions.WebUI.Controllers
@@ -15,6 +14,11 @@ namespace Transactions.WebUI.Controllers
         public TransactionController(ITransactionService transactionService)
         {
             _transactionService = transactionService;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetTransactions([FromQuery] Guid cardId, [FromQuery] TransactionFilter? filters) {
+            return Ok(await _transactionService.GetTransactions(cardId, filters));
         }
 
         [HttpPost]

@@ -22,17 +22,11 @@ namespace Transactions.Application.Filters
         public DateOnly? ChosenDate { get; set; }
         public double? MinimalTransactionSum { get; set; }
 
-        //Expressions
-        public Expression<Func<TransactionEntity, object>>? SortExpression { get; set; }
-        public List<Expression<Func<TransactionEntity, bool>>>? Filters { get; set; }
-
-        public TransactionFilter()
+        public Filters<TransactionEntity> ToGeneralFilters()
         {
+            Expression<Func<TransactionEntity, object>>? SortExpression;
+            List<Expression<Func<TransactionEntity, bool>>>? Filters;
 
-        }
-
-        public void ConvertToExpressions()
-        {
             switch (SortValue)
             {
                 case "date-descending":
@@ -68,6 +62,7 @@ namespace Transactions.Application.Filters
                 Filters.Add(t => t.Amount >= (decimal)MinimalTransactionSum);
             }
 
+            return new Filters<TransactionEntity>(PageNumber, PageSize, Ascending, SortExpression, Filters);
         }
     }
 }

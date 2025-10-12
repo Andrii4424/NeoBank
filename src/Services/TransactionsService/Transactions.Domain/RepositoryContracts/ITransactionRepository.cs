@@ -12,6 +12,6 @@ namespace Transactions.Domain.RepositoryContracts
     {
         public Task<List<TransactionEntity>> GetTransactions(Guid id, int pageNumber, int pageSize, Expression<Func<TransactionEntity, object>>? sortValue, bool ascending,
             List<Expression<Func<TransactionEntity, bool>>>? filters);
-        public Task<int> GetTransactionsCount(Guid id, List<Expression<Func<TransactionEntity, bool>>> filters);
+        public Task<int> GetTransactionsCount(Guid id, List<Expression<Func<TransactionEntity, bool>>>? filters);
     }
 }

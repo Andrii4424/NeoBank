@@ -26,19 +26,25 @@ namespace Transactions.Application.Services
             _rabbitMqMessageBusService = rabbitMqMessageBusService;
             _mapper = mapper;
         }
+
         //Read Methods
-        public async Task<PageResult<TransactionDto>> GetTransactions(Guid cardId, TransactionFilter filters)
+        public async Task<PageResult<TransactionDto>> GetTransactions(Guid cardId, TransactionFilter? filters)
         {
+            if (filters == null)
+            {
+                filters = new TransactionFilter();
+            }
             if(filters.PageNumber ==null) filters.PageNumber = 1;
-            filters.ConvertToExpressions();
-            List<TransactionEntity> transactions= await _transactionRepository.GetTransactions(cardId, filters.PageNumber.Value, filters.PageSize, filters.SortExpression, 
-                filters.Ascending.Value, filters.Filters);
+
+            Filters<TransactionEntity> generalFilters = filters.ToGeneralFilters();
+
+            List<TransactionEntity> transactions= await _transactionRepository.GetTransactions(cardId, generalFilters.PageNumber.Value, generalFilters.PageSize, 
+                generalFilters.SortExpression, generalFilters.Ascending.Value, generalFilters.FiltersExpression);
 
 
-            return new PageResult<TransactionDto>(_mapper.Map<List<TransactionDto>>(transactions), await _transactionRepository.GetTransactionsCount(cardId, filters.Filters), 
-                filters.PageNumber.Value, filters.PageSize);
+            return new PageResult<TransactionDto>(_mapper.Map<List<TransactionDto>>(transactions), await _transactionRepository.GetTransactionsCount(cardId, 
+                generalFilters.FiltersExpression), filters.PageNumber.Value, filters.PageSize);
         } 
-
 
         //Create Methods
         public async Task<OperationResult> MakeTransaction(TransactionDto transaction)

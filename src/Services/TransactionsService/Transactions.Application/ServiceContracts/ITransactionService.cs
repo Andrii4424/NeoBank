@@ -13,6 +13,6 @@ namespace Transactions.Application.ServiceContracts
     {
         public Task<OperationResult> MakeTransaction(TransactionDto transaction);
         public Task UpdateTransactionStatus(UpdateBalanceDto? transactionDetails);
-        public Task<PageResult<TransactionDto>> GetTransactions(Guid cardId, TransactionFilter filters);
+        public Task<PageResult<TransactionDto>> GetTransactions(Guid cardId, TransactionFilter? filters);
     }
 }

@@ -53,7 +53,7 @@ namespace Transactions.Infrastructure.Repository
         }
 
 
-        public async Task<int> GetTransactionsCount(Guid id, List<Expression<Func<TransactionEntity, bool>>> filters)
+        public async Task<int> GetTransactionsCount(Guid id, List<Expression<Func<TransactionEntity, bool>>>? filters)
         {
             var query = _dbSet.AsQueryable();
 
