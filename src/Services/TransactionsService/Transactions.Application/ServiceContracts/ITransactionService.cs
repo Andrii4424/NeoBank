@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Transactions.Application.DTOs;
+using Transactions.Application.Filters;
+using Transactions.Application.Helpers;
 
 namespace Transactions.Application.ServiceContracts
 {
@@ -11,5 +13,6 @@ namespace Transactions.Application.ServiceContracts
     {
         public Task<OperationResult> MakeTransaction(TransactionDto transaction);
         public Task UpdateTransactionStatus(UpdateBalanceDto? transactionDetails);
+        public Task<PageResult<TransactionDto>> GetTransactions(Guid cardId, TransactionFilter filters);
     }
 }

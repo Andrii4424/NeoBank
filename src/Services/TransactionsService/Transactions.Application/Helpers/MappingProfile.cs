@@ -12,10 +12,8 @@ namespace Transactions.Application.Helpers
     public class MappingProfile :Profile
     {
         public MappingProfile() {
-
             CreateMap<TransactionDto, TransactionEntity>();
             CreateMap<TransactionEntity, TransactionDto>();
-
         }
     }
 }

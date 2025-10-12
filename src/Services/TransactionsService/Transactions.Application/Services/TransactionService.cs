@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using System.Net.Http.Json;
 using Transactions.Application.DTOs;
+using Transactions.Application.Filters;
+using Transactions.Application.Helpers;
 using Transactions.Application.ServiceContracts;
 using Transactions.Domain.Entities;
 using Transactions.Domain.Enums;
@@ -24,7 +26,21 @@ namespace Transactions.Application.Services
             _rabbitMqMessageBusService = rabbitMqMessageBusService;
             _mapper = mapper;
         }
+        //Read Methods
+        public async Task<PageResult<TransactionDto>> GetTransactions(Guid cardId, TransactionFilter filters)
+        {
+            if(filters.PageNumber ==null) filters.PageNumber = 1;
+            filters.ConvertToExpressions();
+            List<TransactionEntity> transactions= await _transactionRepository.GetTransactions(cardId, filters.PageNumber.Value, filters.PageSize, filters.SortExpression, 
+                filters.Ascending.Value, filters.Filters);
 
+
+            return new PageResult<TransactionDto>(_mapper.Map<List<TransactionDto>>(transactions), await _transactionRepository.GetTransactionsCount(cardId, filters.Filters), 
+                filters.PageNumber.Value, filters.PageSize);
+        } 
+
+
+        //Create Methods
         public async Task<OperationResult> MakeTransaction(TransactionDto transaction)
         {
             transaction = await GetTransactionDtoWithIdentifiers(transaction);
@@ -50,6 +66,7 @@ namespace Transactions.Application.Services
             {
                 transaction.Commission = 0;
             }
+            transaction.TransactionTime = DateTime.UtcNow;
 
             OperationResult balanceCheckResult = await CheckBalance(transaction.SenderCardId.Value, amountWithComission);
             if (!balanceCheckResult.Success) { 
