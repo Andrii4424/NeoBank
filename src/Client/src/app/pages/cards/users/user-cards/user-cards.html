@@ -71,8 +71,13 @@
 </div>
 
 <div class="add-block">
+    <button class="make-transfer" (click)="openTransactionWindow.set(true)">Make a transfer</button>
     <a [routerLink]="['/cards/my-cards/add/options']" class="add-item">Open Card</a>
 </div>
+
+@if(openTransactionWindow()){
+    <app-transaction-window></app-transaction-window>
+}
 
 @if(success()){
     <app-success-message

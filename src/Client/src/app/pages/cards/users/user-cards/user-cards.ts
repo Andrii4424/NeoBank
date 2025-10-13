@@ -19,11 +19,12 @@ import { ISort } from '../../../../data/interfaces/filters/sort-interface';
 import { IFilter } from '../../../../data/interfaces/filters/filter-interface';
 import { IPageResult } from '../../../../data/interfaces/page-inteface';
 import { PageSwitcher } from "../../../../common-ui/page-switcher/page-switcher";
+import { TransactionWindow } from "../../../../common-ui/transaction-window/transaction-window";
 
 
 @Component({
   selector: 'app-user-cards',
-  imports: [CardsLayout, Search, RouterLink, SuccessMessage, CardFormatPipe, PageSwitcher],
+  imports: [CardsLayout, Search, RouterLink, SuccessMessage, CardFormatPipe, PageSwitcher, TransactionWindow],
   templateUrl: './user-cards.html',
   styleUrl: './user-cards.scss'
 })
@@ -40,6 +41,7 @@ export class UserCards {
   CardType = CardType;
   CardStatus = CardStatus;
   CardLevel = CardLevel;
+  openTransactionWindow = signal<boolean>(false);
   @ViewChildren('card') cardElements? : QueryList<ElementRef<HTMLDivElement>>
 
   constructor(private cdr: ChangeDetectorRef){}

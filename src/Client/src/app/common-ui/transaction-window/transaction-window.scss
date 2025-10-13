@@ -1,0 +1,121 @@
+// Переменные для цветов
+$primary-blue: #3f51b5;
+$text-dark: #2c3e50;
+$border-color: #dee2e6;
+$background-light: #f8f9fa;
+
+// Фон
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+// Контейнер окна
+.modal-content {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+}
+
+// Заголовок
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $border-color;
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+
+  h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: $text-dark;
+  }
+
+  .close-button {
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #95a5a6;
+    &:hover {
+      color: $text-dark;
+    }
+  }
+}
+
+// Форма
+.modal-body .form-group {
+  margin-bottom: 20px;
+
+  label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: $text-dark;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid $border-color;
+    border-radius: 6px;
+    font-size: 16px;
+    box-sizing: border-box; // Важно для правильной ширины
+    &:focus {
+      outline: none;
+      border-color: $primary-blue;
+      box-shadow: 0 0 0 2px rgba($primary-blue, 0.2);
+    }
+  }
+}
+
+// Кнопки
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+
+  .btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .btn-primary {
+    background-color: $primary-blue;
+    color: white;
+    &:hover {
+      background-color: darken($primary-blue, 10%);
+    }
+  }
+
+  .btn-secondary {
+    background-color: $background-light;
+    color: $text-dark;
+    border: 1px solid $border-color;
+    &:hover {
+      background-color: #e2e6ea;
+    }
+  }
+}

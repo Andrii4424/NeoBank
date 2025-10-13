@@ -24,3 +24,18 @@
     content: "EXPIRED";
     background: rgba(128, 128, 128, 0.7);
 }
+.add-block{
+    gap:14px;
+}
+
+.make-transfer{
+    background-color: var(--dark-primary-color);
+    color: white;
+	border: none;
+	font-size: 16px;
+	font-weight: 500;
+	padding: 14px 31.5px;
+	cursor: pointer;
+	border-radius: 14px;
+	text-decoration: none;
+}
