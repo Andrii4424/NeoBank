@@ -1,5 +1,5 @@
 export interface ITransactionFilter{
     minimalSum: number | null;
-    transactionsDate: Date | null;
+    transactionsDate?: string | null;
     sortValue: string | null;
 }

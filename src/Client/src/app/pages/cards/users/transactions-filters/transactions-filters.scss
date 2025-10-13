@@ -5,14 +5,13 @@
     gap: 4px;
     padding-right: 8px;
     justify-content: flex-end;
-
 }
 
 .filters{
     position: relative;
 }
 
-.filters img{
+.open-filters{
     width: 38px;
     height: auto;
     cursor: pointer;
@@ -39,7 +38,7 @@
 .filter-inputs{
     display: flex;
     flex-direction: row;
-    gap: 8px;
+    align-items: center;
 }
 
 .filter-inputs label{
@@ -49,8 +48,8 @@
 }
 
 .filter-inputs input{
-    margin-top: -2px;
     width: 124px;
+    margin-left: 4px;
 }
 
 .filters-block button{
@@ -60,5 +59,25 @@
     border-radius: 8px;
     padding: 4px 0;
     border: none;
+    cursor: pointer;
+}
+
+.close-filters{
+    height: 20px;
+    width: auto;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.filter-cross{
+    width: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-filter{
+    height: 8px;
+    width: auto;
     cursor: pointer;
 }

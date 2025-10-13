@@ -1,15 +1,27 @@
 <section class="transaction-filters">
     <div class="filters">
-        <img #filtersImage src="assets/images/filters/filter-icon.svg" alt="open-filters">
+        <img #filtersImage src="assets/images/filters/filter-icon.svg" (click)="openFilters.set(!openFilters())" alt="open-filters" class="open-filters">
 
         @if(openFilters()) {
             <div #filtersBlock class="filters-block">
+                <img src="assets/images/menu/cross.svg" alt="close-filters" class="close-filters">
+
                 <div class="filter-inputs">
+                    <div class="filter-cross">
+                        @if(dateValue != null){
+                            <img src="assets/images/menu/cross.svg" alt="close-filters" class="delete-filter">
+                        }
+                    </div>
                     <label for="date">Chose Date:</label>
-                    <input type="date" [(ngModel)]="dateValue" id="date" >
+                    <input type="date" [(ngModel)]="dateValue" id="date" (change)="submitFilters()">
                 </div>
 
                 <div class="filter-inputs">
+                    <div class="filter-cross">
+                        @if(minSumValue != null){
+                            <img src="assets/images/menu/cross.svg" alt="close-filters" class="delete-filter">
+                        }
+                    </div>
                     <label for="min-sum">Chose Sum:</label>
                     <input type="number" step="0.1" [(ngModel)]="minSumValue" id="min-sum">
                 </div>

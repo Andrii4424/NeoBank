@@ -14,44 +14,36 @@ export class TransactionsFilters {
   @ViewChild('filtersImage') filtersImage?: ElementRef<HTMLImageElement>;
   @ViewChild('filtersButton') filtersButton?: ElementRef<HTMLImageElement>;
   @Input() selectedSortValue: string | null = null;
-  @Input() minSumValue: string | null= null;
-  @Input() dateValue: string | null= null;
+  @Input() minSumValue: number | null= null;
+  @Input() dateValue?: string | null= null;
+  selectedSortStartValue: string | null = null;
+  minSumStartValue: number | null = null;
+  dateStartValue: Date | null = null;
 
-  ngAfterViewInit(){
+
+  ngAfterViewInit(){  
+
+    console.log(this.minSumValue);
     console.log(this.selectedSortValue);
-    if(this.selectedSortValue ===null){
+    console.log(this.dateValue);
+    if(this.selectedSortValue ==null){
       this.selectedSortValue ="date-descending";
     }
+    this.selectedSortStartValue = this.selectedSortValue;
+    this.minSumStartValue = this.minSumValue;
   }
 
   @Output() submitFiltersValues = new EventEmitter<ITransactionFilter>;
 
-  @HostListener('window:click', ['$event'])
-  onWindowClick(event: Event){
-    if(!(event.target instanceof Node)) return;
-    else if (this.filtersBlock !==undefined && this.filtersBlock.nativeElement.contains(event.target as Node)) {
-      if(this.filtersButton!.nativeElement.contains(event.target as Node)){
-        this.openFilters.set(false);
-      }
-      else{
-        this.openFilters.set(true);
-      }
+  submitFilters(){
+    if(this.selectedSortStartValue !== this.selectedSortValue || this.dateStartValue !== this.dateValue || this.minSumStartValue !== this.minSumValue){
+      console.log("Emit");
+      this.submitFiltersValues.emit({sortValue: this.selectedSortValue, minimalSum: this.minSumValue, transactionsDate: this.dateValue });
     }
-    else if(this.filtersImage!.nativeElement.contains(event.target as Node)){
-      if(this.openFilters()){
-        this.submitFilters()
-      }  
-      else {
-        this.openFilters.set(true);
-      }
-    }
-    else{
-      this.submitFilters();
-    }
+    this.openFilters.set(false);
   }
 
-  submitFilters(){
-    this.submitFiltersValues.emit();
-    this.openFilters.set(false);
+  filterHasValue() {
+    return this.dateValue == null && this.minSumValue == null;
   }
 }
