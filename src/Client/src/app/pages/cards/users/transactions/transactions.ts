@@ -8,10 +8,12 @@ import { TransactionsFilters } from "../transactions-filters/transactions-filter
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ITransaction } from '../../../../data/interfaces/bank/bank-products/cards/transaction-interface';
 import { DatePipe } from '@angular/common';
+import { PageSwitcher } from "../../../../common-ui/page-switcher/page-switcher";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-transactions',
-  imports: [TransactionsFilters, DatePipe],
+  imports: [TransactionsFilters, DatePipe, PageSwitcher],
   templateUrl: './transactions.html',
   styleUrl: './transactions.scss'
 })
@@ -27,29 +29,20 @@ export class Transactions {
   pageNumber: number | null = null;
   @Input() cardCurrencyText : string | null= null;
   @Input() cardCurrencySymbol : string | null= null;
+  private queryParamsSub?: Subscription;
 
   TransactionStatus = TransactionStatus;
 
   constructor(private cdr: ChangeDetectorRef){}
 
   ngOnInit(){
-    this.selectedSortValue = this.route.snapshot.queryParams["SortValue"];
-    this.minSumValue = this.route.snapshot.queryParams["MinimalTransactionSum"];
-    this.dateValue = this.route.snapshot.queryParams["ChosenDate"];
-    this.pageNumber = this.route.snapshot.queryParams["PageNumber"];
-    this.transactionService.getTransactions({cardId: this.cardId!, params: this.route.snapshot.queryParams}).subscribe({
-      next:(val)=>{
-        this.transactionsPage = val;
-        this.cdr.detectChanges();
-      },
-      error:(val)=>{
+    this.queryParamsSub = this.route.queryParams.subscribe(params => {
+      this.updatePage(params);
+    });
 
-      }
-    })
   }
 
   submitFilters(filters: ITransactionFilter){
-    console.log("AAAAAAAAAAA");
     const queryParams: Params  = {};
     queryParams['MinimalTransactionSum'] = filters.minimalSum == null? "": filters.minimalSum;
     queryParams['ChosenDate'] = filters.transactionsDate == null? "": filters.transactionsDate;
@@ -61,7 +54,18 @@ export class Transactions {
       queryParams: queryParams,
       queryParamsHandling: 'merge'
     })
+  }
 
+  changePage(pageNumber: number){
+    this.pageNumber = this.route.snapshot.queryParams["PageNumber"];
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {PageNumber: pageNumber},
+      queryParamsHandling: 'merge'
+    })
+  }
+
+  updatePage(queryParams: Params){
     this.transactionService.getTransactions({cardId: this.cardId!, params: queryParams}).subscribe({
       next:(val)=>{
         this.transactionsPage = val;

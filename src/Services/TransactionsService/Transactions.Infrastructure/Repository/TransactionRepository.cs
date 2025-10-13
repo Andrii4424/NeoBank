@@ -25,9 +25,9 @@ namespace Transactions.Infrastructure.Repository
         {
             var query = _dbSet.AsQueryable();
 
-            query = query.Where(t => t.SenderCardId == id || t.GetterCardId == id);
+            query = query.Where(t => t.SenderCardId == id || (t.GetterCardId == id && t.Status == Domain.Enums.TransactionStatus.Completed));
 
-            if(sortValue != null)
+            if (sortValue != null)
             {
                 query = ascending ? query.OrderBy(sortValue).ThenBy(t => t.Id) : query.OrderByDescending(sortValue).ThenBy(t => t.Id);
 
@@ -57,7 +57,7 @@ namespace Transactions.Infrastructure.Repository
         {
             var query = _dbSet.AsQueryable();
 
-            query = query.Where(t => t.SenderCardId == id || t.GetterCardId == id);
+            query = query.Where(t => t.SenderCardId == id || (t.GetterCardId == id && t.Status == Domain.Enums.TransactionStatus.Completed));
 
             if (filters != null)
             {
