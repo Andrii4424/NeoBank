@@ -35,20 +35,7 @@
             </tr>
             <tr>
                 <td>Currency</td>
-                <td>
-                    @switch (card.chosenCurrency) {
-                        @case(Currency.UAH){
-                            <span>UAH</span>
-                        }
-                        @case(Currency.EUR){
-                            <span>EUR</span>
-                        }
-                        @case(Currency.USD){
-                            <span>USD</span>
-                        }
-                        @default {}
-                    }
-                </td>
+                <td>{{getCurrencyText()}}</td>
             </tr>
             <tr class="colored">
                 <td>Pin</td>
@@ -114,7 +101,10 @@
     <h1 class="heading mt-8">Transactions</h1>
 </header>
 
-<app-transactions></app-transactions>
+<app-transactions
+[cardCurrencySymbol]="getCurrencySymbol()"
+[cardCurrencyText]="getCurrencyText()"
+></app-transactions>
 
 
 @if(openAddFoundsWindow()){

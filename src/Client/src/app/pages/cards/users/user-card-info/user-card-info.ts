@@ -247,6 +247,23 @@ export class UserCardInfo {
       }
     }
   }
+  
+  getCurrencyText(){
+    switch (this.cardCurrency) {
+      case (Currency.UAH): {
+        return "UAH";
+      }
+      case (Currency.USD): {
+        return "USD";
+      }
+      case (Currency.EUR): {
+        return "EUR";
+      }
+      default: {
+        return "";
+      }
+    }
+  }
 
   private showErrorMessage(message: string){
     this.openSuccessMessage.set(false)

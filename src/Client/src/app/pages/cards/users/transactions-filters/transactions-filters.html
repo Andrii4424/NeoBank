@@ -6,12 +6,12 @@
             <div #filtersBlock class="filters-block">
                 <div class="filter-inputs">
                     <label for="date">Chose Date:</label>
-                    <input type="date" id="date" >
+                    <input type="date" [(ngModel)]="dateValue" id="date" >
                 </div>
 
                 <div class="filter-inputs">
                     <label for="min-sum">Chose Sum:</label>
-                    <input type="number" step="0.1" id="min-sum">
+                    <input type="number" step="0.1" [(ngModel)]="minSumValue" id="min-sum">
                 </div>
 
                 <button #filtersButton>Submit Filters</button>
@@ -19,7 +19,7 @@
         }
     </div>
 
-    <select class="sort">
+    <select class="sort" [(ngModel)]="selectedSortValue">
         <option value="date-descending">By Date Descending ▼</option>
         <option value="date-ascending">By Date Ascending ▲</option>
         <option value="transaction-sum-descending">Transaction Sum Descending ▼</option>

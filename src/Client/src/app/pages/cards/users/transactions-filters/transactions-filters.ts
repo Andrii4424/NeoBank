@@ -1,8 +1,10 @@
-import { Component, ElementRef, HostListener, signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, Output, signal, ViewChild } from '@angular/core';
+import { ITransactionFilter } from '../../../../data/interfaces/filters/transaction-filters';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-transactions-filters',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './transactions-filters.html',
   styleUrl: './transactions-filters.scss'
 })
@@ -11,6 +13,18 @@ export class TransactionsFilters {
   @ViewChild('filtersBlock') filtersBlock?: ElementRef<HTMLDivElement>;
   @ViewChild('filtersImage') filtersImage?: ElementRef<HTMLImageElement>;
   @ViewChild('filtersButton') filtersButton?: ElementRef<HTMLImageElement>;
+  @Input() selectedSortValue: string | null = null;
+  @Input() minSumValue: string | null= null;
+  @Input() dateValue: string | null= null;
+
+  ngAfterViewInit(){
+    console.log(this.selectedSortValue);
+    if(this.selectedSortValue ===null){
+      this.selectedSortValue ="date-descending";
+    }
+  }
+
+  @Output() submitFiltersValues = new EventEmitter<ITransactionFilter>;
 
   @HostListener('window:click', ['$event'])
   onWindowClick(event: Event){
@@ -37,6 +51,7 @@ export class TransactionsFilters {
   }
 
   submitFilters(){
-      this.openFilters.set(false);
+    this.submitFiltersValues.emit();
+    this.openFilters.set(false);
   }
 }

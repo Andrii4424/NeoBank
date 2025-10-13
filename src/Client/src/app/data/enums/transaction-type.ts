@@ -4,4 +4,5 @@ export enum TransactionType{
     Deposit = 2,
     AmnualCardMatinance = 3,
     CurrencyExchange = 4,
+    Replenishment = 5
 }

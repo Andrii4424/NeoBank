@@ -5,3 +5,85 @@
 app-transactions-filters{
     width: 100%;
 }
+
+.transasctions{
+    width: 100%;
+}
+
+.header-transactions td{
+    color: black;
+    font-size: 16px;
+    font-weight: 600;
+
+}
+.transasctions td{
+    padding: 10px 40px;
+    border-bottom: 1px solid var(--dark-gray-background);
+    font-weight: 500;
+}
+.transasctions tr{
+    cursor: pointer;
+}
+.transasctions tr:hover{
+    background-color: var(--dark-gray-background);
+}
+
+.red{
+    color: var(--primary-red-color);
+}
+.green{
+    color: var(--green-color);
+}
+.orange{
+    color: orange;
+}
+
+.red-status{
+    color: white;
+    background-color: var(--primary-red-color);
+    border-radius: 12px;
+    padding: 6px 10px;
+}
+.green-status{
+    color: white;
+    background-color: var(--green-color);
+    border-radius: 12px;
+    padding: 6px 10px;
+
+}
+.orange-status{
+    color: white;
+    background-color: orange;
+    border-radius: 12px;
+    padding: 6px 10px;
+}
+
+@media (max-width: 1220px) {
+    .transasctions td{
+        padding: 10px 14px;
+    }
+}
+@media (max-width: 850px) {
+    .transasctions td{
+        padding: 10px 8px;
+    }
+}
+@media (max-width: 580px) {
+    .red-status{
+        color: var(--primary-red-color);
+        padding: 0px;
+        background: none;
+    }
+    .green-status{
+        color: var(--green-color);
+        padding: 0px;
+        background: none;
+
+    }
+    .orange-status{
+        color: orange;
+        padding: 0px;
+        background: none;
+
+    }
+}

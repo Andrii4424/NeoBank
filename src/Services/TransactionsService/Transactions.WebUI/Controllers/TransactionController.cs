@@ -16,8 +16,8 @@ namespace Transactions.WebUI.Controllers
             _transactionService = transactionService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetTransactions([FromQuery] Guid cardId, [FromQuery] TransactionFilter? filters) {
+        [HttpGet("{cardId}")]
+        public async Task<IActionResult> GetTransactions([FromRoute] Guid cardId, [FromQuery] TransactionFilter? filters) {
             return Ok(await _transactionService.GetTransactions(cardId, filters));
         }
 

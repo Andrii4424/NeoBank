@@ -1,4 +1,58 @@
 <section class="object-info-card">
-    <app-transactions-filters></app-transactions-filters>
-    Transactions
+    <app-transactions-filters
+    [selectedSortValue]="selectedSortValue"
+    [dateValue]="dateValue"
+    [minSumValue]="minSumValue"
+    (submitFiltersValues)="submitFilters($event)"
+    ></app-transactions-filters>
+    
+
+
+    <div class="transactions-block">
+        @if(transactionsPage?.items ===null || transactionsPage?.items ===undefined || transactionsPage?.items?.length===0){
+            <h1 class="subheading">Transaction history is empty, you can replenish it by making a transfer to the card</h1>
+        }
+        @else {
+            <table class="transasctions">
+                <tr class="header-transactions">
+                    <td>Date & Time (UTC)</td>
+                    <td>Type</td>
+                    <td>Amount ({{cardCurrencyText}})</td>
+                    <td>Commission ({{cardCurrencyText}})</td>
+                    <td>Status</td>
+                </tr>
+                @for(transaction of transactionsPage?.items; track $index){
+                    @if((transaction.senderCardId===cardId) || (transaction.status===TransactionStatus.Completed)){
+                        <tr>
+                            <td>{{transaction.transactionTime | date:'medium' }}</td>
+                            <td>{{getTransactionTypeText(transaction.type)}}</td>
+                            <td [class.red]="transaction.senderCardId===cardId" [class.green]="transaction.getterCardId===cardId">
+                                @if(transaction.senderCardId===cardId){
+                                    <span>-{{transaction.amount}}</span>
+                                }
+                                @else if(transaction.getterCardId===cardId){
+                                    <span>+{{transaction.amount}}</span>
+                                }
+                                
+                            </td>
+                            @if(transaction.commission!>0 && transaction.senderCardId===cardId){
+                                <td class="red">-{{transaction.commission}}</td>
+                            }
+                            @else if(transaction.getterCardId===cardId){
+                                <td>0</td>
+                            }
+                            @else if(transaction.commission===0 && transaction.senderCardId===cardId){
+                                <td>{{transaction.commission}}</td>
+                            }
+                            <td><span [class.red-status]="transaction.status===TransactionStatus.Failed" [class.orange-status]="transaction.status===TransactionStatus.Pending"
+                                [class.green-status]="transaction.status===TransactionStatus.Completed">{{getTransactionStatusText(transaction.status!)}}</span></td>
+                        </tr>
+                    }
+                }
+            </table>
+        }
+
+
+    </div>
 </section>
+
