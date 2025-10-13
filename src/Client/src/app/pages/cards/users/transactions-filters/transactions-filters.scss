@@ -30,6 +30,7 @@
     top: 10;
     left: 0;
     background-color: white;
+    align-items: center;
     border-radius: 8px;
     border: 1px solid var(--medium-light-gray-primary-color);
     padding: 10px 6px;
@@ -58,15 +59,17 @@
     font-size: 16px;
     border-radius: 8px;
     padding: 4px 0;
+    width: 200px;
     border: none;
     cursor: pointer;
 }
 
 .close-filters{
-    height: 20px;
+    height: 18px;
     width: auto;
     cursor: pointer;
     margin-left: auto;
+    margin-bottom: -6px;
 }
 
 .filter-cross{

@@ -4,34 +4,34 @@
 
         @if(openFilters()) {
             <div #filtersBlock class="filters-block">
-                <img src="assets/images/menu/cross.svg" alt="close-filters" class="close-filters">
+                <img src="assets/images/menu/cross.svg" alt="close-filters" class="close-filters" (click)="closeFilters()">
 
                 <div class="filter-inputs">
-                    <div class="filter-cross">
+                    <div class="filter-cross" [class.none]="filterHasValue()"> 
                         @if(dateValue != null){
-                            <img src="assets/images/menu/cross.svg" alt="close-filters" class="delete-filter">
+                            <img src="assets/images/menu/cross.svg" alt="close-filters" class="delete-filter" (click)="dateValue=null">
                         }
                     </div>
                     <label for="date">Chose Date:</label>
-                    <input type="date" [(ngModel)]="dateValue" id="date" (change)="submitFilters()">
+                    <input type="date" [(ngModel)]="dateValue" id="date">
                 </div>
 
                 <div class="filter-inputs">
-                    <div class="filter-cross">
+                    <div class="filter-cross" [class.none]="filterHasValue()">
                         @if(minSumValue != null){
-                            <img src="assets/images/menu/cross.svg" alt="close-filters" class="delete-filter">
+                            <img src="assets/images/menu/cross.svg" alt="close-filters" class="delete-filter" (click)="minSumValue=null">
                         }
                     </div>
                     <label for="min-sum">Chose Sum:</label>
                     <input type="number" step="0.1" [(ngModel)]="minSumValue" id="min-sum">
                 </div>
 
-                <button #filtersButton>Submit Filters</button>
+                <button #filtersButton (click)="submitFilters()">Submit Filters</button>
             </div>
         }
     </div>
 
-    <select class="sort" [(ngModel)]="selectedSortValue">
+    <select class="sort" [(ngModel)]="selectedSortValue" (change)="submitFilters()">
         <option value="date-descending">By Date Descending ▼</option>
         <option value="date-ascending">By Date Ascending ▲</option>
         <option value="transaction-sum-descending">Transaction Sum Descending ▼</option>

@@ -18,26 +18,27 @@ export class TransactionsFilters {
   @Input() dateValue?: string | null= null;
   selectedSortStartValue: string | null = null;
   minSumStartValue: number | null = null;
-  dateStartValue: Date | null = null;
+  dateStartValue?: string | null = null;
 
 
   ngAfterViewInit(){  
-
     console.log(this.minSumValue);
     console.log(this.selectedSortValue);
     console.log(this.dateValue);
-    if(this.selectedSortValue ==null){
+    if(this.selectedSortValue == null){
       this.selectedSortValue ="date-descending";
     }
     this.selectedSortStartValue = this.selectedSortValue;
     this.minSumStartValue = this.minSumValue;
+    this.dateStartValue = this.dateValue;
   }
 
   @Output() submitFiltersValues = new EventEmitter<ITransactionFilter>;
 
   submitFilters(){
     if(this.selectedSortStartValue !== this.selectedSortValue || this.dateStartValue !== this.dateValue || this.minSumStartValue !== this.minSumValue){
-      console.log("Emit");
+      this.dateStartValue = this.dateValue;
+      this.minSumStartValue = this.minSumValue;
       this.submitFiltersValues.emit({sortValue: this.selectedSortValue, minimalSum: this.minSumValue, transactionsDate: this.dateValue });
     }
     this.openFilters.set(false);
@@ -45,5 +46,12 @@ export class TransactionsFilters {
 
   filterHasValue() {
     return this.dateValue == null && this.minSumValue == null;
+  }
+
+  closeFilters(){
+    this.dateValue = this.dateStartValue;
+    this.minSumValue = this.minSumStartValue;
+
+    this.openFilters.set(false);
   }
 }

@@ -27,6 +27,7 @@ namespace Transactions.Application.Filters
             PageSize = pageSize;
             Ascending = ascending;
             SortExpression = sortExpression;
+            FiltersExpression = filtersExpression;
         }
 
     }

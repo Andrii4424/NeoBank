@@ -5,7 +5,7 @@ import { IPageResult } from './../../../../data/interfaces/page-inteface';
 import { TransactionService } from './../../../../data/services/bank/bank-products/transaction-service';
 import { Component, inject, HostListener, Input, ChangeDetectorRef } from '@angular/core';
 import { TransactionsFilters } from "../transactions-filters/transactions-filters";
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ITransaction } from '../../../../data/interfaces/bank/bank-products/cards/transaction-interface';
 import { DatePipe } from '@angular/common';
 
@@ -40,7 +40,6 @@ export class Transactions {
     this.transactionService.getTransactions({cardId: this.cardId!, params: this.route.snapshot.queryParams}).subscribe({
       next:(val)=>{
         this.transactionsPage = val;
-        console.log(val);
         this.cdr.detectChanges();
       },
       error:(val)=>{
@@ -50,26 +49,28 @@ export class Transactions {
   }
 
   submitFilters(filters: ITransactionFilter){
-    console.log(filters);
-    /*if(filters.minimalSum != null){
-      console.log("1");
-      console.log(filters.minimalSum);
-      this.router.navigate([],{
-        relativeTo: this.route,
-        queryParams: {MinimalTransactionSum : filters.minimalSum, PageNumber: 1},
-        queryParamsHandling: 'merge'
-      });
-    }
-    
-    if(filters.transactionsDate != null){
-      console.log("2");
-      this.router.navigate([],{
-        relativeTo: this.route,
-        queryParams: {ChosenDate : filters.transactionsDate, PageNumber: 1},
-        queryParamsHandling: 'merge'
-      });
-    }*/
+    console.log("AAAAAAAAAAA");
+    const queryParams: Params  = {};
+    queryParams['MinimalTransactionSum'] = filters.minimalSum == null? "": filters.minimalSum;
+    queryParams['ChosenDate'] = filters.transactionsDate == null? "": filters.transactionsDate;
+    queryParams['SortValue'] = filters.sortValue == null? "": filters.sortValue;
+    queryParams['PageNumber'] = 1;
 
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: queryParams,
+      queryParamsHandling: 'merge'
+    })
+
+    this.transactionService.getTransactions({cardId: this.cardId!, params: queryParams}).subscribe({
+      next:(val)=>{
+        this.transactionsPage = val;
+        this.cdr.detectChanges();
+      },
+      error:(val)=>{
+
+      }
+    })
   }
 
   getTransactionTypeText(type: TransactionType){
