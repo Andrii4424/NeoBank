@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, signal } from '@angular/core';
 import { ProfileService } from '../../data/services/auth/profile-service';
 import { IProfile } from '../../data/interfaces/auth/profile-interface';
 import { RouterLink } from '@angular/router';
@@ -12,17 +12,20 @@ import { RouterLink } from '@angular/router';
 export class OwnProfile {
   profileService = inject(ProfileService);
   baseUrl = 'https://localhost:7280/';
+  showLogButtons = signal<boolean>(false);
   
   constructor(private cd: ChangeDetectorRef) {}
-
 
   ngOnInit(){
     this.profileService.getOwnProfile(true).subscribe({
       next:(val)=>{
-        this.profileService.updateProfileSignal(val)
+        this.profileService.updateProfileSignal(val);
+        this.showLogButtons.set(true);
       },
       error: (err)=>{
         this.profileService.updateProfileSignal(undefined);
+        this.showLogButtons.set(true);
+        this.cd.detectChanges();
       }, 
       complete:()=>{
         this.cd.detectChanges();

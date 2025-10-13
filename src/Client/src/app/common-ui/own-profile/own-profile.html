@@ -1,5 +1,5 @@
 @if (profileService.profileSignal()===null || profileService.profileSignal()===undefined) {
-    <div class="auth-buttons">
+    <div class="auth-buttons" [class.none]="!showLogButtons()">
         <a routerLink="/login" class="login-btn">Log in</a>
         <a routerLink="/signup" class="signup-btn">Sign up</a>
     </div>
