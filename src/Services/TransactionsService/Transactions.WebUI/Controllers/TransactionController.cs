@@ -21,6 +21,12 @@ namespace Transactions.WebUI.Controllers
             return Ok(await _transactionService.GetTransactions(cardId, filters));
         }
 
+        [HttpGet("{cardId}/{amount}")]
+        public async Task<IActionResult> GetComissionRate([FromRoute] Guid cardId)
+        {
+            return Ok(await _transactionService.GetComissionRate(cardId));
+        }
+
         [HttpPost]
         public async Task<IActionResult> MakeTransaction([FromBody] TransactionDto transaction)
         {

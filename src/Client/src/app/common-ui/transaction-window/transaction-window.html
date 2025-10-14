@@ -1,39 +1,46 @@
 <div class="modal-overlay">
   
-  <div class="modal-content">
+  <form class="modal-content"[formGroup]="transactionForm">
     
     <header class="modal-header">
       <h2>Make a Transfer</h2>
-      <button class="close-button">&times;</button>
+      <button class="close-button" (click)="cancel()">&times;</button>
     </header>
 
-    <main class="modal-body">
+    <main class="modal-body" >
       
-      <div class="form-group">
+      <div class="form-group" >
         <label for="sender-card">From card</label>
-        <select id="sender-card">
+        <select id="sender-card" formControlName="senderCardId">
           <option value="" disabled selected>Select your card</option>
-          <option value="card-id-1">Black Card (489900 ₴)</option>
-          <option value="card-id-2">White Card (451400 ₴)</option>
+          @if(cards?.length ===0){
+            <h4>No available cards</h4>
+          }
+          @else {
+            @for (card of cards; track $index) {
+              <option [value]="card.id">{{card.cardTariffs.cardName}} ({{card.balance}} {{getCurrencySymbol(card.chosenCurrency)}})</option>
+            }
+          }
         </select>
       </div>
       
       <div class="form-group">
         <label for="recipient-card">To card number</label>
-        <input type="text" id="recipient-card" placeholder="0000 0000 0000 0000">
+        <input formControlName="getterCardId" type="text" id="recipient-card" placeholder="0000 0000 0000 0000">
       </div>
 
       <div class="form-group">
         <label for="amount">Amount</label>
-        <input type="number" id="amount" placeholder="0.00">
+        <input formControlName="amount" type="number" id="amount" placeholder="0.00" (change)="updateComission()">
+        <span class="commission" [class.none]="!showCommission()">Transaction Fee {{commission | number:'1.2-2'}}{{chosenCurrencySymbol}}</span>
       </div>
 
     </main>
 
     <footer class="modal-footer">
-      <button class="btn btn-secondary">Cancel</button>
-      <button class="btn btn-primary">Confirm Transfer</button>
+      <button class="btn btn-secondary" (click)="cancel()">Cancel</button>
+      <button class="btn btn-primary" type="submit">Confirm Transfer</button>
     </footer>
 
-  </div>
+  </form>
 </div>

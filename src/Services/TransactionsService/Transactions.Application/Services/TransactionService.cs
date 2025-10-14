@@ -46,6 +46,11 @@ namespace Transactions.Application.Services
                 generalFilters.FiltersExpression), filters.PageNumber.Value, filters.PageSize);
         } 
 
+        public async Task<double> GetComissionRate(Guid cardId)
+        {
+            return await GetOperationComission(cardId, TransactionType.P2P);
+        }
+
         //Create Methods
         public async Task<OperationResult> MakeTransaction(TransactionDto transaction)
         {

@@ -15,4 +15,7 @@ export class TransactionService {
     return this.http.get<IPageResult<ITransaction>>(`${this.baseUrl}GetTransactions/${payload.cardId}`, {params: payload.params})
   }
 
+  getCommissionRate(payload: {cardId: string, amount: number}){
+    return this.http.get<number>(`${this.baseUrl}GetComissionRate/${payload.cardId}/${payload.amount}`);
+  }
 }
