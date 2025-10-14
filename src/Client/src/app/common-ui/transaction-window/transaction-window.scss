@@ -1,10 +1,5 @@
-// Переменные для цветов
 $primary-blue: #3f51b5;
-$text-dark: #2c3e50;
-$border-color: #dee2e6;
-$background-light: #f8f9fa;
 
-// Фон
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -18,7 +13,6 @@ $background-light: #f8f9fa;
   z-index: 1000;
 }
 
-// Контейнер окна
 .modal-content {
   background: white;
   padding: 24px;
@@ -30,12 +24,11 @@ $background-light: #f8f9fa;
   flex-direction: column;
 }
 
-// Заголовок
 .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid $border-color;
+  border-bottom: 1px solid var(--dark-gray-background);
   padding-bottom: 16px;
   margin-bottom: 24px;
 
@@ -43,7 +36,7 @@ $background-light: #f8f9fa;
     margin: 0;
     font-size: 20px;
     font-weight: 600;
-    color: $text-dark;
+    color: var(--heavy-dark-primary-color);
   }
 
   .close-button {
@@ -53,12 +46,11 @@ $background-light: #f8f9fa;
     cursor: pointer;
     color: #95a5a6;
     &:hover {
-      color: $text-dark;
+      color: var(--heavy-dark-primary-color);
     }
   }
 }
 
-// Форма
 .modal-body .form-group {
   margin-bottom: 20px;
 
@@ -67,13 +59,13 @@ $background-light: #f8f9fa;
     font-weight: 500;
     margin-bottom: 8px;
     font-size: 14px;
-    color: $text-dark;
+    color: var(--heavy-dark-primary-color);
   }
 
   input, select {
     width: 100%;
     padding: 12px;
-    border: 1px solid $border-color;
+    border: 1px solid var(--dark-gray-background);
     border-radius: 6px;
     font-size: 16px;
     box-sizing: border-box; // Важно для правильной ширины
@@ -85,7 +77,6 @@ $background-light: #f8f9fa;
   }
 }
 
-// Кнопки
 .modal-footer {
   display: flex;
   justify-content: flex-end;
@@ -111,9 +102,9 @@ $background-light: #f8f9fa;
   }
 
   .btn-secondary {
-    background-color: $background-light;
-    color: $text-dark;
-    border: 1px solid $border-color;
+    background-color: var(--gray-background);
+    color: var(--heavy-dark-primary-color);
+    border: 1px solid var(--dark-gray-background);
     &:hover {
       background-color: #e2e6ea;
     }

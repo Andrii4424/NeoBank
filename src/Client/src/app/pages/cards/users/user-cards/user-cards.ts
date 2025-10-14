@@ -20,11 +20,12 @@ import { IFilter } from '../../../../data/interfaces/filters/filter-interface';
 import { IPageResult } from '../../../../data/interfaces/page-inteface';
 import { PageSwitcher } from "../../../../common-ui/page-switcher/page-switcher";
 import { TransactionWindow } from "../../../../common-ui/transaction-window/transaction-window";
+import { Loading } from "../../../../common-ui/loading/loading";
 
 
 @Component({
   selector: 'app-user-cards',
-  imports: [CardsLayout, Search, RouterLink, SuccessMessage, CardFormatPipe, PageSwitcher, TransactionWindow],
+  imports: [CardsLayout, Search, RouterLink, SuccessMessage, CardFormatPipe, PageSwitcher, TransactionWindow, Loading],
   templateUrl: './user-cards.html',
   styleUrl: './user-cards.scss'
 })
@@ -43,6 +44,7 @@ export class UserCards {
   CardLevel = CardLevel;
   openTransactionWindow = signal<boolean>(false);
   @ViewChildren('card') cardElements? : QueryList<ElementRef<HTMLDivElement>>
+  isLoading = signal<boolean>(true);
 
   constructor(private cdr: ChangeDetectorRef){}
 
@@ -82,9 +84,12 @@ export class UserCards {
 
       this.userCardsService.getMyCards(params).subscribe({
         next:(val)=>{
-
           this.userCards = val;
+          this.isLoading.set(false);
           this.cdr.detectChanges();
+        },
+        error:()=>{
+          this.isLoading.set(false);
         },
         complete:()=>{
           this.updateCardTextColors();

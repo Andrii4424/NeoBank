@@ -9,50 +9,57 @@
 >
 </app-search>
 
-@if(!isHelper){
-    <app-cards-layout></app-cards-layout>
-}
-@if(isHelper){
-    <h1 class="heading mt-24 text-center">Chose Cards Tariffs For Your Card</h1>
-}
-<section class="cards-info" [class.with-last-child]="cards?.items!.length%2 !==0">
-
-    @for(card of cards?.items; track $index){
-        <a [routerLink]="!isHelper ? ['/cards/info', card.id]: null" (click)="acceptTariffs(card.id!, card.cardName!)" [class.mt-24]="isHelper" #card class="card-link" 
-        [style.background-color]="card.cardColor">
-            <div class="card-info-divider">
-                <div class="card-name">
-                    <img class="card-bank-logo" src="assets/images/bank-logo.png" alt="">
-                    <h1>{{card.cardName}}</h1>
-                </div>
-                <div class="card-right-side">
-                    <div class="payment-systems">
-                        @if(card.enabledPaymentSystems?.includes(PaymentSystem.Visa)){
-                            <img src="assets/images/bank-products/payment-systems/visa.svg" class="visa" alt="Mastercard">
-                        }
-                        @if(card.enabledPaymentSystems?.includes(PaymentSystem.Mastercard)){
-                            <img src="assets/images/bank-products/payment-systems/mastercard.svg" alt="Mastercard">
-                        }
-                    </div>
-
-                    <div>
-                        @if(card.type===CardType.Credit){
-                            <h4>Credit</h4>
-                        }
-                        @else if(card.type===CardType.Debit) {
-                            <h4>Debit</h4>
-                        }
-                    </div>
-                </div>
-            </div>
-        </a>
-    }
-</section>
-
-@if(profileService.getRole()?.toLowerCase()==='admin' && !isHelper){
-    <div class="add-block">
-        <a [routerLink]="['/cards/add']" class="add-item">Add Card</a>
+@if(isLoading()){
+    <div class="spinner-wrapper">
+      <app-loading></app-loading> 
     </div>
+}
+@else{
+    @if(!isHelper){
+        <app-cards-layout></app-cards-layout>
+    }
+    @if(isHelper){
+        <h1 class="heading mt-24 text-center">Chose Cards Tariffs For Your Card</h1>
+    }
+    <section class="cards-info" [class.with-last-child]="cards?.items!.length%2 !==0">
+
+        @for(card of cards?.items; track $index){
+            <a [routerLink]="!isHelper ? ['/cards/info', card.id]: null" (click)="acceptTariffs(card.id!, card.cardName!)" [class.mt-24]="isHelper" #card class="card-link" 
+            [style.background-color]="card.cardColor">
+                <div class="card-info-divider">
+                    <div class="card-name">
+                        <img class="card-bank-logo" src="assets/images/bank-logo.png" alt="">
+                        <h1>{{card.cardName}}</h1>
+                    </div>
+                    <div class="card-right-side">
+                        <div class="payment-systems">
+                            @if(card.enabledPaymentSystems?.includes(PaymentSystem.Visa)){
+                                <img src="assets/images/bank-products/payment-systems/visa.svg" class="visa" alt="Mastercard">
+                            }
+                            @if(card.enabledPaymentSystems?.includes(PaymentSystem.Mastercard)){
+                                <img src="assets/images/bank-products/payment-systems/mastercard.svg" alt="Mastercard">
+                            }
+                        </div>
+
+                        <div>
+                            @if(card.type===CardType.Credit){
+                                <h4>Credit</h4>
+                            }
+                            @else if(card.type===CardType.Debit) {
+                                <h4>Debit</h4>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </a>
+        }
+    </section>
+
+    @if(profileService.getRole()?.toLowerCase()==='admin' && !isHelper){
+        <div class="add-block">
+            <a [routerLink]="['/cards/add']" class="add-item">Add Card</a>
+        </div>
+    }
 }
 
 <app-page-switcher 

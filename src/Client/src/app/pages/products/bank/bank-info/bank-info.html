@@ -1,9 +1,9 @@
-<header>
-    <h1 class="heading">Bank Information</h1>
-</header>
 
-<section class="object-info-card">
-    @if(bank$ | async; as bank){
+@if(bank$ | async; as bank){
+    <header>
+        <h1 class="heading">Bank Information</h1>
+    </header>
+    <section class="object-info-card">
         <table class="info-table">
             <tr class="colored">
                 <td>Field</td>
@@ -97,10 +97,17 @@
                 <td>{{bank.updatedAt}}</td>
             </tr>
         </table>
-    }
-    @if(profileService.getRole()?.toLowerCase()==='admin'){
-        <div class="entity-action-buttons">
-            <a routerLink="/about/update" class="update">Update Bank</a>
-        </div>
-    }
-</section>
+
+        @if(profileService.getRole()?.toLowerCase()==='admin'){
+            <div class="entity-action-buttons">
+                <a routerLink="/about/update" class="update">Update Bank</a>
+            </div>
+        }
+    </section>
+}
+
+@else{
+    <div class="spinner-wrapper">
+        <app-loading></app-loading> 
+    </div>
+}

@@ -12,68 +12,79 @@
 <app-cards-layout></app-cards-layout>
 
 
-@if(userCards?.items?.length===0){
-    <h1 class="subheading-without-lh zero-items mb-4">No cards available. Open first card by button below</h1>
+@if(isLoading()){
+    <div class="spinner-wrapper">
+      <app-loading></app-loading> 
+    </div>
 }
-<div class="cards-info" [class.with-last-child]="userCards !==null && userCards!.items.length%2 !==0 && userCards!.items.length>0">
-    @for (card of userCards?.items; track $index) {
-        <a [routerLink]="['/cards/my-card', card.id]" [class.blocked]="card.status===CardStatus.Blocked" [class.expired]="card.status===CardStatus.Expired"
-            #card class="card-link" [style.background-color]="card.cardTariffs.cardColor">
-            <div class="card-info-divider">
-                <div class="card-name">
-                    <img class="card-bank-logo" src="assets/images/bank-logo.png" alt="">
-                    <h1>{{card.cardTariffs.cardName}}</h1>
-                </div>
-                <div class="card-right-side">
-                    <div class="payment-systems">
-                        @if(card.chosedPaymentSystem===PaymentSystem.Visa){
-                            <img src="assets/images/bank-products/payment-systems/visa.svg" class="visa" alt="Mastercard">
-                        }
-                        @if(card.chosedPaymentSystem===PaymentSystem.Mastercard){
-                            <img src="assets/images/bank-products/payment-systems/mastercard.svg" alt="Mastercard">
-                        }
-                    </div>
 
-                    <div>
-                        @if(card.cardTariffs.type===CardType.Credit){
-                            <h4>Credit</h4>
-                        }
-                        @else if(card.cardTariffs.type===CardType.Debit) {
-                            <h4>Debit</h4>
-                        }
-                    </div>
-                </div>
-            </div>
-
-            <div class="card-number">
-                {{ card.cardNumber | cardFormat}} 
-                <img (click)="copyCardNumber(card.cardNumber, $event)" src="assets/images/copy.svg" alt="Copy">
-            </div>
-
-            <div class="balance">
-                <span>{{card.balance + card.creditLimit}} </span>
-                @switch (card.chosenCurrency) {
-                    @case (Currency.UAH) {
-                        <span>₴</span>
-                    }
-                    @case (Currency.USD) {
-                        <span>$</span>
-                    }
-                    @case (Currency.EUR) {
-                        <span>€</span>
-                    
-                    }
-                    @default {}
-                }
-            </div>
-        </a>
+@else {
+    @if(userCards?.items?.length===0){
+        <h1 class="subheading-without-lh zero-items mb-4">No cards available. Open first card by button below</h1>
     }
-</div>
+    <div class="cards-info" [class.with-last-child]="userCards !==null && userCards!.items.length%2 !==0 && userCards!.items.length>0">
+        @for (card of userCards?.items; track $index) {
+            <a [routerLink]="['/cards/my-card', card.id]" [class.blocked]="card.status===CardStatus.Blocked" [class.expired]="card.status===CardStatus.Expired"
+                #card class="card-link" [style.background-color]="card.cardTariffs.cardColor">
+                <div class="card-info-divider">
+                    <div class="card-name">
+                        <img class="card-bank-logo" src="assets/images/bank-logo.png" alt="">
+                        <h1>{{card.cardTariffs.cardName}}</h1>
+                    </div>
+                    <div class="card-right-side">
+                        <div class="payment-systems">
+                            @if(card.chosedPaymentSystem===PaymentSystem.Visa){
+                                <img src="assets/images/bank-products/payment-systems/visa.svg" class="visa" alt="Mastercard">
+                            }
+                            @if(card.chosedPaymentSystem===PaymentSystem.Mastercard){
+                                <img src="assets/images/bank-products/payment-systems/mastercard.svg" alt="Mastercard">
+                            }
+                        </div>
 
-<div class="add-block">
-    <button class="make-transfer" (click)="openTransactionWindow.set(true)">Make a transfer</button>
-    <a [routerLink]="['/cards/my-cards/add/options']" class="add-item">Open Card</a>
-</div>
+                        <div>
+                            @if(card.cardTariffs.type===CardType.Credit){
+                                <h4>Credit</h4>
+                            }
+                            @else if(card.cardTariffs.type===CardType.Debit) {
+                                <h4>Debit</h4>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-number">
+                    {{ card.cardNumber | cardFormat}} 
+                    <img (click)="copyCardNumber(card.cardNumber, $event)" src="assets/images/copy.svg" alt="Copy">
+                </div>
+
+                <div class="balance">
+                    <span>{{card.balance + card.creditLimit}} </span>
+                    @switch (card.chosenCurrency) {
+                        @case (Currency.UAH) {
+                            <span>₴</span>
+                        }
+                        @case (Currency.USD) {
+                            <span>$</span>
+                        }
+                        @case (Currency.EUR) {
+                            <span>€</span>
+                        
+                        }
+                        @default {}
+                    }
+                </div>
+            </a>
+        }
+    </div>
+
+
+
+
+    <div class="add-block">
+        <button class="make-transfer" (click)="openTransactionWindow.set(true)">Make a transfer</button>
+        <a [routerLink]="['/cards/my-cards/add/options']" class="add-item">Open Card</a>
+    </div>
+}
 
 @if(openTransactionWindow()){
     <app-transaction-window></app-transaction-window>

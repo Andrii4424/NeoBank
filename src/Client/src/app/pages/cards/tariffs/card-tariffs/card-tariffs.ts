@@ -1,5 +1,5 @@
 import { ProfileService } from './../../../../data/services/auth/profile-service';
-import { ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, Input, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, Input, Output, QueryList, signal, ViewChild, ViewChildren } from '@angular/core';
 import { CardsLayout } from "../../cards-layout/cards-layout";
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { SharedService } from '../../../../data/services/shared-service';
@@ -14,10 +14,11 @@ import { PaymentSystem } from '../../../../data/enums/payment-system';
 import { CardType } from '../../../../data/enums/card-type';
 import { Currency } from '../../../../data/enums/currency';
 import { ICardTariffs } from '../../../../data/interfaces/bank/bank-products/cards/card-tariffs.interface';
+import { Loading } from "../../../../common-ui/loading/loading";
 
 @Component({
   selector: 'app-card-tariffs',
-  imports: [PageSwitcher, Search, CardsLayout, RouterLink],
+  imports: [PageSwitcher, Search, CardsLayout, RouterLink, Loading],
   templateUrl: './card-tariffs.html',
   styleUrl: './card-tariffs.scss'
 })
@@ -31,6 +32,7 @@ export class CardTariffs {
   @Input() isHelper? : boolean;
   @Output() chosenTariffs = new EventEmitter<ICardTariffs>
   @ViewChildren('card') cardElements? : QueryList<ElementRef<HTMLDivElement>>
+  isLoading = signal<boolean>(true);
 
   //Filters values
     sortValues: ISort[]=[
@@ -65,8 +67,13 @@ export class CardTariffs {
       this.cardTariffsService.getCardTariffs(params).subscribe({
         next: (val) => {
           this.cards = val;
+          this.isLoading.set(false);
+
           this.cdr.detectChanges();
           this.updateCardTextColors();
+        },
+        error:()=>{
+          this.isLoading.set(false);
         },
         complete:()=>{
           const pageNumber = this.route.snapshot.queryParams['PageNumber'];
