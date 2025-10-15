@@ -81,6 +81,10 @@ export class Transactions {
     })
   }
 
+  hasQuery(){
+    return Object.keys(this.route.snapshot.queryParams).length > 0;
+  }
+
   getTransactionTypeText(type: TransactionType){
     switch(type){
       case(TransactionType.P2P):{

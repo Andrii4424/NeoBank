@@ -61,6 +61,11 @@ app-transactions-filters{
     padding: 6px 10px;
 }
 
+.empty-list{
+    margin-top: 15px;
+    margin-bottom: -5px;
+}
+
 @media (max-width: 1220px) {
     .transasctions td{
         padding: 10px 14px;

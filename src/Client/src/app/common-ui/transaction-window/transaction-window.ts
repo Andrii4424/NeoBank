@@ -8,10 +8,11 @@ import { DecimalPipe } from '@angular/common';
 import { ITransaction } from '../../data/interfaces/bank/bank-products/cards/transaction-interface';
 import { TransactionType } from '../../data/enums/transaction-type';
 import { CardStatus } from '../../data/enums/card-status';
+import { OnlyNumbers } from "../../data/directives/only-numbers";
 
 @Component({
   selector: 'app-transaction-window',
-  imports: [ReactiveFormsModule, DecimalPipe],
+  imports: [ReactiveFormsModule, DecimalPipe, OnlyNumbers],
   templateUrl: './transaction-window.html',
   styleUrl: './transaction-window.scss'
 })
@@ -69,6 +70,7 @@ export class TransactionWindow {
         this.showError("The card from which the shipment will be sent must be selected");
         return;
       }
+      this.transactionForm.get('getterCardId')?.setValue(this.transactionForm.get('getterCardId')!.value!.replace(/\D/g, ''));
       if(this.transactionForm.get('getterCardId')?.value?.length !==16){
         this.showError("The recipient's card must contain 16 characters");
         return ;

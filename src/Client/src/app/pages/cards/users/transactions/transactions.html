@@ -8,7 +8,12 @@
 
     <div class="transactions-block">
         @if(transactionsPage?.items ===null || transactionsPage?.items ===undefined || transactionsPage?.items?.length===0){
-            <h1 class="subheading">Transaction history is empty, you can replenish it by making a transfer to the card</h1>
+            @if(hasQuery()){
+                <h1 class="subheading empty-list">No transactions were found for your query.</h1>
+            }
+            @else {
+                <h1 class="subheading empty-list">Transaction history is empty, you can replenish it by making a transfer to the card</h1>
+            }
         }
         @else {
             <table class="transasctions">
