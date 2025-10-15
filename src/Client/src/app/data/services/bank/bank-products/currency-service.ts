@@ -1,3 +1,4 @@
+import { Currency } from './../../../enums/currency';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { ICurrency } from '../../../interfaces/bank/bank-products/currency-interface';
@@ -12,4 +13,5 @@ export class CurrencyService {
   getCurrencies(){
     return this.http.get<ICurrency[]>(`${this.baseUrl}GetCurrencyRates`);
   }
+  
 }

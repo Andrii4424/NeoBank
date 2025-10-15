@@ -1,0 +1,61 @@
+<div class="modal-overlay">
+  <form class="modal-content"[formGroup]="transactionForm" (submit)="onSubmit()" (click)="deleteError()">
+    
+    <header class="modal-header">
+      <h2>Exchange currencies</h2>
+      <button class="close-button" (click)="cancel()">&times;</button>
+    </header>
+
+    <main class="modal-body" >
+      
+        <div class="form-group" >
+            <label for="sender-card">From card</label>
+            <select id="sender-card" formControlName="senderCardId">
+            <option value="" disabled selected>Select for sending</option>
+            @if(cards?.length===0 && getSenderCurrency()){
+                <h4>No available cards</h4>
+            }
+            @else {
+                @for (card of getSenderCurrency(); track $index) {
+                <option [value]="card.id">{{card.cardTariffs.cardName}} ({{card.balance}}{{getCurrencySymbol(card.chosenCurrency)}})</option>
+                }
+            }
+            </select>
+        </div>
+        <div class="switch-block">
+            <img src="assets/images/bank-products/currency-rates/switch.svg" alt="switch" class="switch-img" (click)="switchCards()">
+        </div>
+        <div class="form-group">
+            <label for="getter-card">To card</label>
+            <select id="getter-card" formControlName="getterCardId">
+            <option value="" disabled selected>Select card to receive</option>
+            @if(cards?.length===0 && getGetterCurrency()?.length===0){
+                <h4>No available cards</h4>
+            }
+            @else {
+                @for (card of getGetterCurrency(); track $index) {
+                <option [value]="card.id">{{card.cardTariffs.cardName}} ({{card.balance}}{{getCurrencySymbol(card.chosenCurrency)}})</option>
+                }
+            }
+            </select>
+        </div>
+
+
+        <div class="form-group">
+            <label for="amount">Amount</label>
+            <input formControlName="amount" type="number" id="amount" placeholder="0.00">
+            <span class="commission" [class.none]="!showGetAmount()">You will get: {{getAmount | number: '1.2-2'}}{{getterCurrency}}</span>
+            <span class="commission" [class.none]="!showCommission()">Transaction Fee: {{commission | number: '1.2-2'}}{{getterCurrency}}</span>
+        </div>
+        <div class="error-block">
+            <span class="error">{{errorText}} </span>
+        </div>
+    </main>
+
+    <footer class="modal-footer">
+      <button class="btn btn-secondary" (click)="cancel()">Cancel</button>
+      <button class="btn btn-primary" type="submit" (click)="$event.stopPropagation()">Confirm Exchange</button>
+    </footer>
+
+  </form>
+</div>

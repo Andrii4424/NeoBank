@@ -27,7 +27,7 @@
                 <td>{{currency.cc}}</td>
                 <td>{{currency.neoBankBuyCource}}</td>
                 <td>{{currency.neoBankSellCource}}</td>
-                <td><button class="exchange">Exchange</button></td>
+                <td><button class="exchange" (click)="openExchangeWindow.set(true)">Exchange</button></td>
             </tr>
         }
     </table>
@@ -36,4 +36,12 @@
     <div class="spinner-wrapper">
         <app-loading></app-loading> 
     </div>
+}
+
+@if(openExchangeWindow()){
+    <app-exchange-currency-window
+    (closeWindow)="openExchangeWindow.set(false)"
+    >
+
+    </app-exchange-currency-window>
 }
