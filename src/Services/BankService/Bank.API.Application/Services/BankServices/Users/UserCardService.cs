@@ -90,6 +90,34 @@ namespace Bank.API.Application.Services.BankServices.Users
             return (await _cardTariffsRepository.GetValueByIdAsync(card.CardTariffId)).P2PInternalCommission;
         }
 
+        public async Task<TransactionDetailsDto> GetTransactionDetails(TransactionDetailsDto details)
+        {
+            if (details.SenderCardId != null)
+            {
+                UserCardsEntity? senderCard = await _userCardsRepository.GetValueByIdAsync(details.SenderCardId.Value);
+                if (senderCard == null) throw new ArgumentException("Sender card id didnt found");
+                details.SenderCurrency = senderCard.ChosenCurrency;
+
+                details.SenderId = await GetUserIdByCardAsync(details.SenderCardId.Value);
+                if (details.SenderId == null) throw new NullReferenceException("Sender Card didnt found");
+            }
+            if (details.GetterCardId != null)
+            {
+                UserCardsEntity? getterCard = await _userCardsRepository.GetValueByIdAsync(details.GetterCardId.Value);
+                if (getterCard == null) throw new ArgumentException("Sender card id didnt found");
+                details.GetterCurrency = getterCard.ChosenCurrency;
+
+                details.GetterId = await GetUserIdByCardAsync(details.GetterCardId.Value);
+                if (details.GetterId == null) throw new NullReferenceException("Reciver Card didnt found");
+            }
+            return details;
+        }
+
+        public async Task<Guid?> GetCardIdByCardNumberAsync(string cardNumber)
+        {
+            return await _userCardsRepository.GetCardIdByCardNumberAsync(cardNumber);
+        }
+
         //Create
         public async Task<OperationResult> CreateCardAsync(CreateUserCardDto cardParams)
         {
@@ -317,21 +345,6 @@ namespace Bank.API.Application.Services.BankServices.Users
             _userCardsRepository.DeleteElement(card);
             await _userCardsRepository.SaveAsync();
             return OperationResult.Ok();
-        }
-
-        public async Task<TransactionDetailsDto> GetTransactionDetails(TransactionDetailsDto details)
-        {
-            if(details.SenderCardId!=null)
-            {
-                details.SenderId = await GetUserIdByCardAsync(details.SenderCardId.Value);
-                if (details.SenderId == null) throw new NullReferenceException("Sender Card didnt found");
-            }
-            if (details.GetterCardId != null)
-            {
-                details.GetterId = await GetUserIdByCardAsync(details.GetterCardId.Value);
-                if (details.GetterId == null) throw new NullReferenceException("Reciver Card didnt found");
-            }
-            return details;
         }
 
         //Helpers

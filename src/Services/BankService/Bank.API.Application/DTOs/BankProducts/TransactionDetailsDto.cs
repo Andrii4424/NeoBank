@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bank.API.Domain.Enums.CardEnums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace Bank.API.Application.DTOs.BankProducts
         public Guid? SenderId { get; set; }
         public Guid? GetterCardId { get; set; }
         public Guid? GetterId { get; set; }
-
+        public Currency? SenderCurrency { get; set; }
+        public Currency? GetterCurrency { get; set; }
     }
 }

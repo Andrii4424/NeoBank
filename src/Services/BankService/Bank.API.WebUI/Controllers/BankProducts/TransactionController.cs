@@ -53,10 +53,12 @@ namespace Bank.API.WebUI.Controllers.BankProducts
             return Ok(await _userCardService.GetP2PComissionByUserCardId(cardId));
         }
 
-        [HttpPut]
-        public async Task<IActionResult> ChangeBalance([FromBody] CardOperationDto operationInfo)
+        [HttpGet("{cardNumber}")]
+        public async Task<IActionResult> GetCardGuidByCardNumber([FromRoute] string cardNumber)
         {
-            return Ok();
+            Guid? result = await _userCardService.GetCardIdByCardNumberAsync(cardNumber);
+            if (result == null) return NotFound();
+            return Content(result.Value.ToString(), "text/plain");
         }
     }
 }

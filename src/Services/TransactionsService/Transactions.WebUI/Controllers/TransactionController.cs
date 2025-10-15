@@ -27,6 +27,14 @@ namespace Transactions.WebUI.Controllers
             return Ok(await _transactionService.GetComissionRate(cardId));
         }
 
+        [HttpGet("{cardNumber}")]
+        public async Task<IActionResult> GetCardId([FromRoute] string cardNumber)
+        {
+            Guid? result = await _transactionService.GetCardIdByCardNumberAsync(cardNumber);
+            if (result == null) return NotFound();
+            return Ok(result);
+        }
+
         [HttpPost]
         public async Task<IActionResult> MakeTransaction([FromBody] TransactionDto transaction)
         {

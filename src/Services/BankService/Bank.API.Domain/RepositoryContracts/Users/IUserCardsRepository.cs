@@ -18,5 +18,6 @@ namespace Bank.API.Domain.RepositoryContracts.Users
         public Task<bool> IsCardNumberUnique(string cardNumber);
         public Task<int> GetUserCardsCountAsync(Guid userId, Expression<Func<UserCardsEntity, bool>>? searchFilter,
             List<Expression<Func<UserCardsEntity, bool>>>? filters);
+        public Task<Guid?> GetCardIdByCardNumberAsync(string cardNumber);
     }
 }

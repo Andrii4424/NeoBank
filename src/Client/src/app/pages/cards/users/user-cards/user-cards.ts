@@ -108,8 +108,6 @@ export class UserCards {
     setTimeout(() => this.copied.set(false), 3000);
   }
 
-
-
   //Filters and pagination handlers
   onSortChange(sortMethod: string){
     this.router.navigate([],{

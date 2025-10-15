@@ -88,5 +88,12 @@ namespace Bank.API.Infrastructure.Repository.Users
             }
             return false;
         }
+
+        public async Task<Guid?> GetCardIdByCardNumberAsync(string cardNumber)
+        {
+            UserCardsEntity? card = await _dbSet.FirstOrDefaultAsync(uc=>uc.CardNumber==cardNumber);
+            if (card == null) return null;
+            return card.Id;
+        }
     }
 }

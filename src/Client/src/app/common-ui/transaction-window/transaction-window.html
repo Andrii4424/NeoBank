@@ -1,6 +1,5 @@
 <div class="modal-overlay">
-  
-  <form class="modal-content"[formGroup]="transactionForm">
+  <form class="modal-content"[formGroup]="transactionForm" (submit)="onSubmit()" (click)="deleteError()">
     
     <header class="modal-header">
       <h2>Make a Transfer</h2>
@@ -18,7 +17,7 @@
           }
           @else {
             @for (card of cards; track $index) {
-              <option [value]="card.id">{{card.cardTariffs.cardName}} ({{card.balance}} {{getCurrencySymbol(card.chosenCurrency)}})</option>
+              <option [value]="card.id">{{card.cardTariffs.cardName}} ({{card.balance}}{{getCurrencySymbol(card.chosenCurrency)}})</option>
             }
           }
         </select>
@@ -34,12 +33,15 @@
         <input formControlName="amount" type="number" id="amount" placeholder="0.00" (change)="updateComission()">
         <span class="commission" [class.none]="!showCommission()">Transaction Fee {{commission | number:'1.2-2'}}{{chosenCurrencySymbol}}</span>
       </div>
-
+      <div class="error-block">
+        <span class="error">{{errorText}} </span>
+        
+      </div>
     </main>
 
     <footer class="modal-footer">
       <button class="btn btn-secondary" (click)="cancel()">Cancel</button>
-      <button class="btn btn-primary" type="submit">Confirm Transfer</button>
+      <button class="btn btn-primary" type="submit" (click)="$event.stopPropagation()">Confirm Transfer</button>
     </footer>
 
   </form>

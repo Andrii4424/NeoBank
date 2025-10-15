@@ -28,5 +28,6 @@ namespace Bank.API.Application.ServiceContracts.BankServiceContracts.Users
         public Task<bool> IsEnoughMoney(CardOperationDto operationInfo);
         public Task<double> GetP2PComissionByUserCardId(Guid cardId);
         public Task<TransactionDto> UpdateBalanceAfterTransactionAsync(TransactionDto? transaction);
+        public Task<Guid?> GetCardIdByCardNumberAsync(string cardNumber);
     }
 }

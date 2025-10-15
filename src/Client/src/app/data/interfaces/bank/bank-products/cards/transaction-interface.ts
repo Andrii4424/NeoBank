@@ -10,7 +10,7 @@ export interface ITransaction{
     getterId?: string; 
     senderCurrency?: Currency;
     getterCurrency?: Currency;
-    currencyExchangeCommission: number; 
+    currencyExchangeCommission?: number; 
     amount: number; 
     commission?: number; 
     status?: TransactionStatus;

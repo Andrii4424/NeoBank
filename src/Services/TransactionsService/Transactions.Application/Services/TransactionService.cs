@@ -51,6 +51,22 @@ namespace Transactions.Application.Services
             return await GetOperationComission(cardId, TransactionType.P2P);
         }
 
+        public async Task<Guid?> GetCardIdByCardNumberAsync(string cardNumber)
+        {
+            var response = await _client.GetAsync($"Transaction/GetCardGuidByCardNumber/{cardNumber}");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                return null;
+            }
+            else
+            {
+                Guid parsedGuid;
+                if(Guid.TryParse(await response.Content.ReadAsStringAsync(), out parsedGuid) == false) return null;
+                return parsedGuid;
+            }
+        }
+
         //Create Methods
         public async Task<OperationResult> MakeTransaction(TransactionDto transaction)
         {
@@ -141,6 +157,8 @@ namespace Transactions.Application.Services
 
             transaction.SenderId = transactionIdentifiers.SenderId;
             transaction.GetterId = transactionIdentifiers.GetterId;
+            transaction.SenderCurrency = transactionIdentifiers.SenderCurrency;
+            transaction.GetterCurrency = transactionIdentifiers.GetterCurrency;
 
             return transaction;
         }
