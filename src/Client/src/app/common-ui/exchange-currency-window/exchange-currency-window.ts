@@ -1,7 +1,8 @@
+import { SharedService } from './../../data/services/shared-service';
 import { CurrencyService } from './../../data/services/bank/bank-products/currency-service';
 import { Currency } from './../../data/enums/currency';
 import { UserCardsService } from './../../data/services/bank/bank-products/user-cards-service';
-import { Component, EventEmitter, inject, Input, Output, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, inject, Input, Output, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IUserCards } from '../../data/interfaces/bank/bank-products/cards/user-cards-interface';
 import { TransactionService } from '../../data/services/bank/bank-products/transaction-service';
@@ -9,6 +10,8 @@ import { from, Subscription } from 'rxjs';
 import { ITransaction } from '../../data/interfaces/bank/bank-products/cards/transaction-interface';
 import { ICurrency } from '../../data/interfaces/bank/bank-products/currency-interface';
 import { DecimalPipe } from '@angular/common';
+import { CardStatus } from '../../data/enums/card-status';
+import { TransactionType } from '../../data/enums/transaction-type';
 
 @Component({
   selector: 'app-exchange-currency-window',
@@ -20,6 +23,7 @@ export class ExchangeCurrencyWindow {
   transactionService = inject(TransactionService);
   userCardsService = inject(UserCardsService);
   currencyService = inject(CurrencyService);
+  sharedService = inject(SharedService);
 
   cards?: IUserCards[];
   @Output() closeWindow = new EventEmitter<void>();
@@ -36,8 +40,12 @@ export class ExchangeCurrencyWindow {
   private senderCardIdSub!:Subscription;
   private getterCardIdSub!:Subscription;
   private amountSub!:Subscription;
-  @Output() makeTransaction = new EventEmitter<ITransaction>;
+  @Output() success = new EventEmitter<void>;
+  @Output() error = new EventEmitter<string>;
 
+  constructor(private cdr: ChangeDetectorRef) {
+    
+  }
   ngOnInit(){
     this.userCardsService.getMyCards({}).subscribe({
       next:(val)=>{
@@ -106,7 +114,51 @@ export class ExchangeCurrencyWindow {
   }
 
   onSubmit(){
+    if(this.transactionForm.valid){
+      if(this.transactionForm.get('senderCardId')?.value === ""){
+        this.showError("The card to be withdrawn must be selected");
+        return;
+      }
+      if(this.transactionForm.get('senderCardId')?.value === ""){
+        this.showError("The card for enrollment must be selected");
+        return;
+      }
+      const chosenCard = this.cards?.find(c=>c.id == this.transactionForm.get('senderCardId')?.value);
+      const availableBalance = chosenCard!.balance + chosenCard!.creditLimit;
+      if(availableBalance < this.transactionForm.get('amount')!.value!){
+        this.showError("The balance is insufficient to complete the exchange, please top up the card");
+        return ;
+      }
+      if(chosenCard?.status !== CardStatus.Active){
+        this.showError("You can only send money from an active card. Please reissue or unblock the card to send.");
+        return ;
+      }
+      if(chosenCard.cardNumber === this.transactionForm.get('getterCardId')?.value!){
+        this.showError("The sender's card and the recipient's card must not match.");
+        return ;
+      }
+      this.transactionService.makeTransaction(
+        {senderCardId: this.transactionForm.get('senderCardId')!.value!, 
+          getterCardId: this.transactionForm.get('getterCardId')!.value!, amount: this.transactionForm.get('amount')!.value!,
+          type: TransactionType.CurrencyExchange}
+      ).subscribe({
+        next:()=>{
+          this.success.emit()
+        },
+        error:(err)=>{
+          this.error.emit(this.sharedService.serverResponseErrorToArray(err)[0])
+        }
+      });
+    }
+    else{
+      this.showError("All fields has to be provided");
+    }
+  }
 
+  showError(errorText : string){
+    this.errorText = errorText;
+    this.showValidationError.set(true);
+    this.cdr.detectChanges();
   }
 
   cancel(){

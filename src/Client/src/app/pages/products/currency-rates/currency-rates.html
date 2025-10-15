@@ -41,7 +41,22 @@
 @if(openExchangeWindow()){
     <app-exchange-currency-window
     (closeWindow)="openExchangeWindow.set(false)"
+    (success)="successExchange()"
+    (error)="errorExchange($event)"
     >
 
     </app-exchange-currency-window>
+}
+
+@if(showSuccessWindow()){
+    <app-success-message
+    message="Success!"
+    secondMessage="Exchange transaction successfully created"
+    ></app-success-message> 
+}
+@if(showErrorWindow()){
+    <app-error-message
+        message="Error!"
+        [secondMessage]="errorMessage!"
+    ></app-error-message>
 }
