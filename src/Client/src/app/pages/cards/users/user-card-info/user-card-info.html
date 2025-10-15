@@ -1,10 +1,10 @@
-<header>
-    <h1 class="heading">Card Information</h1>
-</header>
+@if(userCard$ | async; as card){
+    <header>
+        <h1 class="heading">Card Information</h1>
+    </header>
 
-<section class="object-info-card">
+    <section class="object-info-card">
 
-    @if(userCard$ | async; as card){
         <table class="info-table">
             <tr class="colored">
                 <td>Field</td>
@@ -94,12 +94,17 @@
             }
             <button class="red-btn" (click)="closeCard()">🗑️ Close Card</button>
         </div>
-    }
-</section>
+    </section>
+    <header>
+        <h1 class="heading mt-8">Transactions</h1>
+    </header>
+}
+@else {
+    <app-loading></app-loading>
+}
 
-<header>
-    <h1 class="heading mt-8">Transactions</h1>
-</header>
+
+
 
 <app-transactions
 [cardCurrencySymbol]="getCurrencySymbol()"

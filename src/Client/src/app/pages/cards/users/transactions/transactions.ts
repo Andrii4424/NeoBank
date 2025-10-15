@@ -3,7 +3,7 @@ import { TransactionType } from './../../../../data/enums/transaction-type';
 import { ITransactionFilter } from '../../../../data/interfaces/filters/transaction-filters';
 import { IPageResult } from './../../../../data/interfaces/page-inteface';
 import { TransactionService } from './../../../../data/services/bank/bank-products/transaction-service';
-import { Component, inject, HostListener, Input, ChangeDetectorRef } from '@angular/core';
+import { Component, inject, HostListener, Input, ChangeDetectorRef, signal } from '@angular/core';
 import { TransactionsFilters } from "../transactions-filters/transactions-filters";
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ITransaction } from '../../../../data/interfaces/bank/bank-products/cards/transaction-interface';
@@ -30,6 +30,7 @@ export class Transactions {
   @Input() cardCurrencyText : string | null= null;
   @Input() cardCurrencySymbol : string | null= null;
   private queryParamsSub?: Subscription;
+  isLoaded = signal<boolean>(false);
 
   TransactionStatus = TransactionStatus;
 
@@ -66,17 +67,17 @@ export class Transactions {
 
   refreshPage(){
     setTimeout(() => this.updatePage(this.route.snapshot.queryParams), 800);
-    
   }
 
   updatePage(queryParams: Params){
     this.transactionService.getTransactions({cardId: this.cardId!, params: queryParams}).subscribe({
       next:(val)=>{
         this.transactionsPage = val;
+        this.isLoaded.set(true);
         this.cdr.detectChanges();
       },
       error:(val)=>{
-
+        this.isLoaded.set(true);
       }
     })
   }

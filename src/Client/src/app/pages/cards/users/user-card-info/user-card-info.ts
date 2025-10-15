@@ -18,10 +18,11 @@ import { IExchangeCurrency } from '../../../../data/interfaces/bank/bank-product
 import { ConfirmWindow } from "../../../../common-ui/confirm-window/confirm-window";
 import { Transactions } from "../transactions/transactions";
 import { TransactionType } from '../../../../data/enums/transaction-type';
+import { Loading } from "../../../../common-ui/loading/loading";
 
 @Component({
   selector: 'app-user-card-info',
-  imports: [AsyncPipe, RouterLink, ModalInputWindow, SuccessMessage, ErrorMessage, ConfirmWindow, Transactions],
+  imports: [AsyncPipe, RouterLink, ModalInputWindow, SuccessMessage, ErrorMessage, ConfirmWindow, Transactions, Loading],
   templateUrl: './user-card-info.html',
   styleUrl: './user-card-info.scss'
 })
