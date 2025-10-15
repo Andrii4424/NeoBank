@@ -28,7 +28,15 @@
                                 <span>-{{transaction.amount}}</span>
                             }
                             @else if(transaction.getterCardId===cardId){
-                                <span>+{{transaction.amount}}</span>
+                                @if(transaction.amountToReceive !=null)
+                                {
+                                    <span>+{{transaction.amountToReceive}}</span>
+                                }
+                                @else 
+                                {
+                                    <span>+{{transaction.amount}}</span>
+                                }
+
                             }
                                 
                         </td>

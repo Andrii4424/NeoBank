@@ -36,7 +36,7 @@ namespace Transactions.Application.Services
             }
             if(filters.PageNumber ==null) filters.PageNumber = 1;
 
-            Filters<TransactionEntity> generalFilters = filters.ToGeneralFilters();
+            Filters<TransactionEntity> generalFilters = filters.ToGeneralFilters(cardId);
 
             List<TransactionEntity> transactions= await _transactionRepository.GetTransactions(cardId, generalFilters.PageNumber.Value, generalFilters.PageSize, 
                 generalFilters.SortExpression, generalFilters.Ascending.Value, generalFilters.FiltersExpression);
@@ -106,23 +106,21 @@ namespace Transactions.Application.Services
                 return balanceCheckResult;
             }
 
-            double amountToReplenish;
-
             if (transaction.GetterCurrency != transaction.SenderCurrency)
             {
-                amountToReplenish = await GetAmountAfterExchange(new ExchangeCurrencyDto { From=transaction.SenderCurrency, To=transaction.GetterCurrency, 
+                transaction.AmountToReceive = (decimal)await GetAmountAfterExchange(new ExchangeCurrencyDto { From=transaction.SenderCurrency, To=transaction.GetterCurrency, 
                 Amount = (double)transaction.Amount});
             }
             else
             {
-                amountToReplenish = (double)transaction.Amount;
+                transaction.AmountToReceive = transaction.Amount;
             }
             transaction.Status = TransactionStatus.Pending;
 
             Guid transactionId = await CreateTransaction(transaction);
 
             await _rabbitMqMessageBusService.PublishAsync(new UpdateBalanceDto { Id= transactionId, SenderCardId=transaction.SenderCardId,
-            GetterCardId =transaction.GetterCardId, AmountToReplenish = amountToReplenish, AmountToWithdrawn = ((double)amountWithComission)*(-1),
+            GetterCardId =transaction.GetterCardId, AmountToReplenish = (double)transaction.AmountToReceive, AmountToWithdrawn = ((double)amountWithComission)*(-1),
             Success=null}, _exchange, "balance.update");
 
             return OperationResult.Ok();

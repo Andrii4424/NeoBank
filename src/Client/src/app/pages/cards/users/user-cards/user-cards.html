@@ -90,6 +90,7 @@
     <app-transaction-window
     [cards]="userCards?.items"
     (cancelTransaction)="openTransactionWindow.set(false)"
+    (makeTransaction)="makeTransaction($event)"
     ></app-transaction-window>
 }
 
@@ -106,6 +107,21 @@
         secondMessage="Card number has been copied!"
     >
     </app-success-message>
+}
+@if(successTransaction()){
+    <app-success-message
+        message="Success!"
+        secondMessage="Transaction has been successfully created"
+    >
+    </app-success-message>
+}
+@if(showError()){
+    <app-error-message
+        message="Error!"
+        [secondMessage]="errorMessage"
+    >
+
+    </app-error-message>
 }
 
 <app-page-switcher 

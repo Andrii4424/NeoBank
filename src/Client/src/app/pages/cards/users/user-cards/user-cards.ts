@@ -1,3 +1,5 @@
+import { TransactionService } from './../../../../data/services/bank/bank-products/transaction-service';
+import { ITransaction } from './../../../../data/interfaces/bank/bank-products/cards/transaction-interface';
 import { SharedService } from './../../../../data/services/shared-service';
 
 import { ChangeDetectorRef, Component, ElementRef, Inject, inject, QueryList, signal, ViewChildren } from '@angular/core';
@@ -21,17 +23,19 @@ import { IPageResult } from '../../../../data/interfaces/page-inteface';
 import { PageSwitcher } from "../../../../common-ui/page-switcher/page-switcher";
 import { TransactionWindow } from "../../../../common-ui/transaction-window/transaction-window";
 import { Loading } from "../../../../common-ui/loading/loading";
+import { ErrorMessage } from "../../../../common-ui/error-message/error-message";
 
 
 @Component({
   selector: 'app-user-cards',
-  imports: [CardsLayout, Search, RouterLink, SuccessMessage, CardFormatPipe, PageSwitcher, TransactionWindow, Loading],
+  imports: [CardsLayout, Search, RouterLink, SuccessMessage, CardFormatPipe, PageSwitcher, TransactionWindow, Loading, ErrorMessage],
   templateUrl: './user-cards.html',
   styleUrl: './user-cards.scss'
 })
 export class UserCards {
   userCardsService = inject(UserCardsService);
   sharedService = inject(SharedService);
+  transactionService = inject(TransactionService);
   userCards: IPageResult<IUserCards> | null= null;
   copied = signal<boolean>(false);
   route = inject(ActivatedRoute);
@@ -42,6 +46,9 @@ export class UserCards {
   CardType = CardType;
   CardStatus = CardStatus;
   CardLevel = CardLevel;
+  successTransaction = signal<boolean>(false);
+  showError = signal<boolean>(false);
+  errorMessage: string ="";
   openTransactionWindow = signal<boolean>(false);
   @ViewChildren('card') cardElements? : QueryList<ElementRef<HTMLDivElement>>
   isLoading = signal<boolean>(true);
@@ -82,7 +89,12 @@ export class UserCards {
         });
       }
 
-      this.userCardsService.getMyCards(params).subscribe({
+      this.getCards(params);
+    });
+  }
+
+  getCards(params: Params){
+    this.userCardsService.getMyCards(params).subscribe({
         next:(val)=>{
           this.userCards = val;
           this.isLoading.set(false);
@@ -94,7 +106,6 @@ export class UserCards {
         complete:()=>{
           this.updateCardTextColors();
         }
-      });
     });
   }
 
@@ -108,6 +119,22 @@ export class UserCards {
     setTimeout(() => this.copied.set(false), 3000);
   }
 
+  //Transactions
+  makeTransaction(transactionDetails: ITransaction){
+    this.transactionService.makeTransaction(transactionDetails).subscribe({
+      next:()=>{
+        this.successTransaction.set(true);
+        this.openTransactionWindow.set(false);
+        setTimeout(() => this.successTransaction.set(false), 3000);
+        this.getCards(this.route.snapshot.queryParams);
+      },
+      error:(err)=>{
+        this.errorMessage=this.sharedService.serverResponseErrorToArray(err)[0];
+        this.showError.set(true);
+        setTimeout(() => this.showError.set(false), 3000);
+      }
+    })
+  }
   //Filters and pagination handlers
   onSortChange(sortMethod: string){
     this.router.navigate([],{

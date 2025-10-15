@@ -22,7 +22,7 @@ namespace Transactions.Application.Filters
         public DateOnly? ChosenDate { get; set; }
         public double? MinimalTransactionSum { get; set; }
 
-        public Filters<TransactionEntity> ToGeneralFilters()
+        public Filters<TransactionEntity> ToGeneralFilters(Guid cardId)
         {
             Expression<Func<TransactionEntity, object>>? SortExpression;
             List<Expression<Func<TransactionEntity, bool>>>? Filters;
@@ -59,7 +59,8 @@ namespace Transactions.Application.Filters
             }
             if (MinimalTransactionSum != null)
             {
-                Filters.Add(t => t.Amount >= (decimal)MinimalTransactionSum);
+                Filters.Add(t => (t.SenderCardId== cardId && t.Amount >= (decimal)MinimalTransactionSum) || 
+                (t.GetterCardId==cardId && t.AmountToReceive >= (decimal)MinimalTransactionSum));
             }
 
             return new Filters<TransactionEntity>(PageNumber, PageSize, Ascending, SortExpression, Filters);

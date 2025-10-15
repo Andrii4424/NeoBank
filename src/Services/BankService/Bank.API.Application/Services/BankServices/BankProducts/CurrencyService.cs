@@ -84,6 +84,13 @@ namespace Bank.API.Application.Services.BankServices.BankProducts
                 throw new NullReferenceException("Error with getting NBU currency cource");
             }
 
+            //Double conversion
+            if(exchangeParams.From != Currency.UAH && exchangeParams.To!= Currency.UAH)
+            {
+                exchangeParams.Amount = exchangeParams.Amount * fromCource.Value;
+                fromCource = 1;
+            }
+
             return Math.Round((decimal)(fromCource / toCource) * (decimal)exchangeParams.Amount, 2);
         }
     }

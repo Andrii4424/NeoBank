@@ -7,6 +7,7 @@ import { debounceTime, distinctUntilChanged, filter, Subscription, switchMap } f
 import { DecimalPipe } from '@angular/common';
 import { ITransaction } from '../../data/interfaces/bank/bank-products/cards/transaction-interface';
 import { TransactionType } from '../../data/enums/transaction-type';
+import { CardStatus } from '../../data/enums/card-status';
 
 @Component({
   selector: 'app-transaction-window',
@@ -76,6 +77,14 @@ export class TransactionWindow {
       const availableBalance = chosenCard!.balance + chosenCard!.creditLimit;
       if(availableBalance < this.transactionForm.get('amount')!.value!){
         this.showError("The balance is insufficient to complete the transaction, please top up the card");
+        return ;
+      }
+      if(chosenCard?.status !== CardStatus.Active){
+        this.showError("You can only send money from an active card. Please reissue or unblock the card to send.");
+        return ;
+      }
+      if(chosenCard.cardNumber === this.transactionForm.get('getterCardId')?.value!){
+        this.showError("The sender's card and the recipient's card must not match.");
         return ;
       }
       

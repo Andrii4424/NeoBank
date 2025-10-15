@@ -30,6 +30,8 @@ namespace Transactions.Application.DTOs
         [Display(Name = "Amount")]
         public decimal Amount { get; set; }
 
+        public decimal? AmountToReceive { get; set; }
+
         public decimal? Commission { get; set; }
 
         public TransactionStatus? Status { get; set; }

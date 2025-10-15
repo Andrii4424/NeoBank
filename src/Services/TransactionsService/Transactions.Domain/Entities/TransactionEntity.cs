@@ -24,7 +24,9 @@ namespace Transactions.Domain.Entities
 
         public Currency? GetterCurrency { get; set; }
 
-        public decimal Amount { get; set; } 
+        public decimal Amount { get; set; }
+
+        public decimal? AmountToReceive { get; set; }
 
         public decimal Commission {  get; set; }
 
