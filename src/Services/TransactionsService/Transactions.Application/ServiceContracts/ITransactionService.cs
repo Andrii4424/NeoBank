@@ -16,5 +16,6 @@ namespace Transactions.Application.ServiceContracts
         public Task<double> GetComissionRate(Guid cardId);
         public Task<Guid?> GetCardIdByCardNumberAsync(string cardNumber);
         public Task<PageResult<TransactionDto>> GetTransactions(Guid cardId, TransactionFilter? filters);
+        public Task<OperationResult> AddFunds(AddFundsDto operationDetails);
     }
 }

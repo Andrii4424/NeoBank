@@ -44,5 +44,17 @@ namespace Transactions.WebUI.Controllers
             }
             return Ok();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AddFunds([FromBody] AddFundsDto operationDetails)
+        {
+            OperationResult result = await _transactionService.AddFunds(operationDetails);
+            if (!result.Success)
+            {
+                return BadRequest(result.ErrorMessage);
+            }
+
+            return Ok();
+        }
     }
 }

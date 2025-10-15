@@ -27,10 +27,6 @@ export class UserCardsService {
     return this.http.get<IUserCards>(`${this.baseUrl}GetUsersCardInfo/${cardId}`)
   }
 
-  addFunds(addFundsParams: IAddFunds){
-    return this.http.post(`${this.baseUrl}AddFunds`, addFundsParams);
-  }
-
   changePin(payload:{cardId: string, newPin: string}){
     return this.http.put(`${this.baseUrl}ChangePin`, payload);
   }

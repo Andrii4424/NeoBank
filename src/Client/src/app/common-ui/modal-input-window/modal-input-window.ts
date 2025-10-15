@@ -35,7 +35,7 @@ export class ModalInputWindow {
   constructor(private cdr: ChangeDetectorRef){}
 
   ngOnInit(){
-    switch(this.creditLimitParams!.to){
+    switch(this.creditLimitParams?.to){
       case (Currency.UAH):{
         this.currencyName="₴";
         break;

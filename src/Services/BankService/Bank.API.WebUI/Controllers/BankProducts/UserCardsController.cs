@@ -84,16 +84,6 @@ namespace Bank.API.WebUI.Controllers.BankProducts
             return Ok();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AddFunds([FromBody] CardOperationDto operationParams)
-        {
-            OperationResult result= await _userCardService.UpdateCardBalanceAsync(operationParams.cardId, operationParams.amount);
-            if (!result.Success) {
-                return BadRequest(result.ErrorMessage);
-            }
-            return Ok();
-        }
-
         [HttpPut]
         public async Task<IActionResult> ChangePin([FromBody] ChangePinDto pinParams)
         {

@@ -1,3 +1,4 @@
+import { TransactionService } from './../../../../data/services/bank/bank-products/transaction-service';
 import { SharedService } from './../../../../data/services/shared-service';
 import { IAddFunds } from './../../../../data/interfaces/bank/bank-products/cards/add-funds-interface';
 import { CardType } from './../../../../data/enums/card-type';
@@ -6,7 +7,7 @@ import { CardStatus } from './../../../../data/enums/card-status';
 import { PaymentSystem } from './../../../../data/enums/payment-system';
 import { Observable, tap } from 'rxjs';
 import { UserCardsService } from './../../../../data/services/bank/bank-products/user-cards-service';
-import { ChangeDetectorRef, Component, inject, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, signal, ViewChild } from '@angular/core';
 import { IUserCards } from '../../../../data/interfaces/bank/bank-products/cards/user-cards-interface';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
@@ -16,6 +17,7 @@ import { ErrorMessage } from "../../../../common-ui/error-message/error-message"
 import { IExchangeCurrency } from '../../../../data/interfaces/bank/bank-products/cards/exchange-currency-interface';
 import { ConfirmWindow } from "../../../../common-ui/confirm-window/confirm-window";
 import { Transactions } from "../transactions/transactions";
+import { TransactionType } from '../../../../data/enums/transaction-type';
 
 @Component({
   selector: 'app-user-card-info',
@@ -25,6 +27,7 @@ import { Transactions } from "../transactions/transactions";
 })
 export class UserCardInfo {
   userCardsService = inject(UserCardsService);
+  transactionService = inject(TransactionService);
   route = inject(ActivatedRoute);
   router= inject(Router);
   sharedService = inject(SharedService)
@@ -32,6 +35,7 @@ export class UserCardInfo {
   exchangeParams? :IExchangeCurrency;
   cardCurrency? : Currency;
   startCreditLimitValue? : number;
+  @ViewChild (Transactions) private transactionComponent! : Transactions;
 
   userCard$: Observable<IUserCards> = this.userCardsService.getCardInfo(this.cardId).pipe(
     tap(card=>{
@@ -73,10 +77,11 @@ export class UserCardInfo {
 
   addFunds(fundsCount: number){
     if(fundsCount>0){
-      const addFundsParams : IAddFunds={cardId: this.cardId, amount: fundsCount};
-      this.userCardsService.addFunds(addFundsParams).subscribe({
+      const addFundsParams : IAddFunds={cardId: this.cardId, amount: fundsCount, cardCurrency: this.cardCurrency!, operationType: TransactionType.Replenishment};
+      this.transactionService.addFunds(addFundsParams).subscribe({
         next:()=>{
           this.userCard$ = this.userCardsService.getCardInfo(this.cardId);
+          this.transactionComponent.refreshPage();
           this.successAddingFunds.set(true);
           setTimeout(() => this.successAddingFunds.set(false), 3000); 
         },

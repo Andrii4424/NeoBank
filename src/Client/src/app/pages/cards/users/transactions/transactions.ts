@@ -39,7 +39,6 @@ export class Transactions {
     this.queryParamsSub = this.route.queryParams.subscribe(params => {
       this.updatePage(params);
     });
-
   }
 
   submitFilters(filters: ITransactionFilter){
@@ -63,6 +62,11 @@ export class Transactions {
       queryParams: {PageNumber: pageNumber},
       queryParamsHandling: 'merge'
     })
+  }
+
+  refreshPage(){
+    setTimeout(() => this.updatePage(this.route.snapshot.queryParams), 800);
+    
   }
 
   updatePage(queryParams: Params){

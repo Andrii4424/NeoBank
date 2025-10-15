@@ -126,6 +126,27 @@ namespace Transactions.Application.Services
             return OperationResult.Ok();
         }
 
+        public async Task<OperationResult> AddFunds(AddFundsDto operationDetails)
+        {
+            TransactionDto transaction = new TransactionDto() { 
+                GetterCardId = operationDetails.CardId,
+                Amount = operationDetails.Amount,
+                AmountToReceive = operationDetails.Amount,
+                Type = operationDetails.OperationType,
+                GetterCurrency = operationDetails.CardCurrency,
+                TransactionTime = DateTime.UtcNow,
+                Status = TransactionStatus.Pending
+            };
+
+            Guid transactionId = await CreateTransaction(transaction);
+            
+            await _rabbitMqMessageBusService.PublishAsync(new UpdateBalanceDto { Id= transactionId, SenderCardId=null,
+            GetterCardId =transaction.GetterCardId, AmountToReplenish = (double)transaction.AmountToReceive, AmountToWithdrawn = null,
+            Success=null}, _exchange, "balance.update");
+
+            return OperationResult.Ok();
+        }
+
         public async Task UpdateTransactionStatus(UpdateBalanceDto? transactionDetails)
         {
             if (transactionDetails == null) throw new ArgumentNullException("Resoponse from update balance service is invalid. Transaction Id didnt provided");

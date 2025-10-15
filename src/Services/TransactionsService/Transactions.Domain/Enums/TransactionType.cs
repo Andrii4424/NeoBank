@@ -12,6 +12,7 @@ namespace Transactions.Domain.Enums
         Credit = 1,
         Deposit = 2,
         AmnualCardMatinance = 3,
-        CurrencyExchange = 4
+        CurrencyExchange = 4,
+        Replenishment = 5
     }
 }

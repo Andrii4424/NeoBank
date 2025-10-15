@@ -131,6 +131,7 @@ export class UserCards {
       error:(err)=>{
         this.errorMessage=this.sharedService.serverResponseErrorToArray(err)[0];
         this.showError.set(true);
+        this.openTransactionWindow.set(false);
         setTimeout(() => this.showError.set(false), 3000);
       }
     })

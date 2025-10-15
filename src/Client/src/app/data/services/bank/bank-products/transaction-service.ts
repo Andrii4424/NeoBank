@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Params } from '@angular/router';
 import { IPageResult } from '../../../interfaces/page-inteface';
 import { ITransaction } from '../../../interfaces/bank/bank-products/cards/transaction-interface';
+import { IAddFunds } from '../../../interfaces/bank/bank-products/cards/add-funds-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,9 @@ export class TransactionService {
 
   makeTransaction(transactionDetails : ITransaction){
     return this.http.post(`${this.baseUrl}MakeTransaction`, transactionDetails);
+  }
+
+  addFunds(transactionDetails: IAddFunds){
+    return this.http.post(`${this.baseUrl}AddFunds`, transactionDetails)
   }
 }
