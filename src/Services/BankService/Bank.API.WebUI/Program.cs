@@ -1,11 +1,20 @@
 using Bank.API.Infrastructure.Identity.Seed;
 using Bank.API.WebUI.StartupServicesInjection;
 using DotNetEnv;
+using Serilog;
+
 
 var builder = WebApplication.CreateBuilder(args);
 Env.Load();
 
 AddApplicationServices.AddServices(builder.Services, builder.Configuration);
+
+//Serilog
+builder.Host.UseSerilog((context, config) => {
+    config
+        .WriteTo.Console() 
+        .WriteTo.File("logs/log.txt");
+});
 
 var app = builder.Build();
 

@@ -4,6 +4,7 @@ using Bank.API.Application.ServiceContracts.MessageServices;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
@@ -22,15 +23,16 @@ namespace Bank.API.Application.Services.MessageServices
         private IChannel _channel;
         private readonly IConfiguration _configuration;
         private readonly IServiceScopeFactory _scopeFactory;
-
+        private readonly ILogger<RabbitMqConsumerService> _logger;
         private readonly string _exchangeName = "bank.transaction";
         private readonly string _routingKey = "balance.update";
         private readonly string _queueName = "transaction.balance";
 
-        public RabbitMqConsumerService(IConfiguration configuration, IServiceScopeFactory scopeFactory)
+        public RabbitMqConsumerService(IConfiguration configuration, IServiceScopeFactory scopeFactory, ILogger<RabbitMqConsumerService> logger)
         {
             _configuration = configuration;
             _scopeFactory = scopeFactory;
+            _logger = logger;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -55,10 +57,13 @@ namespace Bank.API.Application.Services.MessageServices
             var consumer = new AsyncEventingBasicConsumer(_channel);
             consumer.ReceivedAsync += async (sender, args) =>
             {
+                _logger.LogInformation("Trying to read info from rabbit mq");
                 TransactionDto? operationInfo = null;
                 try
                 {
                     operationInfo = JsonSerializer.Deserialize<TransactionDto>(args.Body.Span);
+
+                    _logger.LogInformation("Trying to update balance");
 
                     await using (var scope = _scopeFactory.CreateAsyncScope()) { 
                         var _userCardService = scope.ServiceProvider.GetRequiredService<IUserCardService>();
@@ -69,11 +74,12 @@ namespace Bank.API.Application.Services.MessageServices
                         await _producerService.PublishAsync(operationInfo, _exchangeName, "status.update");
                     }
 
+                    _logger.LogInformation("Success updating balance");
                     await _channel.BasicAckAsync(args.DeliveryTag, false);
                 }
                 catch(JsonException jsonEx)
                 {
-                    Console.WriteLine($"Invalid JSON format: {jsonEx.Message}");
+                    _logger.LogError("Error updating balance. Invalid JSON format: {message}", jsonEx.Message);
                     await _channel.BasicNackAsync(args.DeliveryTag, false, requeue: false);
                 }
                 catch (Exception ex) {
@@ -87,8 +93,7 @@ namespace Bank.API.Application.Services.MessageServices
                         }
                     }
 
-                    //TO DO: Error Log
-                    Console.WriteLine(ex.Message);
+                    _logger.LogError("Error updating balance: {message}", ex.Message);
                     await _channel.BasicNackAsync(args.DeliveryTag, false, requeue: false);
                 }
 

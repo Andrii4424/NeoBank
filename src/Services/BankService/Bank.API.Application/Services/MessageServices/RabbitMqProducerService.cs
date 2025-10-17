@@ -1,5 +1,6 @@
 ﻿using Bank.API.Application.ServiceContracts.MessageServices;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
 using System;
 using System.Collections.Generic;
@@ -15,8 +16,10 @@ namespace Bank.API.Application.Services.MessageServices
         private readonly IConnection _connection;
         private readonly IChannel _channel;
         private readonly IConfiguration _configuration;
+        private readonly ILogger<RabbitMqProducerService> _logger;
 
-        public RabbitMqProducerService(IConfiguration configuration)
+
+        public RabbitMqProducerService(IConfiguration configuration, ILogger<RabbitMqProducerService> logger)
         {
             _configuration = configuration;
 
@@ -31,6 +34,8 @@ namespace Bank.API.Application.Services.MessageServices
 
             _connection = factory.CreateConnectionAsync().GetAwaiter().GetResult();
             _channel = _connection.CreateChannelAsync().GetAwaiter().GetResult();
+
+            _logger = logger;
         }
 
         public async Task PublishAsync<T>(T message, string exchange, string routingKey)
@@ -46,6 +51,7 @@ namespace Bank.API.Application.Services.MessageServices
                 DeliveryMode = DeliveryModes.Persistent
             };
 
+            _logger.LogInformation("Sending response to transaction service");
             await _channel.BasicPublishAsync(
                 exchange: exchange,
                 routingKey: routingKey,

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -29,22 +30,26 @@ namespace Bank.API.Application.Services
         private readonly IConfiguration _configuration;
         private readonly IWebHostEnvironment _env;
         private readonly IMapper _mapper;
+        private readonly ILogger<IdentityService> _logger;
 
         public IdentityService(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager, IConfiguration configuration, 
-            IMapper mapper, IWebHostEnvironment env)
+            IMapper mapper, IWebHostEnvironment env, ILogger<IdentityService> logger)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _configuration = configuration;
             _mapper = mapper;
             _env = env;
+            _logger = logger;
         }
 
         //Auth
         public async Task<IdentityResult> RegisterAsync(RegisterDto registerDto)
         {
+            _logger.LogInformation("Trying to register user with email {email}", registerDto.Email);
             if (!await IsEmailUniqueAsync(registerDto.Email))
             {
+                _logger.LogError("Failed registering user with email {email}. Email is already in use.", registerDto.Email);
                 return IdentityResult.Failed(new IdentityError { Description = "Email is already in use." });
             }
             ApplicationUser user = new ApplicationUser
@@ -54,7 +59,8 @@ namespace Bank.API.Application.Services
             };
 
             IdentityResult result = await _userManager.CreateAsync(user, registerDto.Password);
-            if (result.Succeeded) { 
+            if (result.Succeeded) {
+                _logger.LogInformation("Success register user with email {email}", registerDto.Email);
                 await _userManager.AddToRoleAsync(user, "User"); 
             }
             return result;
@@ -67,6 +73,7 @@ namespace Bank.API.Application.Services
                 user.RefreshTokenExpiryTime = null;
                 await _userManager.UpdateAsync(user);
                 await _userManager.UpdateSecurityStampAsync(user);
+                _logger.LogInformation("Logout user with email: {email}", user.Email);
             }
         }
 
@@ -78,20 +85,24 @@ namespace Bank.API.Application.Services
 
         public async Task<ApplicationUser> GetUserByEmailAsync(string email)
         {
+            _logger.LogInformation("Trying to get user with email: {email}", email);
             if (IsEmailUniqueAsync(email).Result)
             {
+                _logger.LogInformation("Failed getting user with email: {email}. User not found", email);
+
                 throw new ArgumentException("User not found");
             }
+            _logger.LogInformation("Success getting user with email: {email}", email);
             return await _userManager.FindByEmailAsync(email);
         }
 
         public async Task<AuthenticationResponse> GetAccessToken(ApplicationUser user)
         {
+            _logger.LogInformation("Trying to get access token for user with email: {email}", user.Email);
 
             //Access Token
             var claim = new List<Claim>
             {
-
                 new Claim(JwtRegisteredClaimNames.Sub, Convert.ToString(user.Id)),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
@@ -127,6 +138,7 @@ namespace Bank.API.Application.Services
             string refreshToken = GenerateRefreshToken();
             await RecordRefreshToken(refreshToken, user);
 
+            _logger.LogInformation("Success getting access token for user with email: {email}", user.Email);
             return new AuthenticationResponse
             {
                 AccessToken = token,
@@ -174,22 +186,28 @@ namespace Bank.API.Application.Services
 
         public async Task<OperationResult> UpdateProfile(ProfileDto profile)
         {
+            _logger.LogInformation("Trying to update user profile with {email}", profile.Email);
+
             var allowedAvatarExtension = new[] { ".jpg", ".jpeg", ".png", ".webp", ".svg" };
             ApplicationUser? user = await _userManager.FindByIdAsync(profile.Id.ToString());
             if (user == null)
             {
+                _logger.LogError("Failed updating user profile with {email}. User doesnt exist", profile.Email);
                 throw new ArgumentException($"User with id {profile.Id} doesnt exist");
             }
             else if (profile.Email == null)
             {
+                _logger.LogError("Failed updating user profile with {email}. Email has to be provided", profile.Email);
                 return OperationResult.Error("Email has to be provided");
             }
             else if (profile.DateOfBirth!=null && DateOnly.FromDateTime(DateTime.Today).Year-profile.DateOfBirth.Value.Year <14)
             {
+                _logger.LogError("Failed updating user profile with {email}. User must be 14 years or older to use the NeoBank", profile.Email);
                 return OperationResult.Error("You must be 14 years or older to use the NeoBank");
             }
             else if (profile.Email!= user.Email && !await IsEmailUniqueAsync(profile.Email))
             {
+                _logger.LogError("Failed updating user profile with {email}. Email is already in use.", profile.Email);
                 return OperationResult.Error("Email is already in use.");
             }
 
@@ -223,6 +241,7 @@ namespace Bank.API.Application.Services
             user = MapProfile(profile,user);
             await _userManager.UpdateAsync(user);
 
+            _logger.LogInformation("Success updating user profile with {email}", profile.Email);
             return OperationResult.Ok();
         }
 

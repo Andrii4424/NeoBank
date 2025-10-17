@@ -5,6 +5,7 @@ using Bank.API.Domain.Entities;
 using Bank.API.Domain.Enums.CardEnums;
 using Bank.API.Domain.RepositoryContracts;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,17 +22,21 @@ namespace Bank.API.Application.Services.BankServices.BankProducts
         private readonly IMemoryCache _memoryCache;
         private readonly string cacheKey = "CurrencyData";
         private readonly IBankRepository _bankRepository;
+        private readonly ILogger<CurrencyService> _logger;
 
 
-        public CurrencyService(IMemoryCache memoryCache, IBankRepository bankRepository) {
+        public CurrencyService(IMemoryCache memoryCache, IBankRepository bankRepository, ILogger<CurrencyService> logger) {
             _memoryCache = memoryCache;
             _bankRepository = bankRepository;
+            _logger = logger;
         }
 
         public async Task<List<CurrencyDto>> GetCurrencyData()
         {
+            _logger.LogInformation("Trying to get currencies rates");
             if (_memoryCache.TryGetValue(cacheKey, out List<CurrencyDto> currencyRates))
             {
+                _logger.LogInformation("Success getting currencies rates from cache");
                 return currencyRates;
             }
             else
@@ -58,6 +63,8 @@ namespace Bank.API.Application.Services.BankServices.BankProducts
                     .SetPriority(CacheItemPriority.Normal);
 
                 _memoryCache.Set(cacheKey, allRates, CachEntryOptions);
+
+                _logger.LogInformation("Success getting currencies rates from request");
                 return allRates;
             }
         }
@@ -65,6 +72,8 @@ namespace Bank.API.Application.Services.BankServices.BankProducts
 
         public async Task<decimal?> ExchangeCurrency(ExchangeCurrencyDto exchangeParams)
         {
+            _logger.LogInformation("Getting exchanged currency");
+
             List<CurrencyDto> rates = await GetCurrencyData();
             Dictionary<Currency, double?> sellRates = new Dictionary<Currency, double?> {
                 {Currency.UAH, 1 },

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Logging;
 using System.Net.Http.Json;
 using Transactions.Application.DTOs;
 using Transactions.Application.Filters;
@@ -16,20 +17,23 @@ namespace Transactions.Application.Services
         private readonly HttpClient _client;
         private readonly IRabbitMqProducerService _rabbitMqMessageBusService;
         private readonly IMapper _mapper;
+        private readonly ILogger<TransactionService> _logger;
         private readonly string _exchange = "bank.transaction";
 
         public TransactionService(ITransactionRepository transactionRepository, IHttpClientFactory httpClientFactory, 
-            IRabbitMqProducerService rabbitMqMessageBusService, IMapper mapper)
+            IRabbitMqProducerService rabbitMqMessageBusService, IMapper mapper, ILogger<TransactionService> logger)
         {
             _transactionRepository = transactionRepository;
             _client = httpClientFactory.CreateClient("BankApi");
             _rabbitMqMessageBusService = rabbitMqMessageBusService;
             _mapper = mapper;
+            _logger = logger;
         }
 
         //Read Methods
         public async Task<PageResult<TransactionDto>> GetTransactions(Guid cardId, TransactionFilter? filters)
         {
+            _logger.LogInformation("Getting page for card {cardId}", cardId);
             if (filters == null)
             {
                 filters = new TransactionFilter();
@@ -48,11 +52,14 @@ namespace Transactions.Application.Services
 
         public async Task<double> GetComissionRate(Guid cardId)
         {
+            _logger.LogInformation("Getting comission rate for card {cardId}", cardId);
             return await GetOperationComission(cardId, TransactionType.P2P);
         }
 
         public async Task<Guid?> GetCardIdByCardNumberAsync(string cardNumber)
         {
+            _logger.LogInformation("Getting card id by card nuymber: {cardNumber}", cardNumber);
+
             var response = await _client.GetAsync($"Transaction/GetCardGuidByCardNumber/{cardNumber}");
 
             if (!response.IsSuccessStatusCode)
@@ -70,17 +77,22 @@ namespace Transactions.Application.Services
         //Create Methods
         public async Task<OperationResult> MakeTransaction(TransactionDto transaction)
         {
+            _logger.LogInformation("Trying to create transaction");
+
             transaction = await GetTransactionDtoWithIdentifiers(transaction);
             if (transaction.SenderCardId == null)
             {
+                _logger.LogError("Failed creating transaction. Wrong sender card!");
                 return OperationResult.Error("Wrong sender card!");
             }
             else if(transaction.GetterCardId == null)
             {
+                _logger.LogError("Failed creating transaction. Wrong getter card!");
                 return OperationResult.Error("Wrong getter card!");
             }
             else if (transaction.Amount<=0)
             {
+                _logger.LogError("Failed creating transaction. Amount of transfer must be more than 0");
                 return OperationResult.Error("Amount of transfer must be more than 0");
             }
             double comissionPercentage = await GetOperationComission(transaction.SenderCardId.Value, transaction.Type);
@@ -99,6 +111,7 @@ namespace Transactions.Application.Services
             if (!balanceCheckResult.Success) { 
                 if(balanceCheckResult.ErrorMessage== "Influent balance")
                 {
+                    _logger.LogError("Failed creating transaction. Influent balance in card {senderCardId}", transaction.SenderCardId);
                     transaction.Status = TransactionStatus.Failed;
                     await CreateTransaction(transaction);
                 }
@@ -123,6 +136,8 @@ namespace Transactions.Application.Services
             GetterCardId =transaction.GetterCardId, AmountToReplenish = (double)transaction.AmountToReceive, AmountToWithdrawn = ((double)amountWithComission)*(-1),
             Success=null}, _exchange, "balance.update");
 
+            _logger.LogError("Success creating transaction, transaction id: {transactronId}", transactionId);
+
             return OperationResult.Ok();
         }
 
@@ -144,14 +159,27 @@ namespace Transactions.Application.Services
             GetterCardId =transaction.GetterCardId, AmountToReplenish = (double)transaction.AmountToReceive, AmountToWithdrawn = null,
             Success=null}, _exchange, "balance.update");
 
+            _logger.LogInformation("Success adding funds for cardId: {cardId}", operationDetails.CardId);
+
             return OperationResult.Ok();
         }
 
         public async Task UpdateTransactionStatus(UpdateBalanceDto? transactionDetails)
         {
-            if (transactionDetails == null) throw new ArgumentNullException("Resoponse from update balance service is invalid. Transaction Id didnt provided");
+            _logger.LogInformation("Trying to update transaction status");
+
+            if (transactionDetails == null)
+            {
+                _logger.LogError("Failed to update transaction status. Resoponse from update balance service is invalid. Transaction Id didnt provided");
+                throw new ArgumentNullException("Resoponse from update balance service is invalid. Transaction Id didnt provided");
+            }
             TransactionEntity? transaction = await _transactionRepository.GetValueByIdAsync(transactionDetails.Id);
-            if (transaction == null) throw new ArgumentException("Resoponse from update balance service is invalid. Wrong transaction id, transaction with id doesnt exist");
+            if (transaction == null)
+            {
+                _logger.LogError("Failed to update transaction status. Resoponse from update balance service is invalid. " +
+                    "Transaction id: {transactionId} didnt provided", transactionDetails.Id);
+                throw new ArgumentException("Resoponse from update balance service is invalid. Wrong transaction id, transaction with id doesnt exist");
+            }
 
             if (transactionDetails.Success == true) { 
                 transaction.Status = TransactionStatus.Completed;
@@ -160,6 +188,7 @@ namespace Transactions.Application.Services
             {
                 transaction.Status = TransactionStatus.Failed;
             }
+            _logger.LogInformation("Success update transaction status {transactionId}", transactionDetails.Id);
 
             _transactionRepository.UpdateObject(transaction);
             await _transactionRepository.SaveAsync();

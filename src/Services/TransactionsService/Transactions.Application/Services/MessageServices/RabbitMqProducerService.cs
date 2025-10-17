@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
 using System.Text;
 using System.Text.Json;
@@ -12,10 +13,13 @@ namespace Transactions.Application.Services.MessageServices
         private readonly IConnection _connection;
         private readonly IChannel _channel;
         private readonly IConfiguration _configuration;
+        private readonly ILogger<RabbitMqProducerService> _logger;
 
-        public RabbitMqProducerService(IConfiguration configuration)
+
+        public RabbitMqProducerService(IConfiguration configuration, ILogger<RabbitMqProducerService> logger)
         {
             _configuration = configuration;
+            _logger = logger;
 
             ConnectionFactory factory = new ConnectionFactory()
             {
@@ -43,6 +47,7 @@ namespace Transactions.Application.Services.MessageServices
                 DeliveryMode = DeliveryModes.Persistent 
             };
 
+            _logger.LogInformation("Publishing message to rabbit mq (for bank.api service) to update balance");
             await _channel.BasicPublishAsync(
                 exchange: exchange,
                 routingKey: routingKey,

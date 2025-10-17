@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Text.Json;
@@ -15,15 +16,17 @@ namespace Transactions.Application.Services.MessageServices
         private IChannel _channel;
         private readonly IConfiguration _configuration;
         private readonly IServiceScopeFactory _scopeFactory;
+        private readonly ILogger<RabbitMqConsumerService> _logger;
 
         private readonly string _exchangeName = "bank.transaction";
         private readonly string _routingKey = "status.update";
         private readonly string _queueName = "transaction.status";
 
-        public RabbitMqConsumerService(IConfiguration configuration, IServiceScopeFactory scopeFactory)
+        public RabbitMqConsumerService(IConfiguration configuration, IServiceScopeFactory scopeFactory, ILogger<RabbitMqConsumerService> logger)
         {
             _configuration = configuration;
             _scopeFactory = scopeFactory;
+            _logger = logger;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -48,6 +51,7 @@ namespace Transactions.Application.Services.MessageServices
             var consumer = new AsyncEventingBasicConsumer(_channel);
             consumer.ReceivedAsync += async (sender, args) =>
             {
+                _logger.LogInformation("Trying to get info from rabbit mq");
                 try
                 {
                     UpdateBalanceDto? operationInfo = JsonSerializer.Deserialize<UpdateBalanceDto>(args.Body.Span);
@@ -56,16 +60,18 @@ namespace Transactions.Application.Services.MessageServices
                     {
                         var _transactionService = scope.ServiceProvider.GetRequiredService<ITransactionService>();
 
+
                         await _transactionService.UpdateTransactionStatus(operationInfo);
 
                     }
+
+                    _logger.LogInformation("Success updating transaction status");
 
                     await _channel.BasicAckAsync(args.DeliveryTag, false);
                 }
                 catch (Exception ex)
                 {
-                    //TO DO: Error Log
-                    Console.WriteLine(ex.Message);
+                    _logger.LogError("Error getting response from rabbit mq, {errorMessage}", ex.Message);
                     await _channel.BasicNackAsync(args.DeliveryTag, false, requeue: false);
                 }
 

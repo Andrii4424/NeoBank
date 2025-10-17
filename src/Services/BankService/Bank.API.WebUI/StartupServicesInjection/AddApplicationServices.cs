@@ -35,6 +35,7 @@ namespace Bank.API.WebUI.StartupServicesInjection
     {
         public static IServiceCollection AddServices(IServiceCollection services, IConfiguration configuration)
         {
+
             var culture = CultureInfo.InvariantCulture;
             CultureInfo.DefaultThreadCurrentCulture = culture;
             CultureInfo.DefaultThreadCurrentUICulture = culture;
