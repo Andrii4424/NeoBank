@@ -11,7 +11,7 @@
     align-items: center;
     border-bottom: 1px solid var(--light-gray-color);
     background-color: white;
-    z-index: 1000;
+    z-index: 14400;
 }
 .layout-header >*{
     margin: 20px 44px;
@@ -32,7 +32,12 @@
     width: auto;
     cursor: pointer;
 }
-
+.auth{
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+}
 
 /*Sidebar*/
 .menu{
@@ -97,7 +102,7 @@
 /*Labtop adaptivity*/
 .sidebar.menu.labtop.opened{
     position: fixed;
-    top: calc(var(--header-height) + 1px); /*+1px for header border*/
+    top: var(--header-height);
     display: grid;
     grid-template-columns: repeat(3, 200px);
     justify-content: left;
@@ -129,7 +134,7 @@
 }
 .sidebar.menu.mobile.opened{
     position: fixed;
-    top: calc(var(--header-height) + 1px); /*+1px for header border*/
+    top: var(--header-height);
     padding: 10px 8px !important;
     display: flex !important;
     flex-direction: column;
@@ -139,6 +144,35 @@
 }
 .sidebar.menu.mobile.opened a{
     width: calc(100% - 64px);
+}
+
+.language-name{
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    color:  var(--heaviest-dark-primary-color);
+}
+
+.language-switcher{
+    position: relative;
+    padding: 4px 4px 4px 8px;
+
+}
+.language-form{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 8px 10px;
+    background-color: white;
+    width: 80px;
+    border: 1px solid var(--medium-light-gray-primary-color);
+    border-radius: 8px;
+    top: 25px;
+    left: 0px;
+}
+.language-form label, input{
+    cursor: pointer;
 }
 
 @media (max-width: 768px) {

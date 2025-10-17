@@ -6,26 +6,38 @@
             </a>
 
             <nav class="header-menu menu" [class.compact]="compact" [class.labtop]="labtop()">
-                <a href="#">About Bank</a>
-                <a href="#">Cards</a>
+                <a [routerLink]="['/about']" routerLinkActive="active">About Bank</a>
+                <a [routerLink]="['/cards']" routerLinkActive="active">{{'Cards' |translate}}</a>
                 <a href="#">Deposits</a>
                 <a href="#">Credits</a>
                 <a href="#">Clients</a>
                 <a href="#">Employees</a>
                 <a href="#">Vacancies</a>
-                <a href="#">Currency Rates</a>
+                <a [routerLink]="['/currency-rates']" routerLinkActive="active">Currency Rates</a>
             </nav>
 
             <img src="assets/images/menu/menu.svg" alt="open-menu" #openMenu class="menu-icon chosen" [class.labtop]="labtop()">
             <img src="assets/images/menu/cross.svg" alt="close-menu" #closeMenu class="menu-icon" [class.labtop]="labtop()">
         </div>
         <div class="auth">
+            <div class="language-switcher">
+                <h1 class="language-name" #openLanguageWindow>{{chosenLanguage}}&#9662;</h1>
+                <form [class.none]="!showLanguageWindow()" class="language-form" #languageForm>
+                    <label>
+                        <input type="radio" [(ngModel)]="chosenLanguage" name="language" value="en" (ngModelChange)="onLanguageChange()"/> EN
+                    </label>
+                    <label>
+                        <input type="radio" [(ngModel)]="chosenLanguage"  name="language" value="uk" (ngModelChange)="onLanguageChange()"/> UA
+                    </label>
+                </form>
+            </div>
+
             <app-own-profile></app-own-profile>
         </div>
     </header>
     <aside class="sidebar menu" #adaptiveMenu id="adaptive-menu" [class.compact]="compact" [class.labtop]="labtop()" [class.mobile]="mobile()">
         <a [routerLink]="['/about']" routerLinkActive="active">About Bank</a>
-        <a [routerLink]="['/cards']" routerLinkActive="active">Cards</a>
+        <a [routerLink]="['/cards']" routerLinkActive="active">{{'Cards' |translate}}</a>
         <a href="#" routerLinkActive="active">Deposits</a>
         <a href="#" routerLinkActive="active">Credits</a>
         <a href="#" routerLinkActive="active">Clients</a>
