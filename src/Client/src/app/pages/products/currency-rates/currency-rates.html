@@ -1,9 +1,9 @@
 @if(currencies$ | async; as currencies) {
-    <h1 class="subheading-without-lh mb-minus-8">NBU Rates</h1>
+    <h1 class="subheading-without-lh mb-minus-8">{{'NBURates' |translate}}</h1>
     <table class="currencies-table">
         <tr>
-            <td>Currency</td>
-            <td>NBU Rates</td>
+            <td>{{'Currency' | translate}}</td>
+            <td>{{'NBURates' |translate}}</td>
         </tr>
         
         @for (currency of currencies; track $index) {
@@ -14,20 +14,20 @@
         }
         
     </table>
-    <h1 class="subheading-without-lh mb-minus-8">NeoBank Rates</h1>
+    <h1 class="subheading-without-lh mb-minus-8">{{'NeoBankRates' |translate}}</h1>
     <table class="currencies-table">
         <tr>
-            <td>Currency</td>
-            <td>Bank Rates (for buying)</td>
-            <td>Bank Rates (for selling)</td>
-            <td>Actions</td>
+            <td>{{'Currency' |translate}}</td>
+            <td>{{'BankRatesForBuying' |translate}}</td>
+            <td>{{'BankRatesForSelling' |translate}}</td>
+            <td>{{'Actions' | translate}}</td>
         </tr>
         @for (currency of currencies; track $index) {
             <tr>
                 <td>{{currency.cc}}</td>
                 <td>{{currency.neoBankBuyCource}}</td>
                 <td>{{currency.neoBankSellCource}}</td>
-                <td><button class="exchange" (click)="openExchangeWindow.set(true)">Exchange</button></td>
+                <td><button class="exchange" (click)="openExchangeWindow.set(true)">{{'Exchange' |translate}}</button></td>
             </tr>
         }
     </table>

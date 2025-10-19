@@ -9,10 +9,11 @@ import { PaymentSystem } from '../../../../data/enums/payment-system';
 import { Currency } from '../../../../data/enums/currency';
 import { C } from '@angular/cdk/keycodes';
 import { ICardTariffs } from '../../../../data/interfaces/bank/bank-products/cards/card-tariffs.interface';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-update-tariffs',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TranslateModule],
   templateUrl: './update-tariffs.html',
   styleUrl: './update-tariffs.scss'
 })

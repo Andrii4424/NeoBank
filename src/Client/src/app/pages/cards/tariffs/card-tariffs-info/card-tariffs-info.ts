@@ -11,10 +11,11 @@ import { PaymentSystem } from '../../../../data/enums/payment-system';
 import { Currency } from '../../../../data/enums/currency';
 import { ConfirmDelete } from "../../../../common-ui/confirm-delete/confirm-delete";
 import { ICardTariffs } from '../../../../data/interfaces/bank/bank-products/cards/card-tariffs.interface';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-card-tariffs-info',
-  imports: [AsyncPipe, RouterLink, ConfirmDelete],
+  imports: [AsyncPipe, RouterLink, ConfirmDelete, TranslateModule],
   templateUrl: './card-tariffs-info.html',
   styleUrl: './card-tariffs-info.scss'
 })

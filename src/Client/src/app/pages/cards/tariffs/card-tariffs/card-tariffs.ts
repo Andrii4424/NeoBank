@@ -15,10 +15,11 @@ import { CardType } from '../../../../data/enums/card-type';
 import { Currency } from '../../../../data/enums/currency';
 import { ICardTariffs } from '../../../../data/interfaces/bank/bank-products/cards/card-tariffs.interface';
 import { Loading } from "../../../../common-ui/loading/loading";
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-card-tariffs',
-  imports: [PageSwitcher, Search, CardsLayout, RouterLink, Loading],
+  imports: [PageSwitcher, Search, CardsLayout, RouterLink, Loading, TranslateModule],
   templateUrl: './card-tariffs.html',
   styleUrl: './card-tariffs.scss'
 })

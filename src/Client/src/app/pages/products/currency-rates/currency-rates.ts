@@ -5,10 +5,11 @@ import { Loading } from "../../../common-ui/loading/loading";
 import { ExchangeCurrencyWindow } from "../../../common-ui/exchange-currency-window/exchange-currency-window";
 import { SuccessMessage } from "../../../common-ui/success-message/success-message";
 import { ErrorMessage } from "../../../common-ui/error-message/error-message";
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-currency-rates',
-  imports: [AsyncPipe, Loading, ExchangeCurrencyWindow, SuccessMessage, ErrorMessage],
+  imports: [AsyncPipe, Loading, ExchangeCurrencyWindow, SuccessMessage, ErrorMessage, TranslateModule],
   templateUrl: './currency-rates.html',
   styleUrl: './currency-rates.scss'
 })

@@ -8,10 +8,11 @@ import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } fr
 import { CardType } from '../../../../data/enums/card-type';
 import { CardLevel } from '../../../../data/enums/card-level';
 import { ICardTariffs } from '../../../../data/interfaces/bank/bank-products/cards/card-tariffs.interface';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-card-tariffs',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TranslateModule],
   templateUrl: './add-card-tariffs.html',
   styleUrl: './add-card-tariffs.scss'
 })

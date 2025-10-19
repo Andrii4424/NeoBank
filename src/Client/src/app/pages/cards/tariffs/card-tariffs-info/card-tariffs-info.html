@@ -1,51 +1,51 @@
 @if(card$ | async; as card){
     <header>
-        <h1 class="heading">{{card.cardName}} Information</h1>
+        <h1 class="heading">{{card.cardName}} {{'Information' |translate}}</h1>
     </header>
 
     <section class="object-info-card">
 
             <table class="info-table">
                 <tr class="colored">
-                    <td>Field</td>
-                    <td>Value</td>
+                    <td>{{'Field' |translate}}</td>
+                    <td>{{'Value' |translate}}</td>
                 </tr>
                 <tr>
-                    <td>Name</td>
+                    <td>{{'Name' |translate}}</td>
                     <td>{{card.cardName}}</td>
                 </tr>
                 <tr class="colored">
-                    <td>Card Type</td>
+                    <td>{{'CardType' |translate}}</td>
                     <td>
                         @if(card.type === CardType.Debit){
-                            Debit
+                            {{'Debit' | translate}}
                         }
                         @else if(card.type === CardType.Credit){
-                            Credit
+                            {{'Credit' |translate}}
                         }
                     </td>
                 </tr>
                 <tr>
-                    <td>Card Level</td>
+                    <td>{{'CardLevel' |translate}}</td>
                     <td>
                         @if(card.level === CardLevel.Premium){
-                            Premium
+                            {{'Premium' |translate}}
                         }
                         @else if(card.level === CardLevel.Normal){
-                            Usual
+                            {{'Usual' |translate}}
                         }
                     </td>
                 </tr>
                 <tr class="colored">
-                    <td>Validity Period</td>
-                    <td>{{card.validityPeriod}} years</td>
+                    <td>{{'ValidityPeriodDefault' |translate}}</td>
+                    <td>{{card.validityPeriod}} {{'years' |translate}}</td>
                 </tr>
                 <tr [class.none]="card.type === CardType.Debit">
-                    <td>Max Credit Limit</td>
+                    <td>{{'MaxCreditLimitDefault'|translate}}</td>
                     <td>{{card.maxCreditLimit}} UAH</td>
                 </tr>
                 <tr [class.colored]="card.type !== CardType.Debit">
-                    <td>Enabled Payment Systems</td>
+                    <td>{{'EnabledPaymentSystems' |translate}}</td>
                     <td>
                         @if(card.enabledPaymentSystems?.includes(PaymentSystem.Mastercard)){
                             Mastercard
@@ -56,11 +56,11 @@
                     </td>
                 </tr>
                 <tr [class.none]="card.type === CardType.Debit">
-                    <td>Interest Rate</td>
+                    <td>{{'InterestRate'}}</td>
                     <td>{{card.interestRate}}%</td>
                 </tr>
                 <tr class="colored">
-                    <td>Enable Currency</td>
+                    <td>{{'EnableCurrency'}}</td>
                     <td>
                         @if(card.enableCurrency?.includes(Currency.UAH)){
                             UAH
@@ -74,11 +74,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Annual Maintenance Cost</td>
+                    <td>{{'AnnualMaintenanceCostDefault' |translate}}</td>
                     <td>{{card.annualMaintenanceCost}} UAH</td>
                 </tr>
                 <tr class="colored">
-                    <td>P2P Internal Commission</td>
+                    <td>{{'P2PCommissionDefault' |translate}}</td>
                     <td>{{card.p2PInternalCommission}}%</td>
                 </tr>
                 <tr>
@@ -86,14 +86,14 @@
                     <td>{{card.bin}}</td>
                 </tr>
                 <tr class="colored">
-                    <td>Card Color</td>
+                    <td>{{'CardColor' |translate}}</td>
                     <td><div class="card-color" [style.background-color]="card.cardColor"></div></td>
                 </tr>
             </table>
         @if(profileService.getRole()?.toLowerCase()==='admin'){
             <div class="entity-action-buttons">
-                <a [routerLink]="['/cards/update', card.id]" class="update">Update Card</a>
-                <a (click)="showDeleteDialog.set(true)" class="delete">Delete Card</a>
+                <a [routerLink]="['/cards/update', card.id]" class="update">{{"UpdateCard" |translate}}</a>
+                <a (click)="showDeleteDialog.set(true)" class="delete">{{'DeleteCard' |translate}}</a>
             </div>
         }
     </section>

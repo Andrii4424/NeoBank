@@ -1,29 +1,29 @@
 @if(userCard$ | async; as card){
     <header>
-        <h1 class="heading">Card Information</h1>
+        <h1 class="heading">{{'CardInformation' |translate}}</h1>
     </header>
 
     <section class="object-info-card">
 
         <table class="info-table">
             <tr class="colored">
-                <td>Field</td>
-                <td>Value</td>
+                <td>{{'Field' |translate}}</td>
+                <td>{{'Value' |translate}}</td>
             </tr>
             <tr>
-                <td>Card tariffs</td>
+                <td>{{'CardTariffs' |translate}}</td>
                 <td><a [routerLink]="['/cards/info/', card.cardTariffId]">{{card.cardTariffs.cardName}}</a></td>
             </tr>
             <tr class="colored">
-                <td>Card Number</td>
+                <td>{{'CardNumber' |translate}}</td>
                 <td>{{card.cardNumber}}</td>
             </tr>
             <tr>
-                <td>Expiry Date</td>
+                <td>{{'ExpiryDate' |translate}}</td>
                 <td>{{card.expiryDate}}</td>
             </tr>
             <tr class="colored">
-                <td>Payment System</td>
+                <td>{{'PaymentSystem' |translate}}</td>
                 <td>
                     @if (card.chosedPaymentSystem === PaymentSystem.Mastercard) {
                         <span>Mastercard</span>
@@ -34,25 +34,25 @@
                 </td>
             </tr>
             <tr>
-                <td>Currency</td>
+                <td>{{'Currency' |translate}}</td>
                 <td>{{getCurrencyText()}}</td>
             </tr>
             <tr class="colored">
-                <td>Pin</td>
+                <td>{{'Pin' |translate}}</td>
                 <td>{{card.pin}}</td>
             </tr>
             <tr>
-                <td>Card Status</td>
+                <td>{{'CardStatus' |translate}}</td>
                 <td>
                     @switch (card.status) {
                         @case(CardStatus.Active){
-                            <span>Active</span>
+                            <span>{{'Active' |translate}}</span>
                         }
                         @case(CardStatus.Expired){
-                            <span>Expired</span>
+                            <span>{{'Expired' |translate}}</span>
                         }
                         @case(CardStatus.Blocked){
-                            <span>Blocked</span>
+                            <span>{{'Blocked'|translate}}</span>
                         }
                         @default {}
                     }
@@ -63,9 +63,9 @@
                 <td>{{card.cvv}}</td>
             </tr>
             <tr>
-                <td>Balance 
+                <td>{{'Balance' |translate}} 
                     @if(card.cardTariffs.type===CardType.Credit){
-                        <span>(without credit limit)</span>
+                        <span>{{'withoutCreditLimit' |translate}}</span>
                     }
                 </td>
                 <td>
@@ -73,30 +73,30 @@
                 </td>
             </tr>
             <tr class="colored">
-                <td>Credit Limit</td>
+                <td>{{'CreditLimit' |translate}}</td>
                 <td>{{card.creditLimit}}{{getCurrencySymbol()}}
                 </td>
             </tr>
         </table>
 
         <div class="card-action-buttons">
-            <button class="green-btn" (click)="openAddFounds()">💳 Add Funds</button>
-            <button class="blue-btn" (click)="openPin()">🔑 Change PIN</button>
+            <button class="green-btn" (click)="openAddFounds()">💳 {{'AddFunds' |translate}}</button>
+            <button class="blue-btn" (click)="openPin()">🔑 {{'ChangePin' |translate}}</button>
             @if(card.cardTariffs.type === CardType.Credit){
-                <button class="blue-btn" (click)="openCreditLimit()">📈 Change Credit Limit</button>
+                <button class="blue-btn" (click)="openCreditLimit()">📈 {{'ChangeCreditLimit' |translate}}</button>
             }
-            <button class="blue-btn" (click)="reissueCard()">🔄 Card Reissue</button>
+            <button class="blue-btn" (click)="reissueCard()">🔄 {{'ReissueCard' |translate}}</button>
             @if(card.status===CardStatus.Active){
-                <button class="red-btn" (click)="blockCard()">🔒 Block</button>
+                <button class="red-btn" (click)="blockCard()">🔒 {{'Block' |translate}}</button>
             }
             @else if(card.status===CardStatus.Blocked){
-                <button class="red-btn" (click)="unblockCard()">🔓 Unblock</button>
+                <button class="red-btn" (click)="unblockCard()">🔓 {{'Unblock' |translate}}</button>
             }
-            <button class="red-btn" (click)="closeCard()">🗑️ Close Card</button>
+            <button class="red-btn" (click)="closeCard()">🗑️ {{'CloseCard' |translate}}</button>
         </div>
     </section>
     <header>
-        <h1 class="heading mt-8">Transactions</h1>
+        <h1 class="heading mt-8">{{'Transactions' |translate}}</h1>
     </header>
 }
 @else {

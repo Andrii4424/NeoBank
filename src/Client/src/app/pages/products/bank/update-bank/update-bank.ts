@@ -4,10 +4,11 @@ import { BankService } from '../../../../data/services/bank/bank-service';
 import { Observable } from 'rxjs';
 import { FormControl, FormGroup, Validators, ɵInternalFormsSharedModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedService } from '../../../../data/services/shared-service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-update-bank',
-  imports: [ɵInternalFormsSharedModule, ReactiveFormsModule],
+  imports: [ɵInternalFormsSharedModule, ReactiveFormsModule, TranslateModule],
   templateUrl: './update-bank.html',
   styleUrl: './update-bank.scss'
 })

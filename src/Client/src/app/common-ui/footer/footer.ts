@@ -2,10 +2,11 @@ import { Component, ElementRef, Host, inject, signal, ViewChild } from '@angular
 import { SharedService } from '../../data/services/shared-service';
 import { ErrorMessage } from "../error-message/error-message";
 import { SuccessMessage } from "../success-message/success-message";
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-footer',
-  imports: [ErrorMessage, SuccessMessage],
+  imports: [ErrorMessage, SuccessMessage, TranslateModule],
   templateUrl: './footer.html',
   styleUrl: './footer.scss'
 })

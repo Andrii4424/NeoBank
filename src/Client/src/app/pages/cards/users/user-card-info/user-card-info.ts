@@ -19,10 +19,11 @@ import { ConfirmWindow } from "../../../../common-ui/confirm-window/confirm-wind
 import { Transactions } from "../transactions/transactions";
 import { TransactionType } from '../../../../data/enums/transaction-type';
 import { Loading } from "../../../../common-ui/loading/loading";
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-card-info',
-  imports: [AsyncPipe, RouterLink, ModalInputWindow, SuccessMessage, ErrorMessage, ConfirmWindow, Transactions, Loading],
+  imports: [AsyncPipe, RouterLink, ModalInputWindow, SuccessMessage, ErrorMessage, ConfirmWindow, Transactions, Loading, TranslateModule],
   templateUrl: './user-card-info.html',
   styleUrl: './user-card-info.scss'
 })

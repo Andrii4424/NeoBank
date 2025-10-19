@@ -12,7 +12,7 @@
                             <img src="assets/images/menu/cross.svg" alt="close-filters" class="delete-filter" (click)="dateValue=null">
                         }
                     </div>
-                    <label for="date">Chose Date:</label>
+                    <label for="date">{{'ChoseDate' |translate}}:</label>
                     <input type="date" [(ngModel)]="dateValue" id="date">
                 </div>
 
@@ -22,19 +22,19 @@
                             <img src="assets/images/menu/cross.svg" alt="close-filters" class="delete-filter" (click)="minSumValue=null">
                         }
                     </div>
-                    <label for="min-sum">Chose Sum:</label>
+                    <label for="min-sum">{{'MinSum' |translate}}:</label>
                     <input type="number" step="0.1" [(ngModel)]="minSumValue" id="min-sum">
                 </div>
 
-                <button #filtersButton (click)="submitFilters()">Submit Filters</button>
+                <button #filtersButton (click)="submitFilters()">{{'SubmitFilters' | translate}}</button>
             </div>
         }
     </div>
 
     <select class="sort" [(ngModel)]="selectedSortValue" (change)="submitFilters()">
-        <option value="date-descending">By Date Descending ▼</option>
-        <option value="date-ascending">By Date Ascending ▲</option>
-        <option value="transaction-sum-descending">Transaction Sum Descending ▼</option>
-        <option value="transaction-sum-ascending">Transaction Sum Ascending ▲</option>
+        <option value="date-descending">{{'ByDateDescending' |translate}} ▼</option>
+        <option value="date-ascending">{{'ByDateAscending' |translate}} ▲</option>
+        <option value="transaction-sum-descending">{{'TransactionSumDescending' |translate}} ▼</option>
+        <option value="transaction-sum-ascending">{{'TransactionSumAscending' |translate}} ▲</option>
     </select>
 </section>

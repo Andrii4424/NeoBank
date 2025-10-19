@@ -6,14 +6,14 @@
             </a>
 
             <nav class="header-menu menu" [class.compact]="compact" [class.labtop]="labtop()">
-                <a [routerLink]="['/about']" routerLinkActive="active">About Bank</a>
+                <a [routerLink]="['/about']" routerLinkActive="active">{{'AboutBank' | translate}}</a>
                 <a [routerLink]="['/cards']" routerLinkActive="active">{{'Cards' |translate}}</a>
-                <a href="#">Deposits</a>
-                <a href="#">Credits</a>
-                <a href="#">Clients</a>
-                <a href="#">Employees</a>
-                <a href="#">Vacancies</a>
-                <a [routerLink]="['/currency-rates']" routerLinkActive="active">Currency Rates</a>
+                <a href="#">{{'Deposits' | translate}}</a>
+                <a href="#">{{'Credits' | translate}}</a>
+                <a href="#">{{'Clients' | translate}}</a>
+                <a href="#">{{'Employees' | translate}}</a>
+                <a href="#">{{'Vacancies' | translate}}</a>
+                <a [routerLink]="['/currency-rates']" routerLinkActive="active">{{'CurrencyRates' | translate}}</a>
             </nav>
 
             <img src="assets/images/menu/menu.svg" alt="open-menu" #openMenu class="menu-icon chosen" [class.labtop]="labtop()">
@@ -36,14 +36,14 @@
         </div>
     </header>
     <aside class="sidebar menu" #adaptiveMenu id="adaptive-menu" [class.compact]="compact" [class.labtop]="labtop()" [class.mobile]="mobile()">
-        <a [routerLink]="['/about']" routerLinkActive="active">About Bank</a>
+        <a [routerLink]="['/about']" routerLinkActive="active">{{'AboutBank' | translate}}</a>
         <a [routerLink]="['/cards']" routerLinkActive="active">{{'Cards' |translate}}</a>
-        <a href="#" routerLinkActive="active">Deposits</a>
-        <a href="#" routerLinkActive="active">Credits</a>
-        <a href="#" routerLinkActive="active">Clients</a>
-        <a href="#" routerLinkActive="active">Employees</a>
-        <a href="#" routerLinkActive="active">Vacancies</a>
-        <a [routerLink]="['/currency-rates']" routerLinkActive="active">Currency Rates</a>
+        <a href="#">{{'Deposits' | translate}}</a>
+        <a href="#">{{'Credits' | translate}}</a>
+        <a href="#">{{'Clients' | translate}}</a>
+        <a href="#">{{'Employees' | translate}}</a>
+        <a href="#">{{'Vacancies' | translate}}</a>
+        <a [routerLink]="['/currency-rates']" routerLinkActive="active">{{'CurrencyRates' | translate}}</a>
     </aside>
     <main #main class="content">
         <router-outlet></router-outlet>

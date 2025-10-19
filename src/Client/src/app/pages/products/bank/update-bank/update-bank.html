@@ -1,32 +1,32 @@
 <header>
-    <h1 class="heading">Update Bank</h1>
+    <h1 class="heading">{{'UpdatingBank' |translate}}</h1>
 </header>
 
 <section class="object-info-card">
     <form [formGroup]="bankForm" class="update-entity-form" (click)="closeValidationStatus()" (ngSubmit)="onSubmit()">
         <div class="update-entity-form-fields">
-            <label for="rating">Rating</label>
+            <label for="rating">{{'Rating' |translate}}</label>
             <input id="rating" name="rating" type="number" step="0.1" (change)="onRatingChange($event)" formControlName="rating" />
 
-            <label for="hasLicense">Has License</label>
+            <label for="hasLicense">{{'HasLicense' |translate}}</label>
             <input id="hasLicense" class="checkbox" name="hasLicense" type="checkbox" formControlName="hasLicense" />
 
-            <label for="bankFounderFullName">Bank Founder Full Name</label>
+            <label for="bankFounderFullName">{{'BankFounderFullName' |translate}}</label>
             <input id="bankFounderFullName" name="bankFounderFullName" type="text" formControlName="bankFounderFullName" />
 
-            <label for="bankDirectorFullName">Bank Director Full Name</label>
+            <label for="bankDirectorFullName">{{'BankDirectorFullName' |translate}}</label>
             <input id="bankDirectorFullName" name="bankDirectorFullName" type="text" formControlName="bankDirectorFullName" />
 
-            <label for="capitalization">Capitalization (in usd)</label>
+            <label for="capitalization">{{'Capitalization' |translate}} ({{'in' |translate}} usd)</label>
             <input id="capitalization" name="capitalization" type="number" min="0" max="2084597250" (change)="onCapitalizationChange($event)" formControlName="capitalization" />
 
-            <label for="contactPhone">Contact Phone</label>
+            <label for="contactPhone">{{'ContactPhone' |translate}}</label>
             <input id="contactPhone" name="contactPhone" type="text" formControlName="contactPhone" />
 
-            <label for="legalAddress">Legal Address</label>
+            <label for="legalAddress">{{'LegalAddress' |translate}}</label>
             <input id="legalAddress" name="legalAddress" type="text" formControlName="legalAddress" />
 
-            <label for="percentageCommissionForBuyingCurrency">Percentage Commission For Buying Currency (in %)</label>
+            <label for="percentageCommissionForBuyingCurrency">{{'PercentageCommissionForBuyingCurrency' |translate}} ({{'in' |translate}} %)</label>
             <input
                 id="percentageCommissionForBuyingCurrency"
                 name="percentageCommissionForBuyingCurrency"
@@ -36,7 +36,7 @@
                 (change)="onPercentForBuyingChange($event)"
             />
 
-            <label for="percentageCommissionForSellingCurrency" >Percentage Commission For Selling Currency (in %)</label>
+            <label for="percentageCommissionForSellingCurrency" >{{'PercentageCommissionForSellingCurrency' |translate}} ({{'in' |translate}} %)</label>
             <input
                 id="percentageCommissionForSellingCurrency"
                 name="percentageCommissionForSellingCurrency"
@@ -46,21 +46,21 @@
                 (change)="onPercentForSellingChange($event)"
             />
 
-            <label for="swiftCode">Swift Code</label>
+            <label for="swiftCode">{{'SwiftCode' |translate}}</label>
             <input id="swiftCode" name="swiftCode" type="text" formControlName="swiftCode" />
 
-            <label for="mfoCode">MFO Code</label>
+            <label for="mfoCode">{{'MFOCode' |translate}}</label>
             <input id="mfoCode" name="mfoCode" type="text" formControlName="mfoCode" />
 
-            <label for="taxId">Tax ID</label>
+            <label for="taxId">{{'TaxID' |translate}}</label>
             <input id="taxId" name="taxId" type="text" formControlName="taxId" />
 
-            <label for="contactEmail">Contact Email</label>
+            <label for="contactEmail">{{'ContactEmail' |translate}}</label>
             <input id="contactEmail" name="contactEmail" type="email" formControlName="contactEmail" />
         </div>
 
         <div [class.none]="!showValidationResult()" class="validation-result">
-            <span [class.none]="!successStatus()" class="success-message">Bank has been successfully updated!</span>
+            <span [class.none]="!successStatus()" class="success-message">{{'BankUpdated' |translate}}</span>
             <ul class="errors-list" [class.none]="!showValidationResult()">
                 @for (error of validationErrors; track $index) {
                     <li>{{error}}</li>
@@ -68,6 +68,6 @@
             </ul>
         </div>
 
-        <button type="submit" class="entity-update">Save Changes</button>
+        <button type="submit" class="entity-update">{{'SaveChanges' |translate}}</button>
     </form>
 </section>

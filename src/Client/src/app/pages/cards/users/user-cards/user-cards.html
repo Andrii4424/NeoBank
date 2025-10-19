@@ -20,7 +20,7 @@
 
 @else {
     @if(userCards?.items?.length===0){
-        <h1 class="subheading-without-lh zero-items mb-4">No cards available. Open first card by button below</h1>
+        <h1 class="subheading-without-lh zero-items mb-4">{{'NoAvailableCards' |translate}}</h1>
     }
     <div class="cards-info" [class.with-last-child]="userCards !==null && userCards!.items.length%2 !==0 && userCards!.items.length>0">
         @for (card of userCards?.items; track $index) {
@@ -43,10 +43,10 @@
 
                         <div>
                             @if(card.cardTariffs.type===CardType.Credit){
-                                <h4>Credit</h4>
+                                <h4>{{'Credit' |translate}}</h4>
                             }
                             @else if(card.cardTariffs.type===CardType.Debit) {
-                                <h4>Debit</h4>
+                                <h4>{{'Debit' | translate}}</h4>
                             }
                         </div>
                     </div>
@@ -78,11 +78,9 @@
     </div>
 
 
-
-
     <div class="add-block">
-        <button class="make-transfer" (click)="openTransactionWindow.set(true)">Make a transfer</button>
-        <a [routerLink]="['/cards/my-cards/add/options']" class="add-item">Open Card</a>
+        <button class="make-transfer" (click)="openTransactionWindow.set(true)">{{'MakeTransfer' |translate}}</button>
+        <a [routerLink]="['/cards/my-cards/add/options']" class="add-item">{{'OpenCard' |translate}}</a>
     </div>
 }
 

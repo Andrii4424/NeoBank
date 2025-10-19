@@ -1,49 +1,49 @@
 <header>
-    <h1 class="heading">Update Card</h1>
+    <h1 class="heading">{{'UpdateCard' | translate}}</h1>
 </header>
 
 <section class="object-info-card">
     <form [formGroup]="cardForm" class="update-entity-form" (click)="closeValidationStatus()" (ngSubmit)="onSubmit()">
         <div class="update-entity-form-fields">
-            <label for="cardName">Card Name</label>
+            <label for="cardName">{{'CardName' |translate}}</label>
             <input id="cardName" name="cardName" type="text" formControlName="cardName" />
 
-            <h4 class="checkboxes-title">Card Type</h4>
+            <h4 class="checkboxes-title">{{'CardType' |translate}}</h4>
             <div class="radios checkboxes">
                 <div class="checkbox-items">
                     <input (change)="changeCardType(CardType.Credit)" id="credit" type="radio" [value]="CardType.Credit" formControlName="type" />
-                    <label for="credit">Credit</label>
+                    <label for="credit">{{'Credit' |translate}}</label>
                 </div>
                     
                 <div class="checkbox-items">
                     <input (change)="changeCardType(CardType.Debit)" id="debit" type="radio" [value]="CardType.Debit" formControlName="type" />
-                    <label for="debit">Debit</label>
+                    <label for="debit">{{'Debit' |translate}}</label>
                 </div>
             </div>
 
 
-            <h4 class="checkboxes-title">Card Level</h4>
+            <h4 class="checkboxes-title">{{'CardLevel' |translate}}</h4>
             <div class="radios checkboxes">
                 <div class="checkbox-items">
                     <input id="normal-level" type="radio" [value]="CardLevel.Normal" formControlName="level" />
-                    <label for="normal-level">Usual</label>
+                    <label for="normal-level">{{'Usual' |translate}}</label>
                 </div>
                     
                 <div class="checkbox-items">
                     <input id="premium-level" type="radio" [value]="CardLevel.Premium" formControlName="level" />
-                    <label for="premium-level">Premium</label>
+                    <label for="premium-level">{{'Premium' |translate}}</label>
                 </div>
             </div>
 
 
-            <label for="validityPeriod">Validity Period (in years)</label>
+            <label for="validityPeriod">{{"ValidityPeriodInYears" |translate}}</label>
             <input id="validityPeriod" step="0.5" (click)="onValidityPeriodChange($event)" name="validityPeriod" type="number" formControlName="validityPeriod" />
 
-            <label for="maxCreditLimit">Max Credit Limit (in UAH)</label>
+            <label for="maxCreditLimit">{{'MaxCreditLimit' |translate}}</label>
             <input id="maxCreditLimit" #maxCreditLimit  name="maxCreditLimit" (change)="onCreditLimitChange($event)" type="number" min="0" max="2084597250" 
             formControlName="maxCreditLimit" />
 
-            <h4 class="checkboxes-title">Enabled Payment Systems</h4>
+            <h4 class="checkboxes-title">{{'EnabledPaymentSystems' |translate}}</h4>
             <div class="checkboxes">
                 <div class="checkbox-items">
                     <input id="mastercard" name="enabledPaymentSystems" (change)="onPaymentSystemChange($event)" type="checkbox" [value]="PaymentSystem.Mastercard" 
@@ -57,10 +57,10 @@
                 </div>  
             </div>
 
-            <label for="interestRate">Interest Rate (monthly)</label>
+            <label for="interestRate">{{'InterestRate' |translate}}</label>
             <input id="interestRate" #interestRate name="interestRate" step="0.1" min="0" max="25" (change)="onInterestRateChange($event)" type="text" formControlName="interestRate" />
 
-            <h4 class="checkboxes-title">Enable Currency</h4>
+            <h4 class="checkboxes-title">{{'EnableCurrency' |translate}}</h4>
             <div class="checkboxes">
                 <div class="checkbox-items">
                     <input id="uah" [value]="Currency.UAH" [checked]="cards?.enableCurrency?.includes(Currency.UAH)" (change)="onCurrencyChange($event)" 
@@ -79,22 +79,22 @@
                 </div>
             </div>
 
-            <label for="annualMaintenanceCost">Annual Maintenance Cost (in UAH)</label>
+            <label for="annualMaintenanceCost">{{'AnnualMaintenanceCost'|translate}}</label>
             <input id="annualMaintenanceCost" step="0.1" min="0" (change)="onMaintenanceChange($event)" name="annualMaintenanceCost" type="text" formControlName="annualMaintenanceCost" />
 
-            <label for="p2PInternalCommission">P2P Internal Commission (in %)</label>
+            <label for="p2PInternalCommission">{{'P2PCommission' |translate}}</label>
             <input id="p2PInternalCommission" name="p2PInternalCommission" step="0.1" min="0" (change)="onP2PComissionChange($event)" 
             type="number" formControlName="p2PInternalCommission" />
 
             <label for="bin">BIN</label>
             <input id="bin" name="bin" maxlength="6" type="text" formControlName="bin" />
 
-            <label for="cardColor">Card Color</label>
+            <label for="cardColor">{{'CardColor' |translate}}</label>
             <input id="cardColor" #cardColor name="cardColor" class="color-input" type="color" [value]="cards?.cardColor" />
         </div>
 
         <div [class.none]="!showValidationResult()" class="validation-result">
-            <span [class.none]="!successStatus()" class="success-message">Card has been successfully updated!</span>
+            <span [class.none]="!successStatus()" class="success-message">{{'CardUpdated' |translate}}</span>
             <ul class="errors-list" [class.none]="!showValidationResult()">
                 @for (error of validationErrors; track $index) {
                     <li>{{error}}</li>
@@ -102,7 +102,7 @@
             </ul>
         </div>
 
-        <button type="submit" class="entity-update">Save Changes</button>
+        <button type="submit" class="entity-update">{{'SaveChanges' |translate}}</button>
     </form>
 </section>
 

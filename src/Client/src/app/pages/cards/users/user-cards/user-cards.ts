@@ -24,11 +24,12 @@ import { PageSwitcher } from "../../../../common-ui/page-switcher/page-switcher"
 import { TransactionWindow } from "../../../../common-ui/transaction-window/transaction-window";
 import { Loading } from "../../../../common-ui/loading/loading";
 import { ErrorMessage } from "../../../../common-ui/error-message/error-message";
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @Component({
   selector: 'app-user-cards',
-  imports: [CardsLayout, Search, RouterLink, SuccessMessage, CardFormatPipe, PageSwitcher, TransactionWindow, Loading, ErrorMessage],
+  imports: [CardsLayout, Search, RouterLink, SuccessMessage, CardFormatPipe, PageSwitcher, TransactionWindow, Loading, ErrorMessage, TranslateModule],
   templateUrl: './user-cards.html',
   styleUrl: './user-cards.scss'
 })

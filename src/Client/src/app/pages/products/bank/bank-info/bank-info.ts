@@ -6,11 +6,12 @@ import { IBank } from '../../../../data/interfaces/bank/bank.interface';
 import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs';
 import { RouterLink } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 import { Loading } from "../../../../common-ui/loading/loading";
 
 @Component({
   selector: 'app-bank-info',
-  imports: [AsyncPipe, RouterLink, Loading],
+  imports: [AsyncPipe, RouterLink, TranslateModule, Loading],
   templateUrl: './bank-info.html',
   styleUrl: './bank-info.scss'
 })

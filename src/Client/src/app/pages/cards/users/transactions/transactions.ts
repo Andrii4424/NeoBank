@@ -10,10 +10,11 @@ import { ITransaction } from '../../../../data/interfaces/bank/bank-products/car
 import { DatePipe } from '@angular/common';
 import { PageSwitcher } from "../../../../common-ui/page-switcher/page-switcher";
 import { Subscription } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-transactions',
-  imports: [TransactionsFilters, DatePipe, PageSwitcher],
+  imports: [TransactionsFilters, DatePipe, PageSwitcher, TranslateModule],
   templateUrl: './transactions.html',
   styleUrl: './transactions.scss'
 })

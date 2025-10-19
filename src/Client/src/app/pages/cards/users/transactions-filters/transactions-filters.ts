@@ -1,10 +1,11 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, Output, signal, ViewChild } from '@angular/core';
 import { ITransactionFilter } from '../../../../data/interfaces/filters/transaction-filters';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-transactions-filters',
-  imports: [FormsModule],
+  imports: [FormsModule, TranslateModule],
   templateUrl: './transactions-filters.html',
   styleUrl: './transactions-filters.scss'
 })

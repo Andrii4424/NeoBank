@@ -1,111 +1,110 @@
 
 @if(bank$ | async; as bank){
     <header>
-        <h1 class="heading">Bank Information</h1>
+        <h1 class="heading">{{'BankInfo' |translate}}</h1>
     </header>
     <section class="object-info-card">
         <table class="info-table">
             <tr class="colored">
-                <td>Field</td>
-                <td>Value</td>
+                <td>{{'Field' |translate}}</td>
+                <td>{{'Value' |translate}}</td>
             </tr>
             <tr>
-                <td>Name</td>
+                <td>{{'Name' |translate}}</td>
                 <td>{{bank.name}}</td>
             </tr>
             <tr class="colored">
-                <td>Rating</td>
+                <td>{{'Rating' |translate}}</td>
                 <td>{{bank.rating}}</td>
             </tr>
             <tr>
-                <td>Has License</td>
+                <td>{{'HasLicense' | translate}}</td>
                 <td>
                     @if(bank.hasLicense){
-                        Yes
+                        {{'Yes' |translate}}
                     }
                     @else {
-                        No
+                        {{'No' |translate}}
                     }
                 </td>
             </tr>
             <tr class="colored">
-                <td>Founder Name</td>
+                <td>{{'FounderName' |translate}}</td>
                 <td>{{bank.bankFounderFullName}}</td>
             </tr>
             <tr>
-                <td>Director Name</td>
+                <td>{{'DirectorName' |translate}}</td>
                 <td>{{bank.bankDirectorFullName}}</td>
             </tr>
             <tr class="colored">
-                <td>Capitalization</td>
+                <td>{{'Capitalization' |translate}}</td>
                 <td>{{bank.capitalization}} $</td>
             </tr>
             <tr>
-                <td>Employee Count</td>
+                <td>{{'EmployeeCount' |translate}}</td>
                 <td>{{bank.employeesCount}}</td>
             </tr>
             <tr class="colored">
-                <td>Clients Count</td>
+                <td>{{'ClientsCount' |translate}}</td>
                 <td>{{bank.clientsCount}}</td>
             </tr>
             <tr>
-                <td>Active Clients Count</td>
+                <td>{{'ActiveClientsCount' |translate}}</td>
                 <td>{{bank.activeClientsCount}}</td>
             </tr>
             <tr class="colored">
-                <td>Blocked Clients Count</td>
+                <td>{{'BlockedClientsCount' |translate}}</td>
                 <td>{{bank.blockedClientsCount}}</td>
             </tr>
             <tr>
-                <td>Contact Phone</td>
+                <td>{{'ContactPhone' |translate}}</td>
                 <td>{{bank.contactPhone}}</td>
             </tr>
             <tr class="colored">
-                <td>Established Date</td>
+                <td>{{'EstablishedDate' |translate}}</td>
                 <td>{{bank.establishedDate}}</td>
             </tr>
             <tr>
-                <td>Legal Address</td>
+                <td>{{'LegalAddress' |translate}}</td>
                 <td>{{bank.legalAddress}}</td>
             </tr>
             <tr class="colored">
-                <td>Percentage Commission For Buying Currency</td>
+                <td>{{'PercentageCommissionForBuyingCurrency' |translate}}</td>
                 <td>{{bank.percentageCommissionForBuyingCurrency}}%</td>
             </tr>
             <tr>
-                <td>Percentage Commission For Selling Currency</td>
+                <td>{{'PercentageCommissionForSellingCurrency' |translate}}</td>
                 <td>{{bank.percentageCommissionForSellingCurrency}}%</td>
             </tr>
             <tr class="colored">
-                <td>Swift Code</td>
+                <td>{{'SwiftCode' |translate}}</td>
                 <td>{{bank.swiftCode}}</td>
             </tr>
             <tr>
-                <td>Mfo Code</td>
+                <td>{{'MfoCode' |translate}}</td>
                 <td>{{bank.mfoCode}}</td>
             </tr>
             <tr class="colored">
-                <td>Tax Id</td>
+                <td>{{'TaxId' |translate}}</td>
                 <td>{{bank.taxId}}</td>
             </tr>
             <tr>
-                <td>Contact Email</td>
+                <td>{{'ContactEmail' |translate}}</td>
                 <td>{{bank.contactEmail}}</td>
             </tr>
             <tr class="colored">
-                <td>Last Update Time</td>
+                <td>{{'LastUpdateTime' |translate}}</td>
                 <td>{{bank.updatedAt}}</td>
             </tr>
         </table>
 
         @if(profileService.getRole()?.toLowerCase()==='admin'){
             <div class="entity-action-buttons">
-                <a routerLink="/about/update" class="update">Update Bank</a>
+                <a routerLink="/about/update" class="update">{{'UpdateBank' |translate}}</a>
             </div>
         }
     </section>
 }
-
 @else{
     <div class="spinner-wrapper">
         <app-loading></app-loading> 
