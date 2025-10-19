@@ -26,6 +26,12 @@ namespace Bank.API.Domain.Entities.Identity
 
         public bool? IsVerified { get; set; }
 
+        public string? JobTitle { get; set; }
+
+        public string? JobCategory { get; set; }
+
+        public double? Salary { get; set; }
+
         public ICollection<UserCardsEntity> UserCards { get; set; }
     }
 }

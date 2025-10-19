@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Bank.API.Domain.Entities;
 using Bank.API.Domain.Entities.Cards;
 using Bank.API.Domain.Entities.Identity;
+using Bank.API.Domain.Entities.Users;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,6 +19,8 @@ namespace Bank.API.Infrastructure.Data
         public DbSet<BankEntity> BankInfo { get; set; }
         public DbSet<CardTariffsEntity> CardTariffs { get; set; }
         public DbSet<UserCardsEntity> UserCards { get; set; }
+        public DbSet<VacancyEntity> Vacancies { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,6 +28,8 @@ namespace Bank.API.Infrastructure.Data
 
             modelBuilder.Entity<BankEntity>().ToTable("BankInfo");
             modelBuilder.Entity<CardTariffsEntity>().ToTable("CardTariffs");
+            modelBuilder.Entity<VacancyEntity>().ToTable("Vacancies");
+
 
             modelBuilder.Entity<CardTariffsEntity>()
                 .HasOne(c => c.Bank)
@@ -43,6 +48,13 @@ namespace Bank.API.Infrastructure.Data
                 .WithMany(c => c.UserCards)
                 .HasForeignKey(u => u.CardTariffId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+
+            modelBuilder.Entity<VacancyEntity>()
+                .HasOne(c => c.Bank)
+                .WithMany(b => b.Vacancies)
+                .HasForeignKey(c => c.BankId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

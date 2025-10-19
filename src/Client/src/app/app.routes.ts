@@ -16,6 +16,7 @@ import { CurrencyRates } from './pages/products/currency-rates/currency-rates';
 import { UserCards } from './pages/cards/users/user-cards/user-cards';
 import { ChoseCardOptions } from './pages/cards/users/chose-card-options/chose-card-options';
 import { UserCardInfo } from './pages/cards/users/user-card-info/user-card-info';
+import { Vacancies } from './pages/users/vacancies/vacancies';
 
 export const routes: Routes = [
     {path: '', component: Layout, children: [
@@ -31,6 +32,7 @@ export const routes: Routes = [
         {path: 'currency-rates', component: CurrencyRates},
         {path: 'cards/my-cards/add/options', component: ChoseCardOptions, canActivate: [CanActivateAuth]},
         {path: 'cards/my-card/:id', component: UserCardInfo, canActivate: [CanActivateAuth]},
+        {path: 'vacancies', component: Vacancies},
 
     ]},
     {path: 'login', component: Login},

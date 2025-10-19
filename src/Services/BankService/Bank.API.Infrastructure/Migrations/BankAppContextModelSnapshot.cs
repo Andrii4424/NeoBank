@@ -284,6 +284,12 @@ namespace Bank.API.Infrastructure.Migrations
                     b.Property<bool?>("IsVerified")
                         .HasColumnType("bit");
 
+                    b.Property<string>("JobCategory")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("JobTitle")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
@@ -316,6 +322,9 @@ namespace Bank.API.Infrastructure.Migrations
                     b.Property<DateTime?>("RefreshTokenExpiryTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<double?>("Salary")
+                        .HasColumnType("float");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -343,6 +352,36 @@ namespace Bank.API.Infrastructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("Bank.API.Domain.Entities.Users.Vacancies", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BankId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("JobTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateOnly>("PublicationDate")
+                        .HasColumnType("date");
+
+                    b.Property<double>("Salary")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BankId");
+
+                    b.ToTable("Vacancies", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -478,6 +517,17 @@ namespace Bank.API.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Bank.API.Domain.Entities.Users.Vacancies", b =>
+                {
+                    b.HasOne("Bank.API.Domain.Entities.BankEntity", "Bank")
+                        .WithMany("Vacancies")
+                        .HasForeignKey("BankId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Bank");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
                 {
                     b.HasOne("Bank.API.Domain.Entities.Identity.ApplicationRole", null)
@@ -532,6 +582,8 @@ namespace Bank.API.Infrastructure.Migrations
             modelBuilder.Entity("Bank.API.Domain.Entities.BankEntity", b =>
                 {
                     b.Navigation("Cards");
+
+                    b.Navigation("Vacancies");
                 });
 
             modelBuilder.Entity("Bank.API.Domain.Entities.Cards.CardTariffsEntity", b =>

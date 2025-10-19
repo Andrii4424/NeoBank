@@ -1,5 +1,6 @@
 ﻿using Bank.API.Domain.Abstractions;
 using Bank.API.Domain.Entities.Cards;
+using Bank.API.Domain.Entities.Users;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -63,5 +64,7 @@ namespace Bank.API.Domain.Entities
         public DateOnly UpdatedAt { get; set; }
 
         public ICollection<CardTariffsEntity> Cards { get; set; }
+        public ICollection<VacancyEntity> Vacancies { get; set; }
+
     }
 }

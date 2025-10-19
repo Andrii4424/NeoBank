@@ -12,7 +12,7 @@
                 <a href="#">{{'Credits' | translate}}</a>
                 <a href="#">{{'Clients' | translate}}</a>
                 <a href="#">{{'Employees' | translate}}</a>
-                <a href="#">{{'Vacancies' | translate}}</a>
+                <a [routerLink]="['/vacancies']" routerLinkActive="active">{{'Vacancies' | translate}}</a>
                 <a [routerLink]="['/currency-rates']" routerLinkActive="active">{{'CurrencyRates' | translate}}</a>
             </nav>
 
@@ -42,7 +42,7 @@
         <a href="#">{{'Credits' | translate}}</a>
         <a href="#">{{'Clients' | translate}}</a>
         <a href="#">{{'Employees' | translate}}</a>
-        <a href="#">{{'Vacancies' | translate}}</a>
+        <a [routerLink]="['/vacancies']" routerLinkActive="active">{{'Vacancies' | translate}}</a>
         <a [routerLink]="['/currency-rates']" routerLinkActive="active">{{'CurrencyRates' | translate}}</a>
     </aside>
     <main #main class="content">
