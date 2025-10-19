@@ -13,7 +13,7 @@ namespace Bank.API.Domain.Entities.Users
 
         public BankEntity Bank { get; private set; }
 
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
 
         public string JobTitle { get; set; }
         public string Category { get; set; }

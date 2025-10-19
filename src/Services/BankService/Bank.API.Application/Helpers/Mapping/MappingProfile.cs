@@ -6,6 +6,7 @@ using Bank.API.Application.DTOs.Users;
 using Bank.API.Domain.Entities;
 using Bank.API.Domain.Entities.Cards;
 using Bank.API.Domain.Entities.Identity;
+using Bank.API.Domain.Entities.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +42,14 @@ namespace Bank.API.Application.Helpers.Mapping
             //CardTariffs
             CreateMap<CardTariffsEntity, CardTariffsDto>();
             CreateMap<CardTariffsDto, CardTariffsEntity>()
-                .ForMember(dest => dest.Id, opt => opt.Ignore()); 
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
+
+            //Vacancies
+            CreateMap<VacancyEntity, VacancyDto>();
+            CreateMap<VacancyDto, VacancyEntity>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.PublicationDate, opt => opt.Ignore());
+
 
         }
     }

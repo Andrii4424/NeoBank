@@ -110,6 +110,7 @@ namespace Bank.API.WebUI.StartupServicesInjection
             services.AddScoped(typeof(IBankRepository), typeof(BankRepository));
             services.AddScoped(typeof(ICardTariffsRepository), typeof(CardTariffsRepository));
             services.AddScoped(typeof(IUserCardsRepository), typeof(UserCardsRepository));
+            services.AddScoped(typeof(IVacanciesRepository), typeof(VacanciesRepository));
 
             //Services injection
             //Identity
@@ -121,6 +122,7 @@ namespace Bank.API.WebUI.StartupServicesInjection
             services.AddScoped<ICurrencyService, CurrencyService>();
             services.AddScoped<IUserCardService, UserCardService>();
             services.AddScoped<IRabbitMqProducerService, RabbitMqProducerService>();
+            services.AddScoped<IVacanciesService, VacanciesService>();
 
             //Background Services
             services.AddHostedService<RabbitMqConsumerService>();
