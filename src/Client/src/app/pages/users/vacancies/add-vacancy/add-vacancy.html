@@ -1,0 +1,31 @@
+<header>
+    <h1 class="heading">{{"AddVacancy" |translate}}</h1>
+</header>
+
+<section class="object-info-card">
+    <form [formGroup]="vacancyForm" class="update-entity-form" (click)="closeValidationStatus()" (ngSubmit)="onSubmit()">
+        <div class="update-entity-form-fields">
+            <label for="jobTitle">{{'JobTitle' |translate}}</label>
+            <input id="jobTitle" name="jobTitle" type="text" formControlName="jobTitle" />
+
+            <label for="category">{{'Category' | translate}}</label>
+            <input id="category" step="0.5" name="category" type="number" formControlName="category" />
+
+            <label for="salary">{{"Salary" |translate}} (UAH)</label>
+            <input id="salary" #maxCreditLimit name="salary"  type="number" min="0" max="2084597250" formControlName="salary" />
+
+        </div>
+
+        <div [class.none]="!showValidationResult()" class="validation-result">
+            <span [class.none]="!successStatus()" class="success-message">{{"CardAdded"|translate}}</span>
+            <ul class="errors-list" [class.none]="!showValidationResult()">
+                @for (error of validationErrors; track $index) {
+                    <li>{{error}}</li>
+                }
+            </ul>
+        </div>
+
+        <button type="submit" class="entity-update">{{"AddVacancy" |translate}}</button>
+    </form>
+</section>
+

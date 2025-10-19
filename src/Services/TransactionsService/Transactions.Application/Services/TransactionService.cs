@@ -228,7 +228,7 @@ namespace Transactions.Application.Services
 
         private async Task<double> GetOperationComission(Guid cardId, TransactionType type)
         {
-            if(type==TransactionType.P2P)
+            if(type==TransactionType.P2P || type==TransactionType.CurrencyExchange)
             {
                 var response = await _client.GetAsync($"Transaction/CheckBalance/{cardId}");
                 return await response.Content.ReadFromJsonAsync<double>();

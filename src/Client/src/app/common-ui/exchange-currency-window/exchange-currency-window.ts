@@ -35,6 +35,7 @@ export class ExchangeCurrencyWindow {
   getAmount: number | null= null;
   commission: number | null= null;
   getterCurrency: string | null = null;
+  senderCurrency: string | null = null;
   showValidationError = signal<boolean>(false);
   errorText: string | null = null;
   private senderCardIdSub!:Subscription;
@@ -179,11 +180,13 @@ export class ExchangeCurrencyWindow {
       }
       this.getAmount=(fromCource/toCource)* amount;
       this.getterCurrency = this.getCurrencySymbol(getterCard?.chosenCurrency!);
+      this.senderCurrency = this.getCurrencySymbol(senderCard?.chosenCurrency!);
       this.updateComission(senderCard?.cardTariffs.p2PInternalCommission!, this.transactionForm.get('amount')?.value!);
       this.showGetAmount.set(true);
     }
     else{
       this.getAmount=null;
+      this.senderCurrency=null;
       this.getterCurrency = null;
       this.commission= null;
       this.showGetAmount.set(false);

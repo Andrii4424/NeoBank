@@ -23,7 +23,7 @@
             </select>
         </div>
         <div class="switch-block">
-            <img src="assets/images/bank-products/currency-rates/switch.svg" alt="switch" class="switch-img" (click)="switchCards()">
+            <img src="assets/images/bank-products/currency/switch.svg" alt="switch" class="switch-img" (click)="switchCards()">
         </div>
         <div class="form-group">
             <label for="getter-card">To card</label>
@@ -45,7 +45,7 @@
             <label for="amount">Amount</label>
             <input formControlName="amount" type="number" id="amount" placeholder="0.00">
             <span class="commission" [class.none]="!showGetAmount()">You will get: {{getAmount | number: '1.2-2'}}{{getterCurrency}}</span>
-            <span class="commission" [class.none]="!showCommission()">Transaction Fee: {{commission | number: '1.2-2'}}{{getterCurrency}}</span>
+            <span class="commission" [class.none]="!showCommission()">Transaction Fee: {{commission | number: '1.2-2'}}{{senderCurrency}}</span>
         </div>
         <div class="error-block">
             <span class="error">{{errorText}} </span>

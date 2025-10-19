@@ -16,7 +16,9 @@ import { CurrencyRates } from './pages/products/currency-rates/currency-rates';
 import { UserCards } from './pages/cards/users/user-cards/user-cards';
 import { ChoseCardOptions } from './pages/cards/users/chose-card-options/chose-card-options';
 import { UserCardInfo } from './pages/cards/users/user-card-info/user-card-info';
-import { Vacancies } from './pages/users/vacancies/vacancies';
+import { Vacancies } from './pages/users/vacancies/vacancies/vacancies';
+import { AddVacancy } from './pages/users/vacancies/add-vacancy/add-vacancy';
+import { UpdateVacancy } from './pages/users/vacancies/update-vacancy/update-vacancy';
 
 export const routes: Routes = [
     {path: '', component: Layout, children: [
@@ -33,6 +35,8 @@ export const routes: Routes = [
         {path: 'cards/my-cards/add/options', component: ChoseCardOptions, canActivate: [CanActivateAuth]},
         {path: 'cards/my-card/:id', component: UserCardInfo, canActivate: [CanActivateAuth]},
         {path: 'vacancies', component: Vacancies},
+        {path: 'vacancies/add', component: AddVacancy},
+        {path: 'vacancies/update/:id', component: UpdateVacancy},
 
     ]},
     {path: 'login', component: Login},

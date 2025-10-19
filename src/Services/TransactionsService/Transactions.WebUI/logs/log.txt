@@ -6828,3 +6828,1267 @@ WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Sta
 2025-10-19 16:16:50.484 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI) in 20.7744ms
 2025-10-19 16:16:50.485 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
 2025-10-19 16:16:50.486 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - 200 null application/json; charset=utf-8 28.0934ms
+2025-10-19 23:12:03.361 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetCardId/4448445344212218 - null null
+2025-10-19 23:12:03.365 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:12:03.367 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetCardId/4448445344212218 - 204 null null 6.627ms
+2025-10-19 23:12:03.374 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/api/Transaction/GetCardId/4448445344212218 - null null
+2025-10-19 23:12:03.376 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:12:03.377 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.GetCardId (Transactions.WebUI)'
+2025-10-19 23:12:03.384 +03:00 [INF] Route matched with {action = "GetCardId", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCardId(System.String) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:12:03.396 +03:00 [INF] Getting card id by card nuymber: 4448445344212218
+2025-10-19 23:12:03.403 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Transaction/GetCardGuidByCardNumber/4448445344212218
+2025-10-19 23:12:03.407 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Transaction/GetCardGuidByCardNumber/4448445344212218
+2025-10-19 23:12:03.489 +03:00 [INF] Received HTTP response headers after 79.3357ms - 200
+2025-10-19 23:12:03.492 +03:00 [INF] End processing HTTP request after 89.9463ms - 200
+2025-10-19 23:12:03.496 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Guid'.
+2025-10-19 23:12:03.500 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.GetCardId (Transactions.WebUI) in 112.4101ms
+2025-10-19 23:12:03.502 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.GetCardId (Transactions.WebUI)'
+2025-10-19 23:12:03.503 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Transaction/GetCardId/4448445344212218 - 200 null application/json; charset=utf-8 128.8013ms
+2025-10-19 23:12:03.505 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/MakeTransaction - null null
+2025-10-19 23:12:03.508 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:12:03.508 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/MakeTransaction - 204 null null 3.1206ms
+2025-10-19 23:12:03.510 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7281/api/Transaction/MakeTransaction - application/json 132
+2025-10-19 23:12:03.512 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:12:03.513 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI)'
+2025-10-19 23:12:03.516 +03:00 [INF] Route matched with {action = "MakeTransaction", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] MakeTransaction(Transactions.Application.DTOs.TransactionDto) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:12:03.542 +03:00 [INF] Trying to create transaction
+2025-10-19 23:12:03.553 +03:00 [INF] Start processing HTTP request POST https://localhost:7280/api/Transaction/GetTransactionDetails
+2025-10-19 23:12:03.555 +03:00 [INF] Sending HTTP request POST https://localhost:7280/api/Transaction/GetTransactionDetails
+2025-10-19 23:12:03.595 +03:00 [INF] Received HTTP response headers after 38.5504ms - 200
+2025-10-19 23:12:03.596 +03:00 [INF] End processing HTTP request after 42.5248ms - 200
+2025-10-19 23:12:03.601 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/468848ae-cdb8-4f9c-946a-6eda2d3811c3
+2025-10-19 23:12:03.602 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/468848ae-cdb8-4f9c-946a-6eda2d3811c3
+2025-10-19 23:12:03.622 +03:00 [INF] Received HTTP response headers after 18.6196ms - 200
+2025-10-19 23:12:03.624 +03:00 [INF] End processing HTTP request after 22.4628ms - 200
+2025-10-19 23:12:03.631 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/468848ae-cdb8-4f9c-946a-6eda2d3811c3/check?amount=2000
+2025-10-19 23:12:03.634 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/468848ae-cdb8-4f9c-946a-6eda2d3811c3/check?amount=2000
+2025-10-19 23:12:03.659 +03:00 [INF] Received HTTP response headers after 23.7604ms - 200
+2025-10-19 23:12:03.660 +03:00 [INF] End processing HTTP request after 29.1531ms - 200
+2025-10-19 23:12:03.782 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p4='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p5='?' (DbType = Guid), @p6='?' (DbType = Int32), @p7='?' (DbType = Guid), @p8='?' (DbType = Guid), @p9='?' (DbType = Int32), @p10='?' (DbType = Guid), @p11='?' (DbType = Int32), @p12='?' (DbType = DateTime2), @p13='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Transactions] ([Id], [Amount], [AmountToReceive], [Commission], [CurrencyExchangeCommission], [GetterCardId], [GetterCurrency], [GetterId], [SenderCardId], [SenderCurrency], [SenderId], [Status], [TransactionTime], [Type])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13);
+2025-10-19 23:12:03.813 +03:00 [INF] Publishing message to rabbit mq (for bank.api service) to update balance
+2025-10-19 23:12:03.821 +03:00 [ERR] Success creating transaction, transaction id: "14d1983d-aa3c-4677-58bb-08de0f4bc518"
+2025-10-19 23:12:03.824 +03:00 [INF] Executing StatusCodeResult, setting HTTP status code 200
+2025-10-19 23:12:03.825 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI) in 307.0606ms
+2025-10-19 23:12:03.826 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI)'
+2025-10-19 23:12:03.826 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7281/api/Transaction/MakeTransaction - 200 0 null 316.5263ms
+2025-10-19 23:12:03.969 +03:00 [INF] Trying to get info from rabbit mq
+2025-10-19 23:12:03.975 +03:00 [INF] Trying to update transaction status
+2025-10-19 23:12:03.984 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[Id] = @__id_0
+2025-10-19 23:12:03.988 +03:00 [INF] Success update transaction status "14d1983d-aa3c-4677-58bb-08de0f4bc518"
+2025-10-19 23:12:03.997 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@p13='?' (DbType = Guid), @p0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p4='?' (DbType = Guid), @p5='?' (DbType = Int32), @p6='?' (DbType = Guid), @p7='?' (DbType = Guid), @p8='?' (DbType = Int32), @p9='?' (DbType = Guid), @p10='?' (DbType = Int32), @p11='?' (DbType = DateTime2), @p12='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Transactions] SET [Amount] = @p0, [AmountToReceive] = @p1, [Commission] = @p2, [CurrencyExchangeCommission] = @p3, [GetterCardId] = @p4, [GetterCurrency] = @p5, [GetterId] = @p6, [SenderCardId] = @p7, [SenderCurrency] = @p8, [SenderId] = @p9, [Status] = @p10, [TransactionTime] = @p11, [Type] = @p12
+OUTPUT 1
+WHERE [Id] = @p13;
+2025-10-19 23:12:04.003 +03:00 [INF] Success updating transaction status
+2025-10-19 23:12:24.157 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/39817b93-160a-4468-aa76-8ec86c500f3d - null null
+2025-10-19 23:12:24.159 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:12:24.160 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/39817b93-160a-4468-aa76-8ec86c500f3d - 204 null null 3.4554ms
+2025-10-19 23:12:24.163 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/39817b93-160a-4468-aa76-8ec86c500f3d - null null
+2025-10-19 23:12:24.167 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:12:24.168 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:12:24.168 +03:00 [INF] Route matched with {action = "GetTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTransactions(System.Guid, Transactions.Application.Filters.TransactionFilter) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:12:24.173 +03:00 [INF] Getting page for card "39817b93-160a-4468-aa76-8ec86c500f3d"
+2025-10-19 23:12:24.176 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+ORDER BY [t].[TransactionTime] DESC, [t].[Id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+2025-10-19 23:12:24.179 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+2025-10-19 23:12:24.182 +03:00 [INF] Executing OkObjectResult, writing value of type 'Transactions.Application.Helpers.PageResult`1[[Transactions.Application.DTOs.TransactionDto, Transactions.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-19 23:12:24.183 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI) in 11.0508ms
+2025-10-19 23:12:24.184 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:12:24.186 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/39817b93-160a-4468-aa76-8ec86c500f3d - 200 null application/json; charset=utf-8 23.3504ms
+2025-10-19 23:12:31.469 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/39817b93-160a-4468-aa76-8ec86c500f3d - null null
+2025-10-19 23:12:31.473 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:12:31.474 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/39817b93-160a-4468-aa76-8ec86c500f3d - 204 null null 5.0392ms
+2025-10-19 23:12:31.477 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/39817b93-160a-4468-aa76-8ec86c500f3d - null null
+2025-10-19 23:12:31.479 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:12:31.479 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:12:31.480 +03:00 [INF] Route matched with {action = "GetTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTransactions(System.Guid, Transactions.Application.Filters.TransactionFilter) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:12:31.482 +03:00 [INF] Getting page for card "39817b93-160a-4468-aa76-8ec86c500f3d"
+2025-10-19 23:12:31.484 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+ORDER BY [t].[TransactionTime] DESC, [t].[Id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+2025-10-19 23:12:31.487 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+2025-10-19 23:12:31.488 +03:00 [INF] Executing OkObjectResult, writing value of type 'Transactions.Application.Helpers.PageResult`1[[Transactions.Application.DTOs.TransactionDto, Transactions.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-19 23:12:31.489 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI) in 7.6482ms
+2025-10-19 23:12:31.490 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:12:31.491 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/39817b93-160a-4468-aa76-8ec86c500f3d - 200 null application/json; charset=utf-8 14.6733ms
+2025-10-19 23:15:42.107 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - null null
+2025-10-19 23:15:42.114 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:15:42.115 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - 204 null null 8.5725ms
+2025-10-19 23:15:42.117 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - null null
+2025-10-19 23:15:42.124 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:15:42.124 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:15:42.125 +03:00 [INF] Route matched with {action = "GetTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTransactions(System.Guid, Transactions.Application.Filters.TransactionFilter) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:15:42.128 +03:00 [INF] Getting page for card "468848ae-cdb8-4f9c-946a-6eda2d3811c3"
+2025-10-19 23:15:42.132 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+ORDER BY [t].[TransactionTime] DESC, [t].[Id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+2025-10-19 23:15:42.138 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+2025-10-19 23:15:42.140 +03:00 [INF] Executing OkObjectResult, writing value of type 'Transactions.Application.Helpers.PageResult`1[[Transactions.Application.DTOs.TransactionDto, Transactions.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-19 23:15:42.143 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI) in 16.191ms
+2025-10-19 23:15:42.145 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:15:42.146 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - 200 null application/json; charset=utf-8 29.7557ms
+2025-10-19 23:15:49.873 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/AddFunds - null null
+2025-10-19 23:15:49.876 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:15:49.876 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/AddFunds - 204 null null 3.1195ms
+2025-10-19 23:15:49.878 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7281/api/Transaction/AddFunds - application/json 103
+2025-10-19 23:15:49.880 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:15:49.881 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.AddFunds (Transactions.WebUI)'
+2025-10-19 23:15:49.883 +03:00 [INF] Route matched with {action = "AddFunds", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddFunds(Transactions.Application.DTOs.AddFundsDto) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:15:49.897 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p4='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p5='?' (DbType = Guid), @p6='?' (DbType = Int32), @p7='?' (DbType = Guid), @p8='?' (DbType = Guid), @p9='?' (DbType = Int32), @p10='?' (DbType = Guid), @p11='?' (DbType = Int32), @p12='?' (DbType = DateTime2), @p13='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Transactions] ([Id], [Amount], [AmountToReceive], [Commission], [CurrencyExchangeCommission], [GetterCardId], [GetterCurrency], [GetterId], [SenderCardId], [SenderCurrency], [SenderId], [Status], [TransactionTime], [Type])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13);
+2025-10-19 23:15:49.900 +03:00 [INF] Publishing message to rabbit mq (for bank.api service) to update balance
+2025-10-19 23:15:49.902 +03:00 [INF] Success adding funds for cardId: "468848ae-cdb8-4f9c-946a-6eda2d3811c3"
+2025-10-19 23:15:49.903 +03:00 [INF] Executing StatusCodeResult, setting HTTP status code 200
+2025-10-19 23:15:49.904 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.AddFunds (Transactions.WebUI) in 19.1622ms
+2025-10-19 23:15:49.905 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.AddFunds (Transactions.WebUI)'
+2025-10-19 23:15:49.905 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7281/api/Transaction/AddFunds - 200 0 null 27.2348ms
+2025-10-19 23:15:49.971 +03:00 [INF] Trying to get info from rabbit mq
+2025-10-19 23:15:49.972 +03:00 [INF] Trying to update transaction status
+2025-10-19 23:15:49.974 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[Id] = @__id_0
+2025-10-19 23:15:49.975 +03:00 [INF] Success update transaction status "dfcf27a9-f525-4128-58bc-08de0f4bc518"
+2025-10-19 23:15:49.978 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p13='?' (DbType = Guid), @p0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p4='?' (DbType = Guid), @p5='?' (DbType = Int32), @p6='?' (DbType = Guid), @p7='?' (DbType = Guid), @p8='?' (DbType = Int32), @p9='?' (DbType = Guid), @p10='?' (DbType = Int32), @p11='?' (DbType = DateTime2), @p12='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Transactions] SET [Amount] = @p0, [AmountToReceive] = @p1, [Commission] = @p2, [CurrencyExchangeCommission] = @p3, [GetterCardId] = @p4, [GetterCurrency] = @p5, [GetterId] = @p6, [SenderCardId] = @p7, [SenderCurrency] = @p8, [SenderId] = @p9, [Status] = @p10, [TransactionTime] = @p11, [Type] = @p12
+OUTPUT 1
+WHERE [Id] = @p13;
+2025-10-19 23:15:49.981 +03:00 [INF] Success updating transaction status
+2025-10-19 23:15:50.710 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - null null
+2025-10-19 23:15:50.713 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:15:50.714 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - 204 null null 3.5692ms
+2025-10-19 23:15:50.716 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - null null
+2025-10-19 23:15:50.718 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:15:50.719 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:15:50.720 +03:00 [INF] Route matched with {action = "GetTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTransactions(System.Guid, Transactions.Application.Filters.TransactionFilter) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:15:50.722 +03:00 [INF] Getting page for card "468848ae-cdb8-4f9c-946a-6eda2d3811c3"
+2025-10-19 23:15:50.724 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+ORDER BY [t].[TransactionTime] DESC, [t].[Id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+2025-10-19 23:15:50.727 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+2025-10-19 23:15:50.729 +03:00 [INF] Executing OkObjectResult, writing value of type 'Transactions.Application.Helpers.PageResult`1[[Transactions.Application.DTOs.TransactionDto, Transactions.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-19 23:15:50.730 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI) in 9.2903ms
+2025-10-19 23:15:50.731 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:15:50.732 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - 200 null application/json; charset=utf-8 16.596ms
+2025-10-19 23:16:05.046 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetCardId/4448445344212218 - null null
+2025-10-19 23:16:05.048 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:16:05.049 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetCardId/4448445344212218 - 204 null null 2.8155ms
+2025-10-19 23:16:05.051 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/api/Transaction/GetCardId/4448445344212218 - null null
+2025-10-19 23:16:05.053 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:16:05.054 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.GetCardId (Transactions.WebUI)'
+2025-10-19 23:16:05.054 +03:00 [INF] Route matched with {action = "GetCardId", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCardId(System.String) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:16:05.056 +03:00 [INF] Getting card id by card nuymber: 4448445344212218
+2025-10-19 23:16:05.057 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Transaction/GetCardGuidByCardNumber/4448445344212218
+2025-10-19 23:16:05.057 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Transaction/GetCardGuidByCardNumber/4448445344212218
+2025-10-19 23:16:05.071 +03:00 [INF] Received HTTP response headers after 12.5584ms - 200
+2025-10-19 23:16:05.072 +03:00 [INF] End processing HTTP request after 15ms - 200
+2025-10-19 23:16:05.072 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Guid'.
+2025-10-19 23:16:05.073 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.GetCardId (Transactions.WebUI) in 17.9005ms
+2025-10-19 23:16:05.076 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.GetCardId (Transactions.WebUI)'
+2025-10-19 23:16:05.076 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Transaction/GetCardId/4448445344212218 - 200 null application/json; charset=utf-8 25.4347ms
+2025-10-19 23:16:05.078 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/MakeTransaction - null null
+2025-10-19 23:16:05.079 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:16:05.080 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/MakeTransaction - 204 null null 2.0462ms
+2025-10-19 23:16:05.081 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7281/api/Transaction/MakeTransaction - application/json 138
+2025-10-19 23:16:05.083 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:16:05.084 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI)'
+2025-10-19 23:16:05.084 +03:00 [INF] Route matched with {action = "MakeTransaction", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] MakeTransaction(Transactions.Application.DTOs.TransactionDto) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:16:05.086 +03:00 [INF] Trying to create transaction
+2025-10-19 23:16:05.087 +03:00 [INF] Start processing HTTP request POST https://localhost:7280/api/Transaction/GetTransactionDetails
+2025-10-19 23:16:05.087 +03:00 [INF] Sending HTTP request POST https://localhost:7280/api/Transaction/GetTransactionDetails
+2025-10-19 23:16:05.102 +03:00 [INF] Received HTTP response headers after 14.1362ms - 200
+2025-10-19 23:16:05.103 +03:00 [INF] End processing HTTP request after 16.0247ms - 200
+2025-10-19 23:16:05.104 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/468848ae-cdb8-4f9c-946a-6eda2d3811c3
+2025-10-19 23:16:05.106 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/468848ae-cdb8-4f9c-946a-6eda2d3811c3
+2025-10-19 23:16:05.116 +03:00 [INF] Received HTTP response headers after 9.3544ms - 200
+2025-10-19 23:16:05.116 +03:00 [INF] End processing HTTP request after 12.5654ms - 200
+2025-10-19 23:16:05.117 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/468848ae-cdb8-4f9c-946a-6eda2d3811c3/check?amount=2000000000
+2025-10-19 23:16:05.118 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/468848ae-cdb8-4f9c-946a-6eda2d3811c3/check?amount=2000000000
+2025-10-19 23:16:05.128 +03:00 [INF] Received HTTP response headers after 8.7649ms - 200
+2025-10-19 23:16:05.128 +03:00 [INF] End processing HTTP request after 11.1017ms - 200
+2025-10-19 23:16:05.131 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p4='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p5='?' (DbType = Guid), @p6='?' (DbType = Int32), @p7='?' (DbType = Guid), @p8='?' (DbType = Guid), @p9='?' (DbType = Int32), @p10='?' (DbType = Guid), @p11='?' (DbType = Int32), @p12='?' (DbType = DateTime2), @p13='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Transactions] ([Id], [Amount], [AmountToReceive], [Commission], [CurrencyExchangeCommission], [GetterCardId], [GetterCurrency], [GetterId], [SenderCardId], [SenderCurrency], [SenderId], [Status], [TransactionTime], [Type])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13);
+2025-10-19 23:16:05.133 +03:00 [INF] Publishing message to rabbit mq (for bank.api service) to update balance
+2025-10-19 23:16:05.134 +03:00 [ERR] Success creating transaction, transaction id: "b11a3f36-2617-4537-58bd-08de0f4bc518"
+2025-10-19 23:16:05.134 +03:00 [INF] Executing StatusCodeResult, setting HTTP status code 200
+2025-10-19 23:16:05.135 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI) in 49.4692ms
+2025-10-19 23:16:05.136 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI)'
+2025-10-19 23:16:05.137 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7281/api/Transaction/MakeTransaction - 200 0 null 56.093ms
+2025-10-19 23:16:05.214 +03:00 [INF] Trying to get info from rabbit mq
+2025-10-19 23:16:05.215 +03:00 [INF] Trying to update transaction status
+2025-10-19 23:16:05.216 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[Id] = @__id_0
+2025-10-19 23:16:05.218 +03:00 [INF] Success update transaction status "b11a3f36-2617-4537-58bd-08de0f4bc518"
+2025-10-19 23:16:05.220 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p13='?' (DbType = Guid), @p0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p4='?' (DbType = Guid), @p5='?' (DbType = Int32), @p6='?' (DbType = Guid), @p7='?' (DbType = Guid), @p8='?' (DbType = Int32), @p9='?' (DbType = Guid), @p10='?' (DbType = Int32), @p11='?' (DbType = DateTime2), @p12='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Transactions] SET [Amount] = @p0, [AmountToReceive] = @p1, [Commission] = @p2, [CurrencyExchangeCommission] = @p3, [GetterCardId] = @p4, [GetterCurrency] = @p5, [GetterId] = @p6, [SenderCardId] = @p7, [SenderCurrency] = @p8, [SenderId] = @p9, [Status] = @p10, [TransactionTime] = @p11, [Type] = @p12
+OUTPUT 1
+WHERE [Id] = @p13;
+2025-10-19 23:16:05.221 +03:00 [INF] Success updating transaction status
+2025-10-19 23:16:10.463 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - null null
+2025-10-19 23:16:10.465 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:16:10.466 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - 204 null null 3.287ms
+2025-10-19 23:16:10.469 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - null null
+2025-10-19 23:16:10.474 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:16:10.474 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:16:10.475 +03:00 [INF] Route matched with {action = "GetTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTransactions(System.Guid, Transactions.Application.Filters.TransactionFilter) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:16:10.480 +03:00 [INF] Getting page for card "468848ae-cdb8-4f9c-946a-6eda2d3811c3"
+2025-10-19 23:16:10.483 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+ORDER BY [t].[TransactionTime] DESC, [t].[Id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+2025-10-19 23:16:10.487 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+2025-10-19 23:16:10.489 +03:00 [INF] Executing OkObjectResult, writing value of type 'Transactions.Application.Helpers.PageResult`1[[Transactions.Application.DTOs.TransactionDto, Transactions.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-19 23:16:10.491 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI) in 12.8309ms
+2025-10-19 23:16:10.492 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:16:10.493 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - 200 null application/json; charset=utf-8 23.7872ms
+2025-10-19 23:17:48.696 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetCardId/4448445344212218 - null null
+2025-10-19 23:17:48.701 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:17:48.702 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetCardId/4448445344212218 - 204 null null 5.9595ms
+2025-10-19 23:17:48.703 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/api/Transaction/GetCardId/4448445344212218 - null null
+2025-10-19 23:17:48.709 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:17:48.710 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.GetCardId (Transactions.WebUI)'
+2025-10-19 23:17:48.711 +03:00 [INF] Route matched with {action = "GetCardId", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCardId(System.String) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:17:48.713 +03:00 [INF] Getting card id by card nuymber: 4448445344212218
+2025-10-19 23:17:48.714 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Transaction/GetCardGuidByCardNumber/4448445344212218
+2025-10-19 23:17:48.715 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Transaction/GetCardGuidByCardNumber/4448445344212218
+2025-10-19 23:17:48.728 +03:00 [INF] Received HTTP response headers after 11.7627ms - 200
+2025-10-19 23:17:48.728 +03:00 [INF] End processing HTTP request after 14.268ms - 200
+2025-10-19 23:17:48.729 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Guid'.
+2025-10-19 23:17:48.730 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.GetCardId (Transactions.WebUI) in 17.6027ms
+2025-10-19 23:17:48.731 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.GetCardId (Transactions.WebUI)'
+2025-10-19 23:17:48.732 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Transaction/GetCardId/4448445344212218 - 200 null application/json; charset=utf-8 28.5748ms
+2025-10-19 23:17:48.734 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/MakeTransaction - null null
+2025-10-19 23:17:48.736 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:17:48.736 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/MakeTransaction - 204 null null 2.3457ms
+2025-10-19 23:17:48.737 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7281/api/Transaction/MakeTransaction - application/json 129
+2025-10-19 23:17:48.740 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:17:48.741 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI)'
+2025-10-19 23:17:48.742 +03:00 [INF] Route matched with {action = "MakeTransaction", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] MakeTransaction(Transactions.Application.DTOs.TransactionDto) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:17:48.744 +03:00 [INF] Trying to create transaction
+2025-10-19 23:17:48.746 +03:00 [INF] Start processing HTTP request POST https://localhost:7280/api/Transaction/GetTransactionDetails
+2025-10-19 23:17:48.746 +03:00 [INF] Sending HTTP request POST https://localhost:7280/api/Transaction/GetTransactionDetails
+2025-10-19 23:17:48.761 +03:00 [INF] Received HTTP response headers after 13.7387ms - 200
+2025-10-19 23:17:48.762 +03:00 [INF] End processing HTTP request after 16.0825ms - 200
+2025-10-19 23:17:48.762 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/fa218982-6cf9-4c0e-8bfa-93a00e2712b7
+2025-10-19 23:17:48.763 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/fa218982-6cf9-4c0e-8bfa-93a00e2712b7
+2025-10-19 23:17:48.774 +03:00 [INF] Received HTTP response headers after 10.2835ms - 200
+2025-10-19 23:17:48.775 +03:00 [INF] End processing HTTP request after 12.512ms - 200
+2025-10-19 23:17:48.776 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/fa218982-6cf9-4c0e-8bfa-93a00e2712b7/check?amount=1
+2025-10-19 23:17:48.777 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/fa218982-6cf9-4c0e-8bfa-93a00e2712b7/check?amount=1
+2025-10-19 23:17:48.785 +03:00 [INF] Received HTTP response headers after 7.6969ms - 200
+2025-10-19 23:17:48.786 +03:00 [INF] End processing HTTP request after 10.0242ms - 200
+2025-10-19 23:17:48.788 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Currency/GetExchangedValue?from=UAH&to=USD&amount=1
+2025-10-19 23:17:48.789 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Currency/GetExchangedValue?from=UAH&to=USD&amount=1
+2025-10-19 23:17:48.924 +03:00 [INF] Received HTTP response headers after 134.0122ms - 200
+2025-10-19 23:17:48.926 +03:00 [INF] End processing HTTP request after 137.185ms - 200
+2025-10-19 23:17:48.930 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p4='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p5='?' (DbType = Guid), @p6='?' (DbType = Int32), @p7='?' (DbType = Guid), @p8='?' (DbType = Guid), @p9='?' (DbType = Int32), @p10='?' (DbType = Guid), @p11='?' (DbType = Int32), @p12='?' (DbType = DateTime2), @p13='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Transactions] ([Id], [Amount], [AmountToReceive], [Commission], [CurrencyExchangeCommission], [GetterCardId], [GetterCurrency], [GetterId], [SenderCardId], [SenderCurrency], [SenderId], [Status], [TransactionTime], [Type])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13);
+2025-10-19 23:17:48.934 +03:00 [INF] Publishing message to rabbit mq (for bank.api service) to update balance
+2025-10-19 23:17:48.934 +03:00 [ERR] Success creating transaction, transaction id: "79f14740-7db2-453d-58be-08de0f4bc518"
+2025-10-19 23:17:48.935 +03:00 [INF] Executing StatusCodeResult, setting HTTP status code 200
+2025-10-19 23:17:48.936 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI) in 191.9993ms
+2025-10-19 23:17:48.937 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI)'
+2025-10-19 23:17:48.938 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7281/api/Transaction/MakeTransaction - 200 0 null 200.4265ms
+2025-10-19 23:17:49.025 +03:00 [INF] Trying to get info from rabbit mq
+2025-10-19 23:17:49.026 +03:00 [INF] Trying to update transaction status
+2025-10-19 23:17:49.028 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[Id] = @__id_0
+2025-10-19 23:17:49.030 +03:00 [INF] Success update transaction status "79f14740-7db2-453d-58be-08de0f4bc518"
+2025-10-19 23:17:49.032 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p13='?' (DbType = Guid), @p0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p4='?' (DbType = Guid), @p5='?' (DbType = Int32), @p6='?' (DbType = Guid), @p7='?' (DbType = Guid), @p8='?' (DbType = Int32), @p9='?' (DbType = Guid), @p10='?' (DbType = Int32), @p11='?' (DbType = DateTime2), @p12='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Transactions] SET [Amount] = @p0, [AmountToReceive] = @p1, [Commission] = @p2, [CurrencyExchangeCommission] = @p3, [GetterCardId] = @p4, [GetterCurrency] = @p5, [GetterId] = @p6, [SenderCardId] = @p7, [SenderCurrency] = @p8, [SenderId] = @p9, [Status] = @p10, [TransactionTime] = @p11, [Type] = @p12
+OUTPUT 1
+WHERE [Id] = @p13;
+2025-10-19 23:17:49.034 +03:00 [INF] Success updating transaction status
+2025-10-19 23:17:58.206 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/6c23c924-074e-4a40-90d2-6047cc0faf0e - null null
+2025-10-19 23:17:58.209 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:17:58.210 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/6c23c924-074e-4a40-90d2-6047cc0faf0e - 204 null null 3.5677ms
+2025-10-19 23:17:58.213 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/6c23c924-074e-4a40-90d2-6047cc0faf0e - null null
+2025-10-19 23:17:58.217 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:17:58.218 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:17:58.220 +03:00 [INF] Route matched with {action = "GetTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTransactions(System.Guid, Transactions.Application.Filters.TransactionFilter) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:17:58.222 +03:00 [INF] Getting page for card "6c23c924-074e-4a40-90d2-6047cc0faf0e"
+2025-10-19 23:17:58.225 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+ORDER BY [t].[TransactionTime] DESC, [t].[Id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+2025-10-19 23:17:58.230 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+2025-10-19 23:17:58.232 +03:00 [INF] Executing OkObjectResult, writing value of type 'Transactions.Application.Helpers.PageResult`1[[Transactions.Application.DTOs.TransactionDto, Transactions.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-19 23:17:58.233 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI) in 11.959ms
+2025-10-19 23:17:58.235 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:17:58.235 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/6c23c924-074e-4a40-90d2-6047cc0faf0e - 200 null application/json; charset=utf-8 23.0035ms
+2025-10-19 23:18:26.784 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/6c23c924-074e-4a40-90d2-6047cc0faf0e - null null
+2025-10-19 23:18:26.787 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:18:26.788 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/6c23c924-074e-4a40-90d2-6047cc0faf0e - 204 null null 4.3264ms
+2025-10-19 23:18:26.790 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/6c23c924-074e-4a40-90d2-6047cc0faf0e - null null
+2025-10-19 23:18:26.798 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:18:26.798 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:18:26.799 +03:00 [INF] Route matched with {action = "GetTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTransactions(System.Guid, Transactions.Application.Filters.TransactionFilter) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:18:26.801 +03:00 [INF] Getting page for card "6c23c924-074e-4a40-90d2-6047cc0faf0e"
+2025-10-19 23:18:26.803 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+ORDER BY [t].[TransactionTime] DESC, [t].[Id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+2025-10-19 23:18:26.807 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+2025-10-19 23:18:26.809 +03:00 [INF] Executing OkObjectResult, writing value of type 'Transactions.Application.Helpers.PageResult`1[[Transactions.Application.DTOs.TransactionDto, Transactions.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-19 23:18:26.810 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI) in 9.8063ms
+2025-10-19 23:18:26.811 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:18:26.812 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/6c23c924-074e-4a40-90d2-6047cc0faf0e - 200 null application/json; charset=utf-8 21.9974ms
+2025-10-19 23:18:55.159 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/MakeTransaction - null null
+2025-10-19 23:18:55.161 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:18:55.161 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/MakeTransaction - 204 null null 2.7518ms
+2025-10-19 23:18:55.163 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7281/api/Transaction/MakeTransaction - application/json 137
+2025-10-19 23:18:55.168 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:18:55.168 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI)'
+2025-10-19 23:18:55.169 +03:00 [INF] Route matched with {action = "MakeTransaction", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] MakeTransaction(Transactions.Application.DTOs.TransactionDto) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:18:55.173 +03:00 [INF] Trying to create transaction
+2025-10-19 23:18:55.173 +03:00 [INF] Start processing HTTP request POST https://localhost:7280/api/Transaction/GetTransactionDetails
+2025-10-19 23:18:55.174 +03:00 [INF] Sending HTTP request POST https://localhost:7280/api/Transaction/GetTransactionDetails
+2025-10-19 23:18:55.189 +03:00 [INF] Received HTTP response headers after 14.0078ms - 200
+2025-10-19 23:18:55.189 +03:00 [INF] End processing HTTP request after 16.1077ms - 200
+2025-10-19 23:18:55.190 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/6c23c924-074e-4a40-90d2-6047cc0faf0e/check?amount=234242432
+2025-10-19 23:18:55.191 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/6c23c924-074e-4a40-90d2-6047cc0faf0e/check?amount=234242432
+2025-10-19 23:18:55.200 +03:00 [INF] Received HTTP response headers after 8.3253ms - 200
+2025-10-19 23:18:55.201 +03:00 [INF] End processing HTTP request after 11.2523ms - 200
+2025-10-19 23:18:55.202 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Currency/GetExchangedValue?from=EUR&to=USD&amount=234242432
+2025-10-19 23:18:55.203 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Currency/GetExchangedValue?from=EUR&to=USD&amount=234242432
+2025-10-19 23:18:55.211 +03:00 [INF] Received HTTP response headers after 6.7978ms - 200
+2025-10-19 23:18:55.212 +03:00 [INF] End processing HTTP request after 9.6866ms - 200
+2025-10-19 23:18:55.215 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p4='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p5='?' (DbType = Guid), @p6='?' (DbType = Int32), @p7='?' (DbType = Guid), @p8='?' (DbType = Guid), @p9='?' (DbType = Int32), @p10='?' (DbType = Guid), @p11='?' (DbType = Int32), @p12='?' (DbType = DateTime2), @p13='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Transactions] ([Id], [Amount], [AmountToReceive], [Commission], [CurrencyExchangeCommission], [GetterCardId], [GetterCurrency], [GetterId], [SenderCardId], [SenderCurrency], [SenderId], [Status], [TransactionTime], [Type])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13);
+2025-10-19 23:18:55.219 +03:00 [INF] Publishing message to rabbit mq (for bank.api service) to update balance
+2025-10-19 23:18:55.219 +03:00 [ERR] Success creating transaction, transaction id: "07e87c65-95a2-43ac-58bf-08de0f4bc518"
+2025-10-19 23:18:55.220 +03:00 [INF] Executing StatusCodeResult, setting HTTP status code 200
+2025-10-19 23:18:55.220 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI) in 48.7278ms
+2025-10-19 23:18:55.221 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI)'
+2025-10-19 23:18:55.222 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7281/api/Transaction/MakeTransaction - 200 0 null 59.5942ms
+2025-10-19 23:18:55.284 +03:00 [INF] Trying to get info from rabbit mq
+2025-10-19 23:18:55.286 +03:00 [INF] Trying to update transaction status
+2025-10-19 23:18:55.287 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[Id] = @__id_0
+2025-10-19 23:18:55.289 +03:00 [INF] Success update transaction status "07e87c65-95a2-43ac-58bf-08de0f4bc518"
+2025-10-19 23:18:55.291 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p13='?' (DbType = Guid), @p0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p4='?' (DbType = Guid), @p5='?' (DbType = Int32), @p6='?' (DbType = Guid), @p7='?' (DbType = Guid), @p8='?' (DbType = Int32), @p9='?' (DbType = Guid), @p10='?' (DbType = Int32), @p11='?' (DbType = DateTime2), @p12='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Transactions] SET [Amount] = @p0, [AmountToReceive] = @p1, [Commission] = @p2, [CurrencyExchangeCommission] = @p3, [GetterCardId] = @p4, [GetterCurrency] = @p5, [GetterId] = @p6, [SenderCardId] = @p7, [SenderCurrency] = @p8, [SenderId] = @p9, [Status] = @p10, [TransactionTime] = @p11, [Type] = @p12
+OUTPUT 1
+WHERE [Id] = @p13;
+2025-10-19 23:18:55.293 +03:00 [INF] Success updating transaction status
+2025-10-19 23:19:00.650 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - null null
+2025-10-19 23:19:00.653 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:19:00.653 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - 204 null null 3.9716ms
+2025-10-19 23:19:00.655 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - null null
+2025-10-19 23:19:00.661 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:19:00.662 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:19:00.663 +03:00 [INF] Route matched with {action = "GetTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTransactions(System.Guid, Transactions.Application.Filters.TransactionFilter) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:19:00.665 +03:00 [INF] Getting page for card "468848ae-cdb8-4f9c-946a-6eda2d3811c3"
+2025-10-19 23:19:00.668 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+ORDER BY [t].[TransactionTime] DESC, [t].[Id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+2025-10-19 23:19:00.671 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+2025-10-19 23:19:00.673 +03:00 [INF] Executing OkObjectResult, writing value of type 'Transactions.Application.Helpers.PageResult`1[[Transactions.Application.DTOs.TransactionDto, Transactions.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-19 23:19:00.675 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI) in 10.8168ms
+2025-10-19 23:19:00.676 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:19:00.677 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - 200 null application/json; charset=utf-8 21.8086ms
+2025-10-19 23:19:02.966 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/6c23c924-074e-4a40-90d2-6047cc0faf0e - null null
+2025-10-19 23:19:02.968 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:19:02.969 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/6c23c924-074e-4a40-90d2-6047cc0faf0e - 204 null null 3.0268ms
+2025-10-19 23:19:02.971 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/6c23c924-074e-4a40-90d2-6047cc0faf0e - null null
+2025-10-19 23:19:02.973 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:19:02.974 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:19:02.975 +03:00 [INF] Route matched with {action = "GetTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTransactions(System.Guid, Transactions.Application.Filters.TransactionFilter) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:19:02.977 +03:00 [INF] Getting page for card "6c23c924-074e-4a40-90d2-6047cc0faf0e"
+2025-10-19 23:19:02.979 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+ORDER BY [t].[TransactionTime] DESC, [t].[Id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+2025-10-19 23:19:02.983 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+2025-10-19 23:19:02.985 +03:00 [INF] Executing OkObjectResult, writing value of type 'Transactions.Application.Helpers.PageResult`1[[Transactions.Application.DTOs.TransactionDto, Transactions.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-19 23:19:02.986 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI) in 10.1389ms
+2025-10-19 23:19:02.987 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:19:02.988 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/6c23c924-074e-4a40-90d2-6047cc0faf0e - 200 null application/json; charset=utf-8 17.5098ms
+2025-10-19 23:19:14.415 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetCardId/4448445344212218 - null null
+2025-10-19 23:19:14.417 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:19:14.418 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetCardId/4448445344212218 - 204 null null 3.0564ms
+2025-10-19 23:19:14.420 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/api/Transaction/GetCardId/4448445344212218 - null null
+2025-10-19 23:19:14.423 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:19:14.424 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.GetCardId (Transactions.WebUI)'
+2025-10-19 23:19:14.425 +03:00 [INF] Route matched with {action = "GetCardId", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCardId(System.String) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:19:14.426 +03:00 [INF] Getting card id by card nuymber: 4448445344212218
+2025-10-19 23:19:14.427 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Transaction/GetCardGuidByCardNumber/4448445344212218
+2025-10-19 23:19:14.428 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Transaction/GetCardGuidByCardNumber/4448445344212218
+2025-10-19 23:19:14.436 +03:00 [INF] Received HTTP response headers after 7.2425ms - 200
+2025-10-19 23:19:14.436 +03:00 [INF] End processing HTTP request after 9.5269ms - 200
+2025-10-19 23:19:14.437 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Guid'.
+2025-10-19 23:19:14.438 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.GetCardId (Transactions.WebUI) in 12.8198ms
+2025-10-19 23:19:14.440 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.GetCardId (Transactions.WebUI)'
+2025-10-19 23:19:14.440 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Transaction/GetCardId/4448445344212218 - 200 null application/json; charset=utf-8 20.3546ms
+2025-10-19 23:19:14.442 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/MakeTransaction - null null
+2025-10-19 23:19:14.444 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:19:14.445 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/MakeTransaction - 204 null null 2.7813ms
+2025-10-19 23:19:14.446 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7281/api/Transaction/MakeTransaction - application/json 132
+2025-10-19 23:19:14.448 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:19:14.448 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI)'
+2025-10-19 23:19:14.449 +03:00 [INF] Route matched with {action = "MakeTransaction", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] MakeTransaction(Transactions.Application.DTOs.TransactionDto) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:19:14.451 +03:00 [INF] Trying to create transaction
+2025-10-19 23:19:14.451 +03:00 [INF] Start processing HTTP request POST https://localhost:7280/api/Transaction/GetTransactionDetails
+2025-10-19 23:19:14.452 +03:00 [INF] Sending HTTP request POST https://localhost:7280/api/Transaction/GetTransactionDetails
+2025-10-19 23:19:14.466 +03:00 [INF] Received HTTP response headers after 13.7867ms - 200
+2025-10-19 23:19:14.467 +03:00 [INF] End processing HTTP request after 15.6849ms - 200
+2025-10-19 23:19:14.468 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/6c23c924-074e-4a40-90d2-6047cc0faf0e
+2025-10-19 23:19:14.469 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/6c23c924-074e-4a40-90d2-6047cc0faf0e
+2025-10-19 23:19:14.479 +03:00 [INF] Received HTTP response headers after 9.9344ms - 200
+2025-10-19 23:19:14.480 +03:00 [INF] End processing HTTP request after 12.2186ms - 200
+2025-10-19 23:19:14.481 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/6c23c924-074e-4a40-90d2-6047cc0faf0e/check?amount=2310.88
+2025-10-19 23:19:14.482 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/6c23c924-074e-4a40-90d2-6047cc0faf0e/check?amount=2310.88
+2025-10-19 23:19:14.491 +03:00 [INF] Received HTTP response headers after 8.0668ms - 200
+2025-10-19 23:19:14.491 +03:00 [INF] End processing HTTP request after 10.1639ms - 200
+2025-10-19 23:19:14.492 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Currency/GetExchangedValue?from=EUR&to=USD&amount=2222
+2025-10-19 23:19:14.493 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Currency/GetExchangedValue?from=EUR&to=USD&amount=2222
+2025-10-19 23:19:14.499 +03:00 [INF] Received HTTP response headers after 5.5393ms - 200
+2025-10-19 23:19:14.501 +03:00 [INF] End processing HTTP request after 8.9326ms - 200
+2025-10-19 23:19:14.503 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p4='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p5='?' (DbType = Guid), @p6='?' (DbType = Int32), @p7='?' (DbType = Guid), @p8='?' (DbType = Guid), @p9='?' (DbType = Int32), @p10='?' (DbType = Guid), @p11='?' (DbType = Int32), @p12='?' (DbType = DateTime2), @p13='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Transactions] ([Id], [Amount], [AmountToReceive], [Commission], [CurrencyExchangeCommission], [GetterCardId], [GetterCurrency], [GetterId], [SenderCardId], [SenderCurrency], [SenderId], [Status], [TransactionTime], [Type])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13);
+2025-10-19 23:19:14.507 +03:00 [INF] Publishing message to rabbit mq (for bank.api service) to update balance
+2025-10-19 23:19:14.508 +03:00 [ERR] Success creating transaction, transaction id: "bfab7e54-5530-44c2-58c0-08de0f4bc518"
+2025-10-19 23:19:14.508 +03:00 [INF] Executing StatusCodeResult, setting HTTP status code 200
+2025-10-19 23:19:14.509 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI) in 58.7978ms
+2025-10-19 23:19:14.510 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI)'
+2025-10-19 23:19:14.511 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7281/api/Transaction/MakeTransaction - 200 0 null 64.8187ms
+2025-10-19 23:19:14.577 +03:00 [INF] Trying to get info from rabbit mq
+2025-10-19 23:19:14.578 +03:00 [INF] Trying to update transaction status
+2025-10-19 23:19:14.580 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[Id] = @__id_0
+2025-10-19 23:19:14.582 +03:00 [INF] Success update transaction status "bfab7e54-5530-44c2-58c0-08de0f4bc518"
+2025-10-19 23:19:14.583 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p13='?' (DbType = Guid), @p0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p4='?' (DbType = Guid), @p5='?' (DbType = Int32), @p6='?' (DbType = Guid), @p7='?' (DbType = Guid), @p8='?' (DbType = Int32), @p9='?' (DbType = Guid), @p10='?' (DbType = Int32), @p11='?' (DbType = DateTime2), @p12='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Transactions] SET [Amount] = @p0, [AmountToReceive] = @p1, [Commission] = @p2, [CurrencyExchangeCommission] = @p3, [GetterCardId] = @p4, [GetterCurrency] = @p5, [GetterId] = @p6, [SenderCardId] = @p7, [SenderCurrency] = @p8, [SenderId] = @p9, [Status] = @p10, [TransactionTime] = @p11, [Type] = @p12
+OUTPUT 1
+WHERE [Id] = @p13;
+2025-10-19 23:19:14.586 +03:00 [INF] Success updating transaction status
+2025-10-19 23:19:15.218 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/6c23c924-074e-4a40-90d2-6047cc0faf0e - null null
+2025-10-19 23:19:15.223 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:19:15.223 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/6c23c924-074e-4a40-90d2-6047cc0faf0e - 204 null null 4.9669ms
+2025-10-19 23:19:15.226 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/6c23c924-074e-4a40-90d2-6047cc0faf0e - null null
+2025-10-19 23:19:15.230 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:19:15.231 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:19:15.232 +03:00 [INF] Route matched with {action = "GetTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTransactions(System.Guid, Transactions.Application.Filters.TransactionFilter) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:19:15.235 +03:00 [INF] Getting page for card "6c23c924-074e-4a40-90d2-6047cc0faf0e"
+2025-10-19 23:19:15.237 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+ORDER BY [t].[TransactionTime] DESC, [t].[Id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+2025-10-19 23:19:15.240 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+2025-10-19 23:19:15.242 +03:00 [INF] Executing OkObjectResult, writing value of type 'Transactions.Application.Helpers.PageResult`1[[Transactions.Application.DTOs.TransactionDto, Transactions.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-19 23:19:15.244 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI) in 9.3419ms
+2025-10-19 23:19:15.245 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:19:15.246 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/6c23c924-074e-4a40-90d2-6047cc0faf0e - 200 null application/json; charset=utf-8 20.333ms
+2025-10-19 23:19:38.344 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/MakeTransaction - null null
+2025-10-19 23:19:38.346 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:19:38.346 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/MakeTransaction - 204 null null 2.7586ms
+2025-10-19 23:19:38.348 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7281/api/Transaction/MakeTransaction - application/json 135
+2025-10-19 23:19:38.350 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:19:38.351 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI)'
+2025-10-19 23:19:38.351 +03:00 [INF] Route matched with {action = "MakeTransaction", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] MakeTransaction(Transactions.Application.DTOs.TransactionDto) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:19:38.353 +03:00 [INF] Trying to create transaction
+2025-10-19 23:19:38.355 +03:00 [INF] Start processing HTTP request POST https://localhost:7280/api/Transaction/GetTransactionDetails
+2025-10-19 23:19:38.357 +03:00 [INF] Sending HTTP request POST https://localhost:7280/api/Transaction/GetTransactionDetails
+2025-10-19 23:19:38.373 +03:00 [INF] Received HTTP response headers after 15.1981ms - 200
+2025-10-19 23:19:38.374 +03:00 [INF] End processing HTTP request after 18.8882ms - 200
+2025-10-19 23:19:38.375 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/6c23c924-074e-4a40-90d2-6047cc0faf0e/check?amount=2424222
+2025-10-19 23:19:38.375 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/6c23c924-074e-4a40-90d2-6047cc0faf0e/check?amount=2424222
+2025-10-19 23:19:38.385 +03:00 [INF] Received HTTP response headers after 8.6731ms - 200
+2025-10-19 23:19:38.386 +03:00 [INF] End processing HTTP request after 10.9758ms - 200
+2025-10-19 23:19:38.386 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Currency/GetExchangedValue?from=EUR&to=UAH&amount=2424222
+2025-10-19 23:19:38.387 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Currency/GetExchangedValue?from=EUR&to=UAH&amount=2424222
+2025-10-19 23:19:38.394 +03:00 [INF] Received HTTP response headers after 6.0814ms - 200
+2025-10-19 23:19:38.395 +03:00 [INF] End processing HTTP request after 8.4785ms - 200
+2025-10-19 23:19:38.397 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p4='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p5='?' (DbType = Guid), @p6='?' (DbType = Int32), @p7='?' (DbType = Guid), @p8='?' (DbType = Guid), @p9='?' (DbType = Int32), @p10='?' (DbType = Guid), @p11='?' (DbType = Int32), @p12='?' (DbType = DateTime2), @p13='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Transactions] ([Id], [Amount], [AmountToReceive], [Commission], [CurrencyExchangeCommission], [GetterCardId], [GetterCurrency], [GetterId], [SenderCardId], [SenderCurrency], [SenderId], [Status], [TransactionTime], [Type])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13);
+2025-10-19 23:19:38.400 +03:00 [INF] Publishing message to rabbit mq (for bank.api service) to update balance
+2025-10-19 23:19:38.400 +03:00 [ERR] Success creating transaction, transaction id: "e3be8801-40c3-43ac-58c1-08de0f4bc518"
+2025-10-19 23:19:38.401 +03:00 [INF] Executing StatusCodeResult, setting HTTP status code 200
+2025-10-19 23:19:38.402 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI) in 49.3611ms
+2025-10-19 23:19:38.402 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI)'
+2025-10-19 23:19:38.403 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7281/api/Transaction/MakeTransaction - 200 0 null 55.0534ms
+2025-10-19 23:19:38.466 +03:00 [INF] Trying to get info from rabbit mq
+2025-10-19 23:19:38.466 +03:00 [INF] Trying to update transaction status
+2025-10-19 23:19:38.468 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[Id] = @__id_0
+2025-10-19 23:19:38.469 +03:00 [INF] Success update transaction status "e3be8801-40c3-43ac-58c1-08de0f4bc518"
+2025-10-19 23:19:38.471 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p13='?' (DbType = Guid), @p0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p4='?' (DbType = Guid), @p5='?' (DbType = Int32), @p6='?' (DbType = Guid), @p7='?' (DbType = Guid), @p8='?' (DbType = Int32), @p9='?' (DbType = Guid), @p10='?' (DbType = Int32), @p11='?' (DbType = DateTime2), @p12='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Transactions] SET [Amount] = @p0, [AmountToReceive] = @p1, [Commission] = @p2, [CurrencyExchangeCommission] = @p3, [GetterCardId] = @p4, [GetterCurrency] = @p5, [GetterId] = @p6, [SenderCardId] = @p7, [SenderCurrency] = @p8, [SenderId] = @p9, [Status] = @p10, [TransactionTime] = @p11, [Type] = @p12
+OUTPUT 1
+WHERE [Id] = @p13;
+2025-10-19 23:19:38.472 +03:00 [INF] Success updating transaction status
+2025-10-19 23:19:41.279 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/6c23c924-074e-4a40-90d2-6047cc0faf0e - null null
+2025-10-19 23:19:41.282 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:19:41.283 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/6c23c924-074e-4a40-90d2-6047cc0faf0e - 204 null null 3.8226ms
+2025-10-19 23:19:41.285 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/6c23c924-074e-4a40-90d2-6047cc0faf0e - null null
+2025-10-19 23:19:41.288 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:19:41.288 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:19:41.289 +03:00 [INF] Route matched with {action = "GetTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTransactions(System.Guid, Transactions.Application.Filters.TransactionFilter) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:19:41.291 +03:00 [INF] Getting page for card "6c23c924-074e-4a40-90d2-6047cc0faf0e"
+2025-10-19 23:19:41.295 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__id_0='?' (DbType = Guid), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+ORDER BY [t].[TransactionTime] DESC, [t].[Id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+2025-10-19 23:19:41.299 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+2025-10-19 23:19:41.300 +03:00 [INF] Executing OkObjectResult, writing value of type 'Transactions.Application.Helpers.PageResult`1[[Transactions.Application.DTOs.TransactionDto, Transactions.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-19 23:19:41.302 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI) in 11.8239ms
+2025-10-19 23:19:41.303 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:19:41.304 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/6c23c924-074e-4a40-90d2-6047cc0faf0e - 200 null application/json; charset=utf-8 19.2401ms
+2025-10-19 23:19:51.859 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - null null
+2025-10-19 23:19:51.861 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:19:51.862 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - 204 null null 3.8445ms
+2025-10-19 23:19:51.865 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - null null
+2025-10-19 23:19:51.870 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:19:51.870 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:19:51.871 +03:00 [INF] Route matched with {action = "GetTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTransactions(System.Guid, Transactions.Application.Filters.TransactionFilter) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:19:51.873 +03:00 [INF] Getting page for card "468848ae-cdb8-4f9c-946a-6eda2d3811c3"
+2025-10-19 23:19:51.882 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@__id_0='?' (DbType = Guid), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+ORDER BY [t].[TransactionTime] DESC, [t].[Id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+2025-10-19 23:19:51.887 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+2025-10-19 23:19:51.889 +03:00 [INF] Executing OkObjectResult, writing value of type 'Transactions.Application.Helpers.PageResult`1[[Transactions.Application.DTOs.TransactionDto, Transactions.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-19 23:19:51.891 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI) in 18.5235ms
+2025-10-19 23:19:51.893 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:19:51.894 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - 200 null application/json; charset=utf-8 28.8068ms
+2025-10-19 23:19:56.352 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - null null
+2025-10-19 23:19:56.356 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:19:56.357 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:19:56.358 +03:00 [INF] Route matched with {action = "GetTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTransactions(System.Guid, Transactions.Application.Filters.TransactionFilter) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:19:56.360 +03:00 [INF] Getting page for card "468848ae-cdb8-4f9c-946a-6eda2d3811c3"
+2025-10-19 23:19:56.361 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+ORDER BY [t].[TransactionTime] DESC, [t].[Id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+2025-10-19 23:19:56.365 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+2025-10-19 23:19:56.367 +03:00 [INF] Executing OkObjectResult, writing value of type 'Transactions.Application.Helpers.PageResult`1[[Transactions.Application.DTOs.TransactionDto, Transactions.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-19 23:19:56.370 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI) in 10.9675ms
+2025-10-19 23:19:56.374 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:19:56.375 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - 200 null application/json; charset=utf-8 23.3662ms
+2025-10-19 23:21:30.375 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - null null
+2025-10-19 23:21:30.383 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:21:30.384 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - 204 null null 8.8471ms
+2025-10-19 23:21:30.388 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - null null
+2025-10-19 23:21:30.395 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:21:30.395 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:21:30.396 +03:00 [INF] Route matched with {action = "GetTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTransactions(System.Guid, Transactions.Application.Filters.TransactionFilter) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:21:30.398 +03:00 [INF] Getting page for card "468848ae-cdb8-4f9c-946a-6eda2d3811c3"
+2025-10-19 23:21:30.401 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+ORDER BY [t].[TransactionTime] DESC, [t].[Id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+2025-10-19 23:21:30.406 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+2025-10-19 23:21:30.408 +03:00 [INF] Executing OkObjectResult, writing value of type 'Transactions.Application.Helpers.PageResult`1[[Transactions.Application.DTOs.TransactionDto, Transactions.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-19 23:21:30.410 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI) in 12.7672ms
+2025-10-19 23:21:30.411 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:21:30.413 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - 200 null application/json; charset=utf-8 24.8986ms
+2025-10-19 23:21:43.393 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - null null
+2025-10-19 23:21:43.395 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:21:43.396 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - 204 null null 2.7727ms
+2025-10-19 23:21:43.398 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - null null
+2025-10-19 23:21:43.400 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:21:43.400 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:21:43.402 +03:00 [INF] Route matched with {action = "GetTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTransactions(System.Guid, Transactions.Application.Filters.TransactionFilter) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:21:43.405 +03:00 [INF] Getting page for card "468848ae-cdb8-4f9c-946a-6eda2d3811c3"
+2025-10-19 23:21:43.409 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+ORDER BY [t].[TransactionTime] DESC, [t].[Id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+2025-10-19 23:21:43.413 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+2025-10-19 23:21:43.417 +03:00 [INF] Executing OkObjectResult, writing value of type 'Transactions.Application.Helpers.PageResult`1[[Transactions.Application.DTOs.TransactionDto, Transactions.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-19 23:21:43.419 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI) in 14.6055ms
+2025-10-19 23:21:43.420 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:21:43.422 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - 200 null application/json; charset=utf-8 23.6866ms
+2025-10-19 23:21:46.363 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - null null
+2025-10-19 23:21:46.366 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:21:46.366 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:21:46.368 +03:00 [INF] Route matched with {action = "GetTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTransactions(System.Guid, Transactions.Application.Filters.TransactionFilter) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:21:46.375 +03:00 [INF] Getting page for card "468848ae-cdb8-4f9c-946a-6eda2d3811c3"
+2025-10-19 23:21:46.382 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__id_0='?' (DbType = Guid), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+ORDER BY [t].[TransactionTime] DESC, [t].[Id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+2025-10-19 23:21:46.387 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+2025-10-19 23:21:46.389 +03:00 [INF] Executing OkObjectResult, writing value of type 'Transactions.Application.Helpers.PageResult`1[[Transactions.Application.DTOs.TransactionDto, Transactions.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-19 23:21:46.395 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI) in 21.0739ms
+2025-10-19 23:21:46.396 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:21:46.397 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - 200 null application/json; charset=utf-8 34.0534ms
+2025-10-19 23:21:49.815 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - null null
+2025-10-19 23:21:49.817 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:21:49.817 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - 204 null null 2.1812ms
+2025-10-19 23:21:49.819 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - null null
+2025-10-19 23:21:49.821 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:21:49.822 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:21:49.822 +03:00 [INF] Route matched with {action = "GetTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTransactions(System.Guid, Transactions.Application.Filters.TransactionFilter) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:21:49.825 +03:00 [INF] Getting page for card "468848ae-cdb8-4f9c-946a-6eda2d3811c3"
+2025-10-19 23:21:49.827 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+ORDER BY [t].[TransactionTime] DESC, [t].[Id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+2025-10-19 23:21:49.831 +03:00 [INF] Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+2025-10-19 23:21:49.833 +03:00 [INF] Executing OkObjectResult, writing value of type 'Transactions.Application.Helpers.PageResult`1[[Transactions.Application.DTOs.TransactionDto, Transactions.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-19 23:21:49.835 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI) in 10.8322ms
+2025-10-19 23:21:49.838 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:21:49.839 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - 200 null application/json; charset=utf-8 20.2161ms
+2025-10-19 23:21:56.612 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - null null
+2025-10-19 23:21:56.614 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:21:56.615 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - 204 null null 2.643ms
+2025-10-19 23:21:56.616 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - null null
+2025-10-19 23:21:56.619 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:21:56.619 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:21:56.620 +03:00 [INF] Route matched with {action = "GetTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTransactions(System.Guid, Transactions.Application.Filters.TransactionFilter) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:21:56.622 +03:00 [INF] Getting page for card "468848ae-cdb8-4f9c-946a-6eda2d3811c3"
+2025-10-19 23:21:56.628 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@__id_0='?' (DbType = Guid), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+ORDER BY [t].[TransactionTime] DESC, [t].[Id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+2025-10-19 23:21:56.635 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+2025-10-19 23:21:56.638 +03:00 [INF] Executing OkObjectResult, writing value of type 'Transactions.Application.Helpers.PageResult`1[[Transactions.Application.DTOs.TransactionDto, Transactions.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-19 23:21:56.642 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI) in 20.3514ms
+2025-10-19 23:21:56.643 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:21:56.644 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - 200 null application/json; charset=utf-8 27.8813ms
+2025-10-19 23:21:59.617 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - null null
+2025-10-19 23:21:59.619 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:21:59.620 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:21:59.620 +03:00 [INF] Route matched with {action = "GetTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTransactions(System.Guid, Transactions.Application.Filters.TransactionFilter) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:21:59.622 +03:00 [INF] Getting page for card "468848ae-cdb8-4f9c-946a-6eda2d3811c3"
+2025-10-19 23:21:59.626 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@__id_0='?' (DbType = Guid), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+ORDER BY [t].[TransactionTime] DESC, [t].[Id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+2025-10-19 23:21:59.630 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+2025-10-19 23:21:59.633 +03:00 [INF] Executing OkObjectResult, writing value of type 'Transactions.Application.Helpers.PageResult`1[[Transactions.Application.DTOs.TransactionDto, Transactions.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-19 23:21:59.635 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI) in 12.9172ms
+2025-10-19 23:21:59.636 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:21:59.637 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - 200 null application/json; charset=utf-8 19.2028ms
+2025-10-19 23:23:12.449 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/MakeTransaction - null null
+2025-10-19 23:23:12.455 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:23:12.456 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/MakeTransaction - 204 null null 6.7104ms
+2025-10-19 23:23:12.457 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7281/api/Transaction/MakeTransaction - application/json 132
+2025-10-19 23:23:12.463 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:23:12.463 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI)'
+2025-10-19 23:23:12.464 +03:00 [INF] Route matched with {action = "MakeTransaction", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] MakeTransaction(Transactions.Application.DTOs.TransactionDto) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:23:12.466 +03:00 [INF] Trying to create transaction
+2025-10-19 23:23:12.466 +03:00 [INF] Start processing HTTP request POST https://localhost:7280/api/Transaction/GetTransactionDetails
+2025-10-19 23:23:12.467 +03:00 [INF] Sending HTTP request POST https://localhost:7280/api/Transaction/GetTransactionDetails
+2025-10-19 23:23:12.486 +03:00 [INF] Received HTTP response headers after 18.0793ms - 200
+2025-10-19 23:23:12.486 +03:00 [INF] End processing HTTP request after 20.2208ms - 200
+2025-10-19 23:23:12.488 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/6c23c924-074e-4a40-90d2-6047cc0faf0e/check?amount=2000
+2025-10-19 23:23:12.489 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/6c23c924-074e-4a40-90d2-6047cc0faf0e/check?amount=2000
+2025-10-19 23:23:12.499 +03:00 [INF] Received HTTP response headers after 8.7939ms - 200
+2025-10-19 23:23:12.500 +03:00 [INF] End processing HTTP request after 12.3996ms - 200
+2025-10-19 23:23:12.501 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Currency/GetExchangedValue?from=EUR&to=USD&amount=2000
+2025-10-19 23:23:12.502 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Currency/GetExchangedValue?from=EUR&to=USD&amount=2000
+2025-10-19 23:23:12.509 +03:00 [INF] Received HTTP response headers after 6.4318ms - 200
+2025-10-19 23:23:12.510 +03:00 [INF] End processing HTTP request after 9.3957ms - 200
+2025-10-19 23:23:12.516 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p4='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p5='?' (DbType = Guid), @p6='?' (DbType = Int32), @p7='?' (DbType = Guid), @p8='?' (DbType = Guid), @p9='?' (DbType = Int32), @p10='?' (DbType = Guid), @p11='?' (DbType = Int32), @p12='?' (DbType = DateTime2), @p13='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Transactions] ([Id], [Amount], [AmountToReceive], [Commission], [CurrencyExchangeCommission], [GetterCardId], [GetterCurrency], [GetterId], [SenderCardId], [SenderCurrency], [SenderId], [Status], [TransactionTime], [Type])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13);
+2025-10-19 23:23:12.520 +03:00 [INF] Publishing message to rabbit mq (for bank.api service) to update balance
+2025-10-19 23:23:12.521 +03:00 [ERR] Success creating transaction, transaction id: "092c0c32-fb08-4fc7-58c2-08de0f4bc518"
+2025-10-19 23:23:12.522 +03:00 [INF] Executing StatusCodeResult, setting HTTP status code 200
+2025-10-19 23:23:12.523 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI) in 57.6689ms
+2025-10-19 23:23:12.524 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI)'
+2025-10-19 23:23:12.525 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7281/api/Transaction/MakeTransaction - 200 0 null 68.2123ms
+2025-10-19 23:23:12.588 +03:00 [INF] Trying to get info from rabbit mq
+2025-10-19 23:23:12.589 +03:00 [INF] Trying to update transaction status
+2025-10-19 23:23:12.591 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[Id] = @__id_0
+2025-10-19 23:23:12.594 +03:00 [INF] Success update transaction status "092c0c32-fb08-4fc7-58c2-08de0f4bc518"
+2025-10-19 23:23:12.597 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p13='?' (DbType = Guid), @p0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p4='?' (DbType = Guid), @p5='?' (DbType = Int32), @p6='?' (DbType = Guid), @p7='?' (DbType = Guid), @p8='?' (DbType = Int32), @p9='?' (DbType = Guid), @p10='?' (DbType = Int32), @p11='?' (DbType = DateTime2), @p12='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Transactions] SET [Amount] = @p0, [AmountToReceive] = @p1, [Commission] = @p2, [CurrencyExchangeCommission] = @p3, [GetterCardId] = @p4, [GetterCurrency] = @p5, [GetterId] = @p6, [SenderCardId] = @p7, [SenderCurrency] = @p8, [SenderId] = @p9, [Status] = @p10, [TransactionTime] = @p11, [Type] = @p12
+OUTPUT 1
+WHERE [Id] = @p13;
+2025-10-19 23:23:12.599 +03:00 [INF] Success updating transaction status
+2025-10-19 23:26:03.257 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/MakeTransaction - null null
+2025-10-19 23:26:03.264 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:26:03.265 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/MakeTransaction - 204 null null 7.8828ms
+2025-10-19 23:26:03.266 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7281/api/Transaction/MakeTransaction - application/json 132
+2025-10-19 23:26:03.272 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:26:03.272 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI)'
+2025-10-19 23:26:03.273 +03:00 [INF] Route matched with {action = "MakeTransaction", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] MakeTransaction(Transactions.Application.DTOs.TransactionDto) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:26:03.275 +03:00 [INF] Trying to create transaction
+2025-10-19 23:26:03.276 +03:00 [INF] Start processing HTTP request POST https://localhost:7280/api/Transaction/GetTransactionDetails
+2025-10-19 23:26:03.278 +03:00 [INF] Sending HTTP request POST https://localhost:7280/api/Transaction/GetTransactionDetails
+2025-10-19 23:26:03.300 +03:00 [INF] Received HTTP response headers after 20.3336ms - 200
+2025-10-19 23:26:03.301 +03:00 [INF] End processing HTTP request after 24.6684ms - 200
+2025-10-19 23:26:03.302 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/6c23c924-074e-4a40-90d2-6047cc0faf0e/check?amount=2000
+2025-10-19 23:26:03.303 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/6c23c924-074e-4a40-90d2-6047cc0faf0e/check?amount=2000
+2025-10-19 23:26:03.314 +03:00 [INF] Received HTTP response headers after 10.0357ms - 200
+2025-10-19 23:26:03.315 +03:00 [INF] End processing HTTP request after 12.5ms - 200
+2025-10-19 23:26:53.480 +03:00 [WRN] The WebRootPath was not found: D:\FullStack\NeoBank\src\Services\TransactionsService\Transactions.WebUI\wwwroot. Static files may be unavailable.
+2025-10-19 23:26:53.611 +03:00 [INF] Now listening on: https://localhost:7281
+2025-10-19 23:26:53.613 +03:00 [INF] Now listening on: http://localhost:5227
+2025-10-19 23:26:53.689 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-19 23:26:53.690 +03:00 [INF] Hosting environment: Development
+2025-10-19 23:26:53.691 +03:00 [INF] Content root path: D:\FullStack\NeoBank\src\Services\TransactionsService\Transactions.WebUI
+2025-10-19 23:26:54.841 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/_framework/aspnetcore-browser-refresh.js - null null
+2025-10-19 23:26:54.841 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/_vs/browserLink - null null
+2025-10-19 23:26:54.876 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/_framework/aspnetcore-browser-refresh.js - 200 16521 application/javascript; charset=utf-8 41.3717ms
+2025-10-19 23:26:54.896 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/_vs/browserLink - 200 null text/javascript; charset=UTF-8 61.6351ms
+2025-10-19 23:26:54.929 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/swagger/v1/swagger.json - null null
+2025-10-19 23:26:54.959 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 30.1512ms
+2025-10-19 23:28:30.289 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/MakeTransaction - null null
+2025-10-19 23:28:30.307 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:28:30.310 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/MakeTransaction - 204 null null 24.1907ms
+2025-10-19 23:28:30.316 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7281/api/Transaction/MakeTransaction - application/json 132
+2025-10-19 23:28:30.321 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:28:30.324 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI)'
+2025-10-19 23:28:30.342 +03:00 [INF] Route matched with {action = "MakeTransaction", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] MakeTransaction(Transactions.Application.DTOs.TransactionDto) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:28:31.038 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7281/api/Transaction/MakeTransaction - application/json 132
+2025-10-19 23:28:31.041 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:28:31.042 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI)'
+2025-10-19 23:28:31.042 +03:00 [INF] Route matched with {action = "MakeTransaction", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] MakeTransaction(Transactions.Application.DTOs.TransactionDto) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:28:31.118 +03:00 [WRN] No store type was specified for the decimal property 'Amount' on entity type 'TransactionEntity'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-10-19 23:28:31.120 +03:00 [WRN] No store type was specified for the decimal property 'AmountToReceive' on entity type 'TransactionEntity'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-10-19 23:28:31.121 +03:00 [WRN] No store type was specified for the decimal property 'Commission' on entity type 'TransactionEntity'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-10-19 23:28:31.122 +03:00 [WRN] No store type was specified for the decimal property 'CurrencyExchangeCommission' on entity type 'TransactionEntity'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-10-19 23:28:31.380 +03:00 [INF] Trying to create transaction
+2025-10-19 23:28:31.380 +03:00 [INF] Trying to create transaction
+2025-10-19 23:28:31.392 +03:00 [INF] Start processing HTTP request POST https://localhost:7280/api/Transaction/GetTransactionDetails
+2025-10-19 23:28:31.392 +03:00 [INF] Start processing HTTP request POST https://localhost:7280/api/Transaction/GetTransactionDetails
+2025-10-19 23:28:31.396 +03:00 [INF] Sending HTTP request POST https://localhost:7280/api/Transaction/GetTransactionDetails
+2025-10-19 23:28:31.397 +03:00 [INF] Sending HTTP request POST https://localhost:7280/api/Transaction/GetTransactionDetails
+2025-10-19 23:28:31.476 +03:00 [INF] Received HTTP response headers after 78.553ms - 200
+2025-10-19 23:28:31.476 +03:00 [INF] Received HTTP response headers after 76.7442ms - 200
+2025-10-19 23:28:31.478 +03:00 [INF] End processing HTTP request after 86.7856ms - 200
+2025-10-19 23:28:31.479 +03:00 [INF] End processing HTTP request after 87.6178ms - 200
+2025-10-19 23:28:31.487 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/6c23c924-074e-4a40-90d2-6047cc0faf0e/check?amount=2000
+2025-10-19 23:28:31.487 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/6c23c924-074e-4a40-90d2-6047cc0faf0e/check?amount=2000
+2025-10-19 23:28:31.488 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/6c23c924-074e-4a40-90d2-6047cc0faf0e/check?amount=2000
+2025-10-19 23:28:31.489 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/6c23c924-074e-4a40-90d2-6047cc0faf0e/check?amount=2000
+2025-10-19 23:28:31.504 +03:00 [INF] Received HTTP response headers after 13.9331ms - 200
+2025-10-19 23:28:31.505 +03:00 [INF] Received HTTP response headers after 13.2972ms - 200
+2025-10-19 23:28:31.505 +03:00 [INF] End processing HTTP request after 17.6319ms - 200
+2025-10-19 23:28:31.506 +03:00 [INF] End processing HTTP request after 18.3804ms - 200
+2025-10-19 23:28:31.513 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Currency/GetExchangedValue?from=EUR&to=USD&amount=2000
+2025-10-19 23:28:31.513 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Currency/GetExchangedValue?from=EUR&to=USD&amount=2000
+2025-10-19 23:28:31.514 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Currency/GetExchangedValue?from=EUR&to=USD&amount=2000
+2025-10-19 23:28:31.515 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Currency/GetExchangedValue?from=EUR&to=USD&amount=2000
+2025-10-19 23:28:31.526 +03:00 [INF] Received HTTP response headers after 8.1431ms - 200
+2025-10-19 23:28:31.527 +03:00 [INF] Received HTTP response headers after 10.5055ms - 200
+2025-10-19 23:28:31.527 +03:00 [INF] End processing HTTP request after 13.5026ms - 200
+2025-10-19 23:28:31.528 +03:00 [INF] End processing HTTP request after 14.6618ms - 200
+2025-10-19 23:28:32.115 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7281/api/Transaction/MakeTransaction - application/json 132
+2025-10-19 23:28:32.117 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:28:32.118 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI)'
+2025-10-19 23:28:32.118 +03:00 [INF] Route matched with {action = "MakeTransaction", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] MakeTransaction(Transactions.Application.DTOs.TransactionDto) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:28:32.163 +03:00 [INF] Trying to create transaction
+2025-10-19 23:28:32.163 +03:00 [INF] Start processing HTTP request POST https://localhost:7280/api/Transaction/GetTransactionDetails
+2025-10-19 23:28:32.165 +03:00 [INF] Sending HTTP request POST https://localhost:7280/api/Transaction/GetTransactionDetails
+2025-10-19 23:28:32.179 +03:00 [INF] Received HTTP response headers after 14.0608ms - 200
+2025-10-19 23:28:32.180 +03:00 [INF] End processing HTTP request after 16.8286ms - 200
+2025-10-19 23:28:32.182 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/6c23c924-074e-4a40-90d2-6047cc0faf0e/check?amount=2000
+2025-10-19 23:28:32.183 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/6c23c924-074e-4a40-90d2-6047cc0faf0e/check?amount=2000
+2025-10-19 23:28:32.193 +03:00 [INF] Received HTTP response headers after 9.5451ms - 200
+2025-10-19 23:28:32.195 +03:00 [INF] End processing HTTP request after 13.0592ms - 200
+2025-10-19 23:28:32.196 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Currency/GetExchangedValue?from=EUR&to=USD&amount=2000
+2025-10-19 23:28:32.197 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Currency/GetExchangedValue?from=EUR&to=USD&amount=2000
+2025-10-19 23:28:32.204 +03:00 [INF] Received HTTP response headers after 5.6865ms - 200
+2025-10-19 23:28:32.204 +03:00 [INF] End processing HTTP request after 8.303ms - 200
+2025-10-19 23:28:32.335 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7281/api/Transaction/MakeTransaction - application/json 132
+2025-10-19 23:28:32.336 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:28:32.337 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI)'
+2025-10-19 23:28:32.338 +03:00 [INF] Route matched with {action = "MakeTransaction", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] MakeTransaction(Transactions.Application.DTOs.TransactionDto) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:28:32.341 +03:00 [INF] Trying to create transaction
+2025-10-19 23:28:32.345 +03:00 [INF] Start processing HTTP request POST https://localhost:7280/api/Transaction/GetTransactionDetails
+2025-10-19 23:28:32.347 +03:00 [INF] Sending HTTP request POST https://localhost:7280/api/Transaction/GetTransactionDetails
+2025-10-19 23:28:32.368 +03:00 [INF] Received HTTP response headers after 16.9593ms - 200
+2025-10-19 23:28:32.369 +03:00 [INF] End processing HTTP request after 23.5781ms - 200
+2025-10-19 23:28:32.371 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/6c23c924-074e-4a40-90d2-6047cc0faf0e/check?amount=2000
+2025-10-19 23:28:32.373 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/6c23c924-074e-4a40-90d2-6047cc0faf0e/check?amount=2000
+2025-10-19 23:28:32.383 +03:00 [INF] Received HTTP response headers after 9.5402ms - 200
+2025-10-19 23:28:32.384 +03:00 [INF] End processing HTTP request after 13.0478ms - 200
+2025-10-19 23:28:32.385 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Currency/GetExchangedValue?from=EUR&to=USD&amount=2000
+2025-10-19 23:28:32.386 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Currency/GetExchangedValue?from=EUR&to=USD&amount=2000
+2025-10-19 23:28:32.393 +03:00 [INF] Received HTTP response headers after 6.2765ms - 200
+2025-10-19 23:28:32.394 +03:00 [INF] End processing HTTP request after 8.8811ms - 200
+2025-10-19 23:28:32.512 +03:00 [INF] Executed DbCommand (79ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p4='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p5='?' (DbType = Guid), @p6='?' (DbType = Int32), @p7='?' (DbType = Guid), @p8='?' (DbType = Guid), @p9='?' (DbType = Int32), @p10='?' (DbType = Guid), @p11='?' (DbType = Int32), @p12='?' (DbType = DateTime2), @p13='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Transactions] ([Id], [Amount], [AmountToReceive], [Commission], [CurrencyExchangeCommission], [GetterCardId], [GetterCurrency], [GetterId], [SenderCardId], [SenderCurrency], [SenderId], [Status], [TransactionTime], [Type])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13);
+2025-10-19 23:28:32.512 +03:00 [INF] Executed DbCommand (79ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p4='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p5='?' (DbType = Guid), @p6='?' (DbType = Int32), @p7='?' (DbType = Guid), @p8='?' (DbType = Guid), @p9='?' (DbType = Int32), @p10='?' (DbType = Guid), @p11='?' (DbType = Int32), @p12='?' (DbType = DateTime2), @p13='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Transactions] ([Id], [Amount], [AmountToReceive], [Commission], [CurrencyExchangeCommission], [GetterCardId], [GetterCurrency], [GetterId], [SenderCardId], [SenderCurrency], [SenderId], [Status], [TransactionTime], [Type])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13);
+2025-10-19 23:28:32.512 +03:00 [INF] Executed DbCommand (79ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p4='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p5='?' (DbType = Guid), @p6='?' (DbType = Int32), @p7='?' (DbType = Guid), @p8='?' (DbType = Guid), @p9='?' (DbType = Int32), @p10='?' (DbType = Guid), @p11='?' (DbType = Int32), @p12='?' (DbType = DateTime2), @p13='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Transactions] ([Id], [Amount], [AmountToReceive], [Commission], [CurrencyExchangeCommission], [GetterCardId], [GetterCurrency], [GetterId], [SenderCardId], [SenderCurrency], [SenderId], [Status], [TransactionTime], [Type])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13);
+2025-10-19 23:28:32.512 +03:00 [INF] Executed DbCommand (79ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p4='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p5='?' (DbType = Guid), @p6='?' (DbType = Int32), @p7='?' (DbType = Guid), @p8='?' (DbType = Guid), @p9='?' (DbType = Int32), @p10='?' (DbType = Guid), @p11='?' (DbType = Int32), @p12='?' (DbType = DateTime2), @p13='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Transactions] ([Id], [Amount], [AmountToReceive], [Commission], [CurrencyExchangeCommission], [GetterCardId], [GetterCurrency], [GetterId], [SenderCardId], [SenderCurrency], [SenderId], [Status], [TransactionTime], [Type])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13);
+2025-10-19 23:28:32.549 +03:00 [INF] Publishing message to rabbit mq (for bank.api service) to update balance
+2025-10-19 23:28:32.549 +03:00 [INF] Publishing message to rabbit mq (for bank.api service) to update balance
+2025-10-19 23:28:32.549 +03:00 [INF] Publishing message to rabbit mq (for bank.api service) to update balance
+2025-10-19 23:28:32.549 +03:00 [INF] Publishing message to rabbit mq (for bank.api service) to update balance
+2025-10-19 23:28:32.556 +03:00 [ERR] Success creating transaction, transaction id: "cfe046f4-f385-4599-0599-08de0f4e11eb"
+2025-10-19 23:28:32.556 +03:00 [ERR] Success creating transaction, transaction id: "32650909-6967-4f0b-059a-08de0f4e11eb"
+2025-10-19 23:28:32.556 +03:00 [ERR] Success creating transaction, transaction id: "b6a84607-401f-4b45-059b-08de0f4e11eb"
+2025-10-19 23:28:32.556 +03:00 [ERR] Success creating transaction, transaction id: "63719155-d735-481b-059c-08de0f4e11eb"
+2025-10-19 23:28:32.560 +03:00 [INF] Executing StatusCodeResult, setting HTTP status code 200
+2025-10-19 23:28:32.560 +03:00 [INF] Executing StatusCodeResult, setting HTTP status code 200
+2025-10-19 23:28:32.560 +03:00 [INF] Executing StatusCodeResult, setting HTTP status code 200
+2025-10-19 23:28:32.560 +03:00 [INF] Executing StatusCodeResult, setting HTTP status code 200
+2025-10-19 23:28:32.564 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI) in 2216.3274ms
+2025-10-19 23:28:32.564 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI) in 1516.6179ms
+2025-10-19 23:28:32.564 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI) in 222.6333ms
+2025-10-19 23:28:32.564 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI) in 444.5193ms
+2025-10-19 23:28:32.566 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI)'
+2025-10-19 23:28:32.566 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI)'
+2025-10-19 23:28:32.567 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI)'
+2025-10-19 23:28:32.568 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI)'
+2025-10-19 23:28:32.578 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7281/api/Transaction/MakeTransaction - 200 0 null 1539.8132ms
+2025-10-19 23:28:32.578 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7281/api/Transaction/MakeTransaction - 200 0 null 2261.3136ms
+2025-10-19 23:28:32.579 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7281/api/Transaction/MakeTransaction - 200 0 null 244.5488ms
+2025-10-19 23:28:32.581 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7281/api/Transaction/MakeTransaction - 200 0 null 465.7358ms
+2025-10-19 23:28:32.643 +03:00 [INF] Trying to get info from rabbit mq
+2025-10-19 23:28:32.648 +03:00 [INF] Trying to update transaction status
+2025-10-19 23:28:32.860 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[Id] = @__id_0
+2025-10-19 23:28:32.875 +03:00 [INF] Success update transaction status "32650909-6967-4f0b-059a-08de0f4e11eb"
+2025-10-19 23:28:32.883 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p13='?' (DbType = Guid), @p0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p4='?' (DbType = Guid), @p5='?' (DbType = Int32), @p6='?' (DbType = Guid), @p7='?' (DbType = Guid), @p8='?' (DbType = Int32), @p9='?' (DbType = Guid), @p10='?' (DbType = Int32), @p11='?' (DbType = DateTime2), @p12='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Transactions] SET [Amount] = @p0, [AmountToReceive] = @p1, [Commission] = @p2, [CurrencyExchangeCommission] = @p3, [GetterCardId] = @p4, [GetterCurrency] = @p5, [GetterId] = @p6, [SenderCardId] = @p7, [SenderCurrency] = @p8, [SenderId] = @p9, [Status] = @p10, [TransactionTime] = @p11, [Type] = @p12
+OUTPUT 1
+WHERE [Id] = @p13;
+2025-10-19 23:28:32.887 +03:00 [INF] Success updating transaction status
+2025-10-19 23:28:32.889 +03:00 [INF] Trying to get info from rabbit mq
+2025-10-19 23:28:32.891 +03:00 [INF] Trying to update transaction status
+2025-10-19 23:28:32.894 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[Id] = @__id_0
+2025-10-19 23:28:32.897 +03:00 [INF] Success update transaction status "b6a84607-401f-4b45-059b-08de0f4e11eb"
+2025-10-19 23:28:32.899 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p13='?' (DbType = Guid), @p0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p4='?' (DbType = Guid), @p5='?' (DbType = Int32), @p6='?' (DbType = Guid), @p7='?' (DbType = Guid), @p8='?' (DbType = Int32), @p9='?' (DbType = Guid), @p10='?' (DbType = Int32), @p11='?' (DbType = DateTime2), @p12='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Transactions] SET [Amount] = @p0, [AmountToReceive] = @p1, [Commission] = @p2, [CurrencyExchangeCommission] = @p3, [GetterCardId] = @p4, [GetterCurrency] = @p5, [GetterId] = @p6, [SenderCardId] = @p7, [SenderCurrency] = @p8, [SenderId] = @p9, [Status] = @p10, [TransactionTime] = @p11, [Type] = @p12
+OUTPUT 1
+WHERE [Id] = @p13;
+2025-10-19 23:28:32.901 +03:00 [INF] Success updating transaction status
+2025-10-19 23:28:32.902 +03:00 [INF] Trying to get info from rabbit mq
+2025-10-19 23:28:32.904 +03:00 [INF] Trying to update transaction status
+2025-10-19 23:28:32.905 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[Id] = @__id_0
+2025-10-19 23:28:32.907 +03:00 [INF] Success update transaction status "cfe046f4-f385-4599-0599-08de0f4e11eb"
+2025-10-19 23:28:32.910 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p13='?' (DbType = Guid), @p0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p4='?' (DbType = Guid), @p5='?' (DbType = Int32), @p6='?' (DbType = Guid), @p7='?' (DbType = Guid), @p8='?' (DbType = Int32), @p9='?' (DbType = Guid), @p10='?' (DbType = Int32), @p11='?' (DbType = DateTime2), @p12='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Transactions] SET [Amount] = @p0, [AmountToReceive] = @p1, [Commission] = @p2, [CurrencyExchangeCommission] = @p3, [GetterCardId] = @p4, [GetterCurrency] = @p5, [GetterId] = @p6, [SenderCardId] = @p7, [SenderCurrency] = @p8, [SenderId] = @p9, [Status] = @p10, [TransactionTime] = @p11, [Type] = @p12
+OUTPUT 1
+WHERE [Id] = @p13;
+2025-10-19 23:28:32.912 +03:00 [INF] Success updating transaction status
+2025-10-19 23:28:33.006 +03:00 [INF] Trying to get info from rabbit mq
+2025-10-19 23:28:33.007 +03:00 [INF] Trying to update transaction status
+2025-10-19 23:28:33.010 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[Id] = @__id_0
+2025-10-19 23:28:33.012 +03:00 [INF] Success update transaction status "63719155-d735-481b-059c-08de0f4e11eb"
+2025-10-19 23:28:33.016 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@p13='?' (DbType = Guid), @p0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p4='?' (DbType = Guid), @p5='?' (DbType = Int32), @p6='?' (DbType = Guid), @p7='?' (DbType = Guid), @p8='?' (DbType = Int32), @p9='?' (DbType = Guid), @p10='?' (DbType = Int32), @p11='?' (DbType = DateTime2), @p12='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Transactions] SET [Amount] = @p0, [AmountToReceive] = @p1, [Commission] = @p2, [CurrencyExchangeCommission] = @p3, [GetterCardId] = @p4, [GetterCurrency] = @p5, [GetterId] = @p6, [SenderCardId] = @p7, [SenderCurrency] = @p8, [SenderId] = @p9, [Status] = @p10, [TransactionTime] = @p11, [Type] = @p12
+OUTPUT 1
+WHERE [Id] = @p13;
+2025-10-19 23:28:33.019 +03:00 [INF] Success updating transaction status
+2025-10-19 23:30:48.674 +03:00 [WRN] The WebRootPath was not found: D:\FullStack\NeoBank\src\Services\TransactionsService\Transactions.WebUI\wwwroot. Static files may be unavailable.
+2025-10-19 23:30:48.800 +03:00 [INF] Now listening on: https://localhost:7281
+2025-10-19 23:30:48.801 +03:00 [INF] Now listening on: http://localhost:5227
+2025-10-19 23:30:48.878 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-19 23:30:48.880 +03:00 [INF] Hosting environment: Development
+2025-10-19 23:30:48.880 +03:00 [INF] Content root path: D:\FullStack\NeoBank\src\Services\TransactionsService\Transactions.WebUI
+2025-10-19 23:30:49.893 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/_framework/aspnetcore-browser-refresh.js - null null
+2025-10-19 23:30:49.910 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/_framework/aspnetcore-browser-refresh.js - 200 16521 application/javascript; charset=utf-8 22.3677ms
+2025-10-19 23:30:49.941 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/_vs/browserLink - null null
+2025-10-19 23:30:49.978 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/_vs/browserLink - 200 null text/javascript; charset=UTF-8 37.6671ms
+2025-10-19 23:30:50.007 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/swagger/v1/swagger.json - null null
+2025-10-19 23:30:50.042 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 34.6725ms
+2025-10-19 23:31:00.981 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/MakeTransaction - null null
+2025-10-19 23:31:00.998 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:31:01.001 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/MakeTransaction - 204 null null 19.4459ms
+2025-10-19 23:31:01.007 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7281/api/Transaction/MakeTransaction - application/json 132
+2025-10-19 23:31:01.011 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:31:01.013 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI)'
+2025-10-19 23:31:01.031 +03:00 [INF] Route matched with {action = "MakeTransaction", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] MakeTransaction(Transactions.Application.DTOs.TransactionDto) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:31:01.395 +03:00 [WRN] No store type was specified for the decimal property 'Amount' on entity type 'TransactionEntity'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-10-19 23:31:01.399 +03:00 [WRN] No store type was specified for the decimal property 'AmountToReceive' on entity type 'TransactionEntity'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-10-19 23:31:01.401 +03:00 [WRN] No store type was specified for the decimal property 'Commission' on entity type 'TransactionEntity'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-10-19 23:31:01.403 +03:00 [WRN] No store type was specified for the decimal property 'CurrencyExchangeCommission' on entity type 'TransactionEntity'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-10-19 23:31:01.643 +03:00 [INF] Trying to create transaction
+2025-10-19 23:31:01.657 +03:00 [INF] Start processing HTTP request POST https://localhost:7280/api/Transaction/GetTransactionDetails
+2025-10-19 23:31:01.661 +03:00 [INF] Sending HTTP request POST https://localhost:7280/api/Transaction/GetTransactionDetails
+2025-10-19 23:31:01.720 +03:00 [INF] Received HTTP response headers after 56.1696ms - 200
+2025-10-19 23:31:01.721 +03:00 [INF] End processing HTTP request after 65.3014ms - 200
+2025-10-19 23:31:01.727 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/6c23c924-074e-4a40-90d2-6047cc0faf0e
+2025-10-19 23:31:01.731 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/6c23c924-074e-4a40-90d2-6047cc0faf0e
+2025-10-19 23:31:13.614 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI) in 12573.962ms
+2025-10-19 23:31:13.617 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI)'
+2025-10-19 23:31:13.620 +03:00 [ERR] An unhandled exception has occurred while executing the request.
+System.Net.Http.HttpRequestException: An error occurred while sending the request.
+ ---> System.IO.IOException: Unable to read data from the transport connection: An existing connection was forcibly closed by the remote host..
+ ---> System.Net.Sockets.SocketException (10054): An existing connection was forcibly closed by the remote host.
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource<System.Int32>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.EnsureFullTlsFrameAsync[TIOAdapter](CancellationToken cancellationToken, Int32 estimatedSize)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.ReadAsyncInternal[TIOAdapter](Memory`1 buffer, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingHttpMessageHandler.<SendCoreAsync>g__Core|5_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at Microsoft.Extensions.Http.Logging.LoggingScopeHttpMessageHandler.<SendCoreAsync>g__Core|5_0(HttpRequestMessage request, Boolean useAsync, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at Transactions.Application.Services.TransactionService.GetOperationComission(Guid cardId, TransactionType type) in D:\FullStack\NeoBank\src\Services\TransactionsService\Transactions.Application\Services\TransactionService.cs:line 233
+   at Transactions.Application.Services.TransactionService.MakeTransaction(TransactionDto transaction) in D:\FullStack\NeoBank\src\Services\TransactionsService\Transactions.Application\Services\TransactionService.cs:line 98
+   at Transactions.WebUI.Controllers.TransactionController.MakeTransaction(TransactionDto transaction) in D:\FullStack\NeoBank\src\Services\TransactionsService\Transactions.WebUI\Controllers\TransactionController.cs:line 41
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-10-19 23:31:13.666 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7281/api/Transaction/MakeTransaction - 500 null text/plain; charset=utf-8 12658.7569ms
+2025-10-19 23:31:32.037 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/MakeTransaction - null null
+2025-10-19 23:31:32.040 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:31:32.041 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/MakeTransaction - 204 null null 3.6413ms
+2025-10-19 23:31:32.043 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7281/api/Transaction/MakeTransaction - application/json 132
+2025-10-19 23:31:32.046 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:31:32.046 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI)'
+2025-10-19 23:31:32.047 +03:00 [INF] Route matched with {action = "MakeTransaction", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] MakeTransaction(Transactions.Application.DTOs.TransactionDto) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:31:32.086 +03:00 [INF] Trying to create transaction
+2025-10-19 23:31:32.087 +03:00 [INF] Start processing HTTP request POST https://localhost:7280/api/Transaction/GetTransactionDetails
+2025-10-19 23:31:32.088 +03:00 [INF] Sending HTTP request POST https://localhost:7280/api/Transaction/GetTransactionDetails
+2025-10-19 23:31:32.163 +03:00 [INF] Received HTTP response headers after 74.0239ms - 200
+2025-10-19 23:31:32.165 +03:00 [INF] End processing HTTP request after 77.5767ms - 200
+2025-10-19 23:31:32.169 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/6c23c924-074e-4a40-90d2-6047cc0faf0e
+2025-10-19 23:31:32.170 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/6c23c924-074e-4a40-90d2-6047cc0faf0e
+2025-10-19 23:31:32.227 +03:00 [INF] Received HTTP response headers after 56.7528ms - 200
+2025-10-19 23:31:32.229 +03:00 [INF] End processing HTTP request after 60.6126ms - 200
+2025-10-19 23:31:32.237 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/6c23c924-074e-4a40-90d2-6047cc0faf0e/check?amount=2080.00
+2025-10-19 23:31:32.239 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/6c23c924-074e-4a40-90d2-6047cc0faf0e/check?amount=2080.00
+2025-10-19 23:31:32.262 +03:00 [INF] Received HTTP response headers after 22.0915ms - 200
+2025-10-19 23:31:32.263 +03:00 [INF] End processing HTTP request after 26.0107ms - 200
+2025-10-19 23:31:32.267 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Currency/GetExchangedValue?from=EUR&to=USD&amount=2000
+2025-10-19 23:31:32.269 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Currency/GetExchangedValue?from=EUR&to=USD&amount=2000
+2025-10-19 23:31:32.294 +03:00 [INF] Received HTTP response headers after 24.0307ms - 200
+2025-10-19 23:31:32.295 +03:00 [INF] End processing HTTP request after 27.6647ms - 200
+2025-10-19 23:31:32.718 +03:00 [INF] Executed DbCommand (41ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p4='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p5='?' (DbType = Guid), @p6='?' (DbType = Int32), @p7='?' (DbType = Guid), @p8='?' (DbType = Guid), @p9='?' (DbType = Int32), @p10='?' (DbType = Guid), @p11='?' (DbType = Int32), @p12='?' (DbType = DateTime2), @p13='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Transactions] ([Id], [Amount], [AmountToReceive], [Commission], [CurrencyExchangeCommission], [GetterCardId], [GetterCurrency], [GetterId], [SenderCardId], [SenderCurrency], [SenderId], [Status], [TransactionTime], [Type])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13);
+2025-10-19 23:31:32.752 +03:00 [INF] Publishing message to rabbit mq (for bank.api service) to update balance
+2025-10-19 23:31:32.759 +03:00 [ERR] Success creating transaction, transaction id: "5db13814-f9bc-4ac0-f7a4-08de0f4e7da8"
+2025-10-19 23:31:32.763 +03:00 [INF] Executing StatusCodeResult, setting HTTP status code 200
+2025-10-19 23:31:32.764 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI) in 715.6457ms
+2025-10-19 23:31:32.765 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI)'
+2025-10-19 23:31:32.769 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7281/api/Transaction/MakeTransaction - 200 0 null 726.6626ms
+2025-10-19 23:31:32.880 +03:00 [INF] Trying to get info from rabbit mq
+2025-10-19 23:31:32.894 +03:00 [INF] Trying to update transaction status
+2025-10-19 23:31:33.091 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[Id] = @__id_0
+2025-10-19 23:31:33.107 +03:00 [INF] Success update transaction status "5db13814-f9bc-4ac0-f7a4-08de0f4e7da8"
+2025-10-19 23:31:33.118 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@p13='?' (DbType = Guid), @p0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p4='?' (DbType = Guid), @p5='?' (DbType = Int32), @p6='?' (DbType = Guid), @p7='?' (DbType = Guid), @p8='?' (DbType = Int32), @p9='?' (DbType = Guid), @p10='?' (DbType = Int32), @p11='?' (DbType = DateTime2), @p12='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Transactions] SET [Amount] = @p0, [AmountToReceive] = @p1, [Commission] = @p2, [CurrencyExchangeCommission] = @p3, [GetterCardId] = @p4, [GetterCurrency] = @p5, [GetterId] = @p6, [SenderCardId] = @p7, [SenderCurrency] = @p8, [SenderId] = @p9, [Status] = @p10, [TransactionTime] = @p11, [Type] = @p12
+OUTPUT 1
+WHERE [Id] = @p13;
+2025-10-19 23:31:33.124 +03:00 [INF] Success updating transaction status
+2025-10-19 23:31:36.141 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/6c23c924-074e-4a40-90d2-6047cc0faf0e - null null
+2025-10-19 23:31:36.145 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:31:36.146 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/6c23c924-074e-4a40-90d2-6047cc0faf0e - 204 null null 6.0989ms
+2025-10-19 23:31:36.149 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/6c23c924-074e-4a40-90d2-6047cc0faf0e - null null
+2025-10-19 23:31:36.156 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:31:36.157 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:31:36.165 +03:00 [INF] Route matched with {action = "GetTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTransactions(System.Guid, Transactions.Application.Filters.TransactionFilter) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:31:36.172 +03:00 [INF] Getting page for card "6c23c924-074e-4a40-90d2-6047cc0faf0e"
+2025-10-19 23:31:36.197 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@__id_0='?' (DbType = Guid), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+ORDER BY [t].[TransactionTime] DESC, [t].[Id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+2025-10-19 23:31:36.249 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+2025-10-19 23:31:36.256 +03:00 [INF] Executing OkObjectResult, writing value of type 'Transactions.Application.Helpers.PageResult`1[[Transactions.Application.DTOs.TransactionDto, Transactions.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-19 23:31:36.274 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI) in 107.439ms
+2025-10-19 23:31:36.276 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:31:36.276 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/6c23c924-074e-4a40-90d2-6047cc0faf0e - 200 null application/json; charset=utf-8 127.5945ms
+2025-10-19 23:31:50.538 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/MakeTransaction - null null
+2025-10-19 23:31:50.540 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:31:50.540 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/MakeTransaction - 204 null null 2.4429ms
+2025-10-19 23:31:50.542 +03:00 [INF] Request starting HTTP/2 POST https://localhost:7281/api/Transaction/MakeTransaction - application/json 135
+2025-10-19 23:31:50.544 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:31:50.544 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI)'
+2025-10-19 23:31:50.545 +03:00 [INF] Route matched with {action = "MakeTransaction", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] MakeTransaction(Transactions.Application.DTOs.TransactionDto) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:31:50.547 +03:00 [INF] Trying to create transaction
+2025-10-19 23:31:50.548 +03:00 [INF] Start processing HTTP request POST https://localhost:7280/api/Transaction/GetTransactionDetails
+2025-10-19 23:31:50.549 +03:00 [INF] Sending HTTP request POST https://localhost:7280/api/Transaction/GetTransactionDetails
+2025-10-19 23:31:50.573 +03:00 [INF] Received HTTP response headers after 23.4776ms - 200
+2025-10-19 23:31:50.574 +03:00 [INF] End processing HTTP request after 25.9529ms - 200
+2025-10-19 23:31:50.575 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/6c23c924-074e-4a40-90d2-6047cc0faf0e
+2025-10-19 23:31:50.576 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/6c23c924-074e-4a40-90d2-6047cc0faf0e
+2025-10-19 23:31:50.600 +03:00 [INF] Received HTTP response headers after 23.292ms - 200
+2025-10-19 23:31:50.601 +03:00 [INF] End processing HTTP request after 26.0027ms - 200
+2025-10-19 23:31:50.602 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/6c23c924-074e-4a40-90d2-6047cc0faf0e/check?amount=1040000.00
+2025-10-19 23:31:50.604 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Transaction/CheckBalance/6c23c924-074e-4a40-90d2-6047cc0faf0e/check?amount=1040000.00
+2025-10-19 23:31:50.616 +03:00 [INF] Received HTTP response headers after 10.3796ms - 200
+2025-10-19 23:31:50.617 +03:00 [INF] End processing HTTP request after 14.1658ms - 200
+2025-10-19 23:31:50.618 +03:00 [INF] Start processing HTTP request GET https://localhost:7280/api/Currency/GetExchangedValue?from=EUR&to=USD&amount=1000000
+2025-10-19 23:31:50.619 +03:00 [INF] Sending HTTP request GET https://localhost:7280/api/Currency/GetExchangedValue?from=EUR&to=USD&amount=1000000
+2025-10-19 23:31:50.627 +03:00 [INF] Received HTTP response headers after 6.736ms - 200
+2025-10-19 23:31:50.629 +03:00 [INF] End processing HTTP request after 10.4081ms - 200
+2025-10-19 23:31:50.635 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p4='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p5='?' (DbType = Guid), @p6='?' (DbType = Int32), @p7='?' (DbType = Guid), @p8='?' (DbType = Guid), @p9='?' (DbType = Int32), @p10='?' (DbType = Guid), @p11='?' (DbType = Int32), @p12='?' (DbType = DateTime2), @p13='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Transactions] ([Id], [Amount], [AmountToReceive], [Commission], [CurrencyExchangeCommission], [GetterCardId], [GetterCurrency], [GetterId], [SenderCardId], [SenderCurrency], [SenderId], [Status], [TransactionTime], [Type])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13);
+2025-10-19 23:31:50.639 +03:00 [INF] Publishing message to rabbit mq (for bank.api service) to update balance
+2025-10-19 23:31:50.640 +03:00 [ERR] Success creating transaction, transaction id: "d938dd32-87ec-4eac-f7a5-08de0f4e7da8"
+2025-10-19 23:31:50.641 +03:00 [INF] Executing StatusCodeResult, setting HTTP status code 200
+2025-10-19 23:31:50.641 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI) in 94.9038ms
+2025-10-19 23:31:50.642 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.MakeTransaction (Transactions.WebUI)'
+2025-10-19 23:31:50.643 +03:00 [INF] Request finished HTTP/2 POST https://localhost:7281/api/Transaction/MakeTransaction - 200 0 null 101.4342ms
+2025-10-19 23:31:50.711 +03:00 [INF] Trying to get info from rabbit mq
+2025-10-19 23:31:50.712 +03:00 [INF] Trying to update transaction status
+2025-10-19 23:31:50.716 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[Id] = @__id_0
+2025-10-19 23:31:50.717 +03:00 [INF] Success update transaction status "d938dd32-87ec-4eac-f7a5-08de0f4e7da8"
+2025-10-19 23:31:50.720 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p13='?' (DbType = Guid), @p0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p1='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p4='?' (DbType = Guid), @p5='?' (DbType = Int32), @p6='?' (DbType = Guid), @p7='?' (DbType = Guid), @p8='?' (DbType = Int32), @p9='?' (DbType = Guid), @p10='?' (DbType = Int32), @p11='?' (DbType = DateTime2), @p12='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Transactions] SET [Amount] = @p0, [AmountToReceive] = @p1, [Commission] = @p2, [CurrencyExchangeCommission] = @p3, [GetterCardId] = @p4, [GetterCurrency] = @p5, [GetterId] = @p6, [SenderCardId] = @p7, [SenderCurrency] = @p8, [SenderId] = @p9, [Status] = @p10, [TransactionTime] = @p11, [Type] = @p12
+OUTPUT 1
+WHERE [Id] = @p13;
+2025-10-19 23:31:50.722 +03:00 [INF] Success updating transaction status
+2025-10-19 23:31:53.405 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - null null
+2025-10-19 23:31:53.408 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:31:53.409 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - 204 null null 3.9319ms
+2025-10-19 23:31:53.411 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - null null
+2025-10-19 23:31:53.416 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:31:53.418 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:31:53.420 +03:00 [INF] Route matched with {action = "GetTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTransactions(System.Guid, Transactions.Application.Filters.TransactionFilter) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:31:53.429 +03:00 [INF] Getting page for card "468848ae-cdb8-4f9c-946a-6eda2d3811c3"
+2025-10-19 23:31:53.433 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+ORDER BY [t].[TransactionTime] DESC, [t].[Id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+2025-10-19 23:31:53.438 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+2025-10-19 23:31:53.440 +03:00 [INF] Executing OkObjectResult, writing value of type 'Transactions.Application.Helpers.PageResult`1[[Transactions.Application.DTOs.TransactionDto, Transactions.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-19 23:31:53.442 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI) in 14.4621ms
+2025-10-19 23:31:53.444 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:31:53.445 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/468848ae-cdb8-4f9c-946a-6eda2d3811c3 - 200 null application/json; charset=utf-8 33.4698ms
+2025-10-19 23:31:56.522 +03:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/6c23c924-074e-4a40-90d2-6047cc0faf0e - null null
+2025-10-19 23:31:56.524 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:31:56.525 +03:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7281/api/Transaction/GetTransactions/6c23c924-074e-4a40-90d2-6047cc0faf0e - 204 null null 3.6483ms
+2025-10-19 23:31:56.528 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/6c23c924-074e-4a40-90d2-6047cc0faf0e - null null
+2025-10-19 23:31:56.533 +03:00 [INF] CORS policy execution successful.
+2025-10-19 23:31:56.535 +03:00 [INF] Executing endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:31:56.538 +03:00 [INF] Route matched with {action = "GetTransactions", controller = "Transaction"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetTransactions(System.Guid, Transactions.Application.Filters.TransactionFilter) on controller Transactions.WebUI.Controllers.TransactionController (Transactions.WebUI).
+2025-10-19 23:31:56.541 +03:00 [INF] Getting page for card "6c23c924-074e-4a40-90d2-6047cc0faf0e"
+2025-10-19 23:31:56.544 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Amount], [t].[AmountToReceive], [t].[Commission], [t].[CurrencyExchangeCommission], [t].[GetterCardId], [t].[GetterCurrency], [t].[GetterId], [t].[SenderCardId], [t].[SenderCurrency], [t].[SenderId], [t].[Status], [t].[TransactionTime], [t].[Type]
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+ORDER BY [t].[TransactionTime] DESC, [t].[Id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+2025-10-19 23:31:56.548 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Transactions] AS [t]
+WHERE [t].[SenderCardId] = @__id_0 OR ([t].[GetterCardId] = @__id_0 AND [t].[Status] = 0)
+2025-10-19 23:31:56.550 +03:00 [INF] Executing OkObjectResult, writing value of type 'Transactions.Application.Helpers.PageResult`1[[Transactions.Application.DTOs.TransactionDto, Transactions.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-10-19 23:31:56.553 +03:00 [INF] Executed action Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI) in 12.1014ms
+2025-10-19 23:31:56.555 +03:00 [INF] Executed endpoint 'Transactions.WebUI.Controllers.TransactionController.GetTransactions (Transactions.WebUI)'
+2025-10-19 23:31:56.556 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7281/api/Transaction/GetTransactions/6c23c924-074e-4a40-90d2-6047cc0faf0e - 200 null application/json; charset=utf-8 28.0194ms

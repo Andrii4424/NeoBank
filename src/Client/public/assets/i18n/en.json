@@ -143,7 +143,12 @@
     "Type":"Type",
     "Amount" :"Amount",
     "Commission" :"Commission",
-    "Status" :"Status"
+    "Status" :"Status",
+
+    "AddVacancy":"Add Vacancy",
+    "JobTitle":"Job Title",
+    "Category":"Category",
+    "Salary":"Salary"
 
 
 
