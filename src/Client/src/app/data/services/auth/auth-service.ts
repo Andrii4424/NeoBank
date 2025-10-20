@@ -40,8 +40,12 @@ export class AuthService {
       fd
     ).pipe(
       tap(val=>{
-        this.cookieService.set("accessToken", val.accessToken);
-        this.cookieService.set("accessTokenExpires", new Date(val.expirationTime).toISOString());
+        this.cookieService.set("accessToken", val.accessToken, {
+          path: '/',
+        });
+        this.cookieService.set("accessTokenExpires", new Date(val.expirationTime).toISOString(), {
+          path: '/',
+        })
         
         this.accessToken = val.accessToken;
         this.expiresOn = new Date(val.expirationTime);
@@ -57,10 +61,12 @@ export class AuthService {
           map(val => {
             this.accessToken = val.accessToken;
             this.expiresOn = new Date(val.expirationTime);
-
-            this.cookieService.set('accessToken', val.accessToken);
-            this.cookieService.set('accessTokenExpires', new Date(val.expirationTime).toISOString());
-
+            this.cookieService.set('accessToken', val.accessToken,{
+              path: '/',
+            });
+            this.cookieService.set('accessTokenExpires', new Date(val.expirationTime).toISOString(),{
+              path: '/',
+            });
             return val.accessToken;
           }),
           shareReplay(1),
@@ -93,8 +99,12 @@ export class AuthService {
     return this.http.post<IAccessToken>(`${this.baseUrl}Register`, fd).pipe(
       tap({
         next: (res=>{
-          this.cookieService.set("accessToken", res.accessToken);
-          this.cookieService.set("accessTokenExpires", new Date(res.expirationTime).toISOString());
+          this.cookieService.set("accessToken", res.accessToken, {
+              path: '/',
+            });
+          this.cookieService.set("accessTokenExpires", new Date(res.expirationTime).toISOString(),{
+              path: '/',
+            });
           
           this.accessToken = res.accessToken;
           this.expiresOn = new Date(res.expirationTime);

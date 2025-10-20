@@ -2,4 +2,60 @@
   display: block;
   width: 100%; 
 }
+.content-block{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; 
+  justify-content: center; 
+  row-gap: 40px;
+  column-gap: 40px;
+  padding: 0 40px;
+}
+.vacancy-block{
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px;
+  border: 1px solid var(--medium-light-gray-primary-color);
+  border-radius: 8px;
+}
+.category{
+  color: var(--gray-primary-color);
+  margin-top: 8px;
+}
+hr{
+  color: var(--gray-primary-color);
+  width: 100%;
+}
+.salary{
+  color: var(--heavy-dark-primary-color);
+  font-size: 16px;
+  font-weight: 500;
+}
 
+.buttons{
+  margin-top: 20px;
+  width: 100%;
+  gap: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 2px;
+}
+.buttons button, .buttons a{
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+  padding: 6px 15px;
+}
+
+.apply-job{
+  background-color: var(--dark-primary-color);
+}
+
+.delete-vacancy{
+  background-color: var(--primary-red-color);
+}

@@ -1,15 +1,40 @@
-<app-search>
+<app-search
+    searchPlaceholder="Enter job title"
+    [sortValues]="sortValues"
+    [filterValues]="filterValues"
+    (searchChange)="onSearchChange($event)"
+    (filterChange)="onFiltersChange($event)"
+    (filterChange)="onFiltersChange($event)"
+>
 
 </app-search>
 
 <section class="content-block">
     @if($vacancy | async; as vacanciesPage){
         @if(vacanciesPage.items.length ===0){
-            <h1 class="header">There are currently no vacancies at the bank</h1>
+            <h1 class="heading">There are currently no vacancies at the bank</h1>
         }
         @else {
             @for(vacancy of vacanciesPage.items; track $index){
-                <h1>{{vacancy.jobTitle}}</h1>
+                <div class="vacancy-block">
+                    <h1 class="subheading">{{vacancy.jobTitle}}</h1>
+                    <span class="category">{{vacancy.category}}</span>
+                    <hr>
+                    <span class="salary">Salary: {{vacancy.salary}}₴</span>
+
+                    <div class="buttons">
+                        @if(profileService.getRole() === "Admin"){
+                            <a class="apply-job">Update Vacancy</a>
+                            <button class="delete-vacancy">Delete Vacancy</button>
+
+                        }
+                        @else {
+                            <button class="apply-job">Apply for a job</button>
+
+                        }
+
+                    </div>
+                </div>
             }
         }
     }
@@ -21,7 +46,8 @@
         
     }
     
-    <div class="add-block">
-        <a [routerLink]="['/vacancies/add']" class="add-item">Add Vacancy</a>
-    </div>
 </section>
+
+<div class="add-block">
+    <a [routerLink]="['/vacancies/add']" class="add-item">Add Vacancy</a>
+</div>

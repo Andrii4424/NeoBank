@@ -35,11 +35,11 @@ namespace Bank.API.Application.Helpers.HelperClasses.Filters.BankProducts
             switch (SortValue)
             {
                 case "name-descending":
-                    ascending = true;
+                    ascending = false;
                     sortExpression = c => c.CardName;
                     break;
                 case "name-ascending":
-                    ascending = false;
+                    ascending = true;
                     sortExpression = c => c.CardName;
                     break;
                 case "annual-maintenance-cost":
