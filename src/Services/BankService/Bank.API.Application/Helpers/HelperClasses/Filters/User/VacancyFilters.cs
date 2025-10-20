@@ -13,14 +13,14 @@ namespace Bank.API.Application.Helpers.HelperClasses.Filters.User
     public class VacancyFilters
     {
         public int? PageNumber { get; set; }
-        public int? PageSize { get; set; } = 10;
+        public int? PageSize { get; set; } = 15;
 
         public string? SearchValue { get; set; }
 
         public string? SortValue { get; set; }
 
-        public int? minSalary { get; set; }
-        public int? maxSalary { get; set; }
+        public int? MinSalary { get; set; }
+        public int? MaxSalary { get; set; }
 
         public FiltersDto<VacancyEntity> ToGeneralFilters()
         {
@@ -55,12 +55,12 @@ namespace Bank.API.Application.Helpers.HelperClasses.Filters.User
 
             List<Expression<Func<VacancyEntity, bool>>>? filters = new();
 
-            if (minSalary != null)
+            if (MinSalary != null)
             {
-                filters.Add(v => v.Salary>=minSalary);
+                filters.Add(v => v.Salary>= MinSalary);
             }
-            if (maxSalary != null) {
-                filters.Add(v => v.Salary<=maxSalary);
+            if (MaxSalary != null) {
+                filters.Add(v => v.Salary<= MaxSalary);
 
             }
 

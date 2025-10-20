@@ -149,7 +149,12 @@
     "JobTitle":"Job Title",
     "Category":"Category",
     "Salary":"Salary",
-    "VacancyAdded" :"Vacancy has been successfully added!"
+    "VacancyAdded" :"Vacancy has been successfully added!",
+    "UpdateVacancy": "Update Vacancy",
+    "DeleteVacancy": "Delete Vacancy", 
+    "ApplyForJob": "Apply for a job",
+    "NoVacancies": "There are currently no vacancies at the bank",
+    "VacancyInfo":"Upon joining the job, you become a bank admin. Admin status adds a lot of functionality that allows you to manage the bank."
 
 
 

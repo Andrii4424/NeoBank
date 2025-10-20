@@ -1,18 +1,20 @@
 <app-search
+    #searchComponent
     searchPlaceholder="Enter job title"
     [sortValues]="sortValues"
     [filterValues]="filterValues"
     (searchChange)="onSearchChange($event)"
     (filterChange)="onFiltersChange($event)"
-    (filterChange)="onFiltersChange($event)"
+    (sortChange)="onSortChange($event)"
 >
 
 </app-search>
+<h1 class="heading info-header">{{'VacancyInfo' |translate}}</h1>
 
 <section class="content-block">
     @if($vacancy | async; as vacanciesPage){
         @if(vacanciesPage.items.length ===0){
-            <h1 class="heading">There are currently no vacancies at the bank</h1>
+            <h1 class="heading">{{'NoVacancies' |translate}}</h1>
         }
         @else {
             @for(vacancy of vacanciesPage.items; track $index){
@@ -20,16 +22,16 @@
                     <h1 class="subheading">{{vacancy.jobTitle}}</h1>
                     <span class="category">{{vacancy.category}}</span>
                     <hr>
-                    <span class="salary">Salary: {{vacancy.salary}}₴</span>
+                    <span class="salary">{{'Salary' |translate}}: {{vacancy.salary}}₴</span>
 
                     <div class="buttons">
                         @if(profileService.getRole() === "Admin"){
-                            <a class="apply-job">Update Vacancy</a>
-                            <button class="delete-vacancy">Delete Vacancy</button>
+                            <a class="apply-job">{{'UpdateVacancy' |translate}}</a>
+                            <button class="delete-vacancy">{{'DeleteVacancy' | translate}}</button>
 
                         }
                         @else {
-                            <button class="apply-job">Apply for a job</button>
+                            <button class="apply-job">{{'ApplyForJob'|translate}}</button>
 
                         }
 
@@ -41,13 +43,21 @@
     @else{
         <app-loading></app-loading>
     }
-
-    @if(profileService.getRole() === "Admin"){
-        
-    }
-    
 </section>
 
-<div class="add-block">
-    <a [routerLink]="['/vacancies/add']" class="add-item">Add Vacancy</a>
-</div>
+@if($vacancy | async; as vacanciesPage){
+    <app-page-switcher 
+    [currentPage]="vacanciesPage.pageNumber"
+    [hasNextPage]="vacanciesPage.hasNextPage"
+    [hasPreviousPage]="vacanciesPage.hasPreviousPage"
+    [pageCount]="vacanciesPage.pageCount"
+    (pageChange)="onPageChange($event)"
+    > </app-page-switcher>
+}
+
+
+@if(profileService.getRole() === "Admin"){
+    <div class="add-block">
+        <a [routerLink]="['/vacancies/add']" class="add-item">{{'AddVacancy' |translate}}</a>
+    </div>      
+}

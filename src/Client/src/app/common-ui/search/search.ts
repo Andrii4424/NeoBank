@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, inject, input, Input, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, input, Input, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { IFilter } from '../../data/interfaces/filters/filter-interface';
 import { ISort } from '../../data/interfaces/filters/sort-interface';
 import { ActivatedRoute } from '@angular/router';
@@ -25,25 +25,10 @@ export class Search {
   @Output() filterChange= new EventEmitter<IFilter[] | null>();
   
   ngAfterViewInit(){
-    this.queryParams = { ...this.route.snapshot.queryParams };
-    Object.keys(this.queryParams).forEach(query =>{
-      this.filtersInputs.forEach(filter => {
-        if(filter.nativeElement.dataset['filterName'] ===query){
-          this.allFilters.nativeElement.checked=false;
-          if(filter.nativeElement.value ===this.queryParams[query]){
-            filter.nativeElement.checked = true;
-          }
-        }
-      });
-      if(query==="SearchValue"){
-          this.searchInput.nativeElement.value = this.queryParams[query];
-        }
-      else if(query==="SortValue" && this.queryParams[query]!==""){
-        this.sortSelector.nativeElement.value = this.queryParams[query];
-      }
-    });
+    this.updateFilters();
   }
 
+  constructor(private cdr: ChangeDetectorRef) {  }
   submitFilters(){
     this.allFilters.nativeElement.checked=true;
     let filters: IFilter[] = [];
@@ -81,5 +66,36 @@ export class Search {
 
   onSearchSubmit(){
     this.searchChange.emit(this.searchInput.nativeElement.value);
+  }
+
+  public updateFilters(){
+    this.queryParams = { ...this.route.snapshot.queryParams };
+    Object.keys(this.queryParams).forEach(query =>{
+      this.filtersInputs.forEach(filter => {
+        if(filter.nativeElement.dataset['filterName'] ===query){
+          this.allFilters.nativeElement.checked=false;
+          if(filter.nativeElement.value ===this.queryParams[query]){
+            filter.nativeElement.checked = true;
+          }
+        }
+      });
+      if(query==="SearchValue"){
+          this.searchInput.nativeElement.value = this.queryParams[query];
+        }
+      else if(query==="SortValue" && this.queryParams[query]!==""){
+        this.sortSelector.nativeElement.value = this.queryParams[query];
+      }
+    });
+  }
+
+  setUpdatedFilters(){
+    const chosenValue =(this.filterValues.find(val=>val.chosen === true))?.value;
+    this.filtersInputs.forEach(element => {
+      element.nativeElement.checked=element.nativeElement.value===chosenValue;
+      if(element.nativeElement.checked){
+        this.allFilters.nativeElement.checked=false;
+      }
+    });
+    this.cdr.detectChanges();
   }
 }

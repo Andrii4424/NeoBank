@@ -9,7 +9,8 @@
   justify-content: center; 
   row-gap: 40px;
   column-gap: 40px;
-  padding: 0 40px;
+  padding: 0 140px;
+  margin-bottom: 44px;
 }
 .vacancy-block{
   width: 400px;
@@ -50,6 +51,7 @@ hr{
   cursor: pointer;
   color: white;
   padding: 6px 15px;
+  text-align: center;
 }
 
 .apply-job{
@@ -58,4 +60,23 @@ hr{
 
 .delete-vacancy{
   background-color: var(--primary-red-color);
+}
+
+.info-header{
+  margin-top: 24px;
+  text-align: center;
+}
+
+@media (max-width:1180px) {
+  .content-block{
+    padding: 0 40px;
+  }
+}
+@media (max-width:500px) {
+  .buttons{
+    flex-direction: column;
+  }
+  .content-block{
+    padding: 0 20px;
+  }
 }
