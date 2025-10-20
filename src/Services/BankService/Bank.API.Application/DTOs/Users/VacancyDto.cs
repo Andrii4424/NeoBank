@@ -23,8 +23,8 @@ namespace Bank.API.Application.DTOs.Users
         public string Category { get; set; }
 
 
-        [Range(1, double.MaxValue, ErrorMessage = "{0} must be more than 0}")]
-        [Display(Name = "Category")]
+        [Range(1, double.MaxValue, ErrorMessage = "{0} must be more than 0")]
+        [Display(Name = "Salary")]
         public double Salary { get; set; }
 
         public DateOnly? PublicationDate { get; set; }

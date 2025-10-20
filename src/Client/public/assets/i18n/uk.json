@@ -143,6 +143,13 @@
     "Type":"Тип",
     "Amount" :"Сума",
     "Commission" :"Комісія",
-    "Status" :"Статус"
+    "Status" :"Статус",
+
+    "AddVacancy":"Додати Вакансію",
+    "JobTitle":"Посада",
+    "Category":"Категорія",
+    "Salary":"Зарплатня",
+    "VacancyAdded" :"Вакансія була успішно додана!"
+
 
 }

@@ -148,7 +148,8 @@
     "AddVacancy":"Add Vacancy",
     "JobTitle":"Job Title",
     "Category":"Category",
-    "Salary":"Salary"
+    "Salary":"Salary",
+    "VacancyAdded" :"Vacancy has been successfully added!"
 
 
 
