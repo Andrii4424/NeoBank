@@ -43,6 +43,21 @@ namespace Bank.API.Application.Services.BankServices.Users
             return pageResult;
         }
 
+        public async Task<VacancyDto?> GetVacancyAsync(Guid vacancyId)
+        {
+            _logger.LogInformation("Trying to get vacancy with id {vacancyId}", vacancyId);
+
+            VacancyEntity? vacancy = await _vacanciesRepository.GetValueByIdAsync(vacancyId);
+            if (vacancy == null)
+            {
+                _logger.LogInformation("Failed getting vacancy with id {vacancyId}", vacancyId);
+                return null;
+            }
+
+            _logger.LogInformation("Success getting vacancy with id {vacancyId}", vacancyId);
+
+            return _mapper.Map<VacancyDto>(vacancy); 
+        }
 
         //Create 
         public async Task<OperationResult> CreateVacancy(VacancyDto vacancyDto)
@@ -65,7 +80,7 @@ namespace Bank.API.Application.Services.BankServices.Users
         public async Task<OperationResult> UpdateVacancy(VacancyDto vacancyDto)
         {
             _logger.LogInformation("Trying to update vacancy");
-            if(vacancyDto.Id ==null)
+            if (vacancyDto.Id ==null)
             {
                 _logger.LogError("Update vacancy failed. Vacancy id wasnt provided");
                 return OperationResult.Error("Vacancy id wasnt provided");
@@ -76,6 +91,8 @@ namespace Bank.API.Application.Services.BankServices.Users
                 _logger.LogError("Update vacancy failed. Vacancy not fount");
                 return OperationResult.Error("Vacancy not fount");
             }
+            vacancyDto.BankId = SharedMethods.GetBankGuid();
+            vacancy = _mapper.Map(vacancyDto, vacancy);
             vacancy.PublicationDate = DateOnly.FromDateTime(DateTime.UtcNow);
             _vacanciesRepository.UpdateObject(vacancy);
             await _vacanciesRepository.SaveAsync();

@@ -1,1 +1,31 @@
-<p>update-vacancy works!</p>
+<header>
+    <h1 class="heading">{{"UpdateVacancy" |translate}}</h1>
+</header>
+
+<section class="object-info-card">
+    <form [formGroup]="vacancyForm" class="update-entity-form" (click)="closeValidationStatus()" (ngSubmit)="onSubmit()">
+        <div class="update-entity-form-fields">
+            <label for="jobTitle">{{'JobTitle' |translate}}</label>
+            <input id="jobTitle" name="jobTitle" type="text" formControlName="jobTitle" />
+
+            <label for="category">{{'Category' | translate}}</label>
+            <input id="category" name="category" type="text" formControlName="category" />
+
+            <label for="salary">{{"Salary" |translate}} (UAH)</label>
+            <input id="salary" #maxCreditLimit name="salary"  type="number" appOnlyNumbers  max="2084597250" formControlName="salary" />
+
+        </div>
+
+        <div [class.none]="!showValidationResult()" class="validation-result">
+            <span [class.none]="!successStatus()" class="success-message">{{"VacancyUpdated"|translate}}</span>
+            <ul class="errors-list" [class.none]="!showValidationResult()">
+                @for (error of validationErrors; track $index) {
+                    <li>{{error}}</li>
+                }
+            </ul>
+        </div>
+
+        <button type="submit" class="entity-update">{{"UpdateVacancy" |translate}}</button>
+    </form>
+</section>
+

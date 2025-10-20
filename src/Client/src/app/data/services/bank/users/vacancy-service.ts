@@ -15,6 +15,10 @@ export class VacancyService {
     return this.http.get<IPageResult<IVacancy>>(`${this.baseUrl}GetPage`, {params})
   }
 
+  getVacancy(vacancyId: string){
+    return this.http.get<IVacancy>(`${this.baseUrl}GetVacancy/${vacancyId}`);
+  }
+
   addVacancy(vacancy: IVacancy){
     return this.http.post(`${this.baseUrl}AddVacancy`, vacancy);
   }
@@ -23,7 +27,7 @@ export class VacancyService {
     return this.http.put(`${this.baseUrl}UpdateVacancy`, vacancy);
   }
 
-    deleteVacancy(vacancyId: string){
-    return this.http.delete(`${this.baseUrl}UpdateVacancy/${vacancyId}`);
+  deleteVacancy(vacancyId: string){
+    return this.http.delete(`${this.baseUrl}DeleteVacancy/${vacancyId}`);
   }
 }

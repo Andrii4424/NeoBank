@@ -35,8 +35,8 @@ export const routes: Routes = [
         {path: 'cards/my-cards/add/options', component: ChoseCardOptions, canActivate: [CanActivateAuth]},
         {path: 'cards/my-card/:id', component: UserCardInfo, canActivate: [CanActivateAuth]},
         {path: 'vacancies', component: Vacancies},
-        {path: 'vacancies/add', component: AddVacancy},
-        {path: 'vacancies/update/:id', component: UpdateVacancy},
+        {path: 'vacancies/add', component: AddVacancy, canActivate: [adminGuard]},
+        {path: 'vacancies/update/:id', component: UpdateVacancy, canActivate: [adminGuard]},
 
     ]},
     {path: 'login', component: Login},

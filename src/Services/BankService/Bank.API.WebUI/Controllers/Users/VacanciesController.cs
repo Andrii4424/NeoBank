@@ -26,6 +26,16 @@ namespace Bank.API.WebUI.Controllers.Users
             return Ok(await _vacanciesService.GetVacanciesPageAsync(filters));
         }
 
+        [HttpGet("{vacancyId}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetVacancy([FromRoute] Guid vacancyId)
+        {
+            VacancyDto? vacancy = await _vacanciesService.GetVacancyAsync(vacancyId);
+            if(vacancy == null)  return NotFound();
+
+            return Ok(vacancy);
+        }
+
         [HttpPost]
         [Authorize(Policy = "AdminsOnly")]
         public async Task<IActionResult> AddVacancy([FromBody] VacancyDto vacancy)

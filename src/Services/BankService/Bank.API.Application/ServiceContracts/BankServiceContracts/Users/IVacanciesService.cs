@@ -15,6 +15,6 @@ namespace Bank.API.Application.ServiceContracts.BankServiceContracts.Users
         public Task<OperationResult> CreateVacancy(VacancyDto vacancyDto);
         public Task<OperationResult> UpdateVacancy(VacancyDto vacancyDto);
         public Task<OperationResult> DeleteVacancy(Guid vacancyId);
-
+        public Task<VacancyDto?> GetVacancyAsync(Guid vacancyId);
     }
 }

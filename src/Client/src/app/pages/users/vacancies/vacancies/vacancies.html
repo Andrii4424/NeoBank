@@ -9,7 +9,11 @@
 >
 
 </app-search>
-<h1 class="heading info-header">{{'VacancyInfo' |translate}}</h1>
+@if(profileService.getRole() !== "Admin"){
+    <h1 class="heading info-header">{{'VacancyInfo' |translate}}</h1>
+
+}
+
 
 <section class="content-block">
     @if($vacancy | async; as vacanciesPage){
@@ -26,13 +30,12 @@
 
                     <div class="buttons">
                         @if(profileService.getRole() === "Admin"){
-                            <a class="apply-job">{{'UpdateVacancy' |translate}}</a>
-                            <button class="delete-vacancy">{{'DeleteVacancy' | translate}}</button>
+                            <a [routerLink]="['/vacancies/update/', vacancy.id]" class="apply-job">{{'UpdateVacancy' |translate}}</a>
+                            <button class="delete-vacancy" (click)="openDeleteWindow(vacancy.id!, vacancy.jobTitle)">{{'DeleteVacancy' | translate}}</button>
 
                         }
                         @else {
                             <button class="apply-job">{{'ApplyForJob'|translate}}</button>
-
                         }
 
                     </div>
@@ -60,4 +63,27 @@
     <div class="add-block">
         <a [routerLink]="['/vacancies/add']" class="add-item">{{'AddVacancy' |translate}}</a>
     </div>      
+}
+
+@if(showDeleteWindow()){
+    <app-confirm-delete
+        [itemName]="deleteText"
+        (cancel)="cancelDelete()"
+        (confirm)="confirmDelete()"
+    ></app-confirm-delete>
+}
+
+@if(showSuccessWindow()){
+    <app-success-message
+        message="Success!"
+        [secondMessage]="successMessage!"
+    ></app-success-message>
+}
+@if(showErrorWindow()){
+    <app-error-message
+        message="Error!"
+        [secondMessage]="errorMessage!"
+    >
+
+    </app-error-message>
 }
