@@ -1,5 +1,5 @@
 ﻿using Bank.API.Application.DTO;
-using Bank.API.Application.DTOs.Users;
+using Bank.API.Application.DTOs.Users.Vacancies;
 using Bank.API.Application.Helpers.HelperClasses;
 using Bank.API.Application.Helpers.HelperClasses.Filters.User;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.Users;

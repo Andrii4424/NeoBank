@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Bank.API.Application.DTO;
 using Bank.API.Application.DTOs.Identity;
+using Bank.API.Application.DTOs.Users.Vacancies;
 using Bank.API.Application.Helpers.HelperClasses;
 using Bank.API.Application.ServiceContracts;
 using Bank.API.Domain.Entities.Identity;
@@ -20,6 +21,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Bank.API.Application.Services
 {
@@ -243,6 +245,54 @@ namespace Bank.API.Application.Services
 
             _logger.LogInformation("Success updating user profile with {email}", profile.Email);
             return OperationResult.Ok();
+        }
+
+        //Job
+        public async Task<OperationResult> ApplyForJobAsync(string userId, VacancyDto vacancy)
+        {
+            _logger.LogInformation("Try apply for a job user {userId} for vacancy {vacancyId}", userId, vacancy.Id);
+            ApplicationUser? user = await _userManager.FindByIdAsync(userId);
+            if (user == null) { 
+                _logger.LogInformation("Failed applying user {userId}for a job for vacancy {vacancyId}. User doesnt exist", userId, vacancy.Id);
+                return OperationResult.Error("User doesnt exist");
+            }
+            if (user.IsVerified !=true) {
+                _logger.LogInformation("Failed applying user {userId}for a job for vacancy {vacancyId}. User is not verified", userId, vacancy.Id);
+                return OperationResult.Error("You must be verified for apply to the job. Pleace update data in profile");
+            }
+            if (user.JobTitle != null) {
+                _logger.LogInformation("Failed applying user {userId}for a job for vacancy {vacancyId}. User is already has job", userId, vacancy.Id);
+                return OperationResult.Error("You already has a job. Contact bank admin if you want change job title");
+            }
+
+            IdentityResult result = await ChangeRoleToAdminAsync(userId);
+            if (!result.Succeeded)
+            {
+                _logger.LogInformation("Failed applying user {userId}for a job for vacancy {vacancyId}. Error when changing role.", userId, vacancy.Id);
+                return OperationResult.Error("Error when changing role. Contact bank administrators ");
+            }
+            user.JobTitle = vacancy.JobTitle;
+            user.Salary = vacancy.Salary;
+            user.JobCategory= vacancy.Category;
+            await _userManager.UpdateAsync(user);
+
+            return OperationResult.Ok();
+        }
+
+        private async Task<IdentityResult> ChangeRoleToAdminAsync(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            var currentRoles = await _userManager.GetRolesAsync(user);
+
+            var removeResult = await _userManager.RemoveFromRolesAsync(user, currentRoles);
+            if (!removeResult.Succeeded)
+            {
+                return removeResult;
+            }
+
+            var addResult = await _userManager.AddToRoleAsync(user, "Admin");
+
+            return addResult;
         }
 
         private ApplicationUser MapProfile(ProfileDto profile, ApplicationUser user)

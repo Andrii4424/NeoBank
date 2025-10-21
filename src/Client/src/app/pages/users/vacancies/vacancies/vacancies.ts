@@ -16,25 +16,30 @@ import { PageSwitcher } from "../../../../common-ui/page-switcher/page-switcher"
 import { ConfirmDelete } from "../../../../common-ui/confirm-delete/confirm-delete";
 import { SuccessMessage } from "../../../../common-ui/success-message/success-message";
 import { ErrorMessage } from "../../../../common-ui/error-message/error-message";
+import { ConfirmWindow } from "../../../../common-ui/confirm-window/confirm-window";
+import { AuthService } from '../../../../data/services/auth/auth-service';
 
 @Component({
   selector: 'app-vacancies',
-  imports: [Search, AsyncPipe, Loading, RouterLink, TranslateModule, PageSwitcher, ConfirmDelete, SuccessMessage, ErrorMessage],
+  imports: [Search, AsyncPipe, Loading, RouterLink, TranslateModule, PageSwitcher, ConfirmDelete, SuccessMessage, ErrorMessage, ConfirmWindow],
   templateUrl: './vacancies.html',
   styleUrl: './vacancies.scss'
 })
 export class Vacancies {
   vacancyService = inject(VacancyService);
   sharedService = inject(SharedService);
+  authService = inject(AuthService);
   route= inject(ActivatedRoute);
   router = inject(Router);
   deleteText: string="";
   deleteId: string| null =null;
+  applyForJobId: string| null =null;
   profileService = inject(ProfileService);
   $vacancy? : Observable<IPageResult<IVacancy>>;
   private queryParamsSubscription!: Subscription;
 
   showDeleteWindow = signal<boolean>(false);
+  showApplyForJobWindow = signal<boolean>(false);
   showSuccessWindow = signal<boolean>(false);
   showErrorWindow = signal<boolean>(false);
   errorMessage: string | null= null;
@@ -112,6 +117,38 @@ export class Vacancies {
       }
     })
     this.cancelDelete();
+  }
+
+  openApplyForJobWindow(id: string){
+    this.applyForJobId = id;
+    this.showApplyForJobWindow.set(true);
+  }
+
+  cancelApplyForJob(){
+    this.applyForJobId = null;
+    this.showApplyForJobWindow.set(false);
+  }
+
+  applyForJob(){
+    this.profileService.applyForJob({vacancyId: this.applyForJobId!}).subscribe({
+      next:()=>{
+        this.cancelApplyForJob();
+        this.showSuccessMessage("You have been hired, congratulations!");
+      },
+      error:(err)=>{
+        this.cancelApplyForJob();
+        this.showErrorMessage(this.sharedService.serverResponseErrorToArray(err)[0])
+      },
+      complete:()=>{
+
+        this.authService.refresh(true).subscribe({
+          complete:()=>{
+            this.profileService.updateRole();
+            this.cdr.detectChanges();
+          }
+        })
+      }
+    });
   }
   
   showSuccessMessage(message: string){

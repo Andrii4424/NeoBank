@@ -1,6 +1,8 @@
 ﻿using Bank.API.Application.DTOs.Identity;
+using Bank.API.Application.DTOs.Users.Vacancies;
 using Bank.API.Application.Helpers.HelperClasses;
 using Bank.API.Application.ServiceContracts;
+using Bank.API.Application.ServiceContracts.BankServiceContracts.Users;
 using Bank.API.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -16,10 +18,13 @@ namespace Bank.API.WebUI.Controllers
     public class ProfileController : ControllerBase
     {
         private readonly IIdentityService _identityService;
+        private readonly IVacanciesService _vacanciesService;
 
-        public ProfileController(IIdentityService identityService)
+
+        public ProfileController(IIdentityService identityService, IVacanciesService vacanciesService)
         {
             _identityService = identityService;
+            _vacanciesService = vacanciesService;
         }
 
         //Profile
@@ -71,6 +76,24 @@ namespace Bank.API.WebUI.Controllers
 
             return Ok(updatedProfile);
         }
+
+        [HttpPost("{vacancyId}")]
+        [Authorize]
+        public async Task<IActionResult> ApplyForJob([FromRoute] Guid vacancyId)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier) ?? User.FindFirstValue("sub");
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
+            VacancyDto? vacancy = await _vacanciesService.GetVacancyAsync(vacancyId);
+            if (vacancy == null) return NotFound("Vacancy not found");
+            OperationResult result = await _identityService.ApplyForJobAsync(userId, vacancy);
+            if (!result.Success) return BadRequest(result.ErrorMessage);
+
+            return Ok();
+        }
+
 
     }
 }

@@ -47,6 +47,10 @@ export class ProfileService {
     return this.http.post<IProfile>(`${this.baseUrl}UpdateOwnProfile`, fd);    
   }
 
+  applyForJob(payload:{vacancyId: string}){
+    return this.http.post(`${this.baseUrl}ApplyForJob/${payload.vacancyId}`, "");
+  }
+
   updateProfileSignal(profile : IProfile |null |undefined){
     this.profileSignal.set(profile);
   }
@@ -71,6 +75,8 @@ export class ProfileService {
       })
     ).subscribe();
   }
+
+
 
   getRole(){
     return localStorage.getItem("role");

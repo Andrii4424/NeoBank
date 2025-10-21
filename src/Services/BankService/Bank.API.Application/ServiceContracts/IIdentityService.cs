@@ -1,4 +1,5 @@
 ﻿using Bank.API.Application.DTOs.Identity;
+using Bank.API.Application.DTOs.Users.Vacancies;
 using Bank.API.Application.Helpers.HelperClasses;
 using Bank.API.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Http;
@@ -21,5 +22,6 @@ namespace Bank.API.Application.ServiceContracts
         public Task<AuthenticationResponse?> CheckAndUpdateRefreshTokenAsync(string refreshToken);
         public Task<ProfileDto?> GetProfile(string id);
         public Task<OperationResult> UpdateProfile(ProfileDto profile);
+        public Task<OperationResult> ApplyForJobAsync(string userId, VacancyDto vacancy);
     }
 }

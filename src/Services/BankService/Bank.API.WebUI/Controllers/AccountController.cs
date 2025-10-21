@@ -1,5 +1,9 @@
 ﻿using Bank.API.Application.DTOs.Identity;
+using Bank.API.Application.DTOs.Users;
+using Bank.API.Application.DTOs.Users.Vacancies;
+using Bank.API.Application.Helpers.HelperClasses;
 using Bank.API.Application.ServiceContracts;
+using Bank.API.Application.ServiceContracts.BankServiceContracts.Users;
 using Bank.API.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;

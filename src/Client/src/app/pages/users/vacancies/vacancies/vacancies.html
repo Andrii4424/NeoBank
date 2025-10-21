@@ -35,7 +35,7 @@
 
                         }
                         @else {
-                            <button class="apply-job">{{'ApplyForJob'|translate}}</button>
+                            <button class="apply-job" (click)="openApplyForJobWindow(vacancy.id!)">{{'ApplyForJob'|translate}}</button>
                         }
 
                     </div>
@@ -84,6 +84,15 @@
         message="Error!"
         [secondMessage]="errorMessage!"
     >
-
     </app-error-message>
+}
+@if(showApplyForJobWindow()){
+    <app-confirm-window
+        title="Apply For a Job"
+        subtitle="Are you sure you want to work in a bank?"
+        (cancelAction)="cancelApplyForJob()"
+        (confirmAction)="applyForJob()"
+    >
+
+    </app-confirm-window>
 }

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Bank.API.Application.DTOs.BankProducts;
-using Bank.API.Application.DTOs.Users;
+using Bank.API.Application.DTOs.Users.Vacancies;
 using Bank.API.Application.Helpers.HelperClasses;
 using Bank.API.Application.Helpers.HelperClasses.Filters;
 using Bank.API.Application.Helpers.HelperClasses.Filters.User;

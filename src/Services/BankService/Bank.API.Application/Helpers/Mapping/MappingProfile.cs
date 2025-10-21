@@ -3,6 +3,7 @@ using Bank.API.Application.DTO;
 using Bank.API.Application.DTOs.BankProducts;
 using Bank.API.Application.DTOs.Identity;
 using Bank.API.Application.DTOs.Users;
+using Bank.API.Application.DTOs.Users.Vacancies;
 using Bank.API.Domain.Entities;
 using Bank.API.Domain.Entities.Cards;
 using Bank.API.Domain.Entities.Identity;
