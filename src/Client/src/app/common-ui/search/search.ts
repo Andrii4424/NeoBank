@@ -46,6 +46,7 @@ export class Search {
       this.filterChange.emit(filters);
     }
   }
+  
   deleteFilters(){
     this.allFilters.nativeElement.checked=true;
     this.filtersInputs.forEach(element => {

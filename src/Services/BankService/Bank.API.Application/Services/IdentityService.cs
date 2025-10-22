@@ -65,7 +65,6 @@ namespace Bank.API.Application.Services
             _logger.LogInformation("Getting employees page");
             IQueryable<ApplicationUser> query = _userManager.Users;
 
-            // Находим ID всех пользователей с этой ролью
             IList<ApplicationUser> admins = await _userManager.GetUsersInRoleAsync("Admin");
 
             IEnumerable<Guid> adminsId = admins.Select(u=> u.Id); 
@@ -117,15 +116,19 @@ namespace Bank.API.Application.Services
 
                 foreach (ProfileDto user in usersDto)
                 {
-                    if (roles.ContainsKey(user.Id))
+                    if (roles.TryGetValue(user.Id, out List<string?> userRoles) && userRoles != null)
                     {
+                        Console.WriteLine($"{user.Id} Admin: {roles[user.Id].Contains("Admin")} User: {roles[user.Id].Contains("User")}");
                         if (roles[user.Id].Contains("Admin")) user.Role = "Admin";
-                        else if (roles[user.Id].Contains("User")) user.Role = "User";
-                        else user.Role = null;
+                        else if (roles[user.Id].Contains("User"))
+                        {
+                            user.Role = "User";
+                        }
+                        else user.Role = "User";
                     }
                     else
                     {
-                        user.Role = null; 
+                        user.Role = "User"; 
                     }
                 }
 

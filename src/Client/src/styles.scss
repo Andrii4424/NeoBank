@@ -1048,6 +1048,7 @@ a.chosen-child-link::after {
 	width: 54px;
 	height: 54px;
     object-fit: cover; 
+	border: 1px solid var(--heaviest-dark-primary-color);
 
 }
 .user-info{

@@ -1,5 +1,11 @@
-<app-search>
-
+<app-search
+    [sortValues]="sortValues"
+    [filterValues]="filterValues"
+    searchPlaceholder="Enter employee name"
+    (sortChange)="onSortChange($event)"
+    (searchChange)="onSearchChange($event)"
+    (filterChange)="onFiltersChange($event)"
+>
 </app-search>
 
 
@@ -36,3 +42,13 @@
         <app-loading></app-loading>
     }
 </div>
+
+@if(usersPage$ | async; as usersPage){
+    <app-page-switcher 
+        [currentPage]="usersPage?.pageNumber"
+        [hasNextPage]="usersPage?.hasNextPage"
+        [hasPreviousPage]="usersPage?.hasPreviousPage"
+        [pageCount]="usersPage?.pageCount"
+        (pageChange)="onPageChange($event)"
+    > </app-page-switcher>
+}

@@ -1,0 +1,52 @@
+<app-search
+    [sortValues]="sortValues"
+    [filterValues]="filterValues"
+    searchPlaceholder="Enter user name"
+    (sortChange)="onSortChange($event)"
+    (searchChange)="onSearchChange($event)"
+    (filterChange)="onFiltersChange($event)"
+>
+</app-search>
+
+
+<div class="content-block">
+    @if(usersPage$ | async; as usersPage){
+        <div class="users-wrap-block">
+            <h1 class="heading">Our Clients</h1>
+            <section class="users-block">
+                @for(user of usersPage.items; track $index){
+                    <div class="users">
+                        <div class="users-left-part">
+                            @if(user?.avatarPath!==null && user?.avatarPath!==undefined){
+                                <img class="profile-logo" [src]="baseUrl+user?.avatarPath" alt="profile">
+                            }
+                            @else {
+                                <img class="profile-logo" [src]="baseUrl+'uploads/default-photo/profile-photo.svg'" alt="profile">
+                            }
+                            <div class="user-info">
+                                <h4>{{user.surname + ' '+ user.firstName + ' ' + user.patronymic}}</h4>
+                                <span>{{user.role}}</span>
+                            </div>
+                        </div>
+
+                        <button class="open-profile">Open Profile</button>
+
+                    </div>
+                }
+            </section>
+        </div>
+    }
+    @else {
+        <app-loading></app-loading>
+    }
+</div>
+
+@if(usersPage$ | async; as usersPage){
+    <app-page-switcher 
+        [currentPage]="usersPage?.pageNumber"
+        [hasNextPage]="usersPage?.hasNextPage"
+        [hasPreviousPage]="usersPage?.hasPreviousPage"
+        [pageCount]="usersPage?.pageCount"
+        (pageChange)="onPageChange($event)"
+    > </app-page-switcher>
+}

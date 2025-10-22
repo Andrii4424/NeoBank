@@ -13,7 +13,7 @@ namespace Bank.API.Application.Helpers.HelperClasses.Filters.User
     public class UserFilter
     {
         public int? PageNumber { get; set; }
-        public int? PageSize { get; set; } = 50;
+        public int? PageSize { get; set; } = 4;
 
         public string? SearchValue { get; set; }
 
@@ -29,7 +29,8 @@ namespace Bank.API.Application.Helpers.HelperClasses.Filters.User
         {
             Expression<Func<ApplicationUser, bool>>? searchFilter = String.IsNullOrWhiteSpace(SearchValue) ? null : 
                 (u => (u.FirstName!=null && u.FirstName.Contains(SearchValue.Trim())) ||(u.Surname !=null && u.Surname.Contains(SearchValue.Trim())) ||
-                (u.Patronymic != null && u.Patronymic.Contains(SearchValue.Trim())));
+                (u.Patronymic != null && u.Patronymic.Contains(SearchValue.Trim())) || 
+                (u.Surname != null && u.FirstName != null && u.Patronymic != null && (u.Surname +" "+ u.FirstName + " " + u.Patronymic  ).Contains(SearchValue.Trim())));
 
             Expression<Func<ApplicationUser, object>>? sortExpression;
             bool ascending;
@@ -53,7 +54,7 @@ namespace Bank.API.Application.Helpers.HelperClasses.Filters.User
                     sortExpression = u => u.DateOfBirth;
                     break;
                 default:
-                    ascending = false;
+                    ascending = true;
                     sortExpression = u => u.Surname;
                     break;
             }

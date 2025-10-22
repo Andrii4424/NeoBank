@@ -20,6 +20,7 @@ import { Vacancies } from './pages/users/vacancies/vacancies/vacancies';
 import { AddVacancy } from './pages/users/vacancies/add-vacancy/add-vacancy';
 import { UpdateVacancy } from './pages/users/vacancies/update-vacancy/update-vacancy';
 import { Employees } from './pages/users/employees/employees';
+import { Users } from './pages/users/users/users/users';
 
 export const routes: Routes = [
     {path: '', component: Layout, children: [
@@ -39,6 +40,8 @@ export const routes: Routes = [
         {path: 'vacancies/add', component: AddVacancy, canActivate: [adminGuard]},
         {path: 'vacancies/update/:id', component: UpdateVacancy, canActivate: [adminGuard]},
         {path: 'employees', component: Employees},
+        {path: 'clients', component: Users},
+        
 
     ]},
     {path: 'login', component: Login},
