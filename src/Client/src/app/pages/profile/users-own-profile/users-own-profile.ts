@@ -37,7 +37,10 @@ export class UsersOwnProfile {
     patronymic: new FormControl<string | null>(null),
     dateOfBirth: new FormControl<string | null>(null),
     taxId: new FormControl<string | null>(null),
-    phoneNumber: new FormControl<string | null>(null)
+    phoneNumber: new FormControl<string | null>(null),
+    jobTitle: new FormControl<string | null>(null),
+    jobCategory: new FormControl<string | null>(null),
+    salary: new FormControl<number | null>(null),
   });
 
 
@@ -94,7 +97,8 @@ export class UsersOwnProfile {
       avatarPath: this.profile!.avatarPath,
       role: this.profile!.role,
       isVerified: this.profile!.isVerified,
-      avatar: this.updatedAvatarFile ?? null
+      avatar: this.updatedAvatarFile ?? null,
+
     };
 
     this.profileService.updateUser(payload).subscribe({
@@ -130,7 +134,10 @@ export class UsersOwnProfile {
       patronymic: this.profile!.patronymic,
       dateOfBirth: this.profile!.dateOfBirth,
       taxId: this.profile!.taxId,
-      phoneNumber: this.profile!.phoneNumber
+      phoneNumber: this.profile!.phoneNumber,
+      jobTitle: this.profile!.jobTitle,
+      jobCategory: this.profile!.jobCategory,
+      salary: this.profile!.salary
     });
   }
 

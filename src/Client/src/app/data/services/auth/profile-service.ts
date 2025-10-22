@@ -5,6 +5,8 @@ import { SKIP_LOGIN_REDIRECT } from '../../../auth/skip-login-redirect.token';
 import { F } from '@angular/cdk/keycodes';
 import { IRole } from '../../interfaces/auth/role-interface';
 import { tap } from 'rxjs';
+import { Params } from '@angular/router';
+import { IPageResult } from '../../interfaces/page-inteface';
 
 @Injectable({
   providedIn: 'root'
@@ -76,7 +78,13 @@ export class ProfileService {
     ).subscribe();
   }
 
-
+  getUsers(params: Params){
+    return this.http.get<IPageResult<IProfile>>(`${this.baseUrl}Users`, {params})
+  }
+  
+  getEmployees(params: Params){
+    return this.http.get<IPageResult<IProfile>>(`${this.baseUrl}Employees`, {params})
+  }
 
   getRole(){
     return localStorage.getItem("role");

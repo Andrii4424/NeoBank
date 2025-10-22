@@ -10,6 +10,7 @@ using Bank.API.Application.Helpers.HelperClasses.Filters.User;
 using Bank.API.Application.ServiceContracts;
 using Bank.API.Domain.Entities.Cards;
 using Bank.API.Domain.Entities.Identity;
+using Bank.API.Domain.RepositoryContracts.Users;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -38,9 +39,10 @@ namespace Bank.API.Application.Services
         private readonly IWebHostEnvironment _env;
         private readonly IMapper _mapper;
         private readonly ILogger<IdentityService> _logger;
+        private readonly IUserRepository _userRepository;
 
         public IdentityService(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager, IConfiguration configuration, 
-            IMapper mapper, IWebHostEnvironment env, ILogger<IdentityService> logger)
+            IMapper mapper, IWebHostEnvironment env, ILogger<IdentityService> logger, IUserRepository userRepository)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -48,6 +50,7 @@ namespace Bank.API.Application.Services
             _mapper = mapper;
             _env = env;
             _logger = logger;
+            _userRepository = userRepository;
         }
         //Get users
         public async Task<PageResult<ProfileDto>> GetUsersAsync(UserFilter filters) {
@@ -55,7 +58,7 @@ namespace Bank.API.Application.Services
 
             IQueryable<ApplicationUser> query = _userManager.Users;
 
-            return await GetUsersPageAsync(filters, query);
+            return await GetUsersPageAsync(filters, query, false);
         }
 
         public async Task<PageResult<ProfileDto>> GetEmployeesAsync(UserFilter filters) {
@@ -69,10 +72,11 @@ namespace Bank.API.Application.Services
 
             query = query.Where(u => adminsId.Contains(u.Id));
 
-            return await GetUsersPageAsync(filters,query); 
+
+            return await GetUsersPageAsync(filters,query, true); 
         }
 
-        private async Task<PageResult<ProfileDto>> GetUsersPageAsync(UserFilter filters, IQueryable<ApplicationUser> query)
+        private async Task<PageResult<ProfileDto>> GetUsersPageAsync(UserFilter filters, IQueryable<ApplicationUser> query, bool onlyAdmins)
         {
             filters.PageNumber = filters.PageNumber ?? 1;
             FiltersDto<ApplicationUser> filtersDto = filters.ToGeneralFilters();
@@ -103,7 +107,38 @@ namespace Bank.API.Application.Services
 
             int elementsCount = await query
                 .CountAsync();
-            PageResult<ProfileDto> pageResult = new PageResult<ProfileDto>(_mapper.Map<List<ProfileDto>>(users), elementsCount,
+
+            List<ProfileDto> usersDto = _mapper.Map<List<ProfileDto>>(users);
+
+            //Getting roles for each user
+            if (!onlyAdmins)
+            {
+                Dictionary<Guid, List<string?>> roles= await _userRepository.GetRolesDictionaryAsync(users);
+
+                foreach (ProfileDto user in usersDto)
+                {
+                    if (roles.ContainsKey(user.Id))
+                    {
+                        if (roles[user.Id].Contains("Admin")) user.Role = "Admin";
+                        else if (roles[user.Id].Contains("User")) user.Role = "User";
+                        else user.Role = null;
+                    }
+                    else
+                    {
+                        user.Role = null; 
+                    }
+                }
+
+            }
+            else
+            {
+                foreach(ProfileDto user in usersDto)
+                {
+                    user.Role = "Admin";
+                }
+            }
+
+            PageResult<ProfileDto> pageResult = new PageResult<ProfileDto>(usersDto, elementsCount,
                 filters.PageNumber.Value, filters.PageSize.Value);
 
             return pageResult;

@@ -111,6 +111,7 @@ namespace Bank.API.WebUI.StartupServicesInjection
             services.AddScoped(typeof(ICardTariffsRepository), typeof(CardTariffsRepository));
             services.AddScoped(typeof(IUserCardsRepository), typeof(UserCardsRepository));
             services.AddScoped(typeof(IVacanciesRepository), typeof(VacanciesRepository));
+            services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
 
             //Services injection
             //Identity

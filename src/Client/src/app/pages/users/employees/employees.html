@@ -1,1 +1,38 @@
-<p>employees works!</p>
+<app-search>
+
+</app-search>
+
+
+<div class="content-block">
+    @if(usersPage$ | async; as usersPage){
+        <div class="users-wrap-block">
+            <h1 class="heading">Our Team</h1>
+            <section class="users-block">
+                @for(user of usersPage.items; track $index){
+                    <div class="users">
+                        <div class="users-left-part">
+                            @if(user?.avatarPath!==null && user?.avatarPath!==undefined){
+                                <img class="profile-logo" [src]="baseUrl+user?.avatarPath" alt="profile">
+                            }
+                            @else {
+                                <img class="profile-logo" [src]="baseUrl+'uploads/default-photo/profile-photo.svg'" alt="profile">
+                            }
+                            <div class="user-info">
+                                <h4>{{user.surname + ' '+ user.firstName + ' ' + user.patronymic}}</h4>
+                                @if(user.jobTitle !=null){
+                                    <span>{{user.jobTitle}} &#8226; {{user.jobCategory}}</span>
+                                }
+                            </div>
+                        </div>
+
+                        <button class="open-profile">Open Profile</button>
+
+                    </div>
+                }
+            </section>
+        </div>
+    }
+    @else {
+        <app-loading></app-loading>
+    }
+</div>

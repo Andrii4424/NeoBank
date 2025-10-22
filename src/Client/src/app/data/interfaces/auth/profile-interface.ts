@@ -11,6 +11,9 @@ export interface IProfile{
     isVerified: boolean | null;
     phoneNumber: string | null;
     avatar: File | null;
+    jobTitle : string | null;
+    jobCategory : string | null;
+    salary : number | null;
 }
 
 

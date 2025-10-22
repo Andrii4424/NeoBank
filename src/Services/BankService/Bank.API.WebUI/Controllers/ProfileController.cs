@@ -48,7 +48,7 @@ namespace Bank.API.WebUI.Controllers
         }
 
         [HttpGet("{userId}")]
-        [Authorize(Policy = "AdminsOnly")]
+        [Authorize(Policy ="AdminsOnly")]
         public async Task<IActionResult> ProfileInfo([FromRoute] Guid? userId)
         {
             if (userId == null)
