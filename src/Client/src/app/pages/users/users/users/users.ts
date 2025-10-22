@@ -1,7 +1,7 @@
 import { SharedService } from './../../../../data/services/shared-service';
 import { Component, inject } from '@angular/core';
 import { ISort } from '../../../../data/interfaces/filters/sort-interface';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ProfileService } from '../../../../data/services/auth/profile-service';
 import { IPageResult } from '../../../../data/interfaces/page-inteface';
 import { Observable, Subscription } from 'rxjs';
@@ -14,7 +14,7 @@ import { PageSwitcher } from "../../../../common-ui/page-switcher/page-switcher"
 
 @Component({
   selector: 'app-users',
-  imports: [AsyncPipe, Search, Loading, PageSwitcher],
+  imports: [AsyncPipe, Search, Loading, PageSwitcher, RouterLink],
   templateUrl: './users.html',
   styleUrl: './users.scss'
 })

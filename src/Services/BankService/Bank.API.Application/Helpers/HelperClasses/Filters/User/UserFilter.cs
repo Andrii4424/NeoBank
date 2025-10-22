@@ -13,7 +13,7 @@ namespace Bank.API.Application.Helpers.HelperClasses.Filters.User
     public class UserFilter
     {
         public int? PageNumber { get; set; }
-        public int? PageSize { get; set; } = 4;
+        public int? PageSize { get; set; } = 50;
 
         public string? SearchValue { get; set; }
 
@@ -22,8 +22,6 @@ namespace Bank.API.Application.Helpers.HelperClasses.Filters.User
         public bool? VerifiedUsers { get; set; }
         public bool? WithAvatars { get; set; }
         public bool? HasFinancalNumber { get; set; }
-
-
 
         public FiltersDto<ApplicationUser> ToGeneralFilters()
         {

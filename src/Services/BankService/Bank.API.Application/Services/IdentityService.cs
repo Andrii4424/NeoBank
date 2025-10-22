@@ -52,100 +52,6 @@ namespace Bank.API.Application.Services
             _logger = logger;
             _userRepository = userRepository;
         }
-        //Get users
-        public async Task<PageResult<ProfileDto>> GetUsersAsync(UserFilter filters) {
-            _logger.LogInformation("Getting users page");
-
-            IQueryable<ApplicationUser> query = _userManager.Users;
-
-            return await GetUsersPageAsync(filters, query, false);
-        }
-
-        public async Task<PageResult<ProfileDto>> GetEmployeesAsync(UserFilter filters) {
-            _logger.LogInformation("Getting employees page");
-            IQueryable<ApplicationUser> query = _userManager.Users;
-
-            IList<ApplicationUser> admins = await _userManager.GetUsersInRoleAsync("Admin");
-
-            IEnumerable<Guid> adminsId = admins.Select(u=> u.Id); 
-
-            query = query.Where(u => adminsId.Contains(u.Id));
-
-
-            return await GetUsersPageAsync(filters,query, true); 
-        }
-
-        private async Task<PageResult<ProfileDto>> GetUsersPageAsync(UserFilter filters, IQueryable<ApplicationUser> query, bool onlyAdmins)
-        {
-            filters.PageNumber = filters.PageNumber ?? 1;
-            FiltersDto<ApplicationUser> filtersDto = filters.ToGeneralFilters();
-
-            if (filtersDto.SearchFilter != null) query = query.Where(filtersDto.SearchFilter);
-            if (filtersDto.Filters != null)
-            {
-                filtersDto.Filters = filtersDto.Filters.Where(v => v != null).ToList();
-                foreach (var filter in filtersDto.Filters)
-                {
-                    query = query.Where(filter);
-                }
-            }
-            if (filtersDto.SortValue != null)
-            {
-                query = filtersDto.Ascending ? query.OrderBy(filtersDto.SortValue).ThenBy(obj => obj.Id) :
-                    query.OrderByDescending(filtersDto.SortValue).ThenBy(obj => obj.Id);
-            }
-            else
-            {
-                query = query.OrderBy(obj => obj.Id);
-            }
-
-            List<ApplicationUser> users = await query
-                .Skip((filtersDto.PageNumber.Value - 1) * filtersDto.PageSize.Value)
-                .Take(filtersDto.PageSize.Value)
-                .ToListAsync();
-
-            int elementsCount = await query
-                .CountAsync();
-
-            List<ProfileDto> usersDto = _mapper.Map<List<ProfileDto>>(users);
-
-            //Getting roles for each user
-            if (!onlyAdmins)
-            {
-                Dictionary<Guid, List<string?>> roles= await _userRepository.GetRolesDictionaryAsync(users);
-
-                foreach (ProfileDto user in usersDto)
-                {
-                    if (roles.TryGetValue(user.Id, out List<string?> userRoles) && userRoles != null)
-                    {
-                        Console.WriteLine($"{user.Id} Admin: {roles[user.Id].Contains("Admin")} User: {roles[user.Id].Contains("User")}");
-                        if (roles[user.Id].Contains("Admin")) user.Role = "Admin";
-                        else if (roles[user.Id].Contains("User"))
-                        {
-                            user.Role = "User";
-                        }
-                        else user.Role = "User";
-                    }
-                    else
-                    {
-                        user.Role = "User"; 
-                    }
-                }
-
-            }
-            else
-            {
-                foreach(ProfileDto user in usersDto)
-                {
-                    user.Role = "Admin";
-                }
-            }
-
-            PageResult<ProfileDto> pageResult = new PageResult<ProfileDto>(usersDto, elementsCount,
-                filters.PageNumber.Value, filters.PageSize.Value);
-
-            return pageResult;
-        }
 
         //Auth
         public async Task<IdentityResult> RegisterAsync(RegisterDto registerDto)
@@ -281,11 +187,24 @@ namespace Bank.API.Application.Services
         }
 
         //Profile
-        public async Task<ProfileDto?> GetProfile(string id)
+        public async Task<ProfileDto?> GetFullProfile(string id)
         {
             ApplicationUser? user = await _userManager.FindByIdAsync(id);
             if(user == null) return null;
-            return _mapper.Map<ProfileDto>(user);
+            ProfileDto profile = _mapper.Map<ProfileDto>(user);
+            IList<string> roles = await _userManager.GetRolesAsync(user);
+            profile.Role = roles.Contains("Admin") ? "Admin" : "User";
+            return profile;
+        }
+
+        public async Task<CroppedProfileDto?> GetCroppedProfile(string id)
+        {
+            ApplicationUser? user = await _userManager.FindByIdAsync(id);
+            if (user == null) return null;
+            CroppedProfileDto profile = _mapper.Map<CroppedProfileDto>(user);
+            IList<string> roles = await _userManager.GetRolesAsync(user);
+            profile.Role = roles.Contains("Admin") ? "Admin" : "User";
+            return profile;
         }
 
         public async Task<OperationResult> UpdateProfile(ProfileDto profile)
@@ -347,6 +266,103 @@ namespace Bank.API.Application.Services
 
             _logger.LogInformation("Success updating user profile with {email}", profile.Email);
             return OperationResult.Ok();
+        }
+
+        //Get users
+        public async Task<PageResult<ProfileDto>> GetUsersAsync(UserFilter filters)
+        {
+            _logger.LogInformation("Getting users page");
+
+            IQueryable<ApplicationUser> query = _userManager.Users;
+
+            return await GetUsersPageAsync(filters, query, false);
+        }
+
+        public async Task<PageResult<ProfileDto>> GetEmployeesAsync(UserFilter filters)
+        {
+            _logger.LogInformation("Getting employees page");
+            IQueryable<ApplicationUser> query = _userManager.Users;
+
+            IList<ApplicationUser> admins = await _userManager.GetUsersInRoleAsync("Admin");
+
+            IEnumerable<Guid> adminsId = admins.Select(u => u.Id);
+
+            query = query.Where(u => adminsId.Contains(u.Id));
+
+
+            return await GetUsersPageAsync(filters, query, true);
+        }
+
+        private async Task<PageResult<ProfileDto>> GetUsersPageAsync(UserFilter filters, IQueryable<ApplicationUser> query, bool onlyAdmins)
+        {
+            filters.PageNumber = filters.PageNumber ?? 1;
+            FiltersDto<ApplicationUser> filtersDto = filters.ToGeneralFilters();
+
+            if (filtersDto.SearchFilter != null) query = query.Where(filtersDto.SearchFilter);
+            if (filtersDto.Filters != null)
+            {
+                filtersDto.Filters = filtersDto.Filters.Where(v => v != null).ToList();
+                foreach (var filter in filtersDto.Filters)
+                {
+                    query = query.Where(filter);
+                }
+            }
+            if (filtersDto.SortValue != null)
+            {
+                query = filtersDto.Ascending ? query.OrderBy(filtersDto.SortValue).ThenBy(obj => obj.Id) :
+                    query.OrderByDescending(filtersDto.SortValue).ThenBy(obj => obj.Id);
+            }
+            else
+            {
+                query = query.OrderBy(obj => obj.Id);
+            }
+
+            List<ApplicationUser> users = await query
+                .Skip((filtersDto.PageNumber.Value - 1) * filtersDto.PageSize.Value)
+                .Take(filtersDto.PageSize.Value)
+                .ToListAsync();
+
+            int elementsCount = await query
+                .CountAsync();
+
+            List<ProfileDto> usersDto = _mapper.Map<List<ProfileDto>>(users);
+
+            //Getting roles for each user
+            if (!onlyAdmins)
+            {
+                Dictionary<Guid, List<string?>> roles = await _userRepository.GetRolesDictionaryAsync(users);
+
+                foreach (ProfileDto user in usersDto)
+                {
+                    if (roles.TryGetValue(user.Id, out List<string?> userRoles) && userRoles != null)
+                    {
+                        Console.WriteLine($"{user.Id} Admin: {roles[user.Id].Contains("Admin")} User: {roles[user.Id].Contains("User")}");
+                        if (roles[user.Id].Contains("Admin")) user.Role = "Admin";
+                        else if (roles[user.Id].Contains("User"))
+                        {
+                            user.Role = "User";
+                        }
+                        else user.Role = "User";
+                    }
+                    else
+                    {
+                        user.Role = "User";
+                    }
+                }
+
+            }
+            else
+            {
+                foreach (ProfileDto user in usersDto)
+                {
+                    user.Role = "Admin";
+                }
+            }
+
+            PageResult<ProfileDto> pageResult = new PageResult<ProfileDto>(usersDto, elementsCount,
+                filters.PageNumber.Value, filters.PageSize.Value);
+
+            return pageResult;
         }
 
         //Job

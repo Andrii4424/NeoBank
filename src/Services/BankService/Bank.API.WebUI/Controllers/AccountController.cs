@@ -92,7 +92,7 @@ namespace Bank.API.WebUI.Controllers
             {
                 return Unauthorized();
             }
-            ProfileDto? user = await _identityService.GetProfile(userId.ToString());
+            ProfileDto? user = await _identityService.GetFullProfile(userId.ToString());
             if (user == null)
             {
                 return Unauthorized();

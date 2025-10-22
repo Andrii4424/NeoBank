@@ -7,6 +7,7 @@ import { IRole } from '../../interfaces/auth/role-interface';
 import { tap } from 'rxjs';
 import { Params } from '@angular/router';
 import { IPageResult } from '../../interfaces/page-inteface';
+import { ICroppedProfile } from '../../interfaces/auth/cropped-profile.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -28,8 +29,12 @@ export class ProfileService {
     this.updateRole();
   }
 
-  getUserProfile(userId:string){
-    return this.http.get<IProfile>(`${this.baseUrl}ProfileInfo/${userId}`);
+  getUserFullProfile(userId:string){
+    return this.http.get<IProfile>(`${this.baseUrl}FullProfileInfo/${userId}`);
+  }
+
+  getUserCroppedProfile(userId:string){
+    return this.http.get<ICroppedProfile>(`${this.baseUrl}CroppedProfileInfo/${userId}`);
   }
 
   updateUser(payload:{id: string, email: string | null, firstName: string| null, surname: string | null, patronymic: string | null, dateOfBirth: string | null, 
@@ -81,7 +86,7 @@ export class ProfileService {
   getUsers(params: Params){
     return this.http.get<IPageResult<IProfile>>(`${this.baseUrl}Users`, {params})
   }
-  
+
   getEmployees(params: Params){
     return this.http.get<IPageResult<IProfile>>(`${this.baseUrl}Employees`, {params})
   }

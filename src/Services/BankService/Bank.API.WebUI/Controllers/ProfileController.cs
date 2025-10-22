@@ -37,7 +37,7 @@ namespace Bank.API.WebUI.Controllers
             {
                 return NotFound();
             }
-            ProfileDto? user = await _identityService.GetProfile(userId.ToString());
+            ProfileDto? user = await _identityService.GetFullProfile(userId.ToString());
             if (user == null)
             {
                 return NotFound();
@@ -48,19 +48,35 @@ namespace Bank.API.WebUI.Controllers
         }
 
         [HttpGet("{userId}")]
-        [Authorize(Policy ="AdminsOnly")]
-        public async Task<IActionResult> ProfileInfo([FromRoute] Guid? userId)
+        public async Task<IActionResult> CroppedProfileInfo([FromRoute] Guid? userId)
         {
             if (userId == null)
             {
                 return NotFound();
             }
-            ProfileDto? user = await _identityService.GetProfile(userId.ToString());
+            CroppedProfileDto? user = await _identityService.GetCroppedProfile(userId.ToString());
             if (user == null)
             {
                 return NotFound();
             }
-            user.Role = User.FindFirst(ClaimTypes.Role)?.Value;
+
+            return Ok(user);
+        }
+
+
+        [HttpGet("{userId}")]
+        [Authorize(Policy ="AdminsOnly")]
+        public async Task<IActionResult> FullProfileInfo([FromRoute] Guid? userId)
+        {
+            if (userId == null)
+            {
+                return NotFound();
+            }
+            ProfileDto? user = await _identityService.GetFullProfile(userId.ToString());
+            if (user == null)
+            {
+                return NotFound();
+            }
 
             return Ok(user);
         }
@@ -85,7 +101,7 @@ namespace Bank.API.WebUI.Controllers
                 return BadRequest(result.ErrorMessage);
             }
 
-            ProfileDto? updatedProfile = await _identityService.GetProfile(profile.Id.ToString());
+            ProfileDto? updatedProfile = await _identityService.GetFullProfile(profile.Id.ToString());
             updatedProfile.Role = User.FindFirst(ClaimTypes.Role)?.Value;
 
             return Ok(updatedProfile);

@@ -31,7 +31,7 @@
                             </div>
                         </div>
 
-                        <button class="open-profile">Open Profile</button>
+                        <a [routerLink]="['/clients/profile', user.id]" class="open-profile" >Open Profile</a>
 
                     </div>
                 }
