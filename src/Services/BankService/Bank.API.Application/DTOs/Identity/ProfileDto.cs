@@ -23,6 +23,12 @@ namespace Bank.API.Application.DTOs.Identity
 
         public string? Role { get; set; }
 
+        public string? JobTitle { get; set; }
+
+        public string? JobCategory { get; set; }
+
+        public double? Salary { get; set; }
+
         public bool? IsVerified { get; set; }
 
         public string? PhoneNumber { get; set; }

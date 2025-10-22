@@ -11,7 +11,7 @@
                 <a href="#">{{'Deposits' | translate}}</a>
                 <a href="#">{{'Credits' | translate}}</a>
                 <a href="#">{{'Clients' | translate}}</a>
-                <a href="#">{{'Employees' | translate}}</a>
+                <a [routerLink]="['/employees']" routerLinkActive="active">{{'Employees' | translate}}</a>
                 <a [routerLink]="['/vacancies']" routerLinkActive="active">{{'Vacancies' | translate}}</a>
                 <a [routerLink]="['/currency-rates']" routerLinkActive="active">{{'CurrencyRates' | translate}}</a>
             </nav>
@@ -41,7 +41,7 @@
         <a href="#">{{'Deposits' | translate}}</a>
         <a href="#">{{'Credits' | translate}}</a>
         <a href="#">{{'Clients' | translate}}</a>
-        <a href="#">{{'Employees' | translate}}</a>
+        <a [routerLink]="['/employees']" routerLinkActive="active">{{'Employees' | translate}}</a>
         <a [routerLink]="['/vacancies']" routerLinkActive="active">{{'Vacancies' | translate}}</a>
         <a [routerLink]="['/currency-rates']" routerLinkActive="active">{{'CurrencyRates' | translate}}</a>
     </aside>

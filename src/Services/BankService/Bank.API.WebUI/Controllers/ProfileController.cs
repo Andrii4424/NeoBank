@@ -1,6 +1,7 @@
 ﻿using Bank.API.Application.DTOs.Identity;
 using Bank.API.Application.DTOs.Users.Vacancies;
 using Bank.API.Application.Helpers.HelperClasses;
+using Bank.API.Application.Helpers.HelperClasses.Filters.User;
 using Bank.API.Application.ServiceContracts;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.Users;
 using Bank.API.Domain.Entities.Identity;
@@ -46,7 +47,8 @@ namespace Bank.API.WebUI.Controllers
             return Ok(user);
         }
 
-        [HttpGet]
+        [HttpGet("{userId}")]
+        [Authorize(Policy = "AdminsOnly")]
         public async Task<IActionResult> ProfileInfo([FromRoute] Guid? userId)
         {
             if (userId == null)
@@ -61,6 +63,18 @@ namespace Bank.API.WebUI.Controllers
             user.Role = User.FindFirst(ClaimTypes.Role)?.Value;
 
             return Ok(user);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Users([FromQuery] UserFilter filters)
+        {
+            return Ok(await _identityService.GetUsersAsync(filters));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Employees([FromQuery] UserFilter filters)
+        {
+            return Ok(await _identityService.GetEmployeesAsync(filters));
         }
 
         [HttpPost]
@@ -93,7 +107,5 @@ namespace Bank.API.WebUI.Controllers
 
             return Ok();
         }
-
-
     }
 }

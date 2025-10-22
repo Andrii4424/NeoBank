@@ -1,9 +1,14 @@
 ﻿using AutoMapper;
 using Bank.API.Application.DTO;
+using Bank.API.Application.DTOs.BankProducts;
 using Bank.API.Application.DTOs.Identity;
+using Bank.API.Application.DTOs.Users;
 using Bank.API.Application.DTOs.Users.Vacancies;
 using Bank.API.Application.Helpers.HelperClasses;
+using Bank.API.Application.Helpers.HelperClasses.Filters;
+using Bank.API.Application.Helpers.HelperClasses.Filters.User;
 using Bank.API.Application.ServiceContracts;
+using Bank.API.Domain.Entities.Cards;
 using Bank.API.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -43,6 +48,65 @@ namespace Bank.API.Application.Services
             _mapper = mapper;
             _env = env;
             _logger = logger;
+        }
+        //Get users
+        public async Task<PageResult<ProfileDto>> GetUsersAsync(UserFilter filters) {
+            _logger.LogInformation("Getting users page");
+
+            IQueryable<ApplicationUser> query = _userManager.Users;
+
+            return await GetUsersPageAsync(filters, query);
+        }
+
+        public async Task<PageResult<ProfileDto>> GetEmployeesAsync(UserFilter filters) {
+            _logger.LogInformation("Getting employees page");
+            IQueryable<ApplicationUser> query = _userManager.Users;
+
+            // Находим ID всех пользователей с этой ролью
+            IList<ApplicationUser> admins = await _userManager.GetUsersInRoleAsync("Admin");
+
+            IEnumerable<Guid> adminsId = admins.Select(u=> u.Id); 
+
+            query = query.Where(u => adminsId.Contains(u.Id));
+
+            return await GetUsersPageAsync(filters,query); 
+        }
+
+        private async Task<PageResult<ProfileDto>> GetUsersPageAsync(UserFilter filters, IQueryable<ApplicationUser> query)
+        {
+            filters.PageNumber = filters.PageNumber ?? 1;
+            FiltersDto<ApplicationUser> filtersDto = filters.ToGeneralFilters();
+
+            if (filtersDto.SearchFilter != null) query = query.Where(filtersDto.SearchFilter);
+            if (filtersDto.Filters != null)
+            {
+                filtersDto.Filters = filtersDto.Filters.Where(v => v != null).ToList();
+                foreach (var filter in filtersDto.Filters)
+                {
+                    query = query.Where(filter);
+                }
+            }
+            if (filtersDto.SortValue != null)
+            {
+                query = filtersDto.Ascending ? query.OrderBy(filtersDto.SortValue).ThenBy(obj => obj.Id) :
+                    query.OrderByDescending(filtersDto.SortValue).ThenBy(obj => obj.Id);
+            }
+            else
+            {
+                query = query.OrderBy(obj => obj.Id);
+            }
+
+            List<ApplicationUser> users = await query
+                .Skip((filtersDto.PageNumber.Value - 1) * filtersDto.PageSize.Value)
+                .Take(filtersDto.PageSize.Value)
+                .ToListAsync();
+
+            int elementsCount = await query
+                .CountAsync();
+            PageResult<ProfileDto> pageResult = new PageResult<ProfileDto>(_mapper.Map<List<ProfileDto>>(users), elementsCount,
+                filters.PageNumber.Value, filters.PageSize.Value);
+
+            return pageResult;
         }
 
         //Auth

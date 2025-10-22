@@ -19,6 +19,7 @@ import { UserCardInfo } from './pages/cards/users/user-card-info/user-card-info'
 import { Vacancies } from './pages/users/vacancies/vacancies/vacancies';
 import { AddVacancy } from './pages/users/vacancies/add-vacancy/add-vacancy';
 import { UpdateVacancy } from './pages/users/vacancies/update-vacancy/update-vacancy';
+import { Employees } from './pages/users/employees/employees';
 
 export const routes: Routes = [
     {path: '', component: Layout, children: [
@@ -37,6 +38,7 @@ export const routes: Routes = [
         {path: 'vacancies', component: Vacancies},
         {path: 'vacancies/add', component: AddVacancy, canActivate: [adminGuard]},
         {path: 'vacancies/update/:id', component: UpdateVacancy, canActivate: [adminGuard]},
+        {path: 'employees', component: Employees},
 
     ]},
     {path: 'login', component: Login},
