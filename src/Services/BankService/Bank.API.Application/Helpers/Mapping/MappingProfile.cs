@@ -2,7 +2,7 @@
 using Bank.API.Application.DTO;
 using Bank.API.Application.DTOs.BankProducts;
 using Bank.API.Application.DTOs.Identity;
-using Bank.API.Application.DTOs.Users;
+using Bank.API.Application.DTOs.Users.Cards;
 using Bank.API.Application.DTOs.Users.Vacancies;
 using Bank.API.Domain.Entities;
 using Bank.API.Domain.Entities.Cards;
@@ -39,7 +39,7 @@ namespace Bank.API.Application.Helpers.Mapping
             //UserCards
             CreateMap<UserCardsEntity, UserCardsDto>();
             CreateMap<UserCardsDto, UserCardsEntity>();
-
+            CreateMap<UserCardsEntity, CroppedUserCardsDto>();
 
             //CardTariffs
             CreateMap<CardTariffsEntity, CardTariffsDto>();

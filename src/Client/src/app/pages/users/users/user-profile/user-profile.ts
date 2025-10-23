@@ -6,10 +6,11 @@ import { ICroppedProfile } from '../../../../data/interfaces/auth/cropped-profil
 import { ActivatedRoute } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 import { Loading } from "../../../../common-ui/loading/loading";
+import { Cards } from "../cards/cards";
 
 @Component({
   selector: 'app-user-profile',
-  imports: [AsyncPipe, Loading],
+  imports: [AsyncPipe, Loading, Cards],
   templateUrl: './user-profile.html',
   styleUrl: './user-profile.scss'
 })

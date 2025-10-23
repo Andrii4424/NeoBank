@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Bank.API.Application.DTOs.BankProducts;
-using Bank.API.Application.DTOs.Users;
 using Bank.API.Application.DTOs.Users.CardOperations;
+using Bank.API.Application.DTOs.Users.Cards;
 using Bank.API.Application.Helpers.HelperClasses;
 using Bank.API.Application.Helpers.HelperClasses.Filters;
 using Bank.API.Application.Helpers.HelperClasses.Filters.BankProducts;
@@ -64,6 +64,33 @@ namespace Bank.API.Application.Services.BankServices.Users
 
             _logger.LogInformation("User cards page successfully getted, userId: {userId}", userId);
             return pageResult;
+        }
+
+        public async Task<List<UserCardsDto>?> GetUnfiltredUserCardsAsync(Guid userId)
+        {
+            _logger.LogInformation("Getting user cards userId: {userId}", userId);
+            await ExpirationStatusCheckerAsync(userId, null);
+
+            List<UserCardsDto>? userCards = _mapper.Map<List<UserCardsDto>>(await _userCardsRepository.GetUnfiltredUserCardsAsync(userId));
+            List<CardTariffsDto> cardTariffs = _mapper.Map<List<CardTariffsDto>>(await _cardTariffsRepository.GetAllValuesAsync());
+            foreach (UserCardsDto card in userCards)
+            {
+                card.CardTariffs = cardTariffs.FirstOrDefault(ct => ct.Id == card.CardTariffId);
+            }
+            return userCards;
+        }
+
+        public async Task<List<CroppedUserCardsDto>?> GetUnfiltredCroppedUserCardsAsync(Guid userId)
+        {
+            _logger.LogInformation("Getting cropped user cards userId: {userId}", userId);
+
+            List<CroppedUserCardsDto>? userCards = _mapper.Map<List<CroppedUserCardsDto>>(await _userCardsRepository.GetUnfiltredUserCardsAsync(userId));
+            List<CardTariffsDto> cardTariffs = _mapper.Map<List<CardTariffsDto>>(await _cardTariffsRepository.GetAllValuesAsync());
+            foreach (CroppedUserCardsDto card in userCards)
+            {
+                card.CardTariffs = cardTariffs.FirstOrDefault(ct => ct.Id == card.CardTariffId);
+            }
+            return userCards;
         }
 
         public async Task<UserCardsDto?> GetCardByIdAsync(Guid cardId)

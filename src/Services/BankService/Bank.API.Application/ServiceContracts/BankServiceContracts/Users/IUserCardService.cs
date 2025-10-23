@@ -1,6 +1,6 @@
 ﻿using Bank.API.Application.DTOs.BankProducts;
-using Bank.API.Application.DTOs.Users;
 using Bank.API.Application.DTOs.Users.CardOperations;
+using Bank.API.Application.DTOs.Users.Cards;
 using Bank.API.Application.Helpers.HelperClasses;
 using Bank.API.Application.Helpers.HelperClasses.Filters.User;
 using Bank.API.Domain.Entities.Cards;
@@ -29,5 +29,7 @@ namespace Bank.API.Application.ServiceContracts.BankServiceContracts.Users
         public Task<double> GetP2PComissionByUserCardId(Guid cardId);
         public Task<TransactionDto> UpdateBalanceAfterTransactionAsync(TransactionDto? transaction);
         public Task<Guid?> GetCardIdByCardNumberAsync(string cardNumber);
+        public Task<List<UserCardsDto>?> GetUnfiltredUserCardsAsync(Guid userId);
+        public Task<List<CroppedUserCardsDto>?> GetUnfiltredCroppedUserCardsAsync(Guid userId);
     }
 }

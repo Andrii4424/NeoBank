@@ -7,6 +7,7 @@ import { Params } from '@angular/router';
 import { IAddFunds } from '../../../interfaces/bank/bank-products/cards/add-funds-interface';
 import { IExchangeCurrency } from '../../../interfaces/bank/bank-products/cards/exchange-currency-interface';
 import { CardStatus } from '../../../enums/card-status';
+import { ICroppedUserCard } from '../../../interfaces/bank/bank-products/cards/cropped-user-cards-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,12 @@ export class UserCardsService {
 
   getMyCards(params: Params){
     return this.http.get<IPageResult<IUserCards>>(`${this.baseUrl}GetMyCards`, {params});
+  }
+  getUserFullCards(userId: string){
+    return this.http.get<IUserCards[]>(`${this.baseUrl}GetUserCards/${userId}`);
+  }
+  getUserCroppedCards(userId: string){
+    return this.http.get<ICroppedUserCard[]>(`${this.baseUrl}GetCroppedUserCards/${userId}`);
   }
 
   createCard(cardDto: ICreateCard){

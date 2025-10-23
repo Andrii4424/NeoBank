@@ -13,7 +13,6 @@ namespace Bank.API.Infrastructure.Repository.Users
     public class UserRepository : IUserRepository
     {
         private readonly BankAppContext _context;
-        //private readonly DbSet<T> _dbSet;
 
         public UserRepository(BankAppContext context) { 
             _context = context;

@@ -910,7 +910,32 @@ a.chosen-child-link::after {
   align-items: flex-end;
   gap: 8px;
 }
+.card-link {
+  position: relative; 
+  overflow: hidden;
+}
+.card-link.blocked::after,
+.card-link.expired::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    padding: 3px 0;
+}
 
+.card-link.blocked::after{
+    background: rgba(255, 0, 0, 0.7);
+    content: "BLOCKED"; 
+}
+
+.card-link.expired::after {
+    content: "EXPIRED";
+    background: rgba(128, 128, 128, 0.7);
+}
 
 .visa{
   height: 20px !important;
@@ -936,13 +961,15 @@ a.chosen-child-link::after {
 }
 
 @media (max-width:420px) {
-
   .card-link {
     width: 300px;
     height: 160px;
     border-radius: 12px;
     padding: 14px 18px;
     cursor: pointer;
+  }
+  .card-link .card-number{
+	bottom: 50px;
   }
 }
 
@@ -1116,4 +1143,89 @@ a.chosen-child-link::after {
 		padding: 8px 12px;
 
 	}
+}
+
+.product-wrap{
+	display: flex;
+	flex-direction: column;
+	width: min(72%, 880px);
+}
+
+.product-section{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #fff;
+	border-radius: 8px;
+	border: 1px solid var(--dark-gray-background);
+	width: 100%;
+	padding: 20px 24px;
+}
+.product-section .cards-info {
+	display: grid;
+	grid-template-columns: repeat(2, 340px); 
+	row-gap: 60px; 
+	column-gap: 100px;
+	justify-content: center;
+	margin: 0 auto;
+	max-width: 760px;
+}
+.product-section .card-link {
+	width: 340px;
+    height: 180px;
+    border-radius: 12px;
+    padding: 16px 20px;
+    cursor: pointer;
+}
+
+@media (max-width: 1260px) {
+	.product-section .cards-info {
+		row-gap: 40px;  
+		column-gap: 80px;
+	}
+}
+@media (max-width: 1140px) {
+	.product-section .cards-info {
+		row-gap: 30px;  
+		column-gap: 40px;
+	}
+	.product-section{
+		padding: 20px 12px;
+	}
+	.product-wrap {
+		width: 80%;
+	}
+}
+@media (max-width: 1024px) {
+	.product-wrap {
+		width: 84%;
+	}
+}
+
+@media (max-width: 960px) {
+	.product-section .cards-info {
+		grid-template-columns: repeat(1, 340px); 
+	}
+}
+
+@media (max-width: 768px) {
+	.product-wrap {
+		width: 92%;
+	}
+}
+
+@media (max-width:420px) {
+	.product-section .cards-info {
+		grid-template-columns: repeat(1, 300px); 
+	}
+  .product-section .card-link {
+    width: 300px;
+    height: 160px;
+    border-radius: 12px;
+    padding: 14px 18px;
+    cursor: pointer;
+  }
+  .product-section .card-link .card-number{
+	bottom: 50px;
+  }
 }

@@ -1,135 +1,151 @@
-@if(isAdmin){
-    @if($userFullInfo | async; as profile){
-        <h1 class="heading user-profile-header">User Profile</h1>
-        
-        <div class="profile-section">
-            <div class="profile-divider">
-                <div class="logo-section">
-                    <div class="profile-img">
-                        @if(profile?.avatarPath!==null && profile?.avatarPath!==undefined){
-                            <img class="profile-logo" [src]="baseUrl+profile?.avatarPath" alt="profile">
-                        }
-                        @else {
-                            <img class="profile-logo" [src]="baseUrl+'uploads/default-photo/profile-photo.svg'" alt="profile">
-                        }
+<div class="profile-wrap">
+    @if(isAdmin){
+        @if($userFullInfo | async; as profile){
+            <div class="profile-section-wrap">
+                <h1 class="heading user-profile-header">User Profile</h1>
+                <div class="profile-section">
+                    <div class="profile-divider">
+                        <div class="logo-section">
+                            <div class="profile-img">
+                                @if(profile?.avatarPath!==null && profile?.avatarPath!==undefined){
+                                    <img class="profile-logo" [src]="baseUrl+profile?.avatarPath" alt="profile">
+                                }
+                                @else {
+                                    <img class="profile-logo" [src]="baseUrl+'uploads/default-photo/profile-photo.svg'" alt="profile">
+                                }
+                            </div>
+
+                            <div class="user-titles">
+                                @if(profile?.role===null){
+                                    <h4 class="role">User</h4>
+                                }
+                                @else{
+                                    <h4 class="role">{{profile?.role}}</h4>
+                                }
+                                @if (profile?.isVerified ) {
+                                    <h4 class="verified">Verified</h4>
+                                }
+                                @else {
+                                    <h4 class="not-verified">Not Verified</h4>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="profile-info">
+                            <h2 class="subheading">Personal Information</h2>
+
+                            <div class="perosonal-info">
+                                <label class="description-without-lh" for="firstName">First Name</label>
+                                <input name="firstName" id="firstName" disabled [value]="profile.firstName">
+
+                                <label class="description-without-lh" for="surname">Surname</label>
+                                <input name="surname" id="surname" disabled [value]="profile.surname">
+
+                                <label class="description-without-lh" for="patronymic">Patronymic</label>
+                                <input name="patronymic" id="patronymic" type="text" disabled [value]="profile.patronymic">
+
+                                <label class="description-without-lh" for="dateOfBirth">Date Of Birth</label>
+                                <input name="dateOfBirth" id="dateOfBirth" type="date" disabled [value]="profile.dateOfBirth">
+                                
+                                <label class="description-without-lh" for="taxId">Tax Id</label>
+                                <input name="taxId" id="taxId" type="text" disabled [value]="profile.taxId">
+                            </div>
+
+                            <h2 class="subheading">Contact Information</h2>
+                            <div class="contact-info">
+                                <label class="description-without-lh" for="email">Email</label>
+                                <input name="email" id="email" type="email" disabled [value]="profile.email">
+
+                                <label class="description-without-lh" for="phoneNumber">Financal Phone Number</label>
+                                <input name="phoneNumber" id="phoneNumber" type="tel" disabled [value]="profile.phoneNumber">
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="user-titles">
-                        @if(profile?.role===null){
-                            <h4 class="role">User</h4>
-                        }
-                        @else{
-                            <h4 class="role">{{profile?.role}}</h4>
-                        }
-                        @if (profile?.isVerified ) {
-                            <h4 class="verified">Verified</h4>
-                        }
-                        @else {
-                            <h4 class="not-verified">Not Verified</h4>
-                        }
-                    </div>
                 </div>
+            </div>            
 
-                <div class="profile-info">
-                    <h2 class="subheading">Personal Information</h2>
-
-                    <div class="perosonal-info">
-                        <label class="description-without-lh" for="firstName">First Name</label>
-                        <input name="firstName" id="firstName" disabled [value]="profile.firstName">
-
-                        <label class="description-without-lh" for="surname">Surname</label>
-                        <input name="surname" id="surname" disabled [value]="profile.surname">
-
-                        <label class="description-without-lh" for="patronymic">Patronymic</label>
-                        <input name="patronymic" id="patronymic" type="text" disabled [value]="profile.patronymic">
-
-                        <label class="description-without-lh" for="dateOfBirth">Date Of Birth</label>
-                        <input name="dateOfBirth" id="dateOfBirth" type="date" disabled [value]="profile.dateOfBirth">
-                        
-                        <label class="description-without-lh" for="taxId">Tax Id</label>
-                        <input name="taxId" id="taxId" type="text" disabled [value]="profile.taxId">
-                    </div>
-
-                    <h2 class="subheading">Contact Information</h2>
-                    <div class="contact-info">
-                        <label class="description-without-lh" for="email">Email</label>
-                        <input name="email" id="email" type="email" disabled [value]="profile.email">
-
-                        <label class="description-without-lh" for="phoneNumber">Financal Phone Number</label>
-                        <input name="phoneNumber" id="phoneNumber" type="tel" disabled [value]="profile.phoneNumber">
-                    </div>
-                </div>
-            </div>
-
-        </div>
+        }
+        @else {
+            <app-loading></app-loading>
+        }
     }
     @else {
-        <app-loading></app-loading>
-    }
-}
-@else {
-    @if($userCroppedInfo | async; as profile){
-        <h1 class="heading user-profile-header">User Profile</h1>
-        <div class="profile-section">
-            <div class="profile-divider">
-                <div class="logo-section">
-                    <div class="profile-img">
-                        @if(profile?.avatarPath!==null && profile?.avatarPath!==undefined){
-                            <img class="profile-logo" [src]="baseUrl+profile?.avatarPath" alt="profile">
-                        }
-                        @else {
-                            <img class="profile-logo" [src]="baseUrl+'uploads/default-photo/profile-photo.svg'" alt="profile">
-                        }
+        @if($userCroppedInfo | async; as profile){
+            <div class="profile-section-wrap">
+                <h1 class="heading user-profile-header">User Profile</h1>
+                <div class="profile-section">
+                    <div class="profile-divider">
+                        <div class="logo-section">
+                            <div class="profile-img">
+                                @if(profile?.avatarPath!==null && profile?.avatarPath!==undefined){
+                                    <img class="profile-logo" [src]="baseUrl+profile?.avatarPath" alt="profile">
+                                }
+                                @else {
+                                    <img class="profile-logo" [src]="baseUrl+'uploads/default-photo/profile-photo.svg'" alt="profile">
+                                }
+                            </div>
+
+                            <div class="user-titles">
+                                @if(profile?.role===null){
+                                    <h4 class="role">User</h4>
+                                }
+                                @else{
+                                    <h4 class="role">{{profile?.role}}</h4>
+                                }
+                                @if (profile?.isVerified ) {
+                                    <h4 class="verified">Verified</h4>
+                                }
+                                @else {
+                                    <h4 class="not-verified">Not Verified</h4>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="profile-info">
+                            <h2 class="subheading">Personal Information</h2>
+
+                            <div class="perosonal-info">
+                                <label class="description-without-lh" for="firstName">First Name</label>
+                                <input name="firstName" id="firstName" disabled [value]="profile.firstName">
+
+                                <label class="description-without-lh" for="surname">Surname</label>
+                                <input name="surname" id="surname" disabled [value]="profile.surname">
+
+                                <label class="description-without-lh" for="patronymic">Patronymic</label>
+                                <input name="patronymic" id="patronymic" type="text" disabled [value]="profile.patronymic">
+
+                                <label class="description-without-lh" for="dateOfBirth">Date Of Birth</label>
+                                <input name="dateOfBirth" id="dateOfBirth" type="date" disabled [value]="profile.dateOfBirth">
+                                
+                            </div>
+
+                            <h2 class="subheading">Contact Information</h2>
+                            <div class="contact-info">
+                                <label class="description-without-lh" for="email">Email</label>
+                                <input name="email" id="email" type="email" disabled [value]="profile.email">
+
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="user-titles">
-                        @if(profile?.role===null){
-                            <h4 class="role">User</h4>
-                        }
-                        @else{
-                            <h4 class="role">{{profile?.role}}</h4>
-                        }
-                        @if (profile?.isVerified ) {
-                            <h4 class="verified">Verified</h4>
-                        }
-                        @else {
-                            <h4 class="not-verified">Not Verified</h4>
-                        }
-                    </div>
-                </div>
-
-                <div class="profile-info">
-                    <h2 class="subheading">Personal Information</h2>
-
-                    <div class="perosonal-info">
-                        <label class="description-without-lh" for="firstName">First Name</label>
-                        <input name="firstName" id="firstName" disabled [value]="profile.firstName">
-
-                        <label class="description-without-lh" for="surname">Surname</label>
-                        <input name="surname" id="surname" disabled [value]="profile.surname">
-
-                        <label class="description-without-lh" for="patronymic">Patronymic</label>
-                        <input name="patronymic" id="patronymic" type="text" disabled [value]="profile.patronymic">
-
-                        <label class="description-without-lh" for="dateOfBirth">Date Of Birth</label>
-                        <input name="dateOfBirth" id="dateOfBirth" type="date" disabled [value]="profile.dateOfBirth">
-                        
-                    </div>
-
-                    <h2 class="subheading">Contact Information</h2>
-                    <div class="contact-info">
-                        <label class="description-without-lh" for="email">Email</label>
-                        <input name="email" id="email" type="email" disabled [value]="profile.email">
-
-                    </div>
                 </div>
             </div>
-
-        </div>
+        }
+        @else {
+            <app-loading></app-loading>
+        }
     }
-    @else {
-        <app-loading></app-loading>
-    }
-}
 
-<h1 class="heading">User Cards</h1>
+
+    <div class="products">
+        <app-cards></app-cards>
+        @if(isAdmin){
+            <!--TO DO:
+                Deposits component
+                Credits component
+            -->
+        }
+    </div>
+</div>
+

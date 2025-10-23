@@ -1,6 +1,6 @@
 ﻿using Bank.API.Application.DTOs.BankProducts;
-using Bank.API.Application.DTOs.Users;
 using Bank.API.Application.DTOs.Users.CardOperations;
+using Bank.API.Application.DTOs.Users.Cards;
 using Bank.API.Application.Helpers.HelperClasses;
 using Bank.API.Application.Helpers.HelperClasses.Filters.User;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.BankProducts;
@@ -45,6 +45,20 @@ namespace Bank.API.WebUI.Controllers.BankProducts
 
             return Ok(cards);
         }
+
+        [HttpGet("{userId}")]
+        [Authorize(Policy = "AdminsOnly")]
+        public async Task<IActionResult> GetUserCards([FromRoute] Guid userId)
+        {
+            return Ok(await _userCardService.GetUnfiltredUserCardsAsync(userId));
+        }
+
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetCroppedUserCards([FromRoute] Guid userId)
+        {
+            return Ok(await _userCardService.GetUnfiltredCroppedUserCardsAsync(userId));
+        }
+
 
         [HttpGet("{cardId}")]
         public async Task<IActionResult> GetUsersCardInfo(Guid cardId)

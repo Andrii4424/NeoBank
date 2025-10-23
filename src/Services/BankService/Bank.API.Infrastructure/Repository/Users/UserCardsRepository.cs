@@ -48,6 +48,12 @@ namespace Bank.API.Infrastructure.Repository.Users
                 .ToListAsync();
         }
 
+
+        public async Task<List<UserCardsEntity>> GetUnfiltredUserCardsAsync(Guid userId)
+        {
+            return await _dbSet.Where(uc=>uc.UserId == userId).ToListAsync();
+        }
+
         public async Task<List<UserCardsEntity>> GetAllExpiredUserCardsAsync(Guid userId)
         {
             return await _dbSet.Where(uc => uc.UserId == userId && uc.ExpiryDate<DateOnly.FromDateTime(DateTime.Now))

@@ -19,5 +19,6 @@ namespace Bank.API.Domain.RepositoryContracts.Users
         public Task<int> GetUserCardsCountAsync(Guid userId, Expression<Func<UserCardsEntity, bool>>? searchFilter,
             List<Expression<Func<UserCardsEntity, bool>>>? filters);
         public Task<Guid?> GetCardIdByCardNumberAsync(string cardNumber);
+        public Task<List<UserCardsEntity>> GetUnfiltredUserCardsAsync(Guid userId);
     }
 }
