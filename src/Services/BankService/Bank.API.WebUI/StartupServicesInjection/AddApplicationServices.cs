@@ -129,6 +129,7 @@ namespace Bank.API.WebUI.StartupServicesInjection
             services.AddScoped<IRabbitMqProducerService, RabbitMqProducerService>();
             services.AddScoped<IVacanciesService, VacanciesService>();
             services.AddScoped<ISmtpService, SmtpService>();
+            services.AddScoped<IRecoveryPasswordService, RecoveryPasswordService>();
 
 
             //Background Services

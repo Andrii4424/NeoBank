@@ -40,10 +40,9 @@ namespace Bank.API.Application.Services.Auth
         private readonly IMapper _mapper;
         private readonly ILogger<IdentityService> _logger;
         private readonly IUserRepository _userRepository;
-        private readonly ISmtpService _smtpService;
 
         public IdentityService(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager, IConfiguration configuration, 
-            IMapper mapper, IWebHostEnvironment env, ILogger<IdentityService> logger, IUserRepository userRepository, ISmtpService smtpService)
+            IMapper mapper, IWebHostEnvironment env, ILogger<IdentityService> logger, IUserRepository userRepository)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -52,7 +51,6 @@ namespace Bank.API.Application.Services.Auth
             _env = env;
             _logger = logger;
             _userRepository = userRepository;
-            _smtpService = smtpService;
         }
 
         //Auth
@@ -170,105 +168,7 @@ namespace Bank.API.Application.Services.Auth
             return await GetAccessToken(user);
         }
 
-        public async Task<OperationResult> SetAndSendRefreshPasswordCodeAsync(string userEmail)
-        {
-            _logger.LogInformation("User trying {email} change password", userEmail);
-            try
-            {
-                ApplicationUser user = await GetUserByEmailAsync(userEmail);
 
-                var bytes = new byte[4];
-                RandomNumberGenerator.Fill(bytes);
-                var value = BitConverter.ToUInt32(bytes, 0) % 900000 + 100000;
-                user.RefreshCode = value.ToString();
-                user.RefreshCodeExpiryTime = DateTime.UtcNow.AddMinutes(10);
-                await _userManager.UpdateAsync(user);               
-
-                await _smtpService.SendAsync(userEmail, "NeoBank – password recovery", $"<h3>Your password reset code:</h3><p><b>{user.RefreshCode}</b></p>");
-
-                return OperationResult.Ok();
-            }
-            catch (Exception ex) {
-                _logger.LogInformation("Error try change user {email} password. {errorMessage}", userEmail, ex.Message);
-
-                return OperationResult.Error(ex.Message);
-            }
-        }
-
-        public async Task<bool> ValidateRefreshPasswordCodeAsync(string userEmail, string code)
-        {
-            _logger.LogInformation("Validating refresh password code for user {userEmail}", userEmail);
-            try
-            {
-                ApplicationUser user = await GetUserByEmailAsync(userEmail);
-                if(code == user.RefreshCode && user.RefreshCodeExpiryTime>DateTime.UtcNow)
-                {
-                    _logger.LogInformation("Success Validating refresh password code for user {userEmail}", userEmail);
-                    return true;
-                }
-                else if (user.RefreshCodeExpiryTime < DateTime.UtcNow)
-                {
-                    await DeleteRefreshPasswordCodeAsync(userEmail);
-                }
-                _logger.LogInformation("Failed Validating refresh password code for user {userEmail}", userEmail);
-                return false;
-            }
-            catch 
-            {
-                _logger.LogInformation("Failed Validating refresh password code for user {userEmail}", userEmail);
-                return false;
-            }
-        }
-
-        public async Task<OperationResult> UpdatePasswordAsync(ChangePasswordDto changePasswordDetails)
-        {
-            _logger.LogInformation("Changing password for user {userEmail}", changePasswordDetails.Email);
-
-            try
-            {
-                ApplicationUser user = await GetUserByEmailAsync(changePasswordDetails.Email);
-                if (changePasswordDetails.RefreshCode == user.RefreshCode)
-                {
-                    await _userManager.RemovePasswordAsync(user);
-                    IdentityResult result = await _userManager.AddPasswordAsync(user, changePasswordDetails.NewPassword);
-                    if (!result.Succeeded) { 
-                        _logger.LogInformation("Failed changing password for user {userEmail}. Password is not safe", changePasswordDetails.Email);
-                        return OperationResult.Error(result.Errors.First().Description);
-                    }
-                    await DeleteRefreshPasswordCodeAsync(changePasswordDetails.Email);
-                    _logger.LogInformation("Success changing password for user {userEmail}", changePasswordDetails.Email);
-                    return OperationResult.Ok();
-
-                }
-                _logger.LogInformation("Failed changing password for user {userEmail}. Refresh code is not valid, please try again", changePasswordDetails.Email);
-
-                return OperationResult.Error("Refresh code is not valid, please try again");
-
-            }
-            catch (Exception ex)
-            {
-                _logger.LogInformation("Failed changing password for user {userEmail}. {errorMessage}", changePasswordDetails.Email, ex.Message);
-
-                return OperationResult.Error(ex.Message);
-            }
-        }
-
-        private async Task DeleteRefreshPasswordCodeAsync(string email)
-        {
-            _logger.LogInformation("Delete refresh code and date for user: {email}", email);
-            try
-            {
-                ApplicationUser user = await GetUserByEmailAsync(email);
-                user.RefreshCode = null;
-                user.RefreshCodeExpiryTime = null;
-                await _userManager.UpdateAsync(user);
-                _logger.LogInformation("Success delete refresh code and date for user: {email}", email);
-
-            }
-            catch (Exception ex){ 
-                _logger.LogInformation("Failed delete refresh code and date for user: {email}. {errorMessage}", email, ex.Message);
-            }
-        }
 
         private string GenerateRefreshToken()
         {

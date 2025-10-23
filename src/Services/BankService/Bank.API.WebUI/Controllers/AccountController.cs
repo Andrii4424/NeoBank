@@ -19,12 +19,14 @@ namespace Bank.API.WebUI.Controllers
     public class AccountController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IRecoveryPasswordService _recoveryPasswordService;
         private readonly IIdentityService _identityService;
 
-        public AccountController(UserManager<ApplicationUser> userManager, IIdentityService identityService)
+        public AccountController(UserManager<ApplicationUser> userManager, IIdentityService identityService, IRecoveryPasswordService recoveryPasswordService)
         {
             _userManager = userManager;
             _identityService = identityService;
+            _recoveryPasswordService = recoveryPasswordService;
         }
 
         //Auth
@@ -47,7 +49,7 @@ namespace Bank.API.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> SendRefreshCode([FromBody] ChangePasswordDto changePasswordDetails)
         {
-            OperationResult result = await _identityService.SetAndSendRefreshPasswordCodeAsync(changePasswordDetails.Email);
+            OperationResult result = await _recoveryPasswordService.SetAndSendRefreshPasswordCodeAsync(changePasswordDetails.Email);
             if (!result.Success)
             {
                 return BadRequest(result.ErrorMessage);
@@ -58,7 +60,7 @@ namespace Bank.API.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> ValidateRefreshCode([FromBody] ChangePasswordDto changePasswordDetails)
         {
-            bool result = await _identityService.ValidateRefreshPasswordCodeAsync(changePasswordDetails.Email, changePasswordDetails.RefreshCode);
+            bool result = await _recoveryPasswordService.ValidateRefreshPasswordCodeAsync(changePasswordDetails.Email, changePasswordDetails.RefreshCode);
             if (!result)
             {
                 return BadRequest();
@@ -69,7 +71,7 @@ namespace Bank.API.WebUI.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdatePassword([FromBody] ChangePasswordDto changePasswordDetails)
         {
-            OperationResult result = await _identityService.UpdatePasswordAsync(changePasswordDetails);
+            OperationResult result = await _recoveryPasswordService.UpdatePasswordAsync(changePasswordDetails);
             if (!result.Success)
             {
                 return BadRequest(result.ErrorMessage);

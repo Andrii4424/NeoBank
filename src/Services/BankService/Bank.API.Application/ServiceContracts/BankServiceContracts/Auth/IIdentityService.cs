@@ -27,8 +27,5 @@ namespace Bank.API.Application.ServiceContracts.BankServiceContracts.Auth
         public Task<OperationResult> ApplyForJobAsync(string userId, VacancyDto vacancy);
         public Task<PageResult<ProfileDto>> GetEmployeesAsync(UserFilter filters);
         public Task<PageResult<ProfileDto>> GetUsersAsync(UserFilter filters);
-        public Task<OperationResult> SetAndSendRefreshPasswordCodeAsync(string userEmail);
-        public Task<bool> ValidateRefreshPasswordCodeAsync(string userEmail, string code);
-        public Task<OperationResult> UpdatePasswordAsync(ChangePasswordDto changePasswordDetails);
     }
 }
