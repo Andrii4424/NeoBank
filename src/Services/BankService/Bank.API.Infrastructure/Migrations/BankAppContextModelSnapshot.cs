@@ -316,6 +316,13 @@ namespace Bank.API.Infrastructure.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("RefreshCode")
+                        .HasMaxLength(6)
+                        .HasColumnType("nvarchar(6)");
+
+                    b.Property<DateTime?>("RefreshCodeExpiryTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("RefreshToken")
                         .HasColumnType("nvarchar(max)");
 
@@ -354,7 +361,7 @@ namespace Bank.API.Infrastructure.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("Bank.API.Domain.Entities.Users.Vacancies", b =>
+            modelBuilder.Entity("Bank.API.Domain.Entities.Users.VacancyEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -517,7 +524,7 @@ namespace Bank.API.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Bank.API.Domain.Entities.Users.Vacancies", b =>
+            modelBuilder.Entity("Bank.API.Domain.Entities.Users.VacancyEntity", b =>
                 {
                     b.HasOne("Bank.API.Domain.Entities.BankEntity", "Bank")
                         .WithMany("Vacancies")

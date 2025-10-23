@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,5 +34,11 @@ namespace Bank.API.Domain.Entities.Identity
         public double? Salary { get; set; }
 
         public ICollection<UserCardsEntity> UserCards { get; set; }
+
+        [StringLength(6)]
+        public string? RefreshCode { get; set; }
+
+        public DateTime? RefreshCodeExpiryTime { get; set; }
+
     }
 }

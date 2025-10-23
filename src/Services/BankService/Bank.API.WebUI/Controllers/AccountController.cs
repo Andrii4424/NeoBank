@@ -2,7 +2,7 @@
 using Bank.API.Application.DTOs.Users;
 using Bank.API.Application.DTOs.Users.Vacancies;
 using Bank.API.Application.Helpers.HelperClasses;
-using Bank.API.Application.ServiceContracts;
+using Bank.API.Application.ServiceContracts.BankServiceContracts.Auth;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.Users;
 using Bank.API.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Authorization;
@@ -43,6 +43,40 @@ namespace Bank.API.WebUI.Controllers
                 return BadRequest(result.Errors);
             }
         }
+
+        [HttpPost]
+        public async Task<IActionResult> SendRefreshCode([FromBody] ChangePasswordDto changePasswordDetails)
+        {
+            OperationResult result = await _identityService.SetAndSendRefreshPasswordCodeAsync(changePasswordDetails.Email);
+            if (!result.Success)
+            {
+                return BadRequest(result.ErrorMessage);
+            }
+            return Ok();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ValidateRefreshCode([FromBody] ChangePasswordDto changePasswordDetails)
+        {
+            bool result = await _identityService.ValidateRefreshPasswordCodeAsync(changePasswordDetails.Email, changePasswordDetails.RefreshCode);
+            if (!result)
+            {
+                return BadRequest();
+            }
+            return Ok();
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdatePassword([FromBody] ChangePasswordDto changePasswordDetails)
+        {
+            OperationResult result = await _identityService.UpdatePasswordAsync(changePasswordDetails);
+            if (!result.Success)
+            {
+                return BadRequest(result.ErrorMessage);
+            }
+            return Ok();
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> Login([FromForm] LoginDto loginDto)

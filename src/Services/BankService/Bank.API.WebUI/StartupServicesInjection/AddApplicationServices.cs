@@ -1,10 +1,11 @@
-﻿using Bank.API.Application.Helpers.Mapping;
-using Bank.API.Application.ServiceContracts;
+﻿using Bank.API.Application.DTOs.Users;
+using Bank.API.Application.Helpers.Mapping;
 using Bank.API.Application.ServiceContracts.BankServiceContracts;
+using Bank.API.Application.ServiceContracts.BankServiceContracts.Auth;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.BankProducts;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.Users;
 using Bank.API.Application.ServiceContracts.MessageServices;
-using Bank.API.Application.Services;
+using Bank.API.Application.Services.Auth;
 using Bank.API.Application.Services.BankServices;
 using Bank.API.Application.Services.BankServices.BankProducts;
 using Bank.API.Application.Services.BankServices.Users;
@@ -105,6 +106,9 @@ namespace Bank.API.WebUI.StartupServicesInjection
                 .AddPolicy("AdminsOnly", p => p.RequireRole("Admin"))
                 .AddPolicy("AdminOrUser", p => p.RequireRole("Admin", "User"));
 
+            //Appsettings binding
+            services.Configure<SmtpSettings>(configuration.GetSection("Smtp"));
+
             //Repositories injection
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped(typeof(IBankRepository), typeof(BankRepository));
@@ -124,6 +128,8 @@ namespace Bank.API.WebUI.StartupServicesInjection
             services.AddScoped<IUserCardService, UserCardService>();
             services.AddScoped<IRabbitMqProducerService, RabbitMqProducerService>();
             services.AddScoped<IVacanciesService, VacanciesService>();
+            services.AddScoped<ISmtpService, SmtpService>();
+
 
             //Background Services
             services.AddHostedService<RabbitMqConsumerService>();
