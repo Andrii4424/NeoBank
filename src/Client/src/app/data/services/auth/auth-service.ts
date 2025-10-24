@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { IAccessToken } from '../../interfaces/auth/access-token.interface';
 import { Router } from '@angular/router';
 import { IRole } from '../../interfaces/auth/role-interface';
+import { IRecoveryPassword } from '../../interfaces/auth/recovery-password';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,6 @@ export class AuthService {
 
   accessToken :string | null = null;
   expiresOn :Date | null = null;
-
 
   IsLoggedIn(){
     this.accessToken = this.cookieService.get("accessToken");
@@ -127,6 +127,18 @@ export class AuthService {
         })
       })
     )
+  }
+
+  sendRefreshCode(changePasswordParams: IRecoveryPassword){
+    return this.http.post(`${this.baseUrl}SendRefreshCode`, changePasswordParams);
+  }
+
+  validateRefreshCode(changePasswordParams: IRecoveryPassword){
+    return this.http.post(`${this.baseUrl}ValidateRefreshCode`, changePasswordParams);
+  }
+
+  updatePassword(changePasswordParams: IRecoveryPassword){
+    return this.http.put(`${this.baseUrl}UpdatePassword`, changePasswordParams);
   }
 
   getAccessToken():string |null{

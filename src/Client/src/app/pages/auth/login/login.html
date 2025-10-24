@@ -19,7 +19,7 @@
       </div>
 
       <div class="field error-block">
-        <a class="muted" href="#">Forgot password?</a>
+        <a class="muted" [routerLink]="['/recovery/password']">Forgot password?</a>
 
         <ul class="error-list" [class.disabled]="!displayLoginError()">
           @for (error of loginFormErrorMessage; track $index) {

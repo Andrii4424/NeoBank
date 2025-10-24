@@ -63,7 +63,7 @@ namespace Bank.API.WebUI.Controllers
             bool result = await _recoveryPasswordService.ValidateRefreshPasswordCodeAsync(changePasswordDetails.Email, changePasswordDetails.RefreshCode);
             if (!result)
             {
-                return BadRequest();
+                return BadRequest("Code is not valid");
             }
             return Ok();
         }

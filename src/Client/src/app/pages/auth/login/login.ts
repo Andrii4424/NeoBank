@@ -41,6 +41,7 @@ export class Login {
   });
 
   onSubmit(){
+    this.loginFormErrorMessage = [];
     if(this.loginForm.valid){
       //@ts-ignore
       this.authService.login(this.loginForm.value).subscribe({

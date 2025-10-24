@@ -53,7 +53,7 @@ export class Register {
     }
     else{
       this.displayRegisterError.set(true);
-      this.registerErrorMessage.push("All login fields must be filled in");
+      this.registerErrorMessage.push("All register fields must be filled in");
     }
   }
 }

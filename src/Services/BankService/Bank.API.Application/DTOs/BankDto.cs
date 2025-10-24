@@ -56,7 +56,7 @@ namespace Bank.API.Application.DTO
         public string ContactPhone { get; set; }
 
         [BindNever]
-        public DateOnly EstablishedDate { get; }
+        public DateOnly EstablishedDate { get; set; }
 
         [Required(ErrorMessage = "{0} has to be provided")]
         [StringLength(100, ErrorMessage = "{0} character limit exceeded {1}")]

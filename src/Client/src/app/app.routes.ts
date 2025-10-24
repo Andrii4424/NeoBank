@@ -22,6 +22,7 @@ import { UpdateVacancy } from './pages/users/vacancies/update-vacancy/update-vac
 import { Employees } from './pages/users/employees/employees';
 import { Users } from './pages/users/users/users/users';
 import { UserProfile } from './pages/users/users/user-profile/user-profile';
+import { RecoveryPassword } from './pages/auth/recovery-password/recovery-password';
 
 export const routes: Routes = [
     {path: '', component: Layout, children: [
@@ -43,9 +44,10 @@ export const routes: Routes = [
         {path: 'employees', component: Employees},
         {path: 'clients', component: Users},
         {path: 'clients/profile/:id', component: UserProfile},
-        
+       
     ]},
     {path: 'login', component: Login},
-    {path: 'signup', component: Register}
+    {path: 'signup', component: Register},
+    {path: 'recovery/password', component: RecoveryPassword}
 
 ];
