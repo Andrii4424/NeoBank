@@ -73,6 +73,12 @@ export class RecoveryPasswordForm {
       }
     }
     else{
+        const changeParams: IRecoveryPassword = { 
+          email: this.resetForm.get('email')!.value,
+          refreshCode: this.resetForm.get('refreshCode')!.value,
+          newPassword: this.resetForm.get('newPassword')!.value
+        };
+        console.log(changeParams);
       this.displayResetError.set(true);
       this.resetFormErrorMessage.push("All login fields must be filled in");
     }

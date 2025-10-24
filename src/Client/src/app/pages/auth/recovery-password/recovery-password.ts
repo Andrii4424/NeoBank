@@ -14,10 +14,16 @@ export class RecoveryPassword {
   refreshCodeSended = signal<boolean>(false);
   refreshCodeVerified = signal<boolean>(false);
   refreshEmail: string | null = null;
+  refreshCode: string | null = null;
 
   onRefreshCodeSended(email: string){
     this.refreshCodeSended.set(true);
     this.refreshEmail = email;
+  }
+
+  onRefreshCodeValidated(code: string){
+    this.refreshCodeVerified.set(true);
+    this.refreshCode = code;
   }
 
   onCancelValication(){
