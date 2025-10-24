@@ -107,7 +107,14 @@ namespace Bank.API.WebUI.StartupServicesInjection
                 .AddPolicy("AdminOrUser", p => p.RequireRole("Admin", "User"));
 
             //Appsettings binding
-            services.Configure<SmtpSettings>(configuration.GetSection("Smtp"));
+            services.Configure<SmtpSettings>(options =>
+            {
+                options.Host = Environment.GetEnvironmentVariable("SMTP__HOST");
+                options.Port = int.Parse(Environment.GetEnvironmentVariable("SMTP__PORT") ?? "587");
+                options.User = Environment.GetEnvironmentVariable("SMTP__USER");
+                options.Pass = Environment.GetEnvironmentVariable("SMTP__PASS");
+                options.From = Environment.GetEnvironmentVariable("SMTP__FROM");
+            });
 
             //Repositories injection
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
