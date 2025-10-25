@@ -2,10 +2,11 @@ import { ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, input, 
 import { IFilter } from '../../data/interfaces/filters/filter-interface';
 import { ISort } from '../../data/interfaces/filters/sort-interface';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-search',
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './search.html',
   styleUrl: './search.scss'
 })

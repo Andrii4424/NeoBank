@@ -1,7 +1,7 @@
 <app-search
-    [sortValues]="sortValues"
-    [filterValues]="filterValues"
-    searchPlaceholder="Enter employee name"
+    [sortValues]="(sortValues$ |async) || []"
+    [filterValues]="(filterValues$ | async) || []"
+    [searchPlaceholder]="'EnterEmployeeName'|translate"
     (sortChange)="onSortChange($event)"
     (searchChange)="onSearchChange($event)"
     (filterChange)="onFiltersChange($event)"

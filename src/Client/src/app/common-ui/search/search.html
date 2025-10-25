@@ -2,7 +2,7 @@
     <div class="filters">
         <div class="checkbox">
             <input #allFilters name="filters" id="all" type="checkbox" (click)="deleteFilters()" hidden checked>
-            <label for="all" class="filters-label">All</label>
+            <label for="all" class="filters-label">{{'All' | translate}}</label>
         </div>
         @for(item of filterValues; track $index){
             <div class="checkbox">
@@ -16,7 +16,7 @@
     <div class="search-section">
         <div class="serch-field">
             <input #searchInput type="text" (keyup.enter)="onSearchChange($event)" class="search-input d-block" [placeholder]="searchPlaceholder">
-            <button (click)="onSearchSubmit()" class="search-button">Search</button>
+            <button (click)="onSearchSubmit()" class="search-button">{{'Search' |translate}}</button>
         </div>
 
         <select #sortSelector class="d-block sort" (change)="onSortChange($event)">

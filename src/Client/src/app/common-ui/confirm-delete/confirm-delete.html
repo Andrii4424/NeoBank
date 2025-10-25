@@ -1,11 +1,11 @@
 <div class="overlay">
   <div class="dialog">
-    <h2>Delete {{itemName}}</h2>
-    <p>Are you sure you want to delete the {{itemName}}?</p>
+    <h2>{{'Delete' | translate}} {{itemName}}</h2>
+    <p>{{'DeleteConfirmText' |translate}} {{itemName}}?</p>
 
     <div class="buttons">
-      <button class="cancel" (click)="onCancel()">Cancel</button>
-      <button class="confirm" (click)="onConfirm()">Confirm</button>
+      <button class="cancel" (click)="onCancel()">{{"Cancel" |translate}}</button>
+      <button class="confirm" (click)="onConfirm()">{{"Confirm" |translate}}</button>
     </div>
   </div>
 </div>

@@ -1,7 +1,7 @@
 <app-search 
-[searchPlaceholder]="searchPlaceholder"
-[sortValues]="sortValues"
-[filterValues]="filterValues"
+[searchPlaceholder]="'EnterCardName'|translate"
+[sortValues]="(sortValues$ |async) || []"
+[filterValues]="(filterValues$ |async) || []"
 (sortChange)="onSortChange($event)"
 (searchChange)="onSearchChange($event)"
 (filterChange)="onFiltersChange($event)"
@@ -58,7 +58,7 @@
                 </div>
 
                 <div class="balance">
-                    <span>{{card.balance + card.creditLimit}} </span>
+                    <span>{{(card.balance + card.creditLimit).toFixed(2)}} </span>
                     @switch (card.chosenCurrency) {
                         @case (Currency.UAH) {
                             <span>₴</span>

@@ -9,7 +9,7 @@ import { PaymentSystem } from '../../../../data/enums/payment-system';
 import { Currency } from '../../../../data/enums/currency';
 import { C } from '@angular/cdk/keycodes';
 import { ICardTariffs } from '../../../../data/interfaces/bank/bank-products/cards/card-tariffs.interface';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-update-tariffs',
@@ -27,6 +27,7 @@ export class UpdateTariffs {
   chosenPaymentSystems: PaymentSystem[] = [];
   chosenCurrencies: Currency[] = [];
   validationErrors : string[] = [];
+  translate= inject(TranslateService);
 
   currentCreditLimit: number = 0;
   currentInterestRate: number = 0;
@@ -103,7 +104,7 @@ export class UpdateTariffs {
     }
     else{
       this.validationErrors = [];
-      this.validationErrors.push("All fields has to be provided!");
+      this.validationErrors.push(this.translate.instant('Validation.AllFieldsRequired'));
       this.successStatus.set(false);
       this.showValidationResult.set(true);
       this.cdr.detectChanges();

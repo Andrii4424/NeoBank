@@ -5,10 +5,11 @@ import { ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, Input, 
 import { FormsModule } from '@angular/forms';
 import { IExchangeCurrency } from '../../data/interfaces/bank/bank-products/cards/exchange-currency-interface';
 import { tap } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-modal-input-window',
-  imports: [FormsModule],
+  imports: [FormsModule, TranslateModule],
   templateUrl: './modal-input-window.html',
   styleUrl: './modal-input-window.scss'
 })

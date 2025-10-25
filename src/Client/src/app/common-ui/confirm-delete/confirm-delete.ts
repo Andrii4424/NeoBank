@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-confirm-delete',
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './confirm-delete.html',
   styleUrl: './confirm-delete.scss'
 })

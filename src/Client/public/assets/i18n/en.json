@@ -218,7 +218,51 @@
     "ConfirmNewPassword": "Confirm New Password",
     "EnterYourNewPassword": "Enter your new password",
     "ConfirmYourNewPassword": "Confirm your new password",
-    "UpdatePassword": "Update Password"
+    "UpdatePassword": "Update Password",
+
+    "Sort": {
+        "ByNameAsc": "By Name (A–Z)",
+        "ByNameDesc": "By Name (Z–A)",
+        "ByDateAsc": "By Age (From Oldest)",
+        "ByDateDesc": "By Date (From Youngest)",
+        "ByAnnualMaintenanceCost": "By Annual Maintenance Cost",
+        "ByValidityPeriod": "By Validity Period",
+        "ByBalanceDesc": "By Balance (High → Low)",
+        "ByBalanceAsc": "By Balance (Low → High)"
+    },    
+
+    "Filter":{
+        "VerifiedUsers":"Verified Users",
+        "WithAvatars": "With Avatars",
+        "HasNumber": "Has Financal Number",
+        "Premium":"Premium",
+        "Usual": "Usual",
+        "Mastercard":"Mastercard",
+        "Visa":"Visa",
+        "Credit":"Credit",
+        "Debit":"Debit",
+        "UAH":"UAH",
+        "USD":"USD",
+        "EUR":"EUR"
+    },
+
+    "Validation": {
+        "AllFieldsRequired": "All fields must be provided!"
+    },
+
+    "Search":"Search",
+    "All":"All",
+    "EnterEmployeeName": "Enter employee name",
+    "EnterUserName": "Enter user name",
+    "EnterCardName":"Enter the card name",
+
+    "Delete" :"Delete",
+    "DeleteConfirmText":"Are you sure you want to delete the",
+    "Confirm":"Confirm",
+
+    "AddFundsDescription":"To proceed, enter a value from 0 to 200 000 000 and press the Confirm button.",
+    "EnterPin":"Please enter a new PIN-code.",
+    "EnterCreditLimit":"Please enter a new Credit Limit"
 
 
 }

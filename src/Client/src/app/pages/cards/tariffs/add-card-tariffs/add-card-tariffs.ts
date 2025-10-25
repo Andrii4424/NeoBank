@@ -8,7 +8,7 @@ import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } fr
 import { CardType } from '../../../../data/enums/card-type';
 import { CardLevel } from '../../../../data/enums/card-level';
 import { ICardTariffs } from '../../../../data/interfaces/bank/bank-products/cards/card-tariffs.interface';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-card-tariffs',
@@ -26,6 +26,7 @@ export class AddCardTariffs {
   chosenPaymentSystems: PaymentSystem[] = [];
   chosenCurrencies: Currency[] = [];
   validationErrors : string[] = [];
+  translate = inject(TranslateService);  
 
   currentCreditLimit: number = 0;
   currentInterestRate: number = 0;
@@ -94,7 +95,8 @@ export class AddCardTariffs {
       formValue.cardColor = this.cardColor.nativeElement.value;
       console.log(formValue);
       this.validationErrors = [];
-      this.validationErrors.push("All fields has to be provided!");
+      this.validationErrors.push(this.translate.instant('Validation.AllFieldsRequired'));
+
       this.successStatus.set(false);
       this.showValidationResult.set(true);
       this.cdr.detectChanges();

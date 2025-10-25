@@ -15,11 +15,13 @@ import { CardType } from '../../../../data/enums/card-type';
 import { Currency } from '../../../../data/enums/currency';
 import { ICardTariffs } from '../../../../data/interfaces/bank/bank-products/cards/card-tariffs.interface';
 import { Loading } from "../../../../common-ui/loading/loading";
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { combineLatest, map, Observable } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-card-tariffs',
-  imports: [PageSwitcher, Search, CardsLayout, RouterLink, Loading, TranslateModule],
+  imports: [PageSwitcher, Search, CardsLayout, RouterLink, Loading, TranslateModule, AsyncPipe],
   templateUrl: './card-tariffs.html',
   styleUrl: './card-tariffs.scss'
 })
@@ -34,28 +36,46 @@ export class CardTariffs {
   @Output() chosenTariffs = new EventEmitter<ICardTariffs>
   @ViewChildren('card') cardElements? : QueryList<ElementRef<HTMLDivElement>>
   isLoading = signal<boolean>(true);
+  translate = inject(TranslateService);
 
   //Filters values
-    sortValues: ISort[]=[
-      {name: "name-descending", description: "By Name Descending ▼"},
-      {name: "name-ascending", description: "By Name Ascending ▲"},
-      {name: "annual-maintenance-cost", description: "By Annual Maintenance Cost"},
-      {name: "validity-period", description: "By Validity Period"}
-  ];
-  
-  searchPlaceholder: string ="Enter the card name";
-  
-  filterValues: IFilter[]=[
-    {filterName:"ChosenLevels", id: "premium", description: "Premium", value: CardLevel.Premium, chosen: false },
-    {filterName:"ChosenLevels", id: "usual", description: "Usual", value: CardLevel.Normal, chosen: false },
-    {filterName:"ChosenPaymentSystems", id: "mastercard", description: "Mastercard", value: PaymentSystem.Mastercard, chosen: false },
-    {filterName:"ChosenPaymentSystems", id: "visa", description: "Visa",value: PaymentSystem.Visa, chosen: false},
-    {filterName:"ChosenTypes", id: "credit", description: "Credit", value: CardType.Credit, chosen: false },
-    {filterName:"ChosenTypes", id: "debit", description: "Debit", value: CardType.Debit, chosen: false },
-    {filterName:"ChosenCurrency", id: "uah", description: "UAH", value: Currency.UAH, chosen: false },
-    {filterName:"ChosenCurrency", id: "usd", description: "USD", value: Currency.USD, chosen: false },
-    {filterName:"ChosenCurrency", id: "eur", description: "EUR", value: Currency.EUR, chosen: false },
-  ]
+  sortValues$: Observable<ISort[]> = combineLatest([
+    this.translate.stream('Sort.ByNameAsc'),
+    this.translate.stream('Sort.ByNameDesc'),
+    this.translate.stream('Sort.ByAnnualMaintenanceCost'),
+    this.translate.stream('Sort.ByValidityPeriod'),
+  ]).pipe(
+    map(([byNameAsc, byNameDesc, byMaintenanceCost, byValidityPeriod])=>[
+      {name: "name-descending", description: byNameAsc},
+      {name: "name-ascending", description: byNameDesc},
+      {name: "annual-maintenance-cost", description: byMaintenanceCost},
+      {name: "validity-period", description: byValidityPeriod}
+    ])
+  )
+
+  filterValues$: Observable<IFilter[]> = combineLatest([
+    this.translate.stream('Filter.Premium'),
+    this.translate.stream('Filter.Usual'),
+    this.translate.stream('Filter.Mastercard'),
+    this.translate.stream('Filter.Visa'),
+    this.translate.stream('Filter.Credit'),
+    this.translate.stream('Filter.Debit'),
+    this.translate.stream('Filter.UAH'),
+    this.translate.stream('Filter.USD'),
+    this.translate.stream('Filter.EUR'),
+  ]).pipe(
+    map(([premium, usual, mastercard, visa, credit, debit, uah, usd, eur])=>[
+      {filterName:"ChosenLevels", id: "premium", description: premium, value: CardLevel.Premium, chosen: false },
+      {filterName:"ChosenLevels", id: "usual", description: usual, value: CardLevel.Normal, chosen: false },
+      {filterName:"ChosenPaymentSystems", id: "mastercard", description: mastercard, value: PaymentSystem.Mastercard, chosen: false },
+      {filterName:"ChosenPaymentSystems", id: "visa", description: visa,value: PaymentSystem.Visa, chosen: false},
+      {filterName:"ChosenTypes", id: "credit", description: credit, value: CardType.Credit, chosen: false },
+      {filterName:"ChosenTypes", id: "debit", description: debit, value: CardType.Debit, chosen: false },
+      {filterName:"ChosenCurrency", id: "uah", description: uah, value: Currency.UAH, chosen: false },
+      {filterName:"ChosenCurrency", id: "usd", description: usd, value: Currency.USD, chosen: false },
+      {filterName:"ChosenCurrency", id: "eur", description: eur, value: Currency.EUR, chosen: false },
+    ])
+  )
 
   constructor(private cdr: ChangeDetectorRef) {}
 

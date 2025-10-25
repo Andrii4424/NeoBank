@@ -1,7 +1,7 @@
 <app-search 
-[searchPlaceholder]="searchPlaceholder"
-[sortValues]="sortValues"
-[filterValues]="filterValues"
+[searchPlaceholder]="'EnterCardName'|translate"
+[sortValues]="(sortValues$ | async) ||[]"
+[filterValues]="(filterValues$ | async) ||[]"
 (sortChange)="onSortChange($event)"
 (searchChange)="onSearchChange($event)"
 (filterChange)="onFiltersChange($event)"

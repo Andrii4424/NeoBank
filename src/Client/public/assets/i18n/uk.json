@@ -221,6 +221,51 @@
     "ConfirmNewPassword": "Підтвердження нового пароля",
     "EnterYourNewPassword": "Введіть новий пароль",
     "ConfirmYourNewPassword": "Підтвердіть новий пароль",
-    "UpdatePassword": "Оновити пароль"
+    "UpdatePassword": "Оновити пароль",
+
+
+    "Sort": {
+        "ByNameAsc": "За Іменем (A–Z)",
+        "ByNameDesc": "За Іменем (Z–A)",
+        "ByDateAsc": "За Віком (Від Старших)",
+        "ByDateDesc": "За Віком (Від Молодших)",
+        "ByAnnualMaintenanceCost": "За Вартістю Обслуговування",
+        "ByValidityPeriod": "За Строком Дії",
+        "ByBalanceDesc": "За Балансом (від більшого)",
+        "ByBalanceAsc": "За Балансом (від меншого)"
+    },
+
+    "Filter":{
+        "VerifiedUsers":"Верифіконані Користувачі",
+        "WithAvatars": "З Аватарками",
+        "HasNumber": "З Фінансовим Номером Телефону",
+        "Premium":"Преміальні",
+        "Usual": "Звичнайні",
+        "Mastercard":"Mastercard",
+        "Visa":"Visa",
+        "Credit":"Кредитні",
+        "Debit":"Дебетні",
+        "UAH":"UAH",
+        "USD":"USD",
+        "EUR":"EUR"
+    },
+
+    "Validation": {
+        "AllFieldsRequired": "Усі поля мають бути заповнені!"
+    },
+    "Search":"Знайти",
+    "All":"Без Фільтрів",
+    "EnterEmployeeName": "Введіть ім'я співробітника",
+    "EnterUserName": "Введіть ім'я користувача",
+    "EnterCardName":"Введіть назву картки",
+
+    "Delete" :"Видалити",
+    "DeleteConfirmText":"Ви впевнені, що хочете видалити",
+    "Confirm":"Підтвердити",
+
+    "AddFundsDescription": "Для поповнення введіть значення від 0 до 200 000 000 та натисніть кнопку Підтвердити.",
+    "EnterPin":"Введіть новий ПІН-код.",
+    "EnterCreditLimit":"Введіть новий кредитний ліміт"
+
 
 }

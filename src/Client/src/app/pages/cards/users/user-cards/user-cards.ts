@@ -4,8 +4,8 @@ import { SharedService } from './../../../../data/services/shared-service';
 
 import { ChangeDetectorRef, Component, ElementRef, Inject, inject, QueryList, signal, ViewChildren } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterOutlet, Params, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
+import { combineLatest, map, Observable } from 'rxjs';
+import { AsyncPipe, DecimalPipe } from '@angular/common';
 import { CardsLayout } from '../../cards-layout/cards-layout';
 import { Search } from '../../../../common-ui/search/search';
 import { PaymentSystem } from '../../../../data/enums/payment-system';
@@ -24,12 +24,13 @@ import { PageSwitcher } from "../../../../common-ui/page-switcher/page-switcher"
 import { TransactionWindow } from "../../../../common-ui/transaction-window/transaction-window";
 import { Loading } from "../../../../common-ui/loading/loading";
 import { ErrorMessage } from "../../../../common-ui/error-message/error-message";
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 
 @Component({
   selector: 'app-user-cards',
-  imports: [CardsLayout, Search, RouterLink, SuccessMessage, CardFormatPipe, PageSwitcher, TransactionWindow, Loading, ErrorMessage, TranslateModule],
+  imports: [CardsLayout, Search, RouterLink, SuccessMessage, CardFormatPipe, PageSwitcher, TransactionWindow, Loading, ErrorMessage, 
+    TranslateModule, AsyncPipe],
   templateUrl: './user-cards.html',
   styleUrl: './user-cards.scss'
 })
@@ -53,30 +54,46 @@ export class UserCards {
   openTransactionWindow = signal<boolean>(false);
   @ViewChildren('card') cardElements? : QueryList<ElementRef<HTMLDivElement>>
   isLoading = signal<boolean>(true);
+  translate = inject(TranslateService);
 
   constructor(private cdr: ChangeDetectorRef){}
 
-    //Filters values
-    sortValues: ISort[]=[
-      {name: "balance-descending", description: "By Balance ▼"},
-      {name: "balance-ascending", description: "By Balance ▲"},
-      {name: "validity-period", description: "By Expiry Date"},
-    ];
-    
-    searchPlaceholder: string ="Enter the card name";
-    
-    filterValues: IFilter[]=[
-      {filterName:"ChosenLevels", id: "premium", description: "Premium", value: CardLevel.Premium, chosen: false },
-      {filterName:"ChosenLevels", id: "usual", description: "Usual", value: CardLevel.Normal, chosen: false },
-      {filterName:"ChosenPaymentSystems", id: "mastercard", description: "Mastercard", value: PaymentSystem.Mastercard, chosen: false },
-      {filterName:"ChosenPaymentSystems", id: "visa", description: "Visa",value: PaymentSystem.Visa, chosen: false},
-      {filterName:"ChosenTypes", id: "credit", description: "Credit", value: CardType.Credit, chosen: false },
-      {filterName:"ChosenTypes", id: "debit", description: "Debit", value: CardType.Debit, chosen: false },
-      {filterName:"ChosenCurrency", id: "uah", description: "UAH", value: Currency.UAH, chosen: false },
-      {filterName:"ChosenCurrency", id: "usd", description: "USD", value: Currency.USD, chosen: false },
-      {filterName:"ChosenCurrency", id: "eur", description: "EUR", value: Currency.EUR, chosen: false },
-    ]
-  
+  //Filters values    
+  sortValues$: Observable<ISort[]> = combineLatest([
+    this.translate.stream('Sort.ByBalanceDesc'),
+    this.translate.stream('Sort.ByBalanceAsc'),
+    this.translate.stream('Sort.ByValidityPeriod'),
+  ]).pipe(
+    map(([byBalanceDesc, byBalanceAsc, byValidityPeriod])=>[
+      {name: "balance-descending", description: byBalanceDesc},
+      {name: "balance-ascending", description: byBalanceAsc},
+      {name: "validity-period", description: byValidityPeriod},
+    ])
+  )
+
+  filterValues$: Observable<IFilter[]> = combineLatest([
+    this.translate.stream('Filter.Premium'),
+    this.translate.stream('Filter.Usual'),
+    this.translate.stream('Filter.Mastercard'),
+    this.translate.stream('Filter.Visa'),
+    this.translate.stream('Filter.Credit'),
+    this.translate.stream('Filter.Debit'),
+    this.translate.stream('Filter.UAH'),
+    this.translate.stream('Filter.USD'),
+    this.translate.stream('Filter.EUR'),
+  ]).pipe(
+    map(([premium, usual, mastercard, visa, credit, debit, uah, usd, eur])=>[
+      {filterName:"ChosenLevels", id: "premium", description: premium, value: CardLevel.Premium, chosen: false },
+      {filterName:"ChosenLevels", id: "usual", description: usual, value: CardLevel.Normal, chosen: false },
+      {filterName:"ChosenPaymentSystems", id: "mastercard", description: mastercard, value: PaymentSystem.Mastercard, chosen: false },
+      {filterName:"ChosenPaymentSystems", id: "visa", description: visa,value: PaymentSystem.Visa, chosen: false},
+      {filterName:"ChosenTypes", id: "credit", description: credit, value: CardType.Credit, chosen: false },
+      {filterName:"ChosenTypes", id: "debit", description: debit, value: CardType.Debit, chosen: false },
+      {filterName:"ChosenCurrency", id: "uah", description: uah, value: Currency.UAH, chosen: false },
+      {filterName:"ChosenCurrency", id: "usd", description: usd, value: Currency.USD, chosen: false },
+      {filterName:"ChosenCurrency", id: "eur", description: eur, value: Currency.EUR, chosen: false },
+    ])
+  )
 
   ngOnInit(){
     this.route.queryParams.subscribe((params: Params) => {

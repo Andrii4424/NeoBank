@@ -114,8 +114,8 @@
 
 @if(openAddFoundsWindow()){
     <app-modal-input-window
-    headerMessage="Add Funds"
-    subTittleMessage="To proceed, enter a value from 0 to 200 000 000 and press the Confirm button."
+    [headerMessage]="'AddFunds' | translate"
+    [subTittleMessage]="'AddFundsDescription'|translate"
     (closeWindow)="closeModalWindow()"
     (submitValue)="addFunds($event)"
     [isAddFunds]="true"
@@ -124,8 +124,8 @@
 }
 @if(openAddChangePinWindow()){
     <app-modal-input-window
-    headerMessage="Change PIN"
-    subTittleMessage="Please enter a new PIN-code."
+    [headerMessage]="'ChangePin'|translate"
+    [subTittleMessage]="'EnterPin'|translate"
     (closeWindow)="closeModalWindow()"
     (submitPin)="changePin($event)"
     [isChangePin]="true"
@@ -135,8 +135,8 @@
 
 @if(openChangeCreditLimit()){
     <app-modal-input-window
-    headerMessage="Change Credit Limit"
-    subTittleMessage="Please enter a new Credit Limit"
+    [headerMessage]="'ChangeCreditLimit'|translate"
+    [subTittleMessage]="'EnterCreditLimit'|translate"
     (closeWindow)="closeModalWindow()"
     [startCreditLimitValue]="startCreditLimitValue"
     [creditLimitParams]="exchangeParams"
@@ -160,7 +160,7 @@
 <!--Status messages-->
 @if(successAddingFunds()){
     <app-success-message
-    message="Success!"
+    [message]="'Success'|translate"
     secondMessage="Successful card replenishment!">
     </app-success-message>
 }

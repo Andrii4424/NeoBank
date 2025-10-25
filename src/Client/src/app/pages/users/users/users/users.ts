@@ -4,14 +4,14 @@ import { ISort } from '../../../../data/interfaces/filters/sort-interface';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ProfileService } from '../../../../data/services/auth/profile-service';
 import { IPageResult } from '../../../../data/interfaces/page-inteface';
-import { Observable, Subscription } from 'rxjs';
+import { combineLatest, map, Observable, Subscription } from 'rxjs';
 import { IProfile } from '../../../../data/interfaces/auth/profile-interface';
 import { IFilter } from '../../../../data/interfaces/filters/filter-interface';
 import { AsyncPipe } from '@angular/common';
 import { Search } from "../../../../common-ui/search/search";
 import { Loading } from "../../../../common-ui/loading/loading";
 import { PageSwitcher } from "../../../../common-ui/page-switcher/page-switcher";
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-users',
@@ -27,22 +27,35 @@ export class Users {
   usersPage$!: Observable<IPageResult<IProfile>>;
   querySub!: Subscription;
   baseUrl = 'https://localhost:7280/';
+   translate = inject(TranslateService);
 
   //Filters values
-  sortValues: ISort[]=[
-      {name: "surname-ascending", description: "By Name (A-Z)"},
-      {name: "surname-descending", description: "By Name (Z-A)"},
-      {name: "date-ascending", description: "date-ascending"},
-      {name: "date-descending", description: "date-descending"}
-  ];
-  
-  searchPlaceholder: string ="Enter the card name";
-  
-  filterValues: IFilter[]=[
-    {filterName:"VerifiedUsers", id: "VerifiedUsers", description: "Verified Users", value: true, chosen: false },
-    {filterName:"WithAvatars", id: "WithAvatars", description: "With Avatars", value: true, chosen: false },
-    {filterName:"HasFinancalNumber", id: "HasFinancalNumber", description: "Has Financal Number", value: true, chosen: false },
-  ]
+  sortValues$: Observable<ISort[]> = combineLatest([
+    this.translate.stream('Sort.ByNameAsc'),
+    this.translate.stream('Sort.ByNameDesc'),
+    this.translate.stream('Sort.ByDateAsc'),
+    this.translate.stream('Sort.ByDateDesc'),
+  ]).pipe(
+    map(([byNameAsc, byNameDesc, byDateAsc, byDateDesc])=>[
+      {name: "surname-ascending", description: byNameAsc},
+      {name: "surname-descending", description: byNameDesc},
+      {name: "date-ascending", description: byDateAsc},
+      {name: "date-descending", description: byDateDesc}
+    ])
+  )
+
+  filterValues$: Observable<IFilter[]> = combineLatest([
+    this.translate.stream('Filter.VerifiedUsers'),
+    this.translate.stream('Filter.WithAvatars'),
+    this.translate.stream('Filter.HasNumber'),
+  ]).pipe(
+    map(([verifiedUsers, withAvatars, hasNumber])=>[
+      {filterName:"VerifiedUsers", id: "VerifiedUsers", description: verifiedUsers, value: true, chosen: false },
+      {filterName:"WithAvatars", id: "WithAvatars", description: withAvatars, value: true, chosen: false },
+      {filterName:"HasFinancalNumber", id: "HasFinancalNumber", description: hasNumber, value: true, chosen: false },
+    ])
+  )
+
 
   ngOnInit(){
     this.querySub = this.route.queryParams.subscribe(params=>{
