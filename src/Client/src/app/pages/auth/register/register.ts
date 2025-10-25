@@ -5,6 +5,7 @@ import { Router, RouterLink } from "@angular/router";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators, ɵInternalFormsSharedModule } from '@angular/forms';
 import { AuthService } from '../../../data/services/auth/auth-service';
 import { SharedService } from '../../../data/services/shared-service';
+import { TranslateModule } from '@ngx-translate/core';
 
 export type RegisterDto = {
   email: string |null;
@@ -14,7 +15,7 @@ export type RegisterDto = {
 
 @Component({
   selector: 'app-register',
-  imports: [Footer, RouterLink, ɵInternalFormsSharedModule, ReactiveFormsModule],
+  imports: [Footer, RouterLink, ɵInternalFormsSharedModule, ReactiveFormsModule, TranslateModule],
   templateUrl: './register.html',
   styleUrl: './register.scss'
 })

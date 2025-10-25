@@ -6,10 +6,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../data/services/auth/auth-service';
 import { RouterLink } from "@angular/router";
 import { ProfileService } from '../../../data/services/auth/profile-service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
-  imports: [Footer, ReactiveFormsModule, RouterLink],
+  imports: [Footer, ReactiveFormsModule, RouterLink, TranslateModule],
   templateUrl: './login.html',
   styleUrl: './login.scss'
 })

@@ -2,7 +2,7 @@
     @if(isAdmin){
         @if($userFullInfo | async; as profile){
             <div class="profile-section-wrap">
-                <h1 class="heading user-profile-header">User Profile</h1>
+                <h1 class="heading user-profile-header">{{'UserProfile' | translate}}</h1>
                 <div class="profile-section">
                     <div class="profile-divider">
                         <div class="logo-section">
@@ -17,46 +17,46 @@
 
                             <div class="user-titles">
                                 @if(profile?.role===null){
-                                    <h4 class="role">User</h4>
+                                    <h4 class="role">{{'User' |translate}}</h4>
                                 }
                                 @else{
                                     <h4 class="role">{{profile?.role}}</h4>
                                 }
                                 @if (profile?.isVerified ) {
-                                    <h4 class="verified">Verified</h4>
+                                    <h4 class="verified">{{'Verified' |translate}}</h4>
                                 }
                                 @else {
-                                    <h4 class="not-verified">Not Verified</h4>
+                                    <h4 class="not-verified">{{'NotVerified' |translate}}</h4>
                                 }
                             </div>
                         </div>
 
                         <div class="profile-info">
-                            <h2 class="subheading">Personal Information</h2>
+                            <h2 class="subheading">{{'PersonalInformation' |translate}}</h2>
 
                             <div class="perosonal-info">
-                                <label class="description-without-lh" for="firstName">First Name</label>
+                                <label class="description-without-lh" for="firstName">{{'FirstName' |translate}}</label>
                                 <input name="firstName" id="firstName" disabled [value]="profile.firstName">
 
-                                <label class="description-without-lh" for="surname">Surname</label>
+                                <label class="description-without-lh" for="surname">{{'Surname' |translate}}</label>
                                 <input name="surname" id="surname" disabled [value]="profile.surname">
 
-                                <label class="description-without-lh" for="patronymic">Patronymic</label>
+                                <label class="description-without-lh" for="patronymic">{{'Patronymic' |translate}}</label>
                                 <input name="patronymic" id="patronymic" type="text" disabled [value]="profile.patronymic">
 
-                                <label class="description-without-lh" for="dateOfBirth">Date Of Birth</label>
+                                <label class="description-without-lh" for="dateOfBirth">{{'DateOfBirth' |translate}}</label>
                                 <input name="dateOfBirth" id="dateOfBirth" type="date" disabled [value]="profile.dateOfBirth">
                                 
-                                <label class="description-without-lh" for="taxId">Tax Id</label>
+                                <label class="description-without-lh" for="taxId">{{'TaxId' |translate}}</label>
                                 <input name="taxId" id="taxId" type="text" disabled [value]="profile.taxId">
                             </div>
 
-                            <h2 class="subheading">Contact Information</h2>
+                            <h2 class="subheading">{{'ContactInformation' |translate}}</h2>
                             <div class="contact-info">
-                                <label class="description-without-lh" for="email">Email</label>
+                                <label class="description-without-lh" for="email">{{'Email' |translate}}</label>
                                 <input name="email" id="email" type="email" disabled [value]="profile.email">
 
-                                <label class="description-without-lh" for="phoneNumber">Financal Phone Number</label>
+                                <label class="description-without-lh" for="phoneNumber">{{'PhoneNumber' |translate}}</label>
                                 <input name="phoneNumber" id="phoneNumber" type="tel" disabled [value]="profile.phoneNumber">
                             </div>
                         </div>
@@ -73,7 +73,7 @@
     @else {
         @if($userCroppedInfo | async; as profile){
             <div class="profile-section-wrap">
-                <h1 class="heading user-profile-header">User Profile</h1>
+                <h1 class="heading user-profile-header">{{'UserProfile' |translate}}</h1>
                 <div class="profile-section">
                     <div class="profile-divider">
                         <div class="logo-section">
@@ -88,41 +88,41 @@
 
                             <div class="user-titles">
                                 @if(profile?.role===null){
-                                    <h4 class="role">User</h4>
+                                    <h4 class="role">{{'User' |translate}}</h4>
                                 }
                                 @else{
                                     <h4 class="role">{{profile?.role}}</h4>
                                 }
                                 @if (profile?.isVerified ) {
-                                    <h4 class="verified">Verified</h4>
+                                    <h4 class="verified">{{'Verified' |translate}}</h4>
                                 }
                                 @else {
-                                    <h4 class="not-verified">Not Verified</h4>
+                                    <h4 class="not-verified">{{'NotVerified' |translate}}</h4>
                                 }
                             </div>
                         </div>
 
                         <div class="profile-info">
-                            <h2 class="subheading">Personal Information</h2>
+                            <h2 class="subheading">{{'PersonalInformation' |translate}}</h2>
 
                             <div class="perosonal-info">
-                                <label class="description-without-lh" for="firstName">First Name</label>
+                                <label class="description-without-lh" for="firstName">{{'FirstName' |translate}}</label>
                                 <input name="firstName" id="firstName" disabled [value]="profile.firstName">
 
-                                <label class="description-without-lh" for="surname">Surname</label>
+                                <label class="description-without-lh" for="surname">{{'Surname' |translate}}</label>
                                 <input name="surname" id="surname" disabled [value]="profile.surname">
 
-                                <label class="description-without-lh" for="patronymic">Patronymic</label>
+                                <label class="description-without-lh" for="patronymic">{{'Patronymic' |translate}}</label>
                                 <input name="patronymic" id="patronymic" type="text" disabled [value]="profile.patronymic">
 
-                                <label class="description-without-lh" for="dateOfBirth">Date Of Birth</label>
+                                <label class="description-without-lh" for="dateOfBirth">{{'DateOfBirth' |translate}}</label>
                                 <input name="dateOfBirth" id="dateOfBirth" type="date" disabled [value]="profile.dateOfBirth">
                                 
                             </div>
 
-                            <h2 class="subheading">Contact Information</h2>
+                            <h2 class="subheading">{{'ContactInformation' | translate}}</h2>
                             <div class="contact-info">
-                                <label class="description-without-lh" for="email">Email</label>
+                                <label class="description-without-lh" for="email">{{'Email' | translate}}</label>
                                 <input name="email" id="email" type="email" disabled [value]="profile.email">
 
                             </div>

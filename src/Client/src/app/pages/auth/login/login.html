@@ -1,7 +1,7 @@
 <section class="auth-wrap">
-  <span [class.disabled]="!displaySessionError()" class="error mb-8">Your session has expired. Please sign in again.</span>
+  <span [class.disabled]="!displaySessionError()" class="error mb-8">{{'SessionExpired' |translate}}</span>
   <div class="auth-card" (click)="displaySessionError.set(false); displayLoginError.set(false)" >
-    <h1 class="auth-title">Sign in to NeoBank</h1>
+    <h1 class="auth-title">{{'SignInToNeoBank' |translate}}</h1>
 
     <form action="/login" method="post" class="auth-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <input type="hidden" name="ReturnUrl" />
@@ -9,17 +9,17 @@
       <div class="val-summary"></div>
 
       <div class="field">
-        <label for="email">Email</label>
-        <input id="email" formControlName="email" name="email" type="email" autocomplete="email" placeholder="Enter your email" />
+        <label for="email">{{'Email' |translate}}</label>
+        <input id="email" formControlName="email" name="email" type="email" autocomplete="email" [placeholder]="'EnterYourEmail' |translate" />
       </div>
 
       <div class="field">
-        <label for="password">Password</label>
-        <input id="password" formControlName="password" name="password" type="password" autocomplete="current-password"placeholder="Enter your password" />
+        <label for="password">{{'Password' |translate}}</label>
+        <input id="password" formControlName="password" name="password" type="password" autocomplete="current-password" [placeholder]="'EnterYourPassword' |translate" />
       </div>
 
       <div class="field error-block">
-        <a class="muted" [routerLink]="['/recovery/password']">Forgot password?</a>
+        <a class="muted" [routerLink]="['/auth/recovery/password']">{{'ForgotPassword' |translate}}</a>
 
         <ul class="error-list" [class.disabled]="!displayLoginError()">
           @for (error of loginFormErrorMessage; track $index) {
@@ -28,14 +28,14 @@
         </ul>
       </div>
 
-      <button type="submit" class="btn btn-primary">Sign In</button>
+      <button type="submit" class="btn btn-primary">{{'SignIn' |translate}}</button>
     </form>
 
     <div class="divider"></div>
 
     <p class="auth-switch">
-      Don’t have an account?
-      <a routerLink="/signup" class="auth-link">Sign up</a>
+      {{'NoAccount'|translate}}
+      <a routerLink="/auth/signup" class="auth-link">{{'SignUp' |translate}}</a>
     </p>
   </div>
 </section>

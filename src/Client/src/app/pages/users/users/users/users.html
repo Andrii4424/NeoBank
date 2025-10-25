@@ -12,7 +12,7 @@
 <div class="content-block">
     @if(usersPage$ | async; as usersPage){
         <div class="users-wrap-block">
-            <h1 class="heading">Our Clients</h1>
+            <h1 class="heading">{{'OurClients' |translate}}</h1>
             <section class="users-block">
                 @for(user of usersPage.items; track $index){
                     <div class="users">
@@ -29,7 +29,7 @@
                             </div>
                         </div>
 
-                        <a [routerLink]="['/clients/profile', user.id]" class="open-profile" >Open Profile</a>
+                        <a [routerLink]="['/clients/profile', user.id]" class="open-profile" >{{'OpenProfile' | translate}}</a>
 
                     </div>
                 }

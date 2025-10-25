@@ -5,10 +5,11 @@ import { IProfile } from '../../../data/interfaces/auth/profile-interface';
 import { FormControl, FormGroup, ɵInternalFormsSharedModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedService } from '../../../data/services/shared-service';
 import { AuthService } from '../../../data/services/auth/auth-service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-users-own-profile',
-  imports: [ɵInternalFormsSharedModule, ReactiveFormsModule],
+  imports: [ɵInternalFormsSharedModule, ReactiveFormsModule, TranslateModule],
   templateUrl: './users-own-profile.html',
   styleUrl: './users-own-profile.scss'
 })

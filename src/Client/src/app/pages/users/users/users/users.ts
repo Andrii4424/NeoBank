@@ -11,10 +11,11 @@ import { AsyncPipe } from '@angular/common';
 import { Search } from "../../../../common-ui/search/search";
 import { Loading } from "../../../../common-ui/loading/loading";
 import { PageSwitcher } from "../../../../common-ui/page-switcher/page-switcher";
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-users',
-  imports: [AsyncPipe, Search, Loading, PageSwitcher, RouterLink],
+  imports: [AsyncPipe, Search, Loading, PageSwitcher, RouterLink, TranslateModule],
   templateUrl: './users.html',
   styleUrl: './users.scss'
 })

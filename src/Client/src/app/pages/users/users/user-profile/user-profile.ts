@@ -7,10 +7,11 @@ import { ActivatedRoute } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 import { Loading } from "../../../../common-ui/loading/loading";
 import { Cards } from "../cards/cards";
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-profile',
-  imports: [AsyncPipe, Loading, Cards],
+  imports: [AsyncPipe, Loading, Cards, TranslateModule],
   templateUrl: './user-profile.html',
   styleUrl: './user-profile.scss'
 })

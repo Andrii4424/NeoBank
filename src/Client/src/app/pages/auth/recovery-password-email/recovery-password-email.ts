@@ -5,10 +5,11 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ProfileService } from '../../../data/services/auth/profile-service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IRecoveryPassword } from '../../../data/interfaces/auth/recovery-password';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-recovery-password-email',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, TranslateModule],
   templateUrl: './recovery-password-email.html',
   styleUrl: './recovery-password-email.scss'
 })

@@ -11,10 +11,11 @@ import { Loading } from "../../../common-ui/loading/loading";
 import { ISort } from '../../../data/interfaces/filters/sort-interface';
 import { IFilter } from '../../../data/interfaces/filters/filter-interface';
 import { PageSwitcher } from "../../../common-ui/page-switcher/page-switcher";
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-employees',
-  imports: [Search, AsyncPipe, Loading, PageSwitcher, RouterLink],
+  imports: [Search, AsyncPipe, Loading, PageSwitcher, RouterLink, TranslateModule],
   templateUrl: './employees.html',
   styleUrl: './employees.scss'
 })

@@ -77,7 +77,7 @@ export class AuthService {
             this.expiresOn = null;
 
             if (!skipLoginRedirect) {
-              this.router.navigate(['/login'], { queryParams: { error: 'sessionExpired' } });
+              this.router.navigate(['/auth/login'], { queryParams: { error: 'sessionExpired' } });
             }
             this.refresh$ = undefined;
             return throwError(() => err);
@@ -123,7 +123,7 @@ export class AuthService {
           this.accessToken = null;
           this.expiresOn = null;
 
-          this.router.navigate(['/login']);
+          this.router.navigate(['/auth/login']);
         })
       })
     )

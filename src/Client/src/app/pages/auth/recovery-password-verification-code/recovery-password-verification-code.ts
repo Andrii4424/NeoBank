@@ -7,10 +7,11 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { IRecoveryPassword } from '../../../data/interfaces/auth/recovery-password';
 import { interval, take, tap } from 'rxjs';
 import { SuccessMessage } from "../../../common-ui/success-message/success-message";
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-recovery-password-verification-code',
-  imports: [RouterLink, ReactiveFormsModule, SuccessMessage],
+  imports: [RouterLink, ReactiveFormsModule, SuccessMessage, TranslateModule],
   templateUrl: './recovery-password-verification-code.html',
   styleUrl: './recovery-password-verification-code.scss'
 })

@@ -155,8 +155,72 @@
     "ApplyForJob": "Подати заявку на роботу",
     "NoVacancies": "Наразі відсутні вакансії в банку",
     "VacancyInfo": "Вступивши на роботу Ви стаєте адміном банку. Статус адміну додає багато функціоналу, який дозволяє керувати банком.",
-    "VacancyUpdated":"Вакансія була успішно оновлена!"
+    "VacancyUpdated":"Вакансія була успішно оновлена!",
+
+    "OurTeam": "Наша Команда",
+    "OpenProfile": "Відкрити Профіль",
+    "OurClients": "Наші Клієнти",
+
+    "UserProfile": "Профіль користувача",
+    "PersonalInformation": "Особиста інформація",
+    "ContactInformation": "Контактна інформація",
+
+    "FirstName": "Ім’я",
+    "Surname": "Прізвище",
+    "Patronymic": "По батькові",
+    "DateOfBirth": "Дата народження",
+    "Email": "Електронна пошта",
+    "PhoneNumber": "Фінансовий номер телефону",
+
+    "RoleUser": "Користувач",
+    "Verified": "Верифікований",
+    "NotVerified": "Не Верифікований",
+    "NoAvailableCardsProfile" :"У користувача відсутні картки",
+    "UserCards": "Картки Користувача",
+
+    "NotVerifiedMessage": "Ваш акаунт не підтверджений. Щоб пройти верифікацію, введіть свої особисті дані.",
+    "ProfileUpdatedSuccess": "Ваш профіль успішно оновлено!",
+    "Cancel": "Скасувати",
+    "UpdateData": "Оновити дані",
+    "LogOut": "Вийти",
+
+    "SessionExpired": "Ваша сесія завершилася. Будь ласка, увійдіть знову.",
+    "SignInToNeoBank": "Вхід до NeoBank",
+    "Password": "Пароль",
+    "EnterYourEmail": "Введіть свою електронну пошту",
+    "EnterYourPassword": "Введіть свій пароль",
+    "ForgotPassword": "Забули пароль?",
+    "SignIn": "Увійти",
+    "NoAccount": "Ще не маєте акаунта?",
+    "SignUp": "Зареєструватися",
 
 
+    "CreateAccount": "Реєстрація в NeoBank",
+    "ConfirmPassword": "Підтвердження пароля",
+    "CreatePassword": "Створіть пароль",
+    "ConfirmYourPassword": "Підтвердіть пароль",
+    "AlreadyHaveAccount": "Вже маєте акаунт?",
+
+    "ResetYourPassword": "Відновлення пароля",
+    "EnterEmailForReset": "Введіть свою електронну пошту, щоб ми могли надіслати код для відновлення пароля.",
+    "SendResetCode": "Надіслати код для відновлення",
+    "RememberPassword": "Пам’ятаєте пароль?",
+
+    
+    "EnterCodeSentTo": "Введіть код з листа, надісланого на",
+    "VerificationCode": "Код підтвердження",
+    "EnterYourVerificationCode": "Введіть ваш код підтвердження",
+    "DidntGetCode": "Не отримали код? Ви можете надіслати його знову через",
+    "ResendCode": "Надіслати код повторно",
+    "Success": "Успішно!",
+    "CodeResentSuccess": "Код успішно надіслано повторно!",
+    "VerifyResendCode":"Перевірити Код Підтвердження",
+    "s": "с",
+
+    "NewPassword": "Новий пароль",
+    "ConfirmNewPassword": "Підтвердження нового пароля",
+    "EnterYourNewPassword": "Введіть новий пароль",
+    "ConfirmYourNewPassword": "Підтвердіть новий пароль",
+    "UpdatePassword": "Оновити пароль"
 
 }

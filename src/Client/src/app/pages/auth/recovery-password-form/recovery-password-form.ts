@@ -6,10 +6,11 @@ import { Router } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RegisterDto } from '../register/register';
 import { IRecoveryPassword } from '../../../data/interfaces/auth/recovery-password';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-recovery-password-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TranslateModule],
   templateUrl: './recovery-password-form.html',
   styleUrl: './recovery-password-form.scss'
 })

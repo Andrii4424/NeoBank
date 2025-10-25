@@ -23,6 +23,7 @@ import { Employees } from './pages/users/employees/employees';
 import { Users } from './pages/users/users/users/users';
 import { UserProfile } from './pages/users/users/user-profile/user-profile';
 import { RecoveryPassword } from './pages/auth/recovery-password/recovery-password';
+import { AuthWrap } from './pages/auth/auth-wrap/auth-wrap';
 
 export const routes: Routes = [
     {path: '', component: Layout, children: [
@@ -46,8 +47,10 @@ export const routes: Routes = [
         {path: 'clients/profile/:id', component: UserProfile},
        
     ]},
-    {path: 'login', component: Login},
-    {path: 'signup', component: Register},
-    {path: 'recovery/password', component: RecoveryPassword}
+    {path: 'auth', component: AuthWrap, children:[
+        {path: 'login', component: Login},
+        {path: 'signup', component: Register},
+        {path: 'recovery/password', component: RecoveryPassword}
 
+    ]}
 ];

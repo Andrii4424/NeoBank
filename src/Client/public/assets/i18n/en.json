@@ -155,8 +155,70 @@
     "ApplyForJob": "Apply for a job",
     "NoVacancies": "There are currently no vacancies at the bank",
     "VacancyInfo":"Upon joining the job, you become a bank admin. Admin status adds a lot of functionality that allows you to manage the bank.",
-    "VacancyUpdated":"Vacancy has been successfully updated!"
+    "VacancyUpdated":"Vacancy has been successfully updated!",
 
+    "OurTeam": "Our Team",
+    "OpenProfile": "Open Profile",
+    "OurClients": "Our Clients",
+    "UserProfile": "User Profile",
+    "PersonalInformation": "Personal Information",
+    "ContactInformation": "Contact Information",
+
+    "FirstName": "First Name",
+    "Surname": "Surname",
+    "Patronymic": "Patronymic",
+    "DateOfBirth": "Date of Birth",
+    "Email": "Email",
+    "PhoneNumber": "Financial Phone Number",
+
+    "RoleUser": "User",
+    "Verified": "Verified",
+    "NotVerified": "Not Verified",
+    "NoAvailableCardsProfile" :"User hasnt cards",
+    "UserCards": "User Cards",
+
+    "NotVerifiedMessage": "You are not verified. To verify your account, please enter your personal information.",
+    "ProfileUpdatedSuccess": "Your profile has been successfully updated!",
+    "Cancel": "Cancel",
+    "UpdateData": "Update Data",
+    "LogOut": "Log Out",
+
+    "SessionExpired": "Your session has expired. Please sign in again.",
+    "SignInToNeoBank": "Sign in to NeoBank",
+    "Password": "Password",
+    "EnterYourEmail": "Enter your email",
+    "EnterYourPassword": "Enter your password",
+    "ForgotPassword": "Forgot password?",
+    "SignIn": "Sign In",
+    "NoAccount": "Don’t have an account?",
+    "SignUp": "Sign up",
+
+    "CreateAccount": "Create your account",
+    "ConfirmPassword": "Confirm Password",
+    "CreatePassword": "Create a password",
+    "ConfirmYourPassword": "Confirm your password",
+    "AlreadyHaveAccount": "Already have an account?",
+
+    "ResetYourPassword": "Reset your password",
+    "EnterEmailForReset": "Enter your email so that we can send you a password reset code.",
+    "SendResetCode": "Send reset code",
+    "RememberPassword": "Remember your password?",
+
+    "EnterCodeSentTo": "Enter the code from the email sent to",
+    "VerificationCode": "Verification Code",
+    "EnterYourVerificationCode": "Enter your verification code",
+    "DidntGetCode": "Didn’t get the code? You can resend it in",
+    "ResendCode": "Resend Code",
+    "Success": "Success!",
+    "CodeResentSuccess": "Code successfully resent!",
+    "VerifyResendCode":"Verify Resend Code",
+    "s": "s",
+
+    "NewPassword": "New Password",
+    "ConfirmNewPassword": "Confirm New Password",
+    "EnterYourNewPassword": "Enter your new password",
+    "ConfirmYourNewPassword": "Confirm your new password",
+    "UpdatePassword": "Update Password"
 
 
 }

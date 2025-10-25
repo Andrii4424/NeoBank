@@ -1,24 +1,25 @@
 <section class="auth-wrap">
   <div class="auth-card" (click)="displayRegisterError.set(false)">
-    <h1 class="auth-title">Create your account</h1>
+    <h1 class="auth-title">{{'CreateAccount' |translate}}</h1>
 
     <form action="/register" method="post" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <input type="hidden" name="ReturnUrl" />
       <div class="val-summary"></div>
 
       <div class="field">
-        <label for="email">Email</label>
-        <input id="email" name="Email" type="email" autocomplete="email" placeholder="Enter your email" formControlName="email" />
+        <label for="email">{{'Email' |translate}}</label>
+        <input id="email" name="Email" type="email" autocomplete="email" [placeholder]="'EnterYourEmail' |translate" formControlName="email" />
       </div>
 
       <div class="field">
-        <label for="password">Password</label>
-        <input id="password" name="Password" type="password" autocomplete="new-password" placeholder="Create a password" formControlName="password" />
+        <label for="password">{{'Password' |translate}}</label>
+        <input id="password" name="Password" type="password" autocomplete="new-password" [placeholder]="'EnterYourPassword' |translate" formControlName="password" />
       </div>
 
       <div class="field">
-        <label for="confirmPassword">Confirm Password</label>
-        <input id="confirmPassword" name="ConfirmPassword" type="password" autocomplete="new-password" placeholder="Confirm your password" formControlName="confirmPassword"/>
+        <label for="confirmPassword">{{'ConfirmPassword' | translate}}</label>
+        <input id="confirmPassword" name="ConfirmPassword" type="password" autocomplete="new-password" [placeholder]="'ConfirmYourPassword' |translate" 
+          formControlName="confirmPassword"/>
       </div>
 
       <div class="field error-block">
@@ -29,13 +30,13 @@
         </ul>
       </div>
       
-      <button type="submit" class="btn btn-primary">Sign up</button>
+      <button type="submit" class="btn btn-primary">{{'SignUp' |translate}}</button>
     </form>
 
     <div class="divider"></div>
     <p class="auth-switch">
-      Already have an account?
-      <a routerLink="/login" class="auth-link">Sign in</a>
+      {{"AlreadyHaveAccount" |translate}}
+      <a routerLink="/auth/login" class="auth-link">{{'SignIn' |translate}}</a>
     </p>
   </div>
 </section>
