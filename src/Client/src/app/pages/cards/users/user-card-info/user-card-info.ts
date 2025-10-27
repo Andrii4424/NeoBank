@@ -19,7 +19,7 @@ import { ConfirmWindow } from "../../../../common-ui/confirm-window/confirm-wind
 import { Transactions } from "../transactions/transactions";
 import { TransactionType } from '../../../../data/enums/transaction-type';
 import { Loading } from "../../../../common-ui/loading/loading";
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-card-info',
@@ -38,6 +38,7 @@ export class UserCardInfo {
   cardCurrency? : Currency;
   startCreditLimitValue? : number;
   @ViewChild (Transactions) private transactionComponent! : Transactions;
+  translate = inject(TranslateService);
 
   userCard$: Observable<IUserCards> = this.userCardsService.getCardInfo(this.cardId).pipe(
     tap(card=>{
@@ -97,13 +98,13 @@ export class UserCardInfo {
 
   changePin(newPin: string){
     if(newPin.length !==4){
-      this.showErrorMessage("PIN must be 4 digits. Please try again.");
+      this.showErrorMessage(this.translate.instant('PinLengthError'));
     }
     else{
       this.userCardsService.changePin({cardId: this.cardId, newPin: newPin}).subscribe({
         next:()=>{
           this.userCard$ = this.userCardsService.getCardInfo(this.cardId);
-          this.showSuccessMessage("PIN has been changed!");
+          this.showSuccessMessage(this.translate.instant("PinChanged"));
         },
         error:(err)=>{
           this.showErrorMessage(this.sharedService.serverResponseErrorToArray(err)[0]);
@@ -129,32 +130,32 @@ export class UserCardInfo {
   }
 
   reissueCard(){
-    this.actionTitle="Confirm Card Reissue";
-    this.actionSubtitle="Are you sure you want to reissue the card? The action will not be able to be undone.";
+    this.actionTitle=this.translate.instant('CardActions.Reissue.Title');
+    this.actionSubtitle=this.translate.instant('CardActions.Reissue.Subtitle');
     this.action="reissue-card"
     this.openConfirmWindow.set(true);
     this.cdr.detectChanges();
   }
 
   blockCard(){
-    this.actionTitle="Confirm Blocking";
-    this.actionSubtitle="Are you sure you want to block the card? Withdrawal operations will be unavailable while the card is blocked.";
+    this.actionTitle=this.translate.instant('CardActions.Block.Title');
+    this.actionSubtitle=this.translate.instant('CardActions.Block.Subtitle');
     this.action="block-card"
     this.openConfirmWindow.set(true);
     this.cdr.detectChanges();
   }
 
   unblockCard(){
-    this.actionTitle="Confirm Unblocking";
-    this.actionSubtitle="Are you sure you want to unblock the card? Withdrawal operations will be available after unblocking";
+    this.actionTitle=this.translate.instant('CardActions.Unblock.Title');
+    this.actionSubtitle=this.translate.instant('CardActions.Unblock.Subtitle');
     this.action="unblock-card"
     this.openConfirmWindow.set(true);
     this.cdr.detectChanges();
   }
 
   closeCard(){
-    this.actionTitle="Confirm Close";
-    this.actionSubtitle="Are you sure you want to close the card? The action will not be able to be undone.";
+    this.actionTitle=this.translate.instant('CardActions.Close.Title');
+    this.actionSubtitle=this.translate.instant('CardActions.Close.Title');
     this.action="close-card"
     this.openConfirmWindow.set(true);
     this.cdr.detectChanges();
@@ -172,7 +173,7 @@ export class UserCardInfo {
         this.userCardsService.reissueCard(this.cardId).subscribe({
           next: () => {
             this.userCard$ = this.userCardsService.getCardInfo(this.cardId);
-            this.showSuccessMessage("The card has been reissued!");
+            this.showSuccessMessage(this.translate.instant('CardActions.Reissue.Success'));
           },
           error: (err) => {
             this.showErrorMessage(this.sharedService.serverResponseErrorToArray(err)[0]);
@@ -184,7 +185,7 @@ export class UserCardInfo {
         this.userCardsService.changeStatus({ cardId: this.cardId, newStatus: CardStatus.Blocked }).subscribe({
           next: () => {
             this.userCard$ = this.userCardsService.getCardInfo(this.cardId);
-            this.showSuccessMessage("The card status has been changed!");
+            this.showSuccessMessage(this.translate.instant('CardActions.Block.Success'));
           },
           error: (err) => {
             this.showErrorMessage(this.sharedService.serverResponseErrorToArray(err)[0]);
@@ -196,7 +197,7 @@ export class UserCardInfo {
         this.userCardsService.changeStatus({ cardId: this.cardId, newStatus: CardStatus.Active }).subscribe({
           next: () => {
             this.userCard$ = this.userCardsService.getCardInfo(this.cardId);
-            this.showSuccessMessage("The card status has been changed!");
+            this.showSuccessMessage(this.translate.instant('CardActions.Unblock.Success'));
           },
           error: (err) => {
             this.showErrorMessage(this.sharedService.serverResponseErrorToArray(err)[0]);
@@ -207,7 +208,7 @@ export class UserCardInfo {
       case "close-card":
         this.userCardsService.closeCard(this.cardId).subscribe({
           next: () => {
-            this.showSuccessMessage("Card has been deleted!");
+            this.showSuccessMessage(this.translate.instant('CardActions.Close.Success'));
             this.router.navigate(["cards/my-cards"]);
           },
           error: (err) => {
@@ -228,7 +229,7 @@ export class UserCardInfo {
       this.userCardsService.changeCreditLimit({cardId: this.cardId, newCreditLimit: newCreditLimit}).subscribe({
         next:()=>{
           this.userCard$ = this.userCardsService.getCardInfo(this.cardId);
-          this.showSuccessMessage("Credit limit changed!");
+          this.showSuccessMessage(this.translate.instant("CardActions.SuccessChangedCreditLimit"));
         },
         error:(err)=>{
           this.showErrorMessage(this.sharedService.serverResponseErrorToArray(err)[0]);

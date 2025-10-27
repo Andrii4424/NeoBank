@@ -2,18 +2,18 @@
   <form class="modal-content"[formGroup]="transactionForm" (submit)="onSubmit()" (click)="deleteError()">
     
     <header class="modal-header">
-      <h2>Exchange currencies</h2>
+      <h2>{{ 'TransferModal.Exchange.Title' | translate }}</h2>
       <button class="close-button" (click)="cancel()">&times;</button>
     </header>
 
     <main class="modal-body" >
       
         <div class="form-group" >
-            <label for="sender-card">From card</label>
+            <label for="sender-card">{{'TransferModal.FromCard' | translate}}</label>
             <select id="sender-card" formControlName="senderCardId">
-            <option value="" disabled selected>Select for sending</option>
+            <option value="" disabled selected>{{'TransferModal.SelectCard' | translate }}</option>
             @if(cards?.length===0 && getSenderCurrency()){
-                <h4>No available cards</h4>
+                <h4>{{'TransferModal.NoCards' | translate }}</h4>
             }
             @else {
                 @for (card of getSenderCurrency(); track $index) {
@@ -26,11 +26,11 @@
             <img src="assets/images/bank-products/currency/switch.svg" alt="switch" class="switch-img" (click)="switchCards()">
         </div>
         <div class="form-group">
-            <label for="getter-card">To card</label>
+            <label for="getter-card">{{'TransferModal.Exchange.ToCard' | translate }}</label>
             <select id="getter-card" formControlName="getterCardId">
-            <option value="" disabled selected>Select card to receive</option>
+            <option value="" disabled selected>{{'TransferModal.SelectCard' | translate }}</option>
             @if(cards?.length===0 && getGetterCurrency()?.length===0){
-                <h4>No available cards</h4>
+                <h4>{{'TransferModal.NoCards' | translate }}</h4>
             }
             @else {
                 @for (card of getGetterCurrency(); track $index) {
@@ -42,10 +42,10 @@
 
 
         <div class="form-group">
-            <label for="amount">Amount</label>
+            <label for="amount">{{'TransferModal.Amount' | translate}} </label>
             <input formControlName="amount" type="number" id="amount" placeholder="0.00">
-            <span class="commission" [class.none]="!showGetAmount()">You will get: {{getAmount | number: '1.2-2'}}{{getterCurrency}}</span>
-            <span class="commission" [class.none]="!showCommission()">Transaction Fee: {{commission | number: '1.2-2'}}{{senderCurrency}}</span>
+            <span class="commission" [class.none]="!showGetAmount()">{{'TransferModal.Exchange.YouWillGet' |translate}} {{getAmount | number: '1.2-2'}}{{getterCurrency}}</span>
+            <span class="commission" [class.none]="!showCommission()">{{'TransferModal.TransactionFee' |translate}} {{commission | number: '1.2-2'}}{{senderCurrency}}</span>
         </div>
         <div class="error-block">
             <span class="error">{{errorText}} </span>
@@ -53,8 +53,8 @@
     </main>
 
     <footer class="modal-footer">
-      <button class="btn btn-secondary" (click)="cancel()">Cancel</button>
-      <button class="btn btn-primary" type="submit" (click)="$event.stopPropagation()">Confirm Exchange</button>
+      <button class="btn btn-secondary" (click)="cancel()">{{'TransferModal.Cancel' | translate}}</button>
+      <button class="btn btn-primary" type="submit" (click)="$event.stopPropagation()">{{'TransferModal.Exchange.Confirm' |translate}}</button>
     </footer>
 
   </form>

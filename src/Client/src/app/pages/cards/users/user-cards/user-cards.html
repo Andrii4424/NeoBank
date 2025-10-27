@@ -94,22 +94,22 @@
 
 @if(success()){
     <app-success-message
-        message="Success!"
-        secondMessage="Card has been created!"
+        [message]="'Success' | translate"
+        [secondMessage]="'CardCreated' | translate"
     >
     </app-success-message>
 }
 @if(copied()){
     <app-success-message
-        message="Success!"
-        secondMessage="Card number has been copied!"
+        [message]="'Success' | translate"
+        [secondMessage]="'CardNumberCopied' | translate"
     >
     </app-success-message>
 }
 @if(successTransaction()){
     <app-success-message
-        message="Success!"
-        secondMessage="Transaction has been successfully created"
+        [message]="'Success' | translate"
+        [secondMessage]="'TransactionCreated' | translate"
     >
     </app-success-message>
 }

@@ -12,10 +12,11 @@ import { ICurrency } from '../../data/interfaces/bank/bank-products/currency-int
 import { DecimalPipe } from '@angular/common';
 import { CardStatus } from '../../data/enums/card-status';
 import { TransactionType } from '../../data/enums/transaction-type';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-exchange-currency-window',
-  imports: [ReactiveFormsModule, DecimalPipe],
+  imports: [ReactiveFormsModule, DecimalPipe, TranslateModule],
   templateUrl: './exchange-currency-window.html',
   styleUrl: './exchange-currency-window.scss'
 })
@@ -43,6 +44,7 @@ export class ExchangeCurrencyWindow {
   private amountSub!:Subscription;
   @Output() success = new EventEmitter<void>;
   @Output() error = new EventEmitter<string>;
+  translate = inject(TranslateService);
 
   constructor(private cdr: ChangeDetectorRef) {
     
@@ -117,25 +119,23 @@ export class ExchangeCurrencyWindow {
   onSubmit(){
     if(this.transactionForm.valid){
       if(this.transactionForm.get('senderCardId')?.value === ""){
+        this.showError(this.translate.instant('TransferModal.Errors.NoSenderCard'));
         this.showError("The card to be withdrawn must be selected");
         return;
       }
-      if(this.transactionForm.get('senderCardId')?.value === ""){
-        this.showError("The card for enrollment must be selected");
-        return;
-      }
+
       const chosenCard = this.cards?.find(c=>c.id == this.transactionForm.get('senderCardId')?.value);
       const availableBalance = chosenCard!.balance + chosenCard!.creditLimit;
       if(availableBalance < this.transactionForm.get('amount')!.value!){
-        this.showError("The balance is insufficient to complete the exchange, please top up the card");
+        this.showError(this.translate.instant('TransferModal.Errors.InsufficientBalance'));
         return ;
       }
       if(chosenCard?.status !== CardStatus.Active){
-        this.showError("You can only send money from an active card. Please reissue or unblock the card to send.");
+        this.showError(this.translate.instant('TransferModal.Errors.InactiveCard'));
         return ;
       }
       if(chosenCard.cardNumber === this.transactionForm.get('getterCardId')?.value!){
-        this.showError("The sender's card and the recipient's card must not match.");
+        this.showError(this.translate.instant('TransferModal.Errors.SameCard'));
         return ;
       }
       this.transactionService.makeTransaction(
@@ -152,7 +152,7 @@ export class ExchangeCurrencyWindow {
       });
     }
     else{
-      this.showError("All fields has to be provided");
+      this.showError(this.translate.instant('TransferModal.Errors.AllFieldsRequired'));
     }
   }
 
@@ -235,7 +235,8 @@ export class ExchangeCurrencyWindow {
   }
 
   deleteError(){
-
+    this.errorText = null;
+    this.showValidationError.set(false);
   }
 
   getSenderCurrency(){

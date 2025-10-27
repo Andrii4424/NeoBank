@@ -262,7 +262,75 @@
 
     "AddFundsDescription":"To proceed, enter a value from 0 to 200 000 000 and press the Confirm button.",
     "EnterPin":"Please enter a new PIN-code.",
-    "EnterCreditLimit":"Please enter a new Credit Limit"
+    "EnterCreditLimit":"Please enter a new Credit Limit",
+    "Error": "Error!",
+    "SuccessfulReplenishment":"Successful card replenishment!",
+
+    "PinLengthError":"PIN must be 4 digits. Please try again.",
+    "PinChanged":"PIN has been changed!",
+
+    "CardActions": {
+        "Reissue": {
+            "Title": "Confirm Card Reissue",
+            "Subtitle": "Are you sure you want to reissue the card? The action cannot be undone.",
+            "Success":"Card has been reissued!"
+        },
+        "Block": {
+            "Title": "Confirm Blocking",
+            "Subtitle": "Are you sure you want to block the card? Withdrawal operations will be unavailable while the card is blocked.",
+            "Success":"Card status has been changed!"
+        },
+        "Unblock": {
+            "Title": "Confirm Unblocking",
+            "Subtitle": "Are you sure you want to unblock the card? Withdrawal operations will be available after unblocking.",
+            "Success":"Card status has been changed!"
+
+        },
+        "Close": {
+            "Title": "Confirm Closure",
+            "Subtitle": "Are you sure you want to close the card? The action cannot be undone.",
+            "Success":"Card has been deleted!"
+
+        },
+        "SuccessChangedCreditLimit":"Credit limit changed!"
+    },
+
+    "TransferModal": {
+        "Title": "Make a Transfer",
+        "FromCard": "From card",
+        "SelectCard": "Select your card",
+        "NoCards": "No available cards",
+        "ToCard": "To card number",
+        "Amount": "Amount",
+        "TransactionFee": "Transaction Fee",
+        "Cancel": "Cancel",
+        "Confirm": "Confirm Transfer",
+        "Placeholder": {
+            "CardNumber": "0000 0000 0000 0000",
+            "Amount": "0.00"
+        },
+        "Errors": {
+            "NoSenderCard": "The card from which the shipment will be sent must be selected.",
+            "InvalidRecipientNumber": "The recipient's card must contain 16 characters.",
+            "InsufficientBalance": "The balance is insufficient to complete the transaction, please top up the card.",
+            "InactiveCard": "You can only send money from an active card. Please reissue or unblock the card to send.",
+            "SameCard": "The sender's card and the recipient's card must not match.",
+            "RecipientNotFound": "The recipient's card was not found.",
+            "AllFieldsRequired": "All fields must be provided."
+        },
+        "Exchange":{
+            "Title": "Exchange currencies",
+            "SelectSenderCard": "Select for sending",
+            "SelectReceiverCard": "Select card to receive",
+            "YouWillGet": "You will get",
+            "Confirm": "Confirm Exchange",
+            "ToCard": "To card"
+        }
+    },
+
+    "CardCreated":"Card has been created!",
+    "CardNumberCopied":"Card number has been copied!",
+    "TransactionCreated":"Transaction has been successfully created"
 
 
 }

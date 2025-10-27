@@ -161,19 +161,19 @@
 @if(successAddingFunds()){
     <app-success-message
     [message]="'Success'|translate"
-    secondMessage="Successful card replenishment!">
+    [secondMessage]="'SuccessfulReplenishment'|translate">
     </app-success-message>
 }
 @if(openSuccessMessage()){
     <app-success-message
-    message="Success!"
+    [message]="'Success'|translate"
     [secondMessage]="successMessage">
     </app-success-message>
 }
 
 @if(openErrorMessage()){
     <app-error-message
-    message="Error"
+    [message]="'Error' |translate"
     [secondMessage]="errorMessage">
     </app-error-message>
 }

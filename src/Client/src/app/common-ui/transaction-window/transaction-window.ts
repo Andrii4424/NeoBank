@@ -9,10 +9,11 @@ import { ITransaction } from '../../data/interfaces/bank/bank-products/cards/tra
 import { TransactionType } from '../../data/enums/transaction-type';
 import { CardStatus } from '../../data/enums/card-status';
 import { OnlyNumbers } from "../../data/directives/only-numbers";
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-transaction-window',
-  imports: [ReactiveFormsModule, DecimalPipe, OnlyNumbers],
+  imports: [ReactiveFormsModule, DecimalPipe, OnlyNumbers, TranslateModule],
   templateUrl: './transaction-window.html',
   styleUrl: './transaction-window.scss'
 })
@@ -30,6 +31,7 @@ export class TransactionWindow {
   private senderCardIdSub!:Subscription;
   private amountSub!:Subscription;
   @Output() makeTransaction = new EventEmitter<ITransaction>;
+  translate = inject(TranslateService);
 
   transactionForm = new FormGroup({
     senderCardId: new FormControl<string | null>("", [Validators.required]),
@@ -67,26 +69,26 @@ export class TransactionWindow {
   onSubmit(){
     if(this.transactionForm.valid){
       if(this.transactionForm.get('senderCardId')?.value === ""){
-        this.showError("The card from which the shipment will be sent must be selected");
+        this.showError(this.translate.instant('TransferModal.Errors.NoSenderCard'));
         return;
       }
       this.transactionForm.get('getterCardId')?.setValue(this.transactionForm.get('getterCardId')!.value!.replace(/\D/g, ''));
       if(this.transactionForm.get('getterCardId')?.value?.length !==16){
-        this.showError("The recipient's card must contain 16 characters");
+        this.showError(this.translate.instant('TransferModal.Errors.InvalidRecipientNumber'));
         return ;
       }
       const chosenCard = this.cards?.find(c=>c.id == this.transactionForm.get('senderCardId')?.value);
       const availableBalance = chosenCard!.balance + chosenCard!.creditLimit;
       if(availableBalance < this.transactionForm.get('amount')!.value!){
-        this.showError("The balance is insufficient to complete the transaction, please top up the card");
+        this.showError(this.translate.instant('TransferModal.Errors.InsufficientBalance'));
         return ;
       }
       if(chosenCard?.status !== CardStatus.Active){
-        this.showError("You can only send money from an active card. Please reissue or unblock the card to send.");
+        this.showError(this.translate.instant('TransferModal.Errors.InactiveCard'));
         return ;
       }
       if(chosenCard.cardNumber === this.transactionForm.get('getterCardId')?.value!){
-        this.showError("The sender's card and the recipient's card must not match.");
+        this.showError(this.translate.instant('TransferModal.Errors.SameCard'));
         return ;
       }
       
@@ -97,13 +99,13 @@ export class TransactionWindow {
           type: TransactionType.P2P})
         },
         error:()=>{
-          this.showError("The recipient's card didn't found");
+          this.showError(this.translate.instant('TransferModal.Errors.RecipientNotFound'));
         }
       });
     }
 
     else{
-      this.showError("All fields has to be provided");
+      this.showError(this.translate.instant('TransferModal.Errors.AllFieldsRequired'));
     }
   }
 

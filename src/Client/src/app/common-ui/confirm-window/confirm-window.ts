@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-confirm-window',
-  imports: [],
+  imports: [TranslateModule],
   templateUrl: './confirm-window.html',
   styleUrl: './confirm-window.scss'
 })

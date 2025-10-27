@@ -21,7 +21,13 @@
         </div>
         <div class="auth">
             <div class="language-switcher">
-                <h1 class="language-name" #openLanguageWindow>{{chosenLanguage}}&#9662;</h1>
+                <h1 class="language-name" #openLanguageWindow>
+                    @if(chosenLanguage === 'en'){
+                        EN&#9662;
+                    }
+                    @else if(chosenLanguage === 'uk'){
+                        UA&#9662;
+                    }</h1>
                 <form [class.none]="!showLanguageWindow()" class="language-form" #languageForm>
                     <label>
                         <input type="radio" [(ngModel)]="chosenLanguage" name="language" value="en" (ngModelChange)="onLanguageChange()"/> EN

@@ -50,8 +50,8 @@
 
 @if(showSuccessWindow()){
     <app-success-message
-    message="Success!"
-    secondMessage="Exchange transaction successfully created"
+    [message]="'Success' | translate"
+    [secondMessage]="'TransactionCreated' | translate"
     ></app-success-message> 
 }
 @if(showErrorWindow()){
