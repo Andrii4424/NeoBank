@@ -1,11 +1,12 @@
 FROM node:20 AS build
 WORKDIR /app
-COPY package*.json ./
+COPY src/Client/package*.json ./
 RUN npm install
-COPY . .
-RUN npm run build --prod
+
+COPY src/Client/ .
+RUN npm run build -- --configuration production
 
 FROM nginx:alpine
-COPY --from=build /app/dist /usr/share/nginx/html
-EXPOSE 4020
+COPY --from=build /app/dist/Client /usr/share/nginx/html
+EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

@@ -1,49 +1,90 @@
 version: '3.8'
 
-services:
-  bank-api:
-    build: 
-      context: .
-      dockerfile: ./src/Services/Bank/API/Bank.API.WebUI/Dockerfile
-    container_name: bank-api
-    ports: 
-      - 8080:8080
-      - 8081:8081
-    networks:
-      - bank_network
-    depends_on:
-      - bank-mssql
-
-  bank-mssql:
-    image: mcr.microsoft.com/mssql/server:2019-CU24-ubuntu-20.04
-    container_name: bank-mssql
-    environment:
-      - SA_PASSWORD=Strong44442424
-      - ACCEPT_EULA=Y
-    ports:
-      - 1433:1433
-    volumes:
-      - mssql_data:/var/opt/mssql
-      - D:\FullStack\Databases\Backups:/backups
-    networks:
-      - bank_network
-
-  nginx:
-    build: 
-      context: .  
-      dockerfile: ./nginx/Dockerfile
-    container_name: bank-nginx
-    ports:
-      - "4200:80"
-    depends_on:
-      - bank-api
-    networks:
-      - bank_network
-
 networks:
   bank_network: 
     driver: bridge
           
+services:
+  bank-mssql:
+    image: mcr.microsoft.com/mssql/server:2019-CU24-ubuntu-20.04
+    container_name: bank-mssql
+    environment:
+      - SA_PASSWORD=${BANK_DB_PASS}
+      - ACCEPT_EULA=Y
+    ports:
+      - 1433:1433
+    volumes:
+      - mssql_bank_data:/var/opt/mssql
+      - D:\FullStack\Databases\Neobank:/backups
+    networks:
+      - bank_network
+
+  transactions-mssql:
+    image: mcr.microsoft.com/mssql/server:2019-CU24-ubuntu-20.04
+    container_name: transactions-mssql
+    environment:
+      - SA_PASSWORD=${TRANSACTION_DB_PASS}
+      - ACCEPT_EULA=Y
+    ports:
+      - 1434:1433
+    volumes:
+      - mssql_transactions_data:/var/opt/mssql
+      - D:\FullStack\Databases\Backups\Transactions:/backups
+    networks:
+      - bank_network
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: ${RABBIT_PASS}
+    ports:
+      - "5672:5672"
+      - "15672:15672"   
+    networks:
+      - bank_network
+    restart: unless-stopped
+
+
+  bank-api:
+    build: 
+      context: .
+      dockerfile: ./src/Services/BankService/Bank.API.WebUI/Dockerfile
+    container_name: bank-api
+    ports: 
+      - 7280:7280
+    networks:
+      - bank_network
+    depends_on:
+      - bank-mssql
+      - rabbitmq
+      
+  transactions-api:
+    build: 
+      context: .
+      dockerfile: ./src/Services/TransactionsService/Transactions.WebUI/Dockerfile
+    container_name: transactions-api
+    ports: 
+      - 7281:7281
+    networks:
+      - bank_network
+    depends_on:
+      - transactions-mssql
+      - rabbitmq
+
+  frontend:
+    build:
+      context: .
+      dockerfile: ./src/Client/Dockerfile  
+    container_name: bank-frontend
+    ports:
+      - "4200:80"
+    networks:
+      - bank_network
+    depends_on:
+      - bank-api
+      - transactions-api
 
 volumes:
-  mssql_data:
+  mssql_bank_data:
+  mssql_transactions_data:
