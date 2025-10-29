@@ -19,15 +19,15 @@ if (File.Exists(envFile))
 
 var builder = WebApplication.CreateBuilder(args);
 
-ConfigureServices.AddServices(builder.Services, builder.Configuration);
-
 //Serilog
-builder.Host.UseSerilog((context, config) => {
-    config
-        .WriteTo.Console()
-        .WriteTo.File("logs/log.txt");
+builder.Host.UseSerilog((context, services, loggerConfiguration) =>
+{
+    loggerConfiguration
+        .ReadFrom.Configuration(context.Configuration)
+        .ReadFrom.Services(services);
 });
 
+ConfigureServices.AddServices(builder.Services, builder.Configuration);
 
 var app = builder.Build();
 
