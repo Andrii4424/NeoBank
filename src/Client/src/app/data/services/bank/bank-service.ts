@@ -7,7 +7,7 @@ import { IBank } from '../../interfaces/bank/bank.interface';
 })
 export class BankService {
   http = inject(HttpClient);
-  baseUrl ="https://localhost:7280/api/Bank";
+  baseUrl ="/api/bank/Bank";
 
   getBank(){
     return this.http.get<IBank>(this.baseUrl);

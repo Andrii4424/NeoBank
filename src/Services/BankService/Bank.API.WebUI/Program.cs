@@ -3,9 +3,20 @@ using Bank.API.WebUI.StartupServicesInjection;
 using DotNetEnv;
 using Serilog;
 
+var currentEnv = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production";
+var envFile = currentEnv.ToLower() switch
+{
+    "development" => ".env.dev",
+    "staging" => ".env.staging",
+    _ => ".env.prod"
+};
+
+if (File.Exists(envFile))
+{
+    Env.Load(envFile);
+}
 
 var builder = WebApplication.CreateBuilder(args);
-Env.Load();
 
 AddApplicationServices.AddServices(builder.Services, builder.Configuration);
 

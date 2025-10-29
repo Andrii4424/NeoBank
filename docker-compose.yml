@@ -15,7 +15,7 @@ services:
       - 1433:1433
     volumes:
       - mssql_bank_data:/var/opt/mssql
-      - D:\FullStack\Databases\Neobank:/backups
+      - D:\Databases\Backups\Neobank:/backups
     networks:
       - bank_network
 
@@ -29,7 +29,7 @@ services:
       - 1434:1433
     volumes:
       - mssql_transactions_data:/var/opt/mssql
-      - D:\FullStack\Databases\Backups\Transactions:/backups
+      - D:\Databases\Backups\Transactions:/backups
     networks:
       - bank_network
   rabbitmq:
@@ -50,6 +50,8 @@ services:
     build: 
       context: .
       dockerfile: ./src/Services/BankService/Bank.API.WebUI/Dockerfile
+    env_file:
+      - ./src/Services/BankService/Bank.API.WebUI/.env.prod
     container_name: bank-api
     ports: 
       - 7280:7280
@@ -63,6 +65,8 @@ services:
     build: 
       context: .
       dockerfile: ./src/Services/TransactionsService/Transactions.WebUI/Dockerfile
+    env_file:
+      - ./src/Services/TransactionsService/Transactions.WebUI/.env.prod
     container_name: transactions-api
     ports: 
       - 7281:7281
@@ -71,6 +75,7 @@ services:
     depends_on:
       - transactions-mssql
       - rabbitmq
+      - bank-api
 
   frontend:
     build:
@@ -78,7 +83,7 @@ services:
       dockerfile: ./src/Client/Dockerfile  
     container_name: bank-frontend
     ports:
-      - "4200:80"
+      - "80:80"
     networks:
       - bank_network
     depends_on:
