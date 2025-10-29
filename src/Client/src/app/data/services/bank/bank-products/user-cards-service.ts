@@ -8,13 +8,14 @@ import { IAddFunds } from '../../../interfaces/bank/bank-products/cards/add-fund
 import { IExchangeCurrency } from '../../../interfaces/bank/bank-products/cards/exchange-currency-interface';
 import { CardStatus } from '../../../enums/card-status';
 import { ICroppedUserCard } from '../../../interfaces/bank/bank-products/cards/cropped-user-cards-interface';
+import { environment } from '../../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserCardsService {
   http = inject(HttpClient);
-  baseUrl ="https://localhost:7280/api/UserCards/";
+  baseUrl =`${environment.apiUrl}/UserCards/`;
 
   getMyCards(params: Params){
     return this.http.get<IPageResult<IUserCards>>(`${this.baseUrl}GetMyCards`, {params});

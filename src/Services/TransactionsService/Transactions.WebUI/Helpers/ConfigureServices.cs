@@ -37,7 +37,7 @@ namespace Transactions.WebUI.Helpers
 
             services.AddHttpClient("BankApi", client =>
             {
-                client.BaseAddress = new Uri("https://localhost:7280/api/");
+                client.BaseAddress = new Uri(configuration["BankApiUrl"]);
             });
 
             //DI

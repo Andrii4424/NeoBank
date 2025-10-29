@@ -3,13 +3,14 @@ import { inject, Injectable } from '@angular/core';
 import { IPageResult } from '../../../interfaces/page-inteface';
 import { Params } from '@angular/router';
 import { ICardTariffs } from '../../../interfaces/bank/bank-products/cards/card-tariffs.interface';
+import { environment } from '../../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CardTariffsService {
   http = inject(HttpClient);
-  baseUrl="https://localhost:7280/api/CardTariffs/";
+  baseUrl =`${environment.apiUrl}/CardTariffs/`;
 
   getCardTariffs(params: Params){
     return this.http.get<IPageResult<ICardTariffs>>(`${this.baseUrl}GetPage`, {params})

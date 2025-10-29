@@ -6,6 +6,7 @@ import { IAccessToken } from '../../interfaces/auth/access-token.interface';
 import { Router } from '@angular/router';
 import { IRole } from '../../interfaces/auth/role-interface';
 import { IRecoveryPassword } from '../../interfaces/auth/recovery-password';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class AuthService {
   http = inject(HttpClient);
   router = inject(Router)
   cookieService = inject(CookieService);
-  baseUrl = "https://localhost:7280/api/Account/";
+  baseUrl =`${environment.apiUrl}/Account/`;
   private refresh$?: Observable<string>;
 
   accessToken :string | null = null;
@@ -130,6 +131,7 @@ export class AuthService {
   }
 
   sendRefreshCode(changePasswordParams: IRecoveryPassword){
+    console.log(changePasswordParams);
     return this.http.post(`${this.baseUrl}SendRefreshCode`, changePasswordParams);
   }
 

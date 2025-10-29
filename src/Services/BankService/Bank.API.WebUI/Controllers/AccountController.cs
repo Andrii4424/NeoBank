@@ -47,7 +47,7 @@ namespace Bank.API.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SendRefreshCode([FromBody] ChangePasswordDto changePasswordDetails)
+        public async Task<IActionResult> SendRefreshCode([FromBody] ChangePasswordDto? changePasswordDetails)
         {
             OperationResult result = await _recoveryPasswordService.SetAndSendRefreshPasswordCodeAsync(changePasswordDetails.Email);
             if (!result.Success)
@@ -149,7 +149,7 @@ namespace Bank.API.WebUI.Controllers
             Response.Cookies.Append("refresh_token", result.RefreshToken, new CookieOptions
             {
                 HttpOnly = true,
-                Secure = true,
+                Secure = false,
                 SameSite = SameSiteMode.None,
                 Expires = result.RefreshExpiresOn
             });

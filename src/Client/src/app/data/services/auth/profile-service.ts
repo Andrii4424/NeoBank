@@ -8,6 +8,7 @@ import { tap } from 'rxjs';
 import { Params } from '@angular/router';
 import { IPageResult } from '../../interfaces/page-inteface';
 import { ICroppedProfile } from '../../interfaces/auth/cropped-profile.interface';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ import { ICroppedProfile } from '../../interfaces/auth/cropped-profile.interface
 export class ProfileService {
   http = inject(HttpClient);
   profileSignal = signal<IProfile | null  | undefined>(null);
-  baseUrl ='https://localhost:7280/api/Profile/';
+  baseUrl =`${environment.apiUrl}/Profile/`;
 
   getOwnProfile(skipRedirect: boolean){
     return this.http.get<IProfile>(`${this.baseUrl}Me`, {
@@ -67,7 +68,7 @@ export class ProfileService {
   }
 
   updateRole(){
-    this.http.get<IRole>(`https://localhost:7280/api/Account/GetRole`,{
+    this.http.get<IRole>(`${environment.apiUrl}/Account/GetRole`,{
       context: new HttpContext()
         .set(SKIP_LOGIN_REDIRECT, true)
     })

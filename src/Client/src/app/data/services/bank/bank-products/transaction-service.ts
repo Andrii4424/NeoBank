@@ -4,13 +4,14 @@ import { Params } from '@angular/router';
 import { IPageResult } from '../../../interfaces/page-inteface';
 import { ITransaction } from '../../../interfaces/bank/bank-products/cards/transaction-interface';
 import { IAddFunds } from '../../../interfaces/bank/bank-products/cards/add-funds-interface';
+import { environment } from '../../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TransactionService {
   http = inject(HttpClient);
-  baseUrl = "https://localhost:7281/api/Transaction/";
+  baseUrl =`${environment.transactionsApiUrl}/Transaction/`;
 
   getTransactions(payload:{cardId: string, params: Params}){
     return this.http.get<IPageResult<ITransaction>>(`${this.baseUrl}GetTransactions/${payload.cardId}`, {params: payload.params})
