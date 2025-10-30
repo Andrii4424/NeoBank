@@ -51,7 +51,7 @@ services:
       context: .
       dockerfile: ./src/Services/BankService/Bank.API.WebUI/Dockerfile
     env_file:
-      - .env
+      - .env.bank
     container_name: bank-api
     ports: 
       - 7280:7280
@@ -66,7 +66,7 @@ services:
       context: .
       dockerfile: ./src/Services/TransactionsService/Transactions.WebUI/Dockerfile
     env_file:
-      - .env
+      - .env.transactions
     container_name: transactions-api
     ports: 
       - 7281:7281
