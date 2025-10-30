@@ -15,7 +15,6 @@ services:
       - 1433:1433
     volumes:
       - mssql_bank_data:/var/opt/mssql
-      - D:\Databases\Backups\Neobank:/backups
     networks:
       - bank_network
 
@@ -29,7 +28,6 @@ services:
       - 1434:1433
     volumes:
       - mssql_transactions_data:/var/opt/mssql
-      - D:\Databases\Backups\Transactions:/backups
     networks:
       - bank_network
   rabbitmq:
