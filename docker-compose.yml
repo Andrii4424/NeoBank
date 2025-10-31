@@ -28,6 +28,7 @@ services:
     ports:
       - 1434:1433
     volumes:
+      - bank_uploads:/app/wwwroot/uploads
       - mssql_transactions_data:/var/opt/mssql
       - ../backups:/backups
     networks:
