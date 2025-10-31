@@ -8,8 +8,8 @@
             <nav class="header-menu menu" [class.compact]="compact" [class.labtop]="labtop()">
                 <a [routerLink]="['/about']" routerLinkActive="active">{{'AboutBank' | translate}}</a>
                 <a [routerLink]="['/cards']" routerLinkActive="active">{{'Cards' |translate}}</a>
-                <a href="#">{{'Deposits' | translate}}</a>
-                <a href="#">{{'Credits' | translate}}</a>
+                <a [routerLink]="['/deposits']" routerLinkActive="active">{{'Deposits' | translate}}</a>
+                <a [routerLink]="['/credits']" routerLinkActive="active">{{'Credits' | translate}}</a>
                 <a [routerLink]="['/clients']" routerLinkActive="active">{{'Clients' | translate}}</a>
                 <a [routerLink]="['/employees']" routerLinkActive="active">{{'Employees' | translate}}</a>
                 <a [routerLink]="['/vacancies']" routerLinkActive="active">{{'Vacancies' | translate}}</a>
@@ -44,8 +44,8 @@
     <aside class="sidebar menu" #adaptiveMenu id="adaptive-menu" [class.compact]="compact" [class.labtop]="labtop()" [class.mobile]="mobile()">
         <a [routerLink]="['/about']" routerLinkActive="active">{{'AboutBank' | translate}}</a>
         <a [routerLink]="['/cards']" routerLinkActive="active">{{'Cards' |translate}}</a>
-        <a href="#">{{'Deposits' | translate}}</a>
-        <a href="#">{{'Credits' | translate}}</a>
+        <a [routerLink]="['/deposits']" routerLinkActive="active">{{'Deposits' | translate}}</a>
+        <a [routerLink]="['/credits']" routerLinkActive="active">{{'Credits' | translate}}</a>
         <a [routerLink]="['/clients']" routerLinkActive="active">{{'Clients' | translate}}</a>
         <a [routerLink]="['/employees']" routerLinkActive="active">{{'Employees' | translate}}</a>
         <a [routerLink]="['/vacancies']" routerLinkActive="active">{{'Vacancies' | translate}}</a>

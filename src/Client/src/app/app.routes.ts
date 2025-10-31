@@ -24,6 +24,8 @@ import { Users } from './pages/users/users/users/users';
 import { UserProfile } from './pages/users/users/user-profile/user-profile';
 import { RecoveryPassword } from './pages/auth/recovery-password/recovery-password';
 import { AuthWrap } from './pages/auth/auth-wrap/auth-wrap';
+import { DepositTariffs } from './pages/products/deposits/deposit-tariffs/deposit-tariffs';
+import { CreditTariffs } from './pages/products/credits/credit-tariffs/credit-tariffs';
 
 export const routes: Routes = [
     {path: '', component: Layout, children: [
@@ -45,6 +47,8 @@ export const routes: Routes = [
         {path: 'employees', component: Employees},
         {path: 'clients', component: Users},
         {path: 'clients/profile/:id', component: UserProfile},
+        {path: 'deposits', component: DepositTariffs},
+        {path: 'credits', component: CreditTariffs},
        
     ]},
     {path: 'auth', component: AuthWrap, children:[

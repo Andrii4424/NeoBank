@@ -330,7 +330,12 @@
 
     "CardCreated":"Card has been created!",
     "CardNumberCopied":"Card number has been copied!",
-    "TransactionCreated":"Transaction has been successfully created"
+    "TransactionCreated":"Transaction has been successfully created",
+
+    "underConstruction": {
+        "title": "Page under development",
+        "message": "We’re working hard to bring this feature soon."
+    }
 
 
 }

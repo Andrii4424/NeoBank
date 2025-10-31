@@ -1,0 +1,12 @@
+2025-10-31 09:43:27.356 +02:00 [WRN] The WebRootPath was not found: D:\FullStack\NeoBank\src\Services\TransactionsService\Transactions.WebUI\wwwroot. Static files may be unavailable.
+2025-10-31 09:43:27.487 +02:00 [INF] Now listening on: https://localhost:7281
+2025-10-31 09:43:27.489 +02:00 [INF] Now listening on: http://localhost:5227
+2025-10-31 09:43:27.559 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-31 09:43:27.561 +02:00 [INF] Hosting environment: Development
+2025-10-31 09:43:27.561 +02:00 [INF] Content root path: D:\FullStack\NeoBank\src\Services\TransactionsService\Transactions.WebUI
+2025-10-31 09:43:28.888 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7281/_framework/aspnetcore-browser-refresh.js - null null
+2025-10-31 09:43:28.903 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7281/_framework/aspnetcore-browser-refresh.js - 200 16521 application/javascript; charset=utf-8 20.2267ms
+2025-10-31 09:43:28.959 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7281/_vs/browserLink - null null
+2025-10-31 09:43:28.992 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7281/_vs/browserLink - 200 null text/javascript; charset=UTF-8 33.2971ms
+2025-10-31 09:43:29.021 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7281/swagger/v1/swagger.json - null null
+2025-10-31 09:43:29.051 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7281/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 29.8112ms
