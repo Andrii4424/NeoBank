@@ -94,3 +94,4 @@ services:
 volumes:
   mssql_bank_data:
   mssql_transactions_data:
+  bank_uploads:
