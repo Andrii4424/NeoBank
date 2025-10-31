@@ -12,6 +12,7 @@ import { Search } from "../../../../common-ui/search/search";
 import { Loading } from "../../../../common-ui/loading/loading";
 import { PageSwitcher } from "../../../../common-ui/page-switcher/page-switcher";
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-users',
@@ -26,7 +27,7 @@ export class Users {
   router = inject(Router);
   usersPage$!: Observable<IPageResult<IProfile>>;
   querySub!: Subscription;
-  baseUrl = 'https://localhost:7280/';
+  baseUrl = `${environment.apiUrl}/`;
    translate = inject(TranslateService);
 
   //Filters values

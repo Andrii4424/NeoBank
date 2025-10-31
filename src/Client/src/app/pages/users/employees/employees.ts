@@ -12,6 +12,7 @@ import { ISort } from '../../../data/interfaces/filters/sort-interface';
 import { IFilter } from '../../../data/interfaces/filters/filter-interface';
 import { PageSwitcher } from "../../../common-ui/page-switcher/page-switcher";
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-employees',
@@ -26,7 +27,7 @@ export class Employees {
   sharedService = inject(SharedService);
   usersPage$!: Observable<IPageResult<IProfile>>;
   querySub!: Subscription;
-  baseUrl = 'https://localhost:7280/';
+  baseUrl = `${environment.apiUrl}/`;
   translate = inject(TranslateService);
 
   //Filters values

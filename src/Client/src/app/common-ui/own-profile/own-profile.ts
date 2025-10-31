@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, inject, signal } from '@angular/core';
 import { ProfileService } from '../../data/services/auth/profile-service';
 import { IProfile } from '../../data/interfaces/auth/profile-interface';
 import { RouterLink } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-own-profile',
@@ -11,7 +12,7 @@ import { RouterLink } from '@angular/router';
 })
 export class OwnProfile {
   profileService = inject(ProfileService);
-  baseUrl = 'https://localhost:7280/';
+  baseUrl = `${environment.apiUrl}/`;
   showLogButtons = signal<boolean>(false);
   
   constructor(private cd: ChangeDetectorRef) {}

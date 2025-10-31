@@ -6,6 +6,7 @@ import { FormControl, FormGroup, ɵInternalFormsSharedModule, ReactiveFormsModul
 import { SharedService } from '../../../data/services/shared-service';
 import { AuthService } from '../../../data/services/auth/auth-service';
 import { TranslateModule } from '@ngx-translate/core';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-users-own-profile',
@@ -18,7 +19,7 @@ export class UsersOwnProfile {
   profileService = inject(ProfileService);
   sharedService = inject(SharedService);
   authService = inject(AuthService);
-  baseUrl = 'https://localhost:7280/';
+  baseUrl = `${environment.apiUrl}/`;
 
 
   //Local variables

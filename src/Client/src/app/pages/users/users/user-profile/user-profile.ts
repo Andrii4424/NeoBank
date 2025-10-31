@@ -8,6 +8,7 @@ import { AsyncPipe } from '@angular/common';
 import { Loading } from "../../../../common-ui/loading/loading";
 import { Cards } from "../cards/cards";
 import { TranslateModule } from '@ngx-translate/core';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-user-profile',
@@ -22,7 +23,7 @@ export class UserProfile {
   userId: string;
   $userFullInfo:Observable<IProfile>| null = null;
   $userCroppedInfo:Observable<ICroppedProfile>| null = null;
-  baseUrl ="https://localhost:7280/";
+  baseUrl =`${environment.apiUrl}/`;
   
   constructor(){
     this.isAdmin = this.profileService.getRole() ==="Admin";

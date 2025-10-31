@@ -15,6 +15,7 @@ services:
       - 1433:1433
     volumes:
       - mssql_bank_data:/var/opt/mssql
+      - ../backups:/backups
     networks:
       - bank_network
 
@@ -28,6 +29,7 @@ services:
       - 1434:1433
     volumes:
       - mssql_transactions_data:/var/opt/mssql
+      - ../backups:/backups
     networks:
       - bank_network
   rabbitmq:
