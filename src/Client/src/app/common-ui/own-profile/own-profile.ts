@@ -12,7 +12,7 @@ import { environment } from '../../../environments/environment';
 })
 export class OwnProfile {
   profileService = inject(ProfileService);
-  baseUrl = `${environment.apiUrl}/`;
+  baseUrl = `${environment.apiPhotoUrl}/`;
   showLogButtons = signal<boolean>(false);
   
   constructor(private cd: ChangeDetectorRef) {}

@@ -109,11 +109,11 @@ namespace Bank.API.WebUI.StartupServicesInjection
             //Appsettings binding
             services.Configure<SmtpSettings>(options =>
             {
-                options.Host = Environment.GetEnvironmentVariable("SMTP__HOST");
-                options.Port = int.Parse(Environment.GetEnvironmentVariable("SMTP__PORT") ?? "587");
-                options.User = Environment.GetEnvironmentVariable("SMTP__USER");
-                options.Pass = Environment.GetEnvironmentVariable("SMTP__PASS");
-                options.From = Environment.GetEnvironmentVariable("SMTP__FROM");
+                options.Host = configuration["Smtp:Host"];
+                options.Port = Convert.ToInt32(configuration["Smtp:Port"]);
+                options.User = configuration["Smtp:User"];
+                options.Pass = configuration["Smtp:Pass"];
+                options.From = configuration["Smtp:From"];
             });
 
             //Repositories injection

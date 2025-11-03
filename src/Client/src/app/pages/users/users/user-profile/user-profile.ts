@@ -23,7 +23,7 @@ export class UserProfile {
   userId: string;
   $userFullInfo:Observable<IProfile>| null = null;
   $userCroppedInfo:Observable<ICroppedProfile>| null = null;
-  baseUrl =`${environment.apiUrl}/`;
+  baseUrl = `${environment.apiPhotoUrl}/`;
   
   constructor(){
     this.isAdmin = this.profileService.getRole() ==="Admin";

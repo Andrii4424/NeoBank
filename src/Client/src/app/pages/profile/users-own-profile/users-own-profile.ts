@@ -19,8 +19,7 @@ export class UsersOwnProfile {
   profileService = inject(ProfileService);
   sharedService = inject(SharedService);
   authService = inject(AuthService);
-  baseUrl = `${environment.apiUrl}/`;
-
+  baseUrl = `${environment.apiPhotoUrl}/`;
 
   //Local variables
   router = inject(Router);

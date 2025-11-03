@@ -27,8 +27,8 @@ export class Users {
   router = inject(Router);
   usersPage$!: Observable<IPageResult<IProfile>>;
   querySub!: Subscription;
-  baseUrl = `${environment.apiUrl}/`;
-   translate = inject(TranslateService);
+  baseUrl = `${environment.apiPhotoUrl}/`;
+  translate = inject(TranslateService);
 
   //Filters values
   sortValues$: Observable<ISort[]> = combineLatest([

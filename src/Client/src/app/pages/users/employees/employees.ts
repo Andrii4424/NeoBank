@@ -27,7 +27,7 @@ export class Employees {
   sharedService = inject(SharedService);
   usersPage$!: Observable<IPageResult<IProfile>>;
   querySub!: Subscription;
-  baseUrl = `${environment.apiUrl}/`;
+  baseUrl = `${environment.apiPhotoUrl}/`;
   translate = inject(TranslateService);
 
   //Filters values
