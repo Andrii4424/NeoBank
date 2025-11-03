@@ -116,6 +116,7 @@ namespace Bank.API.WebUI.Controllers
             if (oldRefreshToken == null) { 
                 return Unauthorized();
             }
+
             AuthenticationResponse? result = await _identityService.CheckAndUpdateRefreshTokenAsync(oldRefreshToken);
             return await TokenHelper(result);
         }
@@ -149,12 +150,12 @@ namespace Bank.API.WebUI.Controllers
             Response.Cookies.Append("refresh_token", result.RefreshToken, new CookieOptions
             {
                 HttpOnly = true,
-                Secure = false,
+                Secure = true,
                 SameSite = SameSiteMode.None,
                 Expires = result.RefreshExpiresOn
             });
 
-
+            Console.WriteLine($"New Refresh Token: {result.RefreshToken}");
             return Ok(new AccessTokenDto(result.AccessToken, result.AccessExpiresOn));
         }
     }

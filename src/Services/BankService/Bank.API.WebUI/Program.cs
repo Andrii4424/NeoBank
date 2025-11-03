@@ -1,6 +1,7 @@
 using Bank.API.Infrastructure.Identity.Seed;
 using Bank.API.WebUI.StartupServicesInjection;
 using DotNetEnv;
+using Microsoft.AspNetCore.HttpOverrides;
 using Serilog;
 
 var currentEnv = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production";
@@ -54,6 +55,11 @@ app.UseCors(options => options.AllowAnyHeader().AllowAnyMethod().WithOrigins("ht
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials());
+
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedProto | ForwardedHeaders.XForwardedFor
+});
 
 app.UseAuthentication();
 app.UseAuthorization();

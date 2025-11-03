@@ -83,7 +83,7 @@ namespace Bank.API.WebUI.StartupServicesInjection
                     IssuerSigningKey = new SymmetricSecurityKey(Convert.FromBase64String(configuration["AccessToken:Key"]!)),
                     RoleClaimType = ClaimTypes.Role,
                     NameClaimType = JwtRegisteredClaimNames.Sub,
-                    ClockSkew = TimeSpan.FromMinutes(5)
+                    ClockSkew = TimeSpan.FromMinutes(0)
                 };
             });
             services.AddAuthorization(options => {});
