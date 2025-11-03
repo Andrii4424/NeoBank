@@ -5,6 +5,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { OwnProfile } from "../own-profile/own-profile";
 import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-layout',
@@ -24,26 +25,15 @@ export class Layout {
   @ViewChild('openLanguageWindow') openLanguageWindow!: ElementRef<HTMLElement> ;
 
   //adaptive
-  private bo = inject(BreakpointObserver);
   labtop = signal(false);
   mobile = signal(false);
-  @ViewChild('openMenu') openMenu!: ElementRef<HTMLImageElement> ;
-  @ViewChild('closeMenu') closeMenu!: ElementRef<HTMLImageElement> ;
-  @ViewChild('adaptiveMenu') adaptiveMenu!: ElementRef<HTMLElement> ;
-  @ViewChild('main') main!: ElementRef<HTMLElement> ;
+  @ViewChild('openMenu') openMenu!: ElementRef<HTMLImageElement>;
+  @ViewChild('closeMenu') closeMenu!: ElementRef<HTMLImageElement>;
+  @ViewChild('adaptiveMenu') adaptiveMenu!: ElementRef<HTMLElement>;
+  @ViewChild('main') main!: ElementRef<HTMLElement>;
+  private destroyBo$ = new Subject<void>();
 
-
-  constructor(private translate: TranslateService) {
-    this.bo.observe(['(max-width: 1440px)']).subscribe(result => {
-      this.labtop.set(result.matches);
-      if(result.matches) this.adaptive = true;
-      else this.adaptive = false;
-    });
-
-    this.bo.observe(['(max-width: 768px)']).subscribe(result => {
-      this.mobile.set(result.matches);
-    });
-  }
+  constructor(private translate: TranslateService, private bo: BreakpointObserver) {}
 
   ngOnInit(){
     //Language settings
@@ -53,6 +43,25 @@ export class Layout {
       localStorage.setItem("language", "en");
     }
     this.translate.use(this.chosenLanguage); 
+
+    this.bo.observe(['(max-width: 1440px)'])
+    .pipe(takeUntil(this.destroyBo$))
+    .subscribe(result => {
+      this.labtop.set(result.matches);
+      if(result.matches) this.adaptive = true;
+      else this.adaptive = false;
+    });
+
+    this.bo.observe(['(max-width: 768px)'])
+    .pipe(takeUntil(this.destroyBo$))
+    .subscribe(result => {
+      this.mobile.set(result.matches);
+    });
+  }
+
+  ngOnDestroy() {
+    this.destroyBo$.next();
+    this.destroyBo$.complete();
   }
   
   onLanguageChange(){

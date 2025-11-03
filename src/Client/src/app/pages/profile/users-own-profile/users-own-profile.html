@@ -1,89 +1,95 @@
-<div class="profile-section" (click)="hideValidationResult()">
-    @if (!profile?.isVerified) {
-        <h4 class="verify-text-error">{{'NotVerifiedMessage' |translate}}</h4>
-    }
-    <form class="profile-divider" [formGroup]="profileForm">
-        <div class="logo-section">
-            <div class="profile-img">
-                @if(updatedAvatarFile!=null){
-                    <img class="profile-logo" [src]="updatedAvatarSrc" alt="profile">
-                }
-                @else if(profile?.avatarPath!==null && profile?.avatarPath!==undefined){
-                    <img class="profile-logo" [src]="baseUrl+profile?.avatarPath" alt="profile">
-                }
-                @else {
-                    <img class="profile-logo" [src]="baseUrl+'uploads/default-photo/profile-photo.svg'" alt="profile">  
-                }
-                <label class="update-logo" [class.none]="!updateMode()" for="logo">
-                    <img src="assets/images/update-icon.svg" alt="update">
-                    <input name="logo" type="file" id="logo" hidden accept="image/*" (change)="uploadPhoto($event)">
-                </label>
-            </div>
-
-
-            <div class="user-titles">
-                @if(profile?.role===null){
-                    <h4 class="role">{{'User' |translate}}</h4>
-                }
-                @else{
-                    <h4 class="role">{{profile?.role}}</h4>
-                }
-                @if (profile?.isVerified ) {
-                    <h4 class="verified">{{"Verified" |translate}}</h4>
-                }
-                @else {
-                    <h4 class="not-verified">{{"NotVerified" |translate}}</h4>
-                }
-            </div>
-        </div>
-
-
-        <div class="profile-info">
-            <h2 class="subheading">{{"PersonalInformation" |translate}}</h2>
-
-            <div class="perosonal-info">
-                <label class="description-without-lh" for="firstName">{{'FirstName' |translate}}</label>
-                <input name="firstName" id="firstName" formControlName="firstName" type="text" [readonly]="!updateMode()">
-
-                <label class="description-without-lh" for="surname">{{'Surname' |translate}}</label>
-                <input name="surname" id="surname" formControlName="surname" [readonly]="!updateMode()">
-
-                <label class="description-without-lh" for="patronymic">{{'Patronymic' |translate}}</label>
-                <input name="patronymic" id="patronymic" type="text" formControlName="patronymic" [readonly]="!updateMode()">
-
-                <label class="description-without-lh" for="dateOfBirth">{{'DateOfBirth' |translate}}</label>
-                <input name="dateOfBirth" id="dateOfBirth" type="date" formControlName="dateOfBirth" [readonly]="!updateMode()">
-                
-                <label class="description-without-lh" for="taxId">{{'TaxId' |translate}}</label>
-                <input name="taxId" id="taxId" type="text" formControlName="taxId" [readonly]="!updateMode()">
-            </div>
-
-            <h2 class="subheading">Contact Information</h2>
-            <div class="contact-info">
-                <label class="description-without-lh" for="email">{{'Email' |translate}}</label>
-                <input name="email" id="email" type="email" formControlName="email" [readonly]="!updateMode()">
-
-                <label class="description-without-lh" for="phoneNumber">{{'PhoneNumber' |translate}}</label>
-                <input name="phoneNumber" id="phoneNumber" type="tel" formControlName="phoneNumber" [readonly]="!updateMode()">
-            </div>
-        </div>
-    </form>
-
-    <div class="validation-message">
-        @if(validationSuccess()){
-            <h4 class="success-message" [class.none]="!showValidationResult()">{{'ProfileUpdatedSuccess' |translate}}</h4>
+@if(!isLoading()){
+    <div class="profile-section" (click)="hideValidationResult()">
+        @if (!profile?.isVerified) {
+            <h4 class="verify-text-error">{{'NotVerifiedMessage' |translate}}</h4>
         }
-        <ul class="errors-list" [class.none]="!showValidationResult()">
-            @for (error of validationErrors; track $index) {
-                <li>{{error}}</li>
+        <form class="profile-divider" [formGroup]="profileForm">
+            <div class="logo-section">
+                <div class="profile-img">
+                    @if(updatedAvatarFile!=null){
+                        <img class="profile-logo" [src]="updatedAvatarSrc" alt="profile">
+                    }
+                    @else if(profile?.avatarPath!==null && profile?.avatarPath!==undefined){
+                        <img class="profile-logo" [src]="baseUrl+profile?.avatarPath" alt="profile">
+                    }
+                    @else {
+                        <img class="profile-logo" [src]="baseUrl+'uploads/default-photo/profile-photo.svg'" alt="profile">  
+                    }
+                    <label class="update-logo" [class.none]="!updateMode()" for="logo">
+                        <img src="assets/images/update-icon.svg" alt="update">
+                        <input name="logo" type="file" id="logo" hidden accept="image/*" (change)="uploadPhoto($event)">
+                    </label>
+                </div>
+
+
+                <div class="user-titles">
+                    @if(profile?.role===null){
+                        <h4 class="role">{{'User' |translate}}</h4>
+                    }
+                    @else{
+                        <h4 class="role">{{profile?.role}}</h4>
+                    }
+                    @if (profile?.isVerified ) {
+                        <h4 class="verified">{{"Verified" |translate}}</h4>
+                    }
+                    @else {
+                        <h4 class="not-verified">{{"NotVerified" |translate}}</h4>
+                    }
+                </div>
+            </div>
+
+
+            <div class="profile-info">
+                <h2 class="subheading">{{"PersonalInformation" |translate}}</h2>
+
+                <div class="perosonal-info">
+                    <label class="description-without-lh" for="firstName">{{'FirstName' |translate}}</label>
+                    <input name="firstName" id="firstName" formControlName="firstName" type="text" [readonly]="!updateMode()">
+
+                    <label class="description-without-lh" for="surname">{{'Surname' |translate}}</label>
+                    <input name="surname" id="surname" formControlName="surname" [readonly]="!updateMode()">
+
+                    <label class="description-without-lh" for="patronymic">{{'Patronymic' |translate}}</label>
+                    <input name="patronymic" id="patronymic" type="text" formControlName="patronymic" [readonly]="!updateMode()">
+
+                    <label class="description-without-lh" for="dateOfBirth">{{'DateOfBirth' |translate}}</label>
+                    <input name="dateOfBirth" id="dateOfBirth" type="date" formControlName="dateOfBirth" [readonly]="!updateMode()">
+                    
+                    <label class="description-without-lh" for="taxId">{{'TaxId' |translate}}</label>
+                    <input name="taxId" id="taxId" type="text" formControlName="taxId" [readonly]="!updateMode()">
+                </div>
+
+                <h2 class="subheading">Contact Information</h2>
+                <div class="contact-info">
+                    <label class="description-without-lh" for="email">{{'Email' |translate}}</label>
+                    <input name="email" id="email" type="email" formControlName="email" [readonly]="!updateMode()">
+
+                    <label class="description-without-lh" for="phoneNumber">{{'PhoneNumber' |translate}}</label>
+                    <input name="phoneNumber" id="phoneNumber" type="tel" formControlName="phoneNumber" [readonly]="!updateMode()">
+                </div>
+            </div>
+        </form>
+
+        <div class="validation-message">
+            @if(validationSuccess()){
+                <h4 class="success-message" [class.none]="!showValidationResult()">{{'ProfileUpdatedSuccess' |translate}}</h4>
             }
-        </ul>
+            <ul class="errors-list" [class.none]="!showValidationResult()">
+                @for (error of validationErrors; track $index) {
+                    <li>{{error}}</li>
+                }
+            </ul>
+        </div>
+
+        <div class="profile-action-buttons">
+            <button [class.none]="!updateMode()" (click)="cancelChanges()" class="cancel-btn">{{'Cancel' |translate}}</button>
+            <button [class.none]="updateMode()" (click)="toUpdateMode()" class="update">{{'UpdateData'|translate}}</button>
+            <button [class.none]="!updateMode()" (click)="submitForm()" class="update">{{'SaveChanges' |translate}}</button>
+            <button class="logout" (click)="logout()">{{'Log Out'}}</button>
+        </div>
     </div>
 
-    <div class="profile-action-buttons">
-        <button [class.none]="!updateMode()" (click)="cancelChanges()" class="cancel-btn">{{'Cancel' |translate}}</button>
-        <button [class.none]="updateMode()" (click)="toUpdateMode()" class="update">{{'UpdateData'|translate}}</button>
-        <button [class.none]="!updateMode()" (click)="submitForm()" class="update">{{'SaveChanges' |translate}}</button>
-        <button class="logout" (click)="logout()">{{'Log Out'}}</button>
-    </div>
-</div>
+}
+@else{
+    <app-loading></app-loading>
+}

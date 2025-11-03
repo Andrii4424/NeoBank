@@ -4,7 +4,7 @@ import { SharedService } from './../../../../data/services/shared-service';
 
 import { ChangeDetectorRef, Component, ElementRef, Inject, inject, QueryList, signal, ViewChildren } from '@angular/core';
 import { ActivatedRoute, RouterLink, RouterOutlet, Params, Router } from '@angular/router';
-import { combineLatest, map, Observable } from 'rxjs';
+import { combineLatest, map, Observable, Subscription } from 'rxjs';
 import { AsyncPipe, DecimalPipe } from '@angular/common';
 import { CardsLayout } from '../../cards-layout/cards-layout';
 import { Search } from '../../../../common-ui/search/search';
@@ -55,6 +55,7 @@ export class UserCards {
   @ViewChildren('card') cardElements? : QueryList<ElementRef<HTMLDivElement>>
   isLoading = signal<boolean>(true);
   translate = inject(TranslateService);
+  querySub!: Subscription;
 
   constructor(private cdr: ChangeDetectorRef){}
 
@@ -96,7 +97,7 @@ export class UserCards {
   )
 
   ngOnInit(){
-    this.route.queryParams.subscribe((params: Params) => {
+    this.querySub=this.route.queryParams.subscribe((params: Params) => {
       const successParametr = params['success'];  
       if (successParametr) {
         this.success.set(true);
@@ -109,6 +110,12 @@ export class UserCards {
 
       this.getCards(params);
     });
+  }
+
+  ngOnDestroy(){
+    if(this.querySub){
+      this.querySub.unsubscribe();
+    }
   }
 
   getCards(params: Params){

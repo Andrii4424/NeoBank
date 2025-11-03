@@ -30,7 +30,7 @@ export class Transactions {
   pageNumber: number | null = null;
   @Input() cardCurrencyText : string | null= null;
   @Input() cardCurrencySymbol : string | null= null;
-  private queryParamsSub?: Subscription;
+  private queryParamsSub!: Subscription;
   isLoaded = signal<boolean>(false);
 
   TransactionStatus = TransactionStatus;
@@ -41,6 +41,12 @@ export class Transactions {
     this.queryParamsSub = this.route.queryParams.subscribe(params => {
       this.updatePage(params);
     });
+  }
+
+  ngOnDestroy(){
+    if(this.queryParamsSub){
+      this.queryParamsSub.unsubscribe();
+    }
   }
 
   submitFilters(filters: ITransactionFilter){

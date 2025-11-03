@@ -7,10 +7,11 @@ import { SharedService } from '../../../data/services/shared-service';
 import { AuthService } from '../../../data/services/auth/auth-service';
 import { TranslateModule } from '@ngx-translate/core';
 import { environment } from '../../../../environments/environment';
+import { Loading } from "../../../common-ui/loading/loading";
 
 @Component({
   selector: 'app-users-own-profile',
-  imports: [ɵInternalFormsSharedModule, ReactiveFormsModule, TranslateModule],
+  imports: [ɵInternalFormsSharedModule, ReactiveFormsModule, TranslateModule, Loading],
   templateUrl: './users-own-profile.html',
   styleUrl: './users-own-profile.scss'
 })
@@ -30,6 +31,7 @@ export class UsersOwnProfile {
   validationErrors: string[] =[];
   validationSuccess = signal<boolean>(false);
   showValidationResult = signal<boolean>(false);
+  isLoading = signal<boolean>(true);
 
   profileForm = new FormGroup({
     email: new FormControl<string | null>(null),
@@ -61,8 +63,10 @@ export class UsersOwnProfile {
       },
       error: (err)=>{
         this.profile=null;
+        this.isLoading.set(false);
       }, 
       complete:()=>{
+        this.isLoading.set(false);
         this.cd.detectChanges();
       }
     })

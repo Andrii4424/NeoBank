@@ -7,6 +7,7 @@ import { AuthService } from '../../../data/services/auth/auth-service';
 import { RouterLink } from "@angular/router";
 import { ProfileService } from '../../../data/services/auth/profile-service';
 import { TranslateModule } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +23,7 @@ export class Login {
   displayLoginError = signal<boolean>(false);
   loginFormErrorMessage :string[] =[];
   profileService = inject(ProfileService);
+  private profileSub!: Subscription;
 
   constructor(private activatedRoute: ActivatedRoute){
     
@@ -34,7 +36,12 @@ export class Login {
       }
     });
   }
-
+  
+  ngOnDestroy(){
+    if(this.profileSub){
+      this.profileSub.unsubscribe();
+    }
+  }
 
   loginForm = new FormGroup({
     email: new FormControl(null, Validators.required),
