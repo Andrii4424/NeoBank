@@ -1,9 +1,9 @@
 version: '3.8'
 
 networks:
-  bank_network:
+  bank_network: 
     driver: bridge
-
+          
 services:
   bank-mssql:
     image: mcr.microsoft.com/mssql/server:2019-CU24-ubuntu-20.04
@@ -32,7 +32,6 @@ services:
       - ../backups:/backups
     networks:
       - bank_network
-
   rabbitmq:
     image: rabbitmq:3-management
     container_name: rabbitmq
@@ -41,36 +40,37 @@ services:
       RABBITMQ_DEFAULT_PASS: ${RABBIT_PASS}
     ports:
       - "5672:5672"
-      - "15672:15672"
+      - "15672:15672"   
     networks:
       - bank_network
     restart: unless-stopped
 
+
   bank-api:
-    build:
+    build: 
       context: .
       dockerfile: ./src/Services/BankService/Bank.API.WebUI/Dockerfile
     env_file:
       - .env.bank
     container_name: bank-api
-    ports:
+    ports: 
       - 7280:7280
-    volumes:
-      - bank_uploads:/app/wwwroot/uploads
     networks:
       - bank_network
+    volumes:
+      - bank_uploads:/app/wwwroot/uploads
     depends_on:
       - bank-mssql
       - rabbitmq
-
+      
   transactions-api:
-    build:
+    build: 
       context: .
       dockerfile: ./src/Services/TransactionsService/Transactions.WebUI/Dockerfile
     env_file:
       - .env.transactions
     container_name: transactions-api
-    ports:
+    ports: 
       - 7281:7281
     networks:
       - bank_network
@@ -82,17 +82,8 @@ services:
   frontend:
     build:
       context: .
-      dockerfile: ./src/Client/Dockerfile
+      dockerfile: ./src/Client/Dockerfile  
     container_name: bank-frontend
-    networks:
-      - bank_network
-    depends_on:
-      - bank-api
-      - transactions-api
-
-  nginx:
-    image: nginx:latest
-    container_name: nginx
     ports:
       - "80:80"
       - "443:443"
@@ -103,8 +94,8 @@ services:
     networks:
       - bank_network
     depends_on:
-      - frontend
-
+      - bank-api
+      - transactions-api
   certbot:
     image: certbot/certbot
     container_name: certbot
@@ -118,6 +109,7 @@ services:
       --agree-tos
       --no-eff-email
       -d neobank.switzerlandnorth.cloudapp.azure.com
+
 
 volumes:
   mssql_bank_data:
