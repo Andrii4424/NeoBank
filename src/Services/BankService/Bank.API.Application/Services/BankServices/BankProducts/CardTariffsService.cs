@@ -27,11 +27,15 @@ namespace Bank.API.Application.Services.BankServices.BankProducts
             _mapper = mapper;
             _logger = logger;
         }
-        //Read Operations
 
+        //Read Operations
         public async Task<PageResult<CardTariffsDto>> GetCardsPageAsync(CardTariffsFilter? filters)
         {
             _logger.LogInformation("Trying to get cards tariffs page");
+            if(filters == null)
+            {
+                filters = new CardTariffsFilter();
+            }
             filters.PageNumber = filters.PageNumber ?? 1;
             FiltersDto<CardTariffsEntity> filtersDto = filters.ToGeneralFilters();
 
@@ -45,10 +49,16 @@ namespace Bank.API.Application.Services.BankServices.BankProducts
             return pageResult;
         }
 
-        public async Task<CardTariffsDto?> GetCardAsync(Guid cardId)
+        public async Task<CardTariffsDto?> GetCardAsync(Guid? cardId)
         {
-            _logger.LogInformation("Geting cards tarriffs info");
-            return _mapper.Map<CardTariffsDto>(await _cardTariffsRepository.GetValueByIdAsync(cardId));
+            _logger.LogInformation("Getting cards tarriffs info");
+            if(cardId == null)
+            {
+                _logger.LogError("Failed getting cards tarriffs info.Card id is null");
+                throw new ArgumentNullException("Card id cant be null");
+            }
+            
+            return _mapper.Map<CardTariffsDto>(await _cardTariffsRepository.GetValueByIdAsync(cardId.Value));
         }
         
         //Create operations

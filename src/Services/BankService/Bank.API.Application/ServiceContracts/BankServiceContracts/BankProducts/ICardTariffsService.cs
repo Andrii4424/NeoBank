@@ -14,7 +14,7 @@ namespace Bank.API.Application.ServiceContracts.BankServiceContracts.BankProduct
     public interface ICardTariffsService
     {
         public Task<PageResult<CardTariffsDto>> GetCardsPageAsync(CardTariffsFilter? filters);
-        public Task<CardTariffsDto?> GetCardAsync(Guid cardId);
+        public Task<CardTariffsDto?> GetCardAsync(Guid? cardId);
         public Task<OperationResult> AddAsync(CardTariffsDto cardDto);
         public Task<OperationResult> UpdateAcync(CardTariffsDto cardDto);
         public Task<OperationResult> DeleteAsync(Guid cardId);
