@@ -11,7 +11,7 @@ namespace Bank.API.Application.ServiceContracts.BankServiceContracts
     public interface IBankService
     {
         public Task<BankDto> GetBankInfo();
-        public Task<OperationResult> UpdateBank(BankDto bankDto);
+        public Task<OperationResult> UpdateBank(BankDto? bankDto);
 
     }
 }

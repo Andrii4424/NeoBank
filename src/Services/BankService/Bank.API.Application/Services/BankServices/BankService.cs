@@ -36,12 +36,18 @@ namespace Bank.API.Application.Services.BankServices
         }
 
 
-        public async Task<OperationResult> UpdateBank(BankDto bankDto)
+        public async Task<OperationResult> UpdateBank(BankDto? bankDto)
         {
             _logger.LogInformation("Trying update bank info");
+            if(bankDto == null)
+            {
+                _logger.LogError("Failed updating bank info. Bank info is null");
+                throw new ArgumentNullException("Failed updating bank info. Bank info is null");
+            }
+
             BankEntity bank = await _bankRepository.GetValueByIdAsync(bankDto.Id);
 
-           _mapper.Map(bankDto, bank);
+            _mapper.Map(bankDto, bank);
             bank.UpdatedAt = DateOnly.FromDateTime(DateTime.Now);
             _bankRepository.UpdateObject(bank);
             await _bankRepository.SaveAsync();
