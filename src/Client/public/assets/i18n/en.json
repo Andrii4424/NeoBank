@@ -335,7 +335,13 @@
     "underConstruction": {
         "title": "Page under development",
         "message": "We’re working hard to bring this feature soon."
-    }
+    },
 
+    "Blocked-Upper": "BLOCKED",
+    "Expired-Upper": "EXPIRED",
+
+    "LogIn":"Log in",
+
+    "ApplyForJobConfirmation":"Are you sure you want to work in a bank?"
 
 }

@@ -224,6 +224,10 @@ export class UserCards {
         if(child){
           (child as HTMLImageElement).src="assets/images/bank-logo.png";
         }
+        const childCopy = el.querySelector('.copy-card-img');
+        if(childCopy){
+          (childCopy as HTMLImageElement).src="assets/images/copy.svg";
+        }
         el.style.color = '#102A5A';
         return;
       }
@@ -236,6 +240,10 @@ export class UserCards {
         const child = el.querySelector('.card-bank-logo');
         if(child){
           (child as HTMLImageElement).src="assets/images/white-bank-logo.png";
+        }
+        const childCopy = el.querySelector('.copy-card-img');
+        if(childCopy){
+          (childCopy as HTMLImageElement).src="assets/images/copy-white.svg";
         }
         el.style.color = 'white';
       } else {

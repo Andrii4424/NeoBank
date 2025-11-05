@@ -3,10 +3,11 @@ import { ProfileService } from '../../data/services/auth/profile-service';
 import { IProfile } from '../../data/interfaces/auth/profile-interface';
 import { RouterLink } from '@angular/router';
 import { environment } from '../../../environments/environment';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-own-profile',
-  imports: [RouterLink],
+  imports: [RouterLink, TranslateModule],
   templateUrl: './own-profile.html',
   styleUrl: './own-profile.scss'
 })

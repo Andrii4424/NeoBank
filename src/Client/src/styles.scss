@@ -929,11 +929,11 @@ a.chosen-child-link::after {
 
 .card-link.blocked::after{
     background: rgba(255, 0, 0, 0.7);
-    content: "BLOCKED"; 
+    content: attr(data-blocked-label); 
 }
 
 .card-link.expired::after {
-    content: "EXPIRED";
+    content: attr(data-expired-label); 
     background: rgba(128, 128, 128, 0.7);
 }
 
@@ -1020,7 +1020,9 @@ a.chosen-child-link::after {
 	font-size: 16px;
 	font-weight: 500;
 }
-
+.card-type{
+	margin-bottom: 4px;
+}
 .spinner-wrapper {
   position: absolute;
   top: 0;

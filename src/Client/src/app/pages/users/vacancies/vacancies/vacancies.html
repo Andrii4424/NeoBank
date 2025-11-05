@@ -88,8 +88,8 @@
 }
 @if(showApplyForJobWindow()){
     <app-confirm-window
-        title="Apply For a Job"
-        subtitle="Are you sure you want to work in a bank?"
+        [title]="'ApplyForJob' |translate"
+        [subtitle]="'ApplyForJobConfirmation' |translate"
         (cancelAction)="cancelApplyForJob()"
         (confirmAction)="applyForJob()"
     >
