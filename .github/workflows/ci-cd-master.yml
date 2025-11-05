@@ -29,7 +29,7 @@ jobs:
         run: dotnet build -c Release --no-restore
 
       - name: Test
-        run: dotnet test -c Release --no-build --verbosity normal
+        run: dotnet test -c Release --verbosity normal
 
   frontend:
     name: Frontend - Build
@@ -44,17 +44,17 @@ jobs:
 
       - name: Install deps
         run: |
-          cd src/WebClient
+          cd src/Client
           npm ci
 
       - name: Lint (optional)
         run: |
-          cd src/WebClient
+          cd src/Client
           npm run lint --if-present
 
       - name: Build
         run: |
-          cd src/WebClient
+          cd src/Client
           npm run build --if-present
 
   docker_build_push:
