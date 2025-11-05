@@ -73,6 +73,23 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+      - name: Create .env file for Docker
+        run: |
+          echo "ASPNETCORE_ENVIRONMENT=${{ secrets.ASPNETCORE_ENVIRONMENT }}" > .env.bank
+          echo "ConnectionStrings__DefaultConnection=${{ secrets.DB_BANK_CONNECTION_STRING }}" >> .env.bank
+          echo "RabbitMq__Host=${{ secrets.RABBIT_HOST }}" >> .env.bank
+          echo "RabbitMq__Username=${{ secrets.RABBIT_USERNAME }}" >> .env.bank
+          echo "RabbitMq__Password=${{ secrets.RABBIT_PASSWORD }}" >> .env.bank
+          echo "RabbitMq__Port=${{ secrets.RABBIT_PORT }}" >> .env.bank
+
+          echo "ASPNETCORE_ENVIRONMENT=${{ secrets.ASPNETCORE_ENVIRONMENT }}" > .env.transactions
+          echo "ConnectionStrings__DefaultConnection=${{ secrets.DB_TRANSACTIONS_CONNECTION_STRING }}" >> .env.transactions
+          echo "RabbitMq__Host=${{ secrets.RABBIT_HOST }}" >> .env.transactions
+          echo "RabbitMq__Username=${{ secrets.RABBIT_USERNAME }}" >> .env.transactions
+          echo "RabbitMq__Password=${{ secrets.RABBIT_PASSWORD }}" >> .env.transactions
+          echo "RabbitMq__Port=${{ secrets.RABBIT_PORT }}" >> .env.transactions
+          echo "BankApiUrl=${{ secrets.BANK_API_URL }}" >> .env.transactions
+
       - name: Docker Compose Build
         run: |
           docker compose build --pull
@@ -103,6 +120,7 @@ jobs:
             fi
 
             docker compose pull
+            docker compose up -d --remove-orphans
             docker compose up -d
 
             docker image prune -f
