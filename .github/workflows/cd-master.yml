@@ -3,8 +3,6 @@ name: CI/CD - Master
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
     
 concurrency:
   group: production-deploy
@@ -116,7 +114,8 @@ jobs:
             cd ${{ secrets.DEPLOY_PATH }}      
 
             if [ -d .git ]; then
-              git pull
+              git fetch origin master
+              git reset --hard origin/master
             fi
 
             docker compose pull
