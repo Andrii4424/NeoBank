@@ -11,6 +11,11 @@ services:
     environment:
       - SA_PASSWORD=${BANK_DB_PASS}
       - ACCEPT_EULA=Y
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P $BANK_DB_PASS -Q 'SELECT 1' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
     ports:
       - 1433:1433
     volumes:
@@ -25,6 +30,11 @@ services:
     environment:
       - SA_PASSWORD=${TRANSACTION_DB_PASS}
       - ACCEPT_EULA=Y
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P $TRANSACTION_DB_PASS -Q 'SELECT 1' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
     ports:
       - 1434:1433
     volumes:
@@ -38,6 +48,13 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: admin
       RABBITMQ_DEFAULT_PASS: ${RABBIT_PASS}
+      
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "check_running"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
     ports:
       - "5672:5672"
       - "15672:15672"   
@@ -50,6 +67,7 @@ services:
     build: 
       context: .
       dockerfile: ./src/Services/BankService/Bank.API.WebUI/Dockerfile
+    image: pipsqueak3/neobank-bank-api:latest
     env_file:
       - .env.bank
     container_name: bank-api
@@ -60,13 +78,16 @@ services:
     volumes:
       - bank_uploads:/app/wwwroot/uploads
     depends_on:
-      - bank-mssql
-      - rabbitmq
+      bank-mssql:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
       
   transactions-api:
     build: 
       context: .
       dockerfile: ./src/Services/TransactionsService/Transactions.WebUI/Dockerfile
+    image: pipsqueak3/neobank-transactions-api:latest
     env_file:
       - .env.transactions
     container_name: transactions-api
@@ -75,14 +96,18 @@ services:
     networks:
       - bank_network
     depends_on:
-      - transactions-mssql
-      - rabbitmq
-      - bank-api
+      transactions-mssql:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+      bank-api:
+        condition: service_started
 
   frontend:
     build:
       context: .
       dockerfile: ./src/Client/Dockerfile  
+    image: pipsqueak3/neobank-frontend:latest    
     container_name: bank-frontend
     ports:
       - "80:80"
