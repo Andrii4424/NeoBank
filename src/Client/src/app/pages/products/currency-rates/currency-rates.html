@@ -9,7 +9,7 @@
         @for (currency of currencies; track $index) {
             <tr>
                 <td>{{currency.cc}}</td>
-                <td>{{currency.rate}}</td>
+                <td>{{currency.rate}} ₴</td>
             </tr>
         }
         
@@ -25,8 +25,8 @@
         @for (currency of currencies; track $index) {
             <tr>
                 <td>{{currency.cc}}</td>
-                <td>{{currency.neoBankBuyCource}}</td>
-                <td>{{currency.neoBankSellCource}}</td>
+                <td>{{currency.neoBankBuyCource}} ₴</td>
+                <td>{{currency.neoBankSellCource}} ₴</td>
                 <td><button class="exchange" (click)="openExchangeWindow.set(true)">{{'Exchange' |translate}}</button></td>
             </tr>
         }
