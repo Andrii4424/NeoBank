@@ -1,0 +1,381 @@
+2025-11-06 10:53:27.414 +02:00 [INF] User profile is available. Using 'C:\Users\andre\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-06 10:53:27.959 +02:00 [WRN] No store type was specified for the decimal property 'Balance' on entity type 'UserCardsEntity'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-06 10:53:27.961 +02:00 [WRN] No store type was specified for the decimal property 'CreditLimit' on entity type 'UserCardsEntity'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-06 10:53:29.499 +02:00 [INF] Executed DbCommand (88ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-06 10:53:29.572 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-06 10:53:29.587 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-11-06 10:53:29.654 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2025-11-06 10:53:29.697 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__get_Item_0='?' (DbType = Guid), @__get_Item_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @__get_Item_0 AND [a].[RoleId] = @__get_Item_1
+2025-11-06 10:53:30.001 +02:00 [INF] Now listening on: https://localhost:7280
+2025-11-06 10:53:30.003 +02:00 [INF] Now listening on: http://localhost:5106
+2025-11-06 10:53:30.086 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-06 10:53:30.087 +02:00 [INF] Hosting environment: Development
+2025-11-06 10:53:30.088 +02:00 [INF] Content root path: D:\FullStack\NeoBank\src\Services\BankService\Bank.API.WebUI
+2025-11-06 10:53:31.179 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-06 10:53:31.198 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 24.7125ms
+2025-11-06 10:53:31.234 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/_vs/browserLink - null null
+2025-11-06 10:58:53.053 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Profile/Me - null null
+2025-11-06 10:58:53.053 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Account/GetRole - null null
+2025-11-06 10:58:53.056 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Currency/GetCurrencyRates - null null
+2025-11-06 10:58:53.123 +02:00 [INF] CORS policy execution successful.
+2025-11-06 10:58:53.123 +02:00 [INF] CORS policy execution successful.
+2025-11-06 10:58:53.123 +02:00 [INF] CORS policy execution successful.
+2025-11-06 10:58:54.056 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.BankProducts.CurrencyController.GetCurrencyRates (Bank.API.WebUI)'
+2025-11-06 10:58:54.056 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI)'
+2025-11-06 10:58:54.059 +02:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-11-06 10:58:54.064 +02:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-11-06 10:58:54.067 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Profile/Me - 401 0 null 1014.1486ms
+2025-11-06 10:58:54.073 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7280/api/Account/Refresh - null 0
+2025-11-06 10:58:54.077 +02:00 [INF] CORS policy execution successful.
+2025-11-06 10:58:54.079 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI)'
+2025-11-06 10:58:54.080 +02:00 [INF] Route matched with {action = "GetCurrencyRates", controller = "Currency"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCurrencyRates() on controller Bank.API.WebUI.Controllers.BankProducts.CurrencyController (Bank.API.WebUI).
+2025-11-06 10:58:54.080 +02:00 [INF] Route matched with {action = "GetRole", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRole() on controller Bank.API.WebUI.Controllers.AccountController (Bank.API.WebUI).
+2025-11-06 10:58:54.083 +02:00 [INF] Route matched with {action = "Refresh", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Refresh() on controller Bank.API.WebUI.Controllers.AccountController (Bank.API.WebUI).
+2025-11-06 10:58:54.143 +02:00 [INF] Trying to get currencies rates
+2025-11-06 10:58:54.198 +02:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2025-11-06 10:58:54.214 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__refreshToken_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[RefreshToken] = @__refreshToken_0
+2025-11-06 10:58:54.221 +02:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2025-11-06 10:58:54.226 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI) in 139.1475ms
+2025-11-06 10:58:54.226 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI) in 137.1703ms
+2025-11-06 10:58:54.228 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI)'
+2025-11-06 10:58:54.229 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI)'
+2025-11-06 10:58:54.230 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Account/GetRole - 401 null application/problem+json; charset=utf-8 1177.0296ms
+2025-11-06 10:58:54.234 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7280/api/Account/Refresh - 401 null application/problem+json; charset=utf-8 161.4459ms
+2025-11-06 10:58:54.350 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [b].[Id], [b].[ActiveClientsCount], [b].[BankDirectorFullName], [b].[BankFounderFullName], [b].[BlockedClientsCount], [b].[Capitalization], [b].[ClientsCount], [b].[ContactEmail], [b].[ContactPhone], [b].[EmployeesCount], [b].[EstablishedDate], [b].[HasLicense], [b].[LegalAddress], [b].[MfoCode], [b].[Name], [b].[PercentageCommissionForBuyingCurrency], [b].[PercentageCommissionForSellingCurrency], [b].[Rating], [b].[SwiftCode], [b].[TaxId], [b].[UpdatedAt]
+FROM [BankInfo] AS [b]
+WHERE [b].[Id] = @__id_0
+2025-11-06 10:58:54.383 +02:00 [INF] Success getting currencies rates from request
+2025-11-06 10:58:54.386 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Bank.API.Application.DTOs.BankProducts.CurrencyDto, Bank.API.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-06 10:58:54.392 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.BankProducts.CurrencyController.GetCurrencyRates (Bank.API.WebUI) in 308.057ms
+2025-11-06 10:58:54.394 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.BankProducts.CurrencyController.GetCurrencyRates (Bank.API.WebUI)'
+2025-11-06 10:58:54.394 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Currency/GetCurrencyRates - 200 null application/json; charset=utf-8 1338.3108ms
+2025-11-06 11:02:18.661 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Account/GetRole - null null
+2025-11-06 11:02:18.668 +02:00 [INF] CORS policy execution successful.
+2025-11-06 11:02:18.669 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI)'
+2025-11-06 11:02:18.670 +02:00 [INF] Route matched with {action = "GetRole", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRole() on controller Bank.API.WebUI.Controllers.AccountController (Bank.API.WebUI).
+2025-11-06 11:02:18.683 +02:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2025-11-06 11:02:18.685 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI) in 12.9811ms
+2025-11-06 11:02:18.686 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI)'
+2025-11-06 11:02:18.687 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Account/GetRole - 401 null application/problem+json; charset=utf-8 26.8342ms
+2025-11-06 11:02:18.691 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7280/api/Account/Refresh - null 0
+2025-11-06 11:02:18.692 +02:00 [INF] CORS policy execution successful.
+2025-11-06 11:02:18.693 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI)'
+2025-11-06 11:02:18.694 +02:00 [INF] Route matched with {action = "Refresh", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Refresh() on controller Bank.API.WebUI.Controllers.AccountController (Bank.API.WebUI).
+2025-11-06 11:02:18.702 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__refreshToken_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[RefreshToken] = @__refreshToken_0
+2025-11-06 11:02:18.708 +02:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2025-11-06 11:02:18.709 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI) in 11.6872ms
+2025-11-06 11:02:18.711 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI)'
+2025-11-06 11:02:18.712 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7280/api/Account/Refresh - 401 null application/problem+json; charset=utf-8 22.0322ms
+2025-11-06 11:04:21.102 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Account/GetRole - null null
+2025-11-06 11:04:21.108 +02:00 [INF] CORS policy execution successful.
+2025-11-06 11:04:21.109 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI)'
+2025-11-06 11:04:21.110 +02:00 [INF] Route matched with {action = "GetRole", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRole() on controller Bank.API.WebUI.Controllers.AccountController (Bank.API.WebUI).
+2025-11-06 11:04:21.111 +02:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2025-11-06 11:04:21.112 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI) in 1.2004ms
+2025-11-06 11:04:21.113 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI)'
+2025-11-06 11:04:21.114 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Account/GetRole - 401 null application/problem+json; charset=utf-8 11.8165ms
+2025-11-06 11:04:21.132 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7280/api/Account/Refresh - null 0
+2025-11-06 11:04:21.135 +02:00 [INF] CORS policy execution successful.
+2025-11-06 11:04:21.136 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI)'
+2025-11-06 11:04:21.137 +02:00 [INF] Route matched with {action = "Refresh", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Refresh() on controller Bank.API.WebUI.Controllers.AccountController (Bank.API.WebUI).
+2025-11-06 11:04:21.147 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__refreshToken_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[RefreshToken] = @__refreshToken_0
+2025-11-06 11:04:21.150 +02:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2025-11-06 11:04:21.151 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI) in 11.6237ms
+2025-11-06 11:04:21.152 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI)'
+2025-11-06 11:04:21.153 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7280/api/Account/Refresh - 401 null application/problem+json; charset=utf-8 21.0957ms
+2025-11-06 11:18:10.604 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Account/GetRole - null null
+2025-11-06 11:18:10.607 +02:00 [INF] CORS policy execution successful.
+2025-11-06 11:18:10.608 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI)'
+2025-11-06 11:18:10.609 +02:00 [INF] Route matched with {action = "GetRole", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRole() on controller Bank.API.WebUI.Controllers.AccountController (Bank.API.WebUI).
+2025-11-06 11:18:10.611 +02:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2025-11-06 11:18:10.612 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI) in 1.7377ms
+2025-11-06 11:18:10.616 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI)'
+2025-11-06 11:18:10.619 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Account/GetRole - 401 null application/problem+json; charset=utf-8 15.02ms
+2025-11-06 11:18:10.653 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7280/api/Account/Refresh - null 0
+2025-11-06 11:18:10.655 +02:00 [INF] CORS policy execution successful.
+2025-11-06 11:18:10.655 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI)'
+2025-11-06 11:18:10.656 +02:00 [INF] Route matched with {action = "Refresh", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Refresh() on controller Bank.API.WebUI.Controllers.AccountController (Bank.API.WebUI).
+2025-11-06 11:18:10.679 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__refreshToken_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[RefreshToken] = @__refreshToken_0
+2025-11-06 11:18:10.682 +02:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2025-11-06 11:18:10.683 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI) in 21.646ms
+2025-11-06 11:18:10.684 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI)'
+2025-11-06 11:18:10.685 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7280/api/Account/Refresh - 401 null application/problem+json; charset=utf-8 32.2524ms
+2025-11-06 11:20:26.199 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Account/GetRole - null null
+2025-11-06 11:20:26.202 +02:00 [INF] CORS policy execution successful.
+2025-11-06 11:20:26.203 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI)'
+2025-11-06 11:20:26.204 +02:00 [INF] Route matched with {action = "GetRole", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRole() on controller Bank.API.WebUI.Controllers.AccountController (Bank.API.WebUI).
+2025-11-06 11:20:26.205 +02:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2025-11-06 11:20:26.206 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI) in 1.1517ms
+2025-11-06 11:20:26.207 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI)'
+2025-11-06 11:20:26.208 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Account/GetRole - 401 null application/problem+json; charset=utf-8 8.9051ms
+2025-11-06 11:20:26.227 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7280/api/Account/Refresh - null 0
+2025-11-06 11:20:26.228 +02:00 [INF] CORS policy execution successful.
+2025-11-06 11:20:26.229 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI)'
+2025-11-06 11:20:26.230 +02:00 [INF] Route matched with {action = "Refresh", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Refresh() on controller Bank.API.WebUI.Controllers.AccountController (Bank.API.WebUI).
+2025-11-06 11:20:26.234 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__refreshToken_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[RefreshToken] = @__refreshToken_0
+2025-11-06 11:20:26.236 +02:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2025-11-06 11:20:26.238 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI) in 6.6597ms
+2025-11-06 11:20:26.239 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI)'
+2025-11-06 11:20:26.240 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7280/api/Account/Refresh - 401 null application/problem+json; charset=utf-8 13.0933ms
+2025-11-06 11:24:13.623 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Account/GetRole - null null
+2025-11-06 11:24:13.629 +02:00 [INF] CORS policy execution successful.
+2025-11-06 11:24:13.630 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI)'
+2025-11-06 11:24:13.631 +02:00 [INF] Route matched with {action = "GetRole", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRole() on controller Bank.API.WebUI.Controllers.AccountController (Bank.API.WebUI).
+2025-11-06 11:24:13.634 +02:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2025-11-06 11:24:13.635 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI) in 1.4633ms
+2025-11-06 11:24:13.636 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI)'
+2025-11-06 11:24:13.636 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Account/GetRole - 401 null application/problem+json; charset=utf-8 14.3322ms
+2025-11-06 11:24:13.640 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7280/api/Account/Refresh - null 0
+2025-11-06 11:24:13.643 +02:00 [INF] CORS policy execution successful.
+2025-11-06 11:24:13.644 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI)'
+2025-11-06 11:24:13.645 +02:00 [INF] Route matched with {action = "Refresh", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Refresh() on controller Bank.API.WebUI.Controllers.AccountController (Bank.API.WebUI).
+2025-11-06 11:24:13.650 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__refreshToken_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[RefreshToken] = @__refreshToken_0
+2025-11-06 11:24:13.652 +02:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2025-11-06 11:24:13.653 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI) in 6.2131ms
+2025-11-06 11:24:13.654 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI)'
+2025-11-06 11:24:13.655 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7280/api/Account/Refresh - 401 null application/problem+json; charset=utf-8 14.9747ms
+2025-11-06 11:24:29.924 +02:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7280/api/Account/SendRefreshCode - null null
+2025-11-06 11:24:29.929 +02:00 [INF] CORS policy execution successful.
+2025-11-06 11:24:29.930 +02:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7280/api/Account/SendRefreshCode - 204 null null 6.6703ms
+2025-11-06 11:24:29.932 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7280/api/Account/SendRefreshCode - application/json 77
+2025-11-06 11:24:29.933 +02:00 [INF] CORS policy execution successful.
+2025-11-06 11:24:29.951 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.AccountController.SendRefreshCode (Bank.API.WebUI)'
+2025-11-06 11:24:29.960 +02:00 [INF] Route matched with {action = "SendRefreshCode", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SendRefreshCode(Bank.API.Application.DTOs.Identity.ChangePasswordDto) on controller Bank.API.WebUI.Controllers.AccountController (Bank.API.WebUI).
+2025-11-06 11:24:29.999 +02:00 [INF] User trying andreyfalchevskiy@gmail.com change password
+2025-11-06 11:24:30.001 +02:00 [INF] Trying to get user with email: andreyfalchevskiy@gmail.com
+2025-11-06 11:24:30.005 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-11-06 11:24:30.008 +02:00 [INF] Success getting user with email: andreyfalchevskiy@gmail.com
+2025-11-06 11:24:30.010 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-11-06 11:24:30.030 +02:00 [INF] Executed DbCommand (7ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-11-06 11:24:30.253 +02:00 [INF] Executed DbCommand (102ms) [Parameters=[@p28='?' (DbType = Guid), @p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p29='?' (Size = 4000), @p3='?' (DbType = Date), @p4='?' (Size = 256), @p5='?' (DbType = Boolean), @p6='?' (Size = 4000), @p7='?' (DbType = Boolean), @p8='?' (Size = 4000), @p9='?' (Size = 4000), @p10='?' (DbType = Boolean), @p11='?' (DbType = DateTimeOffset), @p12='?' (Size = 256), @p13='?' (Size = 256), @p14='?' (Size = 4000), @p15='?' (Size = 4000), @p16='?' (Size = 4000), @p17='?' (DbType = Boolean), @p18='?' (Size = 6), @p19='?' (DbType = DateTime2), @p20='?' (Size = 4000), @p21='?' (DbType = DateTime2), @p22='?' (DbType = Double), @p23='?' (Size = 4000), @p24='?' (Size = 4000), @p25='?' (Size = 4000), @p26='?' (DbType = Boolean), @p27='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [AvatarPath] = @p1, [ConcurrencyStamp] = @p2, [DateOfBirth] = @p3, [Email] = @p4, [EmailConfirmed] = @p5, [FirstName] = @p6, [IsVerified] = @p7, [JobCategory] = @p8, [JobTitle] = @p9, [LockoutEnabled] = @p10, [LockoutEnd] = @p11, [NormalizedEmail] = @p12, [NormalizedUserName] = @p13, [PasswordHash] = @p14, [Patronymic] = @p15, [PhoneNumber] = @p16, [PhoneNumberConfirmed] = @p17, [RefreshCode] = @p18, [RefreshCodeExpiryTime] = @p19, [RefreshToken] = @p20, [RefreshTokenExpiryTime] = @p21, [Salary] = @p22, [SecurityStamp] = @p23, [Surname] = @p24, [TaxId] = @p25, [TwoFactorEnabled] = @p26, [UserName] = @p27
+OUTPUT 1
+WHERE [Id] = @p28 AND [ConcurrencyStamp] = @p29;
+2025-11-06 11:24:31.882 +02:00 [INF] Executing StatusCodeResult, setting HTTP status code 200
+2025-11-06 11:24:31.884 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.AccountController.SendRefreshCode (Bank.API.WebUI) in 1921.2702ms
+2025-11-06 11:24:31.885 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.AccountController.SendRefreshCode (Bank.API.WebUI)'
+2025-11-06 11:24:31.886 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7280/api/Account/SendRefreshCode - 200 0 null 1954.3247ms
+2025-11-06 11:25:58.760 +02:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7280/api/Account/SendRefreshCode - null null
+2025-11-06 11:25:58.762 +02:00 [INF] CORS policy execution successful.
+2025-11-06 11:25:58.762 +02:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7280/api/Account/SendRefreshCode - 204 null null 3.092ms
+2025-11-06 11:25:58.764 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7280/api/Account/SendRefreshCode - application/json 77
+2025-11-06 11:25:58.770 +02:00 [INF] CORS policy execution successful.
+2025-11-06 11:25:58.771 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.AccountController.SendRefreshCode (Bank.API.WebUI)'
+2025-11-06 11:25:58.771 +02:00 [INF] Route matched with {action = "SendRefreshCode", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] SendRefreshCode(Bank.API.Application.DTOs.Identity.ChangePasswordDto) on controller Bank.API.WebUI.Controllers.AccountController (Bank.API.WebUI).
+2025-11-06 11:25:58.774 +02:00 [INF] User trying andreyfalchevskiy@gmail.com change password
+2025-11-06 11:25:58.775 +02:00 [INF] Trying to get user with email: andreyfalchevskiy@gmail.com
+2025-11-06 11:25:58.779 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-11-06 11:25:58.781 +02:00 [INF] Success getting user with email: andreyfalchevskiy@gmail.com
+2025-11-06 11:25:58.784 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-11-06 11:25:58.787 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-11-06 11:25:58.795 +02:00 [INF] Executed DbCommand (5ms) [Parameters=[@p28='?' (DbType = Guid), @p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p29='?' (Size = 4000), @p3='?' (DbType = Date), @p4='?' (Size = 256), @p5='?' (DbType = Boolean), @p6='?' (Size = 4000), @p7='?' (DbType = Boolean), @p8='?' (Size = 4000), @p9='?' (Size = 4000), @p10='?' (DbType = Boolean), @p11='?' (DbType = DateTimeOffset), @p12='?' (Size = 256), @p13='?' (Size = 256), @p14='?' (Size = 4000), @p15='?' (Size = 4000), @p16='?' (Size = 4000), @p17='?' (DbType = Boolean), @p18='?' (Size = 6), @p19='?' (DbType = DateTime2), @p20='?' (Size = 4000), @p21='?' (DbType = DateTime2), @p22='?' (DbType = Double), @p23='?' (Size = 4000), @p24='?' (Size = 4000), @p25='?' (Size = 4000), @p26='?' (DbType = Boolean), @p27='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [AvatarPath] = @p1, [ConcurrencyStamp] = @p2, [DateOfBirth] = @p3, [Email] = @p4, [EmailConfirmed] = @p5, [FirstName] = @p6, [IsVerified] = @p7, [JobCategory] = @p8, [JobTitle] = @p9, [LockoutEnabled] = @p10, [LockoutEnd] = @p11, [NormalizedEmail] = @p12, [NormalizedUserName] = @p13, [PasswordHash] = @p14, [Patronymic] = @p15, [PhoneNumber] = @p16, [PhoneNumberConfirmed] = @p17, [RefreshCode] = @p18, [RefreshCodeExpiryTime] = @p19, [RefreshToken] = @p20, [RefreshTokenExpiryTime] = @p21, [Salary] = @p22, [SecurityStamp] = @p23, [Surname] = @p24, [TaxId] = @p25, [TwoFactorEnabled] = @p26, [UserName] = @p27
+OUTPUT 1
+WHERE [Id] = @p28 AND [ConcurrencyStamp] = @p29;
+2025-11-06 11:25:59.681 +02:00 [INF] Executing StatusCodeResult, setting HTTP status code 200
+2025-11-06 11:25:59.683 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.AccountController.SendRefreshCode (Bank.API.WebUI) in 909.2152ms
+2025-11-06 11:25:59.683 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.AccountController.SendRefreshCode (Bank.API.WebUI)'
+2025-11-06 11:25:59.684 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7280/api/Account/SendRefreshCode - 200 0 null 920.017ms
+2025-11-06 11:26:04.919 +02:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7280/api/Account/ValidateRefreshCode - null null
+2025-11-06 11:26:04.921 +02:00 [INF] CORS policy execution successful.
+2025-11-06 11:26:04.922 +02:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7280/api/Account/ValidateRefreshCode - 204 null null 3.1171ms
+2025-11-06 11:26:04.923 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7280/api/Account/ValidateRefreshCode - application/json 81
+2025-11-06 11:26:04.925 +02:00 [INF] CORS policy execution successful.
+2025-11-06 11:26:04.926 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.AccountController.ValidateRefreshCode (Bank.API.WebUI)'
+2025-11-06 11:26:04.929 +02:00 [INF] Route matched with {action = "ValidateRefreshCode", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ValidateRefreshCode(Bank.API.Application.DTOs.Identity.ChangePasswordDto) on controller Bank.API.WebUI.Controllers.AccountController (Bank.API.WebUI).
+2025-11-06 11:26:04.937 +02:00 [INF] Validating refresh password code for user andreyfalchevskiy@gmail.com
+2025-11-06 11:26:04.938 +02:00 [INF] Trying to get user with email: andreyfalchevskiy@gmail.com
+2025-11-06 11:26:04.941 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-11-06 11:26:04.943 +02:00 [INF] Success getting user with email: andreyfalchevskiy@gmail.com
+2025-11-06 11:26:04.945 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-11-06 11:26:04.947 +02:00 [INF] Failed Validating refresh password code for user andreyfalchevskiy@gmail.com
+2025-11-06 11:26:04.948 +02:00 [INF] Executing BadRequestObjectResult, writing value of type 'System.String'.
+2025-11-06 11:26:04.949 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.AccountController.ValidateRefreshCode (Bank.API.WebUI) in 17.9201ms
+2025-11-06 11:26:04.951 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.AccountController.ValidateRefreshCode (Bank.API.WebUI)'
+2025-11-06 11:26:04.951 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7280/api/Account/ValidateRefreshCode - 400 null text/plain; charset=utf-8 28.1022ms
+2025-11-06 11:26:22.497 +02:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7280/api/Account/ValidateRefreshCode - null null
+2025-11-06 11:26:22.498 +02:00 [INF] CORS policy execution successful.
+2025-11-06 11:26:22.499 +02:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7280/api/Account/ValidateRefreshCode - 204 null null 2.2768ms
+2025-11-06 11:26:22.501 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7280/api/Account/ValidateRefreshCode - application/json 81
+2025-11-06 11:26:22.503 +02:00 [INF] CORS policy execution successful.
+2025-11-06 11:26:22.503 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.AccountController.ValidateRefreshCode (Bank.API.WebUI)'
+2025-11-06 11:26:22.504 +02:00 [INF] Route matched with {action = "ValidateRefreshCode", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ValidateRefreshCode(Bank.API.Application.DTOs.Identity.ChangePasswordDto) on controller Bank.API.WebUI.Controllers.AccountController (Bank.API.WebUI).
+2025-11-06 11:26:22.508 +02:00 [INF] Validating refresh password code for user andreyfalchevskiy@gmail.com
+2025-11-06 11:26:22.509 +02:00 [INF] Trying to get user with email: andreyfalchevskiy@gmail.com
+2025-11-06 11:26:22.512 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-11-06 11:26:22.513 +02:00 [INF] Success getting user with email: andreyfalchevskiy@gmail.com
+2025-11-06 11:26:22.515 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-11-06 11:26:22.517 +02:00 [INF] Success Validating refresh password code for user andreyfalchevskiy@gmail.com
+2025-11-06 11:26:22.518 +02:00 [INF] Executing StatusCodeResult, setting HTTP status code 200
+2025-11-06 11:26:22.518 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.AccountController.ValidateRefreshCode (Bank.API.WebUI) in 10.7054ms
+2025-11-06 11:26:22.520 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.AccountController.ValidateRefreshCode (Bank.API.WebUI)'
+2025-11-06 11:26:22.521 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7280/api/Account/ValidateRefreshCode - 200 0 null 20.3921ms
+2025-11-06 11:32:20.966 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Account/GetRole - null null
+2025-11-06 11:32:20.971 +02:00 [INF] CORS policy execution successful.
+2025-11-06 11:32:20.971 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI)'
+2025-11-06 11:32:20.973 +02:00 [INF] Route matched with {action = "GetRole", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRole() on controller Bank.API.WebUI.Controllers.AccountController (Bank.API.WebUI).
+2025-11-06 11:32:20.987 +02:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2025-11-06 11:32:20.991 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI) in 4.3506ms
+2025-11-06 11:32:20.994 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI)'
+2025-11-06 11:32:20.999 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Account/GetRole - 401 null application/problem+json; charset=utf-8 32.9884ms
+2025-11-06 11:32:21.061 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7280/api/Account/Refresh - null 0
+2025-11-06 11:32:21.066 +02:00 [INF] CORS policy execution successful.
+2025-11-06 11:32:21.067 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI)'
+2025-11-06 11:32:21.069 +02:00 [INF] Route matched with {action = "Refresh", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Refresh() on controller Bank.API.WebUI.Controllers.AccountController (Bank.API.WebUI).
+2025-11-06 11:32:21.075 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__refreshToken_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[RefreshToken] = @__refreshToken_0
+2025-11-06 11:32:21.078 +02:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2025-11-06 11:32:21.079 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI) in 7.8064ms
+2025-11-06 11:32:21.081 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI)'
+2025-11-06 11:32:21.083 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7280/api/Account/Refresh - 401 null application/problem+json; charset=utf-8 22.1795ms
+2025-11-06 11:32:49.731 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Account/GetRole - null null
+2025-11-06 11:32:49.738 +02:00 [INF] CORS policy execution successful.
+2025-11-06 11:32:49.742 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI)'
+2025-11-06 11:32:49.744 +02:00 [INF] Route matched with {action = "GetRole", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRole() on controller Bank.API.WebUI.Controllers.AccountController (Bank.API.WebUI).
+2025-11-06 11:32:49.749 +02:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2025-11-06 11:32:49.753 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI) in 4.6466ms
+2025-11-06 11:32:49.759 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI)'
+2025-11-06 11:32:49.760 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Account/GetRole - 401 null application/problem+json; charset=utf-8 29.0598ms
+2025-11-06 11:32:49.775 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7280/api/Account/Refresh - null 0
+2025-11-06 11:32:49.777 +02:00 [INF] CORS policy execution successful.
+2025-11-06 11:32:49.778 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI)'
+2025-11-06 11:32:49.779 +02:00 [INF] Route matched with {action = "Refresh", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Refresh() on controller Bank.API.WebUI.Controllers.AccountController (Bank.API.WebUI).
+2025-11-06 11:32:49.785 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__refreshToken_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[RefreshToken] = @__refreshToken_0
+2025-11-06 11:32:49.787 +02:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2025-11-06 11:32:49.788 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI) in 6.0029ms
+2025-11-06 11:32:49.791 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI)'
+2025-11-06 11:32:49.792 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7280/api/Account/Refresh - 401 null application/problem+json; charset=utf-8 17.2805ms
+2025-11-06 11:34:33.678 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Account/GetRole - null null
+2025-11-06 11:34:33.680 +02:00 [INF] CORS policy execution successful.
+2025-11-06 11:34:33.682 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI)'
+2025-11-06 11:34:33.682 +02:00 [INF] Route matched with {action = "GetRole", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRole() on controller Bank.API.WebUI.Controllers.AccountController (Bank.API.WebUI).
+2025-11-06 11:34:33.684 +02:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2025-11-06 11:34:33.685 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI) in 1.5121ms
+2025-11-06 11:34:33.687 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI)'
+2025-11-06 11:34:33.688 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Account/GetRole - 401 null application/problem+json; charset=utf-8 10.6578ms
+2025-11-06 11:34:33.714 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7280/api/Account/Refresh - null 0
+2025-11-06 11:34:33.716 +02:00 [INF] CORS policy execution successful.
+2025-11-06 11:34:33.717 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI)'
+2025-11-06 11:34:33.718 +02:00 [INF] Route matched with {action = "Refresh", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Refresh() on controller Bank.API.WebUI.Controllers.AccountController (Bank.API.WebUI).
+2025-11-06 11:34:33.722 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__refreshToken_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[RefreshToken] = @__refreshToken_0
+2025-11-06 11:34:33.725 +02:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2025-11-06 11:34:33.726 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI) in 6.5463ms
+2025-11-06 11:34:33.727 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI)'
+2025-11-06 11:34:33.728 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7280/api/Account/Refresh - 401 null application/problem+json; charset=utf-8 14.0178ms
+2025-11-06 11:36:32.203 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Account/GetRole - null null
+2025-11-06 11:36:32.206 +02:00 [INF] CORS policy execution successful.
+2025-11-06 11:36:32.207 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI)'
+2025-11-06 11:36:32.209 +02:00 [INF] Route matched with {action = "GetRole", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRole() on controller Bank.API.WebUI.Controllers.AccountController (Bank.API.WebUI).
+2025-11-06 11:36:32.222 +02:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2025-11-06 11:36:32.224 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI) in 2.8911ms
+2025-11-06 11:36:32.226 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI)'
+2025-11-06 11:36:32.233 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Account/GetRole - 401 null application/problem+json; charset=utf-8 29.904ms
+2025-11-06 11:36:32.252 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7280/api/Account/Refresh - null 0
+2025-11-06 11:36:32.256 +02:00 [INF] CORS policy execution successful.
+2025-11-06 11:36:32.257 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI)'
+2025-11-06 11:36:32.263 +02:00 [INF] Route matched with {action = "Refresh", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Refresh() on controller Bank.API.WebUI.Controllers.AccountController (Bank.API.WebUI).
+2025-11-06 11:36:32.271 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__refreshToken_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[RefreshToken] = @__refreshToken_0
+2025-11-06 11:36:32.274 +02:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2025-11-06 11:36:32.275 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI) in 6.6199ms
+2025-11-06 11:36:32.276 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI)'
+2025-11-06 11:36:32.278 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7280/api/Account/Refresh - 401 null application/problem+json; charset=utf-8 25.7311ms
+2025-11-06 11:41:40.686 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Account/GetRole - null null
+2025-11-06 11:41:40.688 +02:00 [INF] CORS policy execution successful.
+2025-11-06 11:41:40.689 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI)'
+2025-11-06 11:41:40.690 +02:00 [INF] Route matched with {action = "GetRole", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRole() on controller Bank.API.WebUI.Controllers.AccountController (Bank.API.WebUI).
+2025-11-06 11:41:40.691 +02:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2025-11-06 11:41:40.692 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI) in 1.1657ms
+2025-11-06 11:41:40.693 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.AccountController.GetRole (Bank.API.WebUI)'
+2025-11-06 11:41:40.693 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Account/GetRole - 401 null application/problem+json; charset=utf-8 7.7228ms
+2025-11-06 11:41:40.713 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7280/api/Account/Refresh - null 0
+2025-11-06 11:41:40.715 +02:00 [INF] CORS policy execution successful.
+2025-11-06 11:41:40.716 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI)'
+2025-11-06 11:41:40.717 +02:00 [INF] Route matched with {action = "Refresh", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Refresh() on controller Bank.API.WebUI.Controllers.AccountController (Bank.API.WebUI).
+2025-11-06 11:41:40.723 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__refreshToken_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[RefreshToken] = @__refreshToken_0
+2025-11-06 11:41:40.725 +02:00 [INF] Executing ObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ProblemDetails'.
+2025-11-06 11:41:40.726 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI) in 5.9777ms
+2025-11-06 11:41:40.727 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI)'
+2025-11-06 11:41:40.727 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7280/api/Account/Refresh - 401 null application/problem+json; charset=utf-8 14.1775ms

@@ -234,26 +234,18 @@ footer {
 	box-sizing: border-box;
 }
 
-.auth-wrap {
-	min-height: 84dvh;
-	display: grid;
-	place-items: start center;
-	align-content: start;
-	padding: 12px 16px 24px;
-}
-
 .auth-card {
-	width: min(100% - 32px, 420px);
+	width: min(100% - 32px, 480px);
 	background: #fff;
 	border: 1px solid #e5e7eb;
 	border-radius: 16px;
-	padding: 18px;
+	padding: 28px 18px;
 	box-shadow: 0 6px 20px rgba(16,42,90,.06);
 }
 
 .auth-title {
-	margin: 0 0 14px;
-	font-size: clamp(20px,2.8vw,24px);
+	margin: 0 0 20px;
+	font-size: 24px;
 	color: var(--heavy-dark-primary-color);
 	text-align: center;
 }
@@ -276,6 +268,7 @@ footer {
 }
 
 .field label {
+	margin-top: 2px;
 	font-weight: 600;
 	color: var(--heaviest-dark-primary-color);
 }
@@ -284,7 +277,7 @@ footer {
 .field input[type="password"],
 .field input[type="text"] {
 	width: 100%;
-	height: 34px;
+	height: 44px;
 	padding: 6px 10px;
 	font-size: 14px;
 	border: 1px solid #e5e7eb;
@@ -338,8 +331,10 @@ footer {
 	height: 38px;
 	border: 0;
 	border-radius: 10px;
-	font-weight: 700;
+	font-size: 14px;
+	font-weight: 600;
 	cursor: pointer;
+	margin-top: 8px;
 }
 
 .btn-primary {
@@ -400,21 +395,28 @@ footer {
 	list-style-type: disc;
 	padding-left: 20px;
 }
-
-@media (max-width:360px) {
+@media (max-width:500px) {
 	.auth-card {
 		padding: 14px;
-		width: min(100% - 20px, 420px);
+		width: 100%;
+		border: 1px solid #e5e7eb;
+		border-radius: 16px;
+		padding: 28px 18px;
 	}
 	.field.row {
 		grid-template-columns: 1fr;
 		row-gap: 8px;
 		justify-items: start;
 	}
+	.auth-title {
+		margin: 0 0 20px;
+		font-size: 22px;
+	}
 	.btn {
 		height: 36px;
 	}
 }
+
 
 .profile-section {
 	display: flex;
@@ -1230,4 +1232,16 @@ a.chosen-child-link::after {
   .product-section .card-link .card-number{
 	bottom: 50px;
   }
+}
+
+
+.auth-wrap{
+	min-height: 84dvh;
+	padding: 12px 16px 24px;
+    padding-bottom: 140px;
+    width: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center;
 }
