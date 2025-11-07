@@ -14,7 +14,7 @@
     </div>
 
     <div class="search-section">
-        <div class="serch-field">
+        <div class="search-field">
             <input #searchInput type="text" (keyup.enter)="onSearchChange($event)" class="search-input d-block" [placeholder]="searchPlaceholder">
             <button (click)="onSearchSubmit()" class="search-button">{{'Search' |translate}}</button>
         </div>

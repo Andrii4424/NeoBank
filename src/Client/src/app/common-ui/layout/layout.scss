@@ -20,13 +20,14 @@
 .logo{
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 16px;
 }
 .bank-logo{
     height: 40px;
     width: auto;
 }
 .menu-icon{
+    margin-top: -4px;
     display: none;
     height: 30px;
     width: auto;
@@ -35,7 +36,7 @@
 .auth{
     display: flex;
     flex-direction: row;
-    gap: 12px;
+    gap: 4px;
     align-items: center;
 }
 
