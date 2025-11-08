@@ -78,20 +78,81 @@ app-transactions-filters{
 }
 @media (max-width: 580px) {
     .red-status{
-        color: var(--primary-red-color);
         padding: 0px;
-        background: none;
     }
     .green-status{
-        color: var(--green-color);
         padding: 0px;
-        background: none;
 
     }
     .orange-status{
         color: orange;
         padding: 0px;
         background: none;
-
     }
+}
+
+
+@media (max-width: 768px) {
+  .transasctions thead,
+  .transasctions .header-transactions {
+    display: none;
+  }
+
+  .transasctions tr {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 14px 16px;
+    border: 1px solid var(--dark-gray-background);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.03);
+  }
+
+  .transasctions td {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border: none;
+    padding: 6px 0;
+    font-size: 14px;
+    color: var(--heavy-dark-primary-color);
+  }
+  .transaction-date {
+    padding-left: 30px;
+    text-align: right;
+  }
+
+  /* подпись слева */
+  .transasctions td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--gray-primary-color);
+    min-width: 50%;
+  }
+
+  /* ✅ вернуть цвета */
+  .transasctions td.red {
+    color: var(--primary-red-color);
+  }
+
+  .transasctions td.green {
+    color: var(--green-color);
+  }
+
+  /* ✅ статус-бейджи */
+  .red-status,
+  .green-status,
+  .orange-status {
+    border-radius: 6px;
+    padding: 2px 8px;
+    font-size: 13px;
+    font-weight: 600;
+    align-self: flex-end;
+  }
+
+  .transactions-block {
+    padding-bottom: 0;
+  }
 }

@@ -27,9 +27,11 @@
                     </tr>
                     @for(transaction of transactionsPage?.items; track $index){
                         <tr>
-                            <td>{{transaction.transactionTime | date:'medium' }}</td>
-                            <td>{{getTransactionTypeText(transaction.type)}}</td>
-                            <td [class.red]="transaction.senderCardId===cardId" [class.green]="transaction.getterCardId===cardId">
+                            <td [attr.data-label]="'DateTime' | translate" >
+                                <span class="transaction-date">{{transaction.transactionTime | date:'medium' }}</span>
+                            </td>
+                            <td [attr.data-label]="'Type' |translate">{{getTransactionTypeText(transaction.type)}}</td>
+                            <td [attr.data-label]="'Amount' | translate" [class.red]="transaction.senderCardId===cardId" [class.green]="transaction.getterCardId===cardId">
                                 @if(transaction.senderCardId===cardId){
                                     <span>-{{transaction.amount}}</span>
                                 }
@@ -47,15 +49,15 @@
                                     
                             </td>
                             @if(transaction.commission!>0 && transaction.senderCardId===cardId){
-                                <td class="red">-{{transaction.commission}}</td>
+                                <td [attr.data-label]="'Commission' | translate" class="red">-{{transaction.commission}}</td>
                             }
                             @else if(transaction.getterCardId===cardId){
-                                <td>0</td>
+                                <td [attr.data-label]="'Commission' | translate">0</td>
                             }
                             @else if(transaction.commission===0 && transaction.senderCardId===cardId){
-                                <td>{{transaction.commission}}</td>
+                                <td [attr.data-label]="'Commission' | translate">{{transaction.commission}}</td>
                             }
-                            <td><span [class.red-status]="transaction.status===TransactionStatus.Failed" [class.orange-status]="transaction.status===TransactionStatus.Pending"
+                            <td [attr.data-label]="'Status' | translate"><span [class.red-status]="transaction.status===TransactionStatus.Failed" [class.orange-status]="transaction.status===TransactionStatus.Pending"
                                 [class.green-status]="transaction.status===TransactionStatus.Completed">{{getTransactionStatusText(transaction.status!)}}</span></td>
                         </tr>
                     }
