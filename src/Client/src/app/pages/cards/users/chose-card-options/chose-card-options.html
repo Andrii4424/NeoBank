@@ -6,7 +6,7 @@
     </app-card-tariffs>
 }
 @else{
-    <div class="object-info-card">
+    <div class="object-info-card update-object-info">
         <form class="update-entity-form" [formGroup]="createCardForm" (click)="closeValidationStatus()" (ngSubmit)="onSubmit()">
             <div class="update-entity-form-fields form-padding">
                 <label>Chosen Tariffs: <span class="bold">{{chosenTariffsName}}</span></label>

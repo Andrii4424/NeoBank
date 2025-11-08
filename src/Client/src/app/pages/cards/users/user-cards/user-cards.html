@@ -80,7 +80,9 @@
 
 
     <div class="add-block">
-        <button class="make-transfer" (click)="openTransactionWindow.set(true)">{{'MakeTransfer' |translate}}</button>
+        @if(userCards?.items?.length!>0){
+            <button class="make-transfer" (click)="openTransactionWindow.set(true)">{{'MakeTransfer' |translate}}</button>
+        }
         <a [routerLink]="['/cards/my-cards/add/options']" class="add-item">{{'OpenCard' |translate}}</a>
     </div>
 }

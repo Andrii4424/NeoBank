@@ -1,36 +1,39 @@
 @if(currencies$ | async; as currencies) {
     <h1 class="subheading-without-lh mb-minus-8">{{'NBURates' |translate}}</h1>
+    <!-- NBU -->
     <table class="currencies-table">
+    <tr>
+        <td>{{'Currency' | translate}}</td>
+        <td>{{'NBURates' | translate}}</td>
+    </tr>
+    @for (currency of currencies; track $index) {
         <tr>
-            <td>{{'Currency' | translate}}</td>
-            <td>{{'NBURates' |translate}}</td>
+        <td [attr.data-title]="'Currency' | translate">{{currency.cc}}</td>
+        <td [attr.data-title]="'NBURates' | translate">{{currency.rate}} ₴</td>
         </tr>
-        
-        @for (currency of currencies; track $index) {
-            <tr>
-                <td>{{currency.cc}}</td>
-                <td>{{currency.rate}} ₴</td>
-            </tr>
-        }
-        
+    }
     </table>
-    <h1 class="subheading-without-lh mb-minus-8">{{'NeoBankRates' |translate}}</h1>
+
+    <!-- NeoBank -->
     <table class="currencies-table">
+    <tr>
+        <td>{{'Currency' |translate}}</td>
+        <td>{{'BankRatesForBuying' |translate}}</td>
+        <td>{{'BankRatesForSelling' |translate}}</td>
+        <td>{{'Actions' | translate}}</td>
+    </tr>
+    @for (currency of currencies; track $index) {
         <tr>
-            <td>{{'Currency' |translate}}</td>
-            <td>{{'BankRatesForBuying' |translate}}</td>
-            <td>{{'BankRatesForSelling' |translate}}</td>
-            <td>{{'Actions' | translate}}</td>
+        <td [attr.data-title]="'Currency' | translate">{{currency.cc}}</td>
+        <td [attr.data-title]="'BankRatesForBuying' | translate">{{currency.neoBankBuyCource}} ₴</td>
+        <td [attr.data-title]="'BankRatesForSelling' | translate">{{currency.neoBankSellCource}} ₴</td>
+        <td [attr.data-title]="'Actions' | translate">
+            <button class="exchange" (click)="openExchangeWindow.set(true)">{{'Exchange' |translate}}</button>
+        </td>
         </tr>
-        @for (currency of currencies; track $index) {
-            <tr>
-                <td>{{currency.cc}}</td>
-                <td>{{currency.neoBankBuyCource}} ₴</td>
-                <td>{{currency.neoBankSellCource}} ₴</td>
-                <td><button class="exchange" (click)="openExchangeWindow.set(true)">{{'Exchange' |translate}}</button></td>
-            </tr>
-        }
+    }
     </table>
+
 }
 @else{
     <div class="spinner-wrapper">

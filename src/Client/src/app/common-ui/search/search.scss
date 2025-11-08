@@ -63,7 +63,7 @@
     align-items: center;
     column-gap: 10px;
 }
-.serch-field{
+.search-field{
   position: relative;
   display: inline-block;
 }
@@ -87,7 +87,6 @@
 
 @media (max-width: 1024px) {
     .search-block{
-
         padding: 20px 30px;
         column-gap: 40px;
     }
@@ -101,25 +100,30 @@
         column-gap: 0px;
         row-gap: 14px;
     }
+    .search-block{
+        padding: 20px 0px 20px 0px;
+        column-gap: 40px;
+    }
     .filters{
         width: 90dvw;
+        margin: 0px 30px;
     }
     .wrap-block{
         display: none;
     }
     .search-section{
+        max-width: 99dvw;
         grid-template-columns: auto auto;
         justify-content: center;
         align-items: center;
         column-gap: 4px;
     }
     .search-input{
-        width: 64dvw;
+        width: 60dvw;
     }
 
     .sort{
-        width: 24dvw;
-        margin-right: 40px;
+        width: 30dvw;
     }
 }
 
