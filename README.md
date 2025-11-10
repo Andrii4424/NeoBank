@@ -1,4 +1,4 @@
-### Neobank
+# Neobank
 ## Deployment
 - https://neobank.switzerlandnorth.cloudapp.azure.com/
 ## Description
