@@ -138,6 +138,13 @@ To use the application, follow these steps:
       dotnet test
 Testing Frameworks: **XUnit**
 
-##License
+## License
+This project is licensed under the **MIT License**.  
+See the [LICENSE](LICENSE) file for details.
 
-##Contacts
+## 📬 Contact Information
+
+For any questions, suggestions, or feedback, please use GitHub Issues or contact us through the project's GitHub page.  
+You can find the repository at [GitHub Repository](https://github.com/AndreyFalchevsky/NeoBank).
+
+We look forward to your contributions and thank you for being a part of the NeoBank community!
