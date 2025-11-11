@@ -67,11 +67,9 @@ export class Employees {
     if(this.querySub){
       this.querySub.unsubscribe();
     }
-    
   }
 
-
-    //Filters and pagination handlers
+  //Filters and pagination handlers
   onSortChange(sortMethod: string){
     this.router.navigate([],{
       relativeTo: this.route,

@@ -18,6 +18,7 @@ import { Subscription } from 'rxjs';
 export class Login {
   sharedService = inject(SharedService);
   authService = inject(AuthService);
+  route = inject(ActivatedRoute);
   router = inject(Router);
   displaySessionError = signal<boolean>(false);
   displayLoginError = signal<boolean>(false);
@@ -69,5 +70,13 @@ export class Login {
       this.displayLoginError.set(true);
       this.loginFormErrorMessage.push("All login fields must be filled in");
     }
+  }
+
+  deleteSessionError(){
+    this.router.navigate([], {
+      queryParams: { "error": null }, 
+      queryParamsHandling: 'merge',    
+    });
+    this.displaySessionError.set(false);
   }
 }

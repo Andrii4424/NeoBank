@@ -184,7 +184,7 @@
     "UpdateData": "Оновити дані",
     "LogOut": "Вийти",
 
-    "SessionExpired": "Ваша сесія завершилася. Будь ласка, увійдіть знову.",
+    "SessionExpired": "Для перегляду цього контенту необхідно увійти в аккаунт",
     "SignInToNeoBank": "Вхід до NeoBank",
     "Password": "Пароль",
     "EnterYourEmail": "Введіть свою електронну пошту",
@@ -344,7 +344,9 @@
 
     "LogIn":"Увійти",
 
-    "ApplyForJobConfirmation":"Ви впевнені, що хочете працювати в банку?"
+    "ApplyForJobConfirmation":"Ви впевнені, що хочете працювати в банку?",
+
+    "NameNotSpecified":"Ім'я не вказано"
         
 
 }
