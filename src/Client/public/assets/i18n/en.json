@@ -183,7 +183,7 @@
     "UpdateData": "Update Data",
     "LogOut": "Log Out",
 
-    "SessionExpired": "Your session has expired. Please sign in again.",
+    "SessionExpired": "You must log in to view this content",
     "SignInToNeoBank": "Sign in to NeoBank",
     "Password": "Password",
     "EnterYourEmail": "Enter your email",
@@ -342,6 +342,9 @@
 
     "LogIn":"Log in",
 
-    "ApplyForJobConfirmation":"Are you sure you want to work in a bank?"
+    "ApplyForJobConfirmation":"Are you sure you want to work in a bank?",
+
+    "NameNotSpecified":"Name not specified"
+    
 
 }

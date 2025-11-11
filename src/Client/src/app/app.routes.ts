@@ -44,9 +44,9 @@ export const routes: Routes = [
         {path: 'vacancies', component: Vacancies},
         {path: 'vacancies/add', component: AddVacancy, canActivate: [adminGuard]},
         {path: 'vacancies/update/:id', component: UpdateVacancy, canActivate: [adminGuard]},
-        {path: 'employees', component: Employees},
-        {path: 'clients', component: Users},
-        {path: 'clients/profile/:id', component: UserProfile},
+        {path: 'employees', component: Employees, canActivate: [CanActivateAuth]},
+        {path: 'clients', component: Users, canActivate: [CanActivateAuth]},
+        {path: 'clients/profile/:id', component: UserProfile, canActivate: [CanActivateAuth]},
         {path: 'deposits', component: DepositTariffs},
         {path: 'credits', component: CreditTariffs},
        

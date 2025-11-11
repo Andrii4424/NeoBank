@@ -1,6 +1,6 @@
 <section class="auth-wrap">
   <span [class.disabled]="!displaySessionError()" class="error mb-8">{{'SessionExpired' |translate}}</span>
-  <div class="auth-card" (click)="displaySessionError.set(false); displayLoginError.set(false)" >
+  <div class="auth-card" (click)="deleteSessionError(); displayLoginError.set(false)" >
     <h1 class="auth-title">{{'SignInToNeoBank' |translate}}</h1>
 
     <form action="/login" method="post" class="auth-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">

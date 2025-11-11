@@ -24,7 +24,13 @@
                                 <img class="profile-logo" [src]="baseUrl+'uploads/default-photo/profile-photo.svg'" alt="profile">
                             }
                             <div class="user-info">
-                                <h4>{{user.surname + ' '+ user.firstName + ' ' + user.patronymic}}</h4>
+                                @if(user.surname !== null && user.firstName !== null && user.patronymic !== null){
+                                    <h4>{{user.surname + ' '+ user.firstName + ' ' + user.patronymic}}</h4>
+                                }
+                                @else {
+                                    <h4>{{'NameNotSpecified' |translate}}</h4>
+                                }
+
                                 <span>{{user.role}}</span>
                             </div>
                         </div>
