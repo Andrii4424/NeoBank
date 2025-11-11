@@ -214,4 +214,98 @@ We look forward to your contributions and thank you for being a part of the NeoB
 ![Vacancies](docs/images/profile/vacancies-page-verified.jpg)
 ![Apply-For-Job](docs/images/profile/applying-for-job.jpg)
 
+### My Cards
+
+- My Cards Page
+
+![My-Cards-Empty](docs/images/admin/my-cards-page.jpg)
+![My-Cards-With-Cards](docs/images/admin/my-cards-page-with-cards.jpg)
+![My-Cards-With-Blocked-Card](docs/images/admin/my-cards-with-blocked-card.jpg)
+
+- My Cards Info Page
+
+![My-Cards-Info](docs/images/admin/my-card-info.jpg)
+
+### Card Actions
+
+- Add Funds
+![Add-Funds](docs/images/admin/add-funds.jpg)
+![Add-Funds-Result](docs/images/admin/add-funds-result.jpg)
+
+- Change Pin
+![Change-Pin](docs/images/admin/change-pin.jpg)
+![Change-Pin-Result](docs/images/admin/change-pin-result.jpg)
+
+- Reissue Card
+
+![Reissue-Card](docs/images/admin/reissue-card.jpg)
+![Reissue-Card-Result](docs/images/admin/reissue-card-result.jpg)
+
+- Block Card
+
+![Block-Card](docs/images/admin/block-card.jpg)
+![Block-Card-Result](docs/images/admin/block-card-result.jpg)
+
+- Close Card
+
+![Close-Card](docs/images/admin/close-card.jpg)
+
+### Transactions
+
+- P2P Transaction
+
+![P2P-Transaction](docs/images/admin/make-p2p-transaction.jpg)
+![P2P-Transaction-Result](docs/images/admin/make-p2p-transaction-result.jpg)
+  
+- Exchange Currency
+
+![Exchange-Transaction](docs/images/admin/exchange-currency.jpg)
+![Exchange-Transaction-Result](docs/images/admin/exchange-currency-result.jpg)
+  
+- Transaction History
+
+![Transaction History](docs/images/admin/transactions-history.jpg)  
+
+### Admins pages
+
+- Bank Info
+
+![Bank-Info-Admin](docs/images/admin/bank-info-admin-page.jpg)
+
+- Update Bank Info
+
+![Update-Bank-Info-Admin](docs/images/admin/update-bank-info.jpg)
+
+- Card Tariffs
+
+![Card-Tariffs-Admin](docs/images/admin/card-tariffs-info-admin-page.jpg)
+
+- Card Tariffs Info
+
+![Card-Tariffs-Admin](docs/images/admin/card-tariffs-info-admin-page.jpg)
+
+- Update Card Tariffs
+![Update-Card-Tariffs-Admin](docs/images/admin/update-card-tariffs.jpg)
+
+- Delete Card Tariffs
+![Delete-Card-Tariffs-Admin](docs/images/admin/delete-card-tariffs.jpg)
+
+- Vacancies Page
+
+![Vacancies-Page](docs/images/admin/admins-vacancies-page.jpg)
+
+- Add Vacancy
+
+![Add-Vacancy](docs/images/admin/add-vacancy.jpg)
+
+- Update Vacancy
+
+![Update-Vacancy](docs/images/admin/update-vacancy.jpg)
+
+- Delete Vacancy
+
+![Delete-Vacancy](docs/images/admin/delete-vacancy.jpg)
+
+
+
 
