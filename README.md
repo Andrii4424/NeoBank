@@ -182,5 +182,36 @@ We look forward to your contributions and thank you for being a part of the NeoB
 
 ![Currency-Rates](docs/images/unlogged/currency-rates-page.jpg)
 
+### Authorization
+
+- Log In
+  
+![Log-In](docs/images/auth/login-page.jpg)
+
+- Registering
+  
+![Registering](docs/images/auth/register-page.jpg)
+
+- Recovery Password
+
+![Recovery-Password-Enter-Email](docs/images/auth/reset-password-enter-email.jpg)
+![Recovery-Password-Enter-Code](docs/images/auth/reset-password-enter-code.jpg)
+![Recovery-Password-Enter-Password](docs/images/auth/reset-password-enter-new-password.jpg)
+
+### Profile
+
+- Not Verified Profile
+
+![Not-Verified-Profile](docs/images/profile/not-verified-own-profile.jpg)
+
+- Updating Profile
+
+![Updating-Profile](docs/images/profile/updating-profile.jpg)
+![Updating-Profile](docs/images/profile/updated-profile.jpg)
+
+- Applying for job (user gets admin role, when applies for job)
+
+![Vacancies](docs/images/profile/vacancies-page-verified.jpg)
+![Apply-For-Job](docs/images/profile/applying-for-job.jpg)
 
 
