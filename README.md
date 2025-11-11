@@ -148,3 +148,39 @@ For any questions, suggestions, or feedback, please use GitHub Issues or contact
 You can find the repository at [GitHub Repository](https://github.com/Andrii4424/NeoBank).
 
 We look forward to your contributions and thank you for being a part of the NeoBank community!
+
+## Project Presentation
+
+### Pages for unauthorized user
+- Home (two languages)
+  
+![Home](docs/images/unlogged/home.jpg)
+![Home-UA](docs/images/unlogged/home-ua.jpg)
+
+- Bank Info
+
+![Bank-Info](docs/images/unlogged/bank-info.jpg)
+
+- Cards
+
+![Card-Tariffs](docs/images/unlogged/card-tariffs-page.jpg)
+![Card-Tariffs-Info](docs/images/unlogged/card-tariffs-page-info.jpg)
+
+- Deposits
+
+![Deposits](docs/images/unlogged/deposits-page.jpg)
+
+- Credits
+
+![Deposits](docs/images/unlogged/credits-page.jpg)
+
+- Vacancies
+
+![Vacancies](docs/images/unlogged/vacancies-page.jpg)
+
+- Currency Rates
+
+![Currency-Rates](docs/images/unlogged/currency-rates-page.jpg)
+
+
+
