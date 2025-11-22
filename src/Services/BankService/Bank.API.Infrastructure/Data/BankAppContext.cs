@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Bank.API.Domain.Entities;
 using Bank.API.Domain.Entities.Cards;
+using Bank.API.Domain.Entities.Credits;
 using Bank.API.Domain.Entities.Identity;
 using Bank.API.Domain.Entities.Users;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -20,6 +21,7 @@ namespace Bank.API.Infrastructure.Data
         public DbSet<CardTariffsEntity> CardTariffs { get; set; }
         public DbSet<UserCardsEntity> UserCards { get; set; }
         public DbSet<VacancyEntity> Vacancies { get; set; }
+        public DbSet<CreditTariffsEntity> CreditTariffs { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -29,6 +31,7 @@ namespace Bank.API.Infrastructure.Data
             modelBuilder.Entity<BankEntity>().ToTable("BankInfo");
             modelBuilder.Entity<CardTariffsEntity>().ToTable("CardTariffs");
             modelBuilder.Entity<VacancyEntity>().ToTable("Vacancies");
+            modelBuilder.Entity<CreditTariffsEntity>().ToTable("CreditTariffs");
 
 
             modelBuilder.Entity<CardTariffsEntity>()
@@ -55,6 +58,7 @@ namespace Bank.API.Infrastructure.Data
                 .WithMany(b => b.Vacancies)
                 .HasForeignKey(c => c.BankId)
                 .OnDelete(DeleteBehavior.Cascade);
+
         }
     }
 }

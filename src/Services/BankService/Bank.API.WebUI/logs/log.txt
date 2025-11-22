@@ -14444,3 +14444,723 @@ WHERE [b].[Id] = @__id_0
 2025-11-11 10:56:39.182 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.BankController.BankInfo (Bank.API.WebUI) in 4.7155ms
 2025-11-11 10:56:39.183 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.BankController.BankInfo (Bank.API.WebUI)'
 2025-11-11 10:56:39.184 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Bank - 200 null application/json; charset=utf-8 11.711ms
+2025-11-11 11:49:21.525 +02:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7280/api/CardTariffs/GetPage - null null
+2025-11-11 11:49:21.528 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:49:21.528 +02:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7280/api/CardTariffs/GetPage - 204 null null 3.4315ms
+2025-11-11 11:49:21.536 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/CardTariffs/GetPage - null null
+2025-11-11 11:49:21.537 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:49:21.538 +02:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '11/11/2025 09:12:55', Current time (UTC): '11/11/2025 09:49:21'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-11-11 11:49:21.540 +02:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '11/11/2025 09:12:55', Current time (UTC): '11/11/2025 09:49:21'.
+2025-11-11 11:49:21.540 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.BankProducts.CardTariffsController.GetPage (Bank.API.WebUI)'
+2025-11-11 11:49:21.541 +02:00 [INF] Route matched with {action = "GetPage", controller = "CardTariffs"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPage(Bank.API.Application.Helpers.HelperClasses.Filters.BankProducts.CardTariffsFilter) on controller Bank.API.WebUI.Controllers.BankProducts.CardTariffsController (Bank.API.WebUI).
+2025-11-11 11:49:21.543 +02:00 [INF] Trying to get cards tariffs page
+2025-11-11 11:49:21.562 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[AnnualMaintenanceCost], [c].[BIN], [c].[BankId], [c].[CardColor], [c].[CardName], [c].[EnableCurrency], [c].[EnabledPaymentSystems], [c].[InterestRate], [c].[Level], [c].[MaxCreditLimit], [c].[P2PInternalCommission], [c].[Type], [c].[ValidityPeriod]
+FROM [CardTariffs] AS [c]
+ORDER BY [c].[CardName] DESC, [c].[Id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-11-11 11:49:21.565 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [CardTariffs] AS [c]
+2025-11-11 11:49:21.566 +02:00 [INF] Success getting cards tariffs page
+2025-11-11 11:49:21.567 +02:00 [INF] Executing OkObjectResult, writing value of type 'Bank.API.Application.Helpers.HelperClasses.PageResult`1[[Bank.API.Application.DTOs.BankProducts.CardTariffsDto, Bank.API.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-11 11:49:21.568 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.BankProducts.CardTariffsController.GetPage (Bank.API.WebUI) in 25.6915ms
+2025-11-11 11:49:21.568 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.BankProducts.CardTariffsController.GetPage (Bank.API.WebUI)'
+2025-11-11 11:49:21.570 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/CardTariffs/GetPage - 200 null application/json; charset=utf-8 33.9636ms
+2025-11-11 11:49:22.349 +02:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7280/api/UserCards/GetMyCards - null null
+2025-11-11 11:49:22.354 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:49:22.355 +02:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7280/api/UserCards/GetMyCards - 204 null null 6.0911ms
+2025-11-11 11:49:22.357 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/UserCards/GetMyCards - null null
+2025-11-11 11:49:22.363 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:49:22.365 +02:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenExpiredException: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '11/11/2025 09:12:55', Current time (UTC): '11/11/2025 09:49:22'.
+   at Microsoft.IdentityModel.Tokens.ValidatorUtilities.ValidateLifetime(Nullable`1 notBefore, Nullable`1 expires, SecurityToken securityToken, TokenValidationParameters validationParameters)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateTokenPayloadAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2025-11-11 11:49:22.368 +02:00 [INF] Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '11/11/2025 09:12:55', Current time (UTC): '11/11/2025 09:49:22'.
+2025-11-11 11:49:22.369 +02:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-11-11 11:49:22.370 +02:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-11-11 11:49:22.370 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/UserCards/GetMyCards - 401 0 null 13.1702ms
+2025-11-11 11:49:22.373 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7280/api/Account/Refresh - null 0
+2025-11-11 11:49:22.375 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:49:22.376 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI)'
+2025-11-11 11:49:22.376 +02:00 [INF] Route matched with {action = "Refresh", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Refresh() on controller Bank.API.WebUI.Controllers.AccountController (Bank.API.WebUI).
+2025-11-11 11:49:22.382 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[@__refreshToken_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[RefreshToken] = @__refreshToken_0
+2025-11-11 11:49:22.384 +02:00 [INF] Trying to get access token for user with email: andreyfalchevskiy@gmail.com
+2025-11-11 11:49:22.387 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__user_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-11-11 11:49:22.390 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-11-11 11:49:22.394 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-11-11 11:49:22.408 +02:00 [INF] Executed DbCommand (11ms) [Parameters=[@p28='?' (DbType = Guid), @p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p29='?' (Size = 4000), @p3='?' (DbType = Date), @p4='?' (Size = 256), @p5='?' (DbType = Boolean), @p6='?' (Size = 4000), @p7='?' (DbType = Boolean), @p8='?' (Size = 4000), @p9='?' (Size = 4000), @p10='?' (DbType = Boolean), @p11='?' (DbType = DateTimeOffset), @p12='?' (Size = 256), @p13='?' (Size = 256), @p14='?' (Size = 4000), @p15='?' (Size = 4000), @p16='?' (Size = 4000), @p17='?' (DbType = Boolean), @p18='?' (Size = 6), @p19='?' (DbType = DateTime2), @p20='?' (Size = 4000), @p21='?' (DbType = DateTime2), @p22='?' (DbType = Double), @p23='?' (Size = 4000), @p24='?' (Size = 4000), @p25='?' (Size = 4000), @p26='?' (DbType = Boolean), @p27='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [AvatarPath] = @p1, [ConcurrencyStamp] = @p2, [DateOfBirth] = @p3, [Email] = @p4, [EmailConfirmed] = @p5, [FirstName] = @p6, [IsVerified] = @p7, [JobCategory] = @p8, [JobTitle] = @p9, [LockoutEnabled] = @p10, [LockoutEnd] = @p11, [NormalizedEmail] = @p12, [NormalizedUserName] = @p13, [PasswordHash] = @p14, [Patronymic] = @p15, [PhoneNumber] = @p16, [PhoneNumberConfirmed] = @p17, [RefreshCode] = @p18, [RefreshCodeExpiryTime] = @p19, [RefreshToken] = @p20, [RefreshTokenExpiryTime] = @p21, [Salary] = @p22, [SecurityStamp] = @p23, [Surname] = @p24, [TaxId] = @p25, [TwoFactorEnabled] = @p26, [UserName] = @p27
+OUTPUT 1
+WHERE [Id] = @p28 AND [ConcurrencyStamp] = @p29;
+2025-11-11 11:49:22.412 +02:00 [INF] Success getting access token for user with email: andreyfalchevskiy@gmail.com
+2025-11-11 11:49:22.413 +02:00 [INF] Executing OkObjectResult, writing value of type 'Bank.API.Application.DTOs.Identity.AccessTokenDto'.
+2025-11-11 11:49:22.414 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI) in 36.7552ms
+2025-11-11 11:49:22.415 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.AccountController.Refresh (Bank.API.WebUI)'
+2025-11-11 11:49:22.416 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7280/api/Account/Refresh - 200 null application/json; charset=utf-8 42.5321ms
+2025-11-11 11:49:22.418 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/UserCards/GetMyCards - null null
+2025-11-11 11:49:22.419 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:49:22.420 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.BankProducts.UserCardsController.GetMyCards (Bank.API.WebUI)'
+2025-11-11 11:49:22.421 +02:00 [INF] Route matched with {action = "GetMyCards", controller = "UserCards"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetMyCards(Bank.API.Application.Helpers.HelperClasses.Filters.User.UserCardsFilter) on controller Bank.API.WebUI.Controllers.BankProducts.UserCardsController (Bank.API.WebUI).
+2025-11-11 11:49:22.422 +02:00 [INF] Trying to get user cards page, userId: "69c0b364-cf51-4b36-ccf6-08de12640b48"
+2025-11-11 11:49:22.425 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[Id], [u].[Balance], [u].[CVV], [u].[CardNumber], [u].[CardTariffId], [u].[ChosedPaymentSystem], [u].[ChosenCurrency], [u].[CreditLimit], [u].[ExpiryDate], [u].[Pin], [u].[Status], [u].[UserId]
+FROM [UserCards] AS [u]
+WHERE [u].[UserId] = @__userId_0 AND [u].[ExpiryDate] < CAST(GETDATE() AS date)
+2025-11-11 11:49:22.429 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [u].[Id], [u].[Balance], [u].[CVV], [u].[CardNumber], [u].[CardTariffId], [u].[ChosedPaymentSystem], [u].[ChosenCurrency], [u].[CreditLimit], [u].[ExpiryDate], [u].[Pin], [u].[Status], [u].[UserId]
+FROM [UserCards] AS [u]
+WHERE [u].[UserId] = @__userId_0
+ORDER BY [u].[Balance] DESC, [u].[Id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+2025-11-11 11:49:22.433 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[AnnualMaintenanceCost], [c].[BIN], [c].[BankId], [c].[CardColor], [c].[CardName], [c].[EnableCurrency], [c].[EnabledPaymentSystems], [c].[InterestRate], [c].[Level], [c].[MaxCreditLimit], [c].[P2PInternalCommission], [c].[Type], [c].[ValidityPeriod]
+FROM [CardTariffs] AS [c]
+2025-11-11 11:49:22.436 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [UserCards] AS [u]
+WHERE [u].[Id] = @__userId_0
+2025-11-11 11:49:22.438 +02:00 [INF] User cards page successfully getted, userId: "69c0b364-cf51-4b36-ccf6-08de12640b48"
+2025-11-11 11:49:22.438 +02:00 [INF] Executing OkObjectResult, writing value of type 'Bank.API.Application.Helpers.HelperClasses.PageResult`1[[Bank.API.Application.DTOs.Users.Cards.UserCardsDto, Bank.API.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-11 11:49:22.440 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.BankProducts.UserCardsController.GetMyCards (Bank.API.WebUI) in 18.9035ms
+2025-11-11 11:49:22.442 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.BankProducts.UserCardsController.GetMyCards (Bank.API.WebUI)'
+2025-11-11 11:49:22.443 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/UserCards/GetMyCards - 200 null application/json; charset=utf-8 25.0001ms
+2025-11-11 11:49:23.088 +02:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7280/api/UserCards/GetUsersCardInfo/97d79a2b-a464-49a2-8135-393c55b899b4 - null null
+2025-11-11 11:49:23.091 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:49:23.092 +02:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7280/api/UserCards/GetUsersCardInfo/97d79a2b-a464-49a2-8135-393c55b899b4 - 204 null null 3.4485ms
+2025-11-11 11:49:23.094 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/UserCards/GetUsersCardInfo/97d79a2b-a464-49a2-8135-393c55b899b4 - null null
+2025-11-11 11:49:23.099 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:49:23.099 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.BankProducts.UserCardsController.GetUsersCardInfo (Bank.API.WebUI)'
+2025-11-11 11:49:23.101 +02:00 [INF] Route matched with {action = "GetUsersCardInfo", controller = "UserCards"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetUsersCardInfo(System.Guid) on controller Bank.API.WebUI.Controllers.BankProducts.UserCardsController (Bank.API.WebUI).
+2025-11-11 11:49:23.104 +02:00 [INF] Trying to get user card info, cardId: "97d79a2b-a464-49a2-8135-393c55b899b4"
+2025-11-11 11:49:23.106 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Balance], [u].[CVV], [u].[CardNumber], [u].[CardTariffId], [u].[ChosedPaymentSystem], [u].[ChosenCurrency], [u].[CreditLimit], [u].[ExpiryDate], [u].[Pin], [u].[Status], [u].[UserId]
+FROM [UserCards] AS [u]
+WHERE [u].[Id] = @__id_0
+2025-11-11 11:49:23.109 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Balance], [u].[CVV], [u].[CardNumber], [u].[CardTariffId], [u].[ChosedPaymentSystem], [u].[ChosenCurrency], [u].[CreditLimit], [u].[ExpiryDate], [u].[Pin], [u].[Status], [u].[UserId]
+FROM [UserCards] AS [u]
+WHERE [u].[Id] = @__id_0
+2025-11-11 11:49:23.114 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [c].[Id], [c].[AnnualMaintenanceCost], [c].[BIN], [c].[BankId], [c].[CardColor], [c].[CardName], [c].[EnableCurrency], [c].[EnabledPaymentSystems], [c].[InterestRate], [c].[Level], [c].[MaxCreditLimit], [c].[P2PInternalCommission], [c].[Type], [c].[ValidityPeriod]
+FROM [CardTariffs] AS [c]
+WHERE [c].[Id] = @__id_0
+2025-11-11 11:49:23.117 +02:00 [INF] User cards info successfully getted, cardId: "97d79a2b-a464-49a2-8135-393c55b899b4"
+2025-11-11 11:49:23.117 +02:00 [INF] Executing OkObjectResult, writing value of type 'Bank.API.Application.DTOs.Users.Cards.UserCardsDto'.
+2025-11-11 11:49:23.118 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.BankProducts.UserCardsController.GetUsersCardInfo (Bank.API.WebUI) in 15.3924ms
+2025-11-11 11:49:23.119 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.BankProducts.UserCardsController.GetUsersCardInfo (Bank.API.WebUI)'
+2025-11-11 11:49:23.120 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/UserCards/GetUsersCardInfo/97d79a2b-a464-49a2-8135-393c55b899b4 - 200 null application/json; charset=utf-8 25.9847ms
+2025-11-11 11:58:07.930 +02:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7280/api/Profile/Users - null null
+2025-11-11 11:58:07.930 +02:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7280/api/Profile/Users - null null
+2025-11-11 11:58:07.939 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:07.940 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:07.941 +02:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7280/api/Profile/Users - 204 null null 11.2624ms
+2025-11-11 11:58:07.941 +02:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7280/api/Profile/Users - 204 null null 11.409ms
+2025-11-11 11:58:07.953 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Profile/Users - null null
+2025-11-11 11:58:07.962 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:07.963 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.ProfileController.Users (Bank.API.WebUI)'
+2025-11-11 11:58:07.964 +02:00 [INF] Route matched with {action = "Users", controller = "Profile"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Users(Bank.API.Application.Helpers.HelperClasses.Filters.User.UserFilter) on controller Bank.API.WebUI.Controllers.ProfileController (Bank.API.WebUI).
+2025-11-11 11:58:07.966 +02:00 [INF] Getting users page
+2025-11-11 11:58:08.004 +02:00 [INF] Executed DbCommand (6ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+ORDER BY [a].[Surname], [a].[Id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-11-11 11:58:08.010 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [AspNetUsers] AS [a]
+2025-11-11 11:58:08.016 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[@__userIds_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[UserId], [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] IN (
+    SELECT [u].[value]
+    FROM OPENJSON(@__userIds_0) WITH ([value] uniqueidentifier '$') AS [u]
+)
+ORDER BY [a].[UserId]
+2025-11-11 11:58:08.019 +02:00 [INF] Executing OkObjectResult, writing value of type 'Bank.API.Application.Helpers.HelperClasses.PageResult`1[[Bank.API.Application.DTOs.Identity.ProfileDto, Bank.API.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-11 11:58:08.021 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.ProfileController.Users (Bank.API.WebUI) in 55.1421ms
+2025-11-11 11:58:08.021 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Profile/Users - null null
+2025-11-11 11:58:08.022 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.ProfileController.Users (Bank.API.WebUI)'
+2025-11-11 11:58:08.023 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:08.024 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Profile/Users - 200 null application/json; charset=utf-8 71.3614ms
+2025-11-11 11:58:08.025 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.ProfileController.Users (Bank.API.WebUI)'
+2025-11-11 11:58:08.028 +02:00 [INF] Route matched with {action = "Users", controller = "Profile"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Users(Bank.API.Application.Helpers.HelperClasses.Filters.User.UserFilter) on controller Bank.API.WebUI.Controllers.ProfileController (Bank.API.WebUI).
+2025-11-11 11:58:08.030 +02:00 [INF] Getting users page
+2025-11-11 11:58:08.033 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+ORDER BY [a].[Surname], [a].[Id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-11-11 11:58:08.037 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [AspNetUsers] AS [a]
+2025-11-11 11:58:08.041 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userIds_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[UserId], [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] IN (
+    SELECT [u].[value]
+    FROM OPENJSON(@__userIds_0) WITH ([value] uniqueidentifier '$') AS [u]
+)
+ORDER BY [a].[UserId]
+2025-11-11 11:58:08.043 +02:00 [INF] Executing OkObjectResult, writing value of type 'Bank.API.Application.Helpers.HelperClasses.PageResult`1[[Bank.API.Application.DTOs.Identity.ProfileDto, Bank.API.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-11 11:58:08.045 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.ProfileController.Users (Bank.API.WebUI) in 15.6682ms
+2025-11-11 11:58:08.046 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.ProfileController.Users (Bank.API.WebUI)'
+2025-11-11 11:58:08.047 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Profile/Users - 200 null application/json; charset=utf-8 25.3963ms
+2025-11-11 11:58:08.057 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/uploads/profile-photos/69c0b364-cf51-4b36-ccf6-08de12640b48joe_biden_presidential_portrait.jpg - null null
+2025-11-11 11:58:08.059 +02:00 [INF] The file /uploads/profile-photos/69c0b364-cf51-4b36-ccf6-08de12640b48joe_biden_presidential_portrait.jpg was not modified
+2025-11-11 11:58:08.061 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/uploads/profile-photos/69c0b364-cf51-4b36-ccf6-08de12640b48joe_biden_presidential_portrait.jpg - 304 null image/jpeg 3.9276ms
+2025-11-11 11:58:08.534 +02:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7280/api/Profile/Employees - null null
+2025-11-11 11:58:08.534 +02:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7280/api/Profile/Employees - null null
+2025-11-11 11:58:08.538 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:08.541 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:08.542 +02:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7280/api/Profile/Employees - 204 null null 7.1408ms
+2025-11-11 11:58:08.542 +02:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7280/api/Profile/Employees - 204 null null 7.5246ms
+2025-11-11 11:58:08.543 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Profile/Employees - null null
+2025-11-11 11:58:08.547 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:08.548 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.ProfileController.Employees (Bank.API.WebUI)'
+2025-11-11 11:58:08.548 +02:00 [INF] Route matched with {action = "Employees", controller = "Profile"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Employees(Bank.API.Application.Helpers.HelperClasses.Filters.User.UserFilter) on controller Bank.API.WebUI.Controllers.ProfileController (Bank.API.WebUI).
+2025-11-11 11:58:08.551 +02:00 [INF] Getting employees page
+2025-11-11 11:58:08.554 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2025-11-11 11:58:08.558 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Id], [a0].[AccessFailedCount], [a0].[AvatarPath], [a0].[ConcurrencyStamp], [a0].[DateOfBirth], [a0].[Email], [a0].[EmailConfirmed], [a0].[FirstName], [a0].[IsVerified], [a0].[JobCategory], [a0].[JobTitle], [a0].[LockoutEnabled], [a0].[LockoutEnd], [a0].[NormalizedEmail], [a0].[NormalizedUserName], [a0].[PasswordHash], [a0].[Patronymic], [a0].[PhoneNumber], [a0].[PhoneNumberConfirmed], [a0].[RefreshCode], [a0].[RefreshCodeExpiryTime], [a0].[RefreshToken], [a0].[RefreshTokenExpiryTime], [a0].[Salary], [a0].[SecurityStamp], [a0].[Surname], [a0].[TaxId], [a0].[TwoFactorEnabled], [a0].[UserName]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetUsers] AS [a0] ON [a].[UserId] = [a0].[Id]
+WHERE [a].[RoleId] = @__role_Id_0
+2025-11-11 11:58:08.565 +02:00 [INF] Executed DbCommand (5ms) [Parameters=[@__adminsId_0='?' (Size = 4000), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[value]
+    FROM OPENJSON(@__adminsId_0) WITH ([value] uniqueidentifier '$') AS [a0]
+)
+ORDER BY [a].[Surname], [a].[Id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+2025-11-11 11:58:08.572 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__adminsId_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[value]
+    FROM OPENJSON(@__adminsId_0) WITH ([value] uniqueidentifier '$') AS [a0]
+)
+2025-11-11 11:58:08.574 +02:00 [INF] Executing OkObjectResult, writing value of type 'Bank.API.Application.Helpers.HelperClasses.PageResult`1[[Bank.API.Application.DTOs.Identity.ProfileDto, Bank.API.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-11 11:58:08.575 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.ProfileController.Employees (Bank.API.WebUI) in 24.9277ms
+2025-11-11 11:58:08.576 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Profile/Employees - null null
+2025-11-11 11:58:08.576 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.ProfileController.Employees (Bank.API.WebUI)'
+2025-11-11 11:58:08.577 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:08.578 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Profile/Employees - 200 null application/json; charset=utf-8 34.5476ms
+2025-11-11 11:58:08.578 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.ProfileController.Employees (Bank.API.WebUI)'
+2025-11-11 11:58:08.581 +02:00 [INF] Route matched with {action = "Employees", controller = "Profile"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Employees(Bank.API.Application.Helpers.HelperClasses.Filters.User.UserFilter) on controller Bank.API.WebUI.Controllers.ProfileController (Bank.API.WebUI).
+2025-11-11 11:58:08.583 +02:00 [INF] Getting employees page
+2025-11-11 11:58:08.586 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2025-11-11 11:58:08.589 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Id], [a0].[AccessFailedCount], [a0].[AvatarPath], [a0].[ConcurrencyStamp], [a0].[DateOfBirth], [a0].[Email], [a0].[EmailConfirmed], [a0].[FirstName], [a0].[IsVerified], [a0].[JobCategory], [a0].[JobTitle], [a0].[LockoutEnabled], [a0].[LockoutEnd], [a0].[NormalizedEmail], [a0].[NormalizedUserName], [a0].[PasswordHash], [a0].[Patronymic], [a0].[PhoneNumber], [a0].[PhoneNumberConfirmed], [a0].[RefreshCode], [a0].[RefreshCodeExpiryTime], [a0].[RefreshToken], [a0].[RefreshTokenExpiryTime], [a0].[Salary], [a0].[SecurityStamp], [a0].[Surname], [a0].[TaxId], [a0].[TwoFactorEnabled], [a0].[UserName]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetUsers] AS [a0] ON [a].[UserId] = [a0].[Id]
+WHERE [a].[RoleId] = @__role_Id_0
+2025-11-11 11:58:08.594 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__adminsId_0='?' (Size = 4000), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[value]
+    FROM OPENJSON(@__adminsId_0) WITH ([value] uniqueidentifier '$') AS [a0]
+)
+ORDER BY [a].[Surname], [a].[Id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+2025-11-11 11:58:08.597 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__adminsId_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[value]
+    FROM OPENJSON(@__adminsId_0) WITH ([value] uniqueidentifier '$') AS [a0]
+)
+2025-11-11 11:58:08.599 +02:00 [INF] Executing OkObjectResult, writing value of type 'Bank.API.Application.Helpers.HelperClasses.PageResult`1[[Bank.API.Application.DTOs.Identity.ProfileDto, Bank.API.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-11 11:58:08.600 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.ProfileController.Employees (Bank.API.WebUI) in 17.1572ms
+2025-11-11 11:58:08.601 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.ProfileController.Employees (Bank.API.WebUI)'
+2025-11-11 11:58:08.602 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Profile/Employees - 200 null application/json; charset=utf-8 26.647ms
+2025-11-11 11:58:10.044 +02:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7280/api/Vacancies/GetPage - null null
+2025-11-11 11:58:10.044 +02:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7280/api/Vacancies/GetPage - null null
+2025-11-11 11:58:10.047 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:10.050 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:10.051 +02:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7280/api/Vacancies/GetPage - 204 null null 7.321ms
+2025-11-11 11:58:10.051 +02:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7280/api/Vacancies/GetPage - 204 null null 7.0039ms
+2025-11-11 11:58:10.053 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Vacancies/GetPage - null null
+2025-11-11 11:58:10.060 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:10.061 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.Users.VacanciesController.GetPage (Bank.API.WebUI)'
+2025-11-11 11:58:10.062 +02:00 [INF] Route matched with {action = "GetPage", controller = "Vacancies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPage(Bank.API.Application.Helpers.HelperClasses.Filters.User.VacancyFilters) on controller Bank.API.WebUI.Controllers.Users.VacanciesController (Bank.API.WebUI).
+2025-11-11 11:58:10.063 +02:00 [INF] Trying to get vacancies page
+2025-11-11 11:58:10.066 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [v].[Id], [v].[BankId], [v].[Category], [v].[JobTitle], [v].[PublicationDate], [v].[Salary]
+FROM [Vacancies] AS [v]
+ORDER BY [v].[PublicationDate] DESC, [v].[Id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-11-11 11:58:10.070 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Vacancies] AS [v]
+2025-11-11 11:58:10.071 +02:00 [INF] Success getting vacancies page
+2025-11-11 11:58:10.072 +02:00 [INF] Executing OkObjectResult, writing value of type 'Bank.API.Application.Helpers.HelperClasses.PageResult`1[[Bank.API.Application.DTOs.Users.Vacancies.VacancyDto, Bank.API.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-11 11:58:10.073 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.Users.VacanciesController.GetPage (Bank.API.WebUI) in 10.301ms
+2025-11-11 11:58:10.074 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Vacancies/GetPage - null null
+2025-11-11 11:58:10.074 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.Users.VacanciesController.GetPage (Bank.API.WebUI)'
+2025-11-11 11:58:10.076 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:10.076 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Vacancies/GetPage - 200 null application/json; charset=utf-8 23.3122ms
+2025-11-11 11:58:10.077 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.Users.VacanciesController.GetPage (Bank.API.WebUI)'
+2025-11-11 11:58:10.079 +02:00 [INF] Route matched with {action = "GetPage", controller = "Vacancies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPage(Bank.API.Application.Helpers.HelperClasses.Filters.User.VacancyFilters) on controller Bank.API.WebUI.Controllers.Users.VacanciesController (Bank.API.WebUI).
+2025-11-11 11:58:10.081 +02:00 [INF] Trying to get vacancies page
+2025-11-11 11:58:10.083 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [v].[Id], [v].[BankId], [v].[Category], [v].[JobTitle], [v].[PublicationDate], [v].[Salary]
+FROM [Vacancies] AS [v]
+ORDER BY [v].[PublicationDate] DESC, [v].[Id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-11-11 11:58:10.087 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Vacancies] AS [v]
+2025-11-11 11:58:10.089 +02:00 [INF] Success getting vacancies page
+2025-11-11 11:58:10.090 +02:00 [INF] Executing OkObjectResult, writing value of type 'Bank.API.Application.Helpers.HelperClasses.PageResult`1[[Bank.API.Application.DTOs.Users.Vacancies.VacancyDto, Bank.API.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-11 11:58:10.091 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.Users.VacanciesController.GetPage (Bank.API.WebUI) in 10.2105ms
+2025-11-11 11:58:10.092 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.Users.VacanciesController.GetPage (Bank.API.WebUI)'
+2025-11-11 11:58:10.092 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Vacancies/GetPage - 200 null application/json; charset=utf-8 18.4055ms
+2025-11-11 11:58:12.752 +02:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7280/api/Currency/GetCurrencyRates - null null
+2025-11-11 11:58:12.755 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:12.756 +02:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7280/api/Currency/GetCurrencyRates - 204 null null 3.6601ms
+2025-11-11 11:58:12.759 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Currency/GetCurrencyRates - null null
+2025-11-11 11:58:12.765 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:12.766 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.BankProducts.CurrencyController.GetCurrencyRates (Bank.API.WebUI)'
+2025-11-11 11:58:12.766 +02:00 [INF] Route matched with {action = "GetCurrencyRates", controller = "Currency"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCurrencyRates() on controller Bank.API.WebUI.Controllers.BankProducts.CurrencyController (Bank.API.WebUI).
+2025-11-11 11:58:12.768 +02:00 [INF] Trying to get currencies rates
+2025-11-11 11:58:12.876 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [b].[Id], [b].[ActiveClientsCount], [b].[BankDirectorFullName], [b].[BankFounderFullName], [b].[BlockedClientsCount], [b].[Capitalization], [b].[ClientsCount], [b].[ContactEmail], [b].[ContactPhone], [b].[EmployeesCount], [b].[EstablishedDate], [b].[HasLicense], [b].[LegalAddress], [b].[MfoCode], [b].[Name], [b].[PercentageCommissionForBuyingCurrency], [b].[PercentageCommissionForSellingCurrency], [b].[Rating], [b].[SwiftCode], [b].[TaxId], [b].[UpdatedAt]
+FROM [BankInfo] AS [b]
+WHERE [b].[Id] = @__id_0
+2025-11-11 11:58:12.878 +02:00 [INF] Success getting currencies rates from request
+2025-11-11 11:58:12.880 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Bank.API.Application.DTOs.BankProducts.CurrencyDto, Bank.API.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-11 11:58:12.880 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.BankProducts.CurrencyController.GetCurrencyRates (Bank.API.WebUI) in 113.0084ms
+2025-11-11 11:58:12.881 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.BankProducts.CurrencyController.GetCurrencyRates (Bank.API.WebUI)'
+2025-11-11 11:58:12.882 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Currency/GetCurrencyRates - 200 null application/json; charset=utf-8 123.6772ms
+2025-11-11 11:58:13.408 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Profile/Employees - null null
+2025-11-11 11:58:13.412 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:13.414 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.ProfileController.Employees (Bank.API.WebUI)'
+2025-11-11 11:58:13.415 +02:00 [INF] Route matched with {action = "Employees", controller = "Profile"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Employees(Bank.API.Application.Helpers.HelperClasses.Filters.User.UserFilter) on controller Bank.API.WebUI.Controllers.ProfileController (Bank.API.WebUI).
+2025-11-11 11:58:13.417 +02:00 [INF] Getting employees page
+2025-11-11 11:58:13.419 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2025-11-11 11:58:13.421 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Id], [a0].[AccessFailedCount], [a0].[AvatarPath], [a0].[ConcurrencyStamp], [a0].[DateOfBirth], [a0].[Email], [a0].[EmailConfirmed], [a0].[FirstName], [a0].[IsVerified], [a0].[JobCategory], [a0].[JobTitle], [a0].[LockoutEnabled], [a0].[LockoutEnd], [a0].[NormalizedEmail], [a0].[NormalizedUserName], [a0].[PasswordHash], [a0].[Patronymic], [a0].[PhoneNumber], [a0].[PhoneNumberConfirmed], [a0].[RefreshCode], [a0].[RefreshCodeExpiryTime], [a0].[RefreshToken], [a0].[RefreshTokenExpiryTime], [a0].[Salary], [a0].[SecurityStamp], [a0].[Surname], [a0].[TaxId], [a0].[TwoFactorEnabled], [a0].[UserName]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetUsers] AS [a0] ON [a].[UserId] = [a0].[Id]
+WHERE [a].[RoleId] = @__role_Id_0
+2025-11-11 11:58:13.424 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__adminsId_0='?' (Size = 4000), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[value]
+    FROM OPENJSON(@__adminsId_0) WITH ([value] uniqueidentifier '$') AS [a0]
+)
+ORDER BY [a].[Surname], [a].[Id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+2025-11-11 11:58:13.427 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__adminsId_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[value]
+    FROM OPENJSON(@__adminsId_0) WITH ([value] uniqueidentifier '$') AS [a0]
+)
+2025-11-11 11:58:13.429 +02:00 [INF] Executing OkObjectResult, writing value of type 'Bank.API.Application.Helpers.HelperClasses.PageResult`1[[Bank.API.Application.DTOs.Identity.ProfileDto, Bank.API.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-11 11:58:13.429 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.ProfileController.Employees (Bank.API.WebUI) in 13.1286ms
+2025-11-11 11:58:13.430 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Profile/Employees - null null
+2025-11-11 11:58:13.431 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.ProfileController.Employees (Bank.API.WebUI)'
+2025-11-11 11:58:13.432 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:13.432 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Profile/Employees - 200 null application/json; charset=utf-8 24.1726ms
+2025-11-11 11:58:13.433 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.ProfileController.Employees (Bank.API.WebUI)'
+2025-11-11 11:58:13.435 +02:00 [INF] Route matched with {action = "Employees", controller = "Profile"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Employees(Bank.API.Application.Helpers.HelperClasses.Filters.User.UserFilter) on controller Bank.API.WebUI.Controllers.ProfileController (Bank.API.WebUI).
+2025-11-11 11:58:13.437 +02:00 [INF] Getting employees page
+2025-11-11 11:58:13.438 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2025-11-11 11:58:13.441 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Id], [a0].[AccessFailedCount], [a0].[AvatarPath], [a0].[ConcurrencyStamp], [a0].[DateOfBirth], [a0].[Email], [a0].[EmailConfirmed], [a0].[FirstName], [a0].[IsVerified], [a0].[JobCategory], [a0].[JobTitle], [a0].[LockoutEnabled], [a0].[LockoutEnd], [a0].[NormalizedEmail], [a0].[NormalizedUserName], [a0].[PasswordHash], [a0].[Patronymic], [a0].[PhoneNumber], [a0].[PhoneNumberConfirmed], [a0].[RefreshCode], [a0].[RefreshCodeExpiryTime], [a0].[RefreshToken], [a0].[RefreshTokenExpiryTime], [a0].[Salary], [a0].[SecurityStamp], [a0].[Surname], [a0].[TaxId], [a0].[TwoFactorEnabled], [a0].[UserName]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetUsers] AS [a0] ON [a].[UserId] = [a0].[Id]
+WHERE [a].[RoleId] = @__role_Id_0
+2025-11-11 11:58:13.446 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__adminsId_0='?' (Size = 4000), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[value]
+    FROM OPENJSON(@__adminsId_0) WITH ([value] uniqueidentifier '$') AS [a0]
+)
+ORDER BY [a].[Surname], [a].[Id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+2025-11-11 11:58:13.449 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__adminsId_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[value]
+    FROM OPENJSON(@__adminsId_0) WITH ([value] uniqueidentifier '$') AS [a0]
+)
+2025-11-11 11:58:13.451 +02:00 [INF] Executing OkObjectResult, writing value of type 'Bank.API.Application.Helpers.HelperClasses.PageResult`1[[Bank.API.Application.DTOs.Identity.ProfileDto, Bank.API.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-11 11:58:13.452 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.ProfileController.Employees (Bank.API.WebUI) in 16.0953ms
+2025-11-11 11:58:13.453 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.ProfileController.Employees (Bank.API.WebUI)'
+2025-11-11 11:58:13.454 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Profile/Employees - 200 null application/json; charset=utf-8 23.5891ms
+2025-11-11 11:58:13.849 +02:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7280/api/Profile/Users - null null
+2025-11-11 11:58:13.849 +02:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7280/api/Profile/Users - null null
+2025-11-11 11:58:13.852 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:13.856 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:13.857 +02:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7280/api/Profile/Users - 204 null null 8.5343ms
+2025-11-11 11:58:13.859 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Profile/Users - null null
+2025-11-11 11:58:13.858 +02:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7280/api/Profile/Users - 204 null null 8.7738ms
+2025-11-11 11:58:13.861 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:13.864 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.ProfileController.Users (Bank.API.WebUI)'
+2025-11-11 11:58:13.865 +02:00 [INF] Route matched with {action = "Users", controller = "Profile"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Users(Bank.API.Application.Helpers.HelperClasses.Filters.User.UserFilter) on controller Bank.API.WebUI.Controllers.ProfileController (Bank.API.WebUI).
+2025-11-11 11:58:13.866 +02:00 [INF] Getting users page
+2025-11-11 11:58:13.869 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+ORDER BY [a].[Surname], [a].[Id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-11-11 11:58:13.872 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [AspNetUsers] AS [a]
+2025-11-11 11:58:13.874 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userIds_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[UserId], [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] IN (
+    SELECT [u].[value]
+    FROM OPENJSON(@__userIds_0) WITH ([value] uniqueidentifier '$') AS [u]
+)
+ORDER BY [a].[UserId]
+2025-11-11 11:58:13.876 +02:00 [INF] Executing OkObjectResult, writing value of type 'Bank.API.Application.Helpers.HelperClasses.PageResult`1[[Bank.API.Application.DTOs.Identity.ProfileDto, Bank.API.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-11 11:58:13.878 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.ProfileController.Users (Bank.API.WebUI) in 12.1292ms
+2025-11-11 11:58:13.878 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Profile/Users - null null
+2025-11-11 11:58:13.879 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.ProfileController.Users (Bank.API.WebUI)'
+2025-11-11 11:58:13.880 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:13.881 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Profile/Users - 200 null application/json; charset=utf-8 21.7917ms
+2025-11-11 11:58:13.881 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.ProfileController.Users (Bank.API.WebUI)'
+2025-11-11 11:58:13.883 +02:00 [INF] Route matched with {action = "Users", controller = "Profile"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Users(Bank.API.Application.Helpers.HelperClasses.Filters.User.UserFilter) on controller Bank.API.WebUI.Controllers.ProfileController (Bank.API.WebUI).
+2025-11-11 11:58:13.885 +02:00 [INF] Getting users page
+2025-11-11 11:58:13.887 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+ORDER BY [a].[Surname], [a].[Id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-11-11 11:58:13.890 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [AspNetUsers] AS [a]
+2025-11-11 11:58:13.893 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userIds_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[UserId], [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] IN (
+    SELECT [u].[value]
+    FROM OPENJSON(@__userIds_0) WITH ([value] uniqueidentifier '$') AS [u]
+)
+ORDER BY [a].[UserId]
+2025-11-11 11:58:13.895 +02:00 [INF] Executing OkObjectResult, writing value of type 'Bank.API.Application.Helpers.HelperClasses.PageResult`1[[Bank.API.Application.DTOs.Identity.ProfileDto, Bank.API.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-11 11:58:13.897 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.ProfileController.Users (Bank.API.WebUI) in 12.5455ms
+2025-11-11 11:58:13.898 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.ProfileController.Users (Bank.API.WebUI)'
+2025-11-11 11:58:13.898 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Profile/Users - 200 null application/json; charset=utf-8 20.0317ms
+2025-11-11 11:58:14.753 +02:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7280/api/Profile/Employees - null null
+2025-11-11 11:58:14.754 +02:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7280/api/Profile/Employees - null null
+2025-11-11 11:58:14.758 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:14.760 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:14.762 +02:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7280/api/Profile/Employees - 204 null null 8.4216ms
+2025-11-11 11:58:14.763 +02:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7280/api/Profile/Employees - 204 null null 9.2601ms
+2025-11-11 11:58:14.764 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Profile/Employees - null null
+2025-11-11 11:58:14.770 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:14.771 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.ProfileController.Employees (Bank.API.WebUI)'
+2025-11-11 11:58:14.772 +02:00 [INF] Route matched with {action = "Employees", controller = "Profile"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Employees(Bank.API.Application.Helpers.HelperClasses.Filters.User.UserFilter) on controller Bank.API.WebUI.Controllers.ProfileController (Bank.API.WebUI).
+2025-11-11 11:58:14.773 +02:00 [INF] Getting employees page
+2025-11-11 11:58:14.776 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2025-11-11 11:58:14.778 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Id], [a0].[AccessFailedCount], [a0].[AvatarPath], [a0].[ConcurrencyStamp], [a0].[DateOfBirth], [a0].[Email], [a0].[EmailConfirmed], [a0].[FirstName], [a0].[IsVerified], [a0].[JobCategory], [a0].[JobTitle], [a0].[LockoutEnabled], [a0].[LockoutEnd], [a0].[NormalizedEmail], [a0].[NormalizedUserName], [a0].[PasswordHash], [a0].[Patronymic], [a0].[PhoneNumber], [a0].[PhoneNumberConfirmed], [a0].[RefreshCode], [a0].[RefreshCodeExpiryTime], [a0].[RefreshToken], [a0].[RefreshTokenExpiryTime], [a0].[Salary], [a0].[SecurityStamp], [a0].[Surname], [a0].[TaxId], [a0].[TwoFactorEnabled], [a0].[UserName]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetUsers] AS [a0] ON [a].[UserId] = [a0].[Id]
+WHERE [a].[RoleId] = @__role_Id_0
+2025-11-11 11:58:14.783 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__adminsId_0='?' (Size = 4000), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[value]
+    FROM OPENJSON(@__adminsId_0) WITH ([value] uniqueidentifier '$') AS [a0]
+)
+ORDER BY [a].[Surname], [a].[Id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+2025-11-11 11:58:14.786 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__adminsId_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[value]
+    FROM OPENJSON(@__adminsId_0) WITH ([value] uniqueidentifier '$') AS [a0]
+)
+2025-11-11 11:58:14.787 +02:00 [INF] Executing OkObjectResult, writing value of type 'Bank.API.Application.Helpers.HelperClasses.PageResult`1[[Bank.API.Application.DTOs.Identity.ProfileDto, Bank.API.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-11 11:58:14.788 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.ProfileController.Employees (Bank.API.WebUI) in 14.9901ms
+2025-11-11 11:58:14.789 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Profile/Employees - null null
+2025-11-11 11:58:14.789 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.ProfileController.Employees (Bank.API.WebUI)'
+2025-11-11 11:58:14.790 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:14.791 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Profile/Employees - 200 null application/json; charset=utf-8 26.9119ms
+2025-11-11 11:58:14.791 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.ProfileController.Employees (Bank.API.WebUI)'
+2025-11-11 11:58:14.794 +02:00 [INF] Route matched with {action = "Employees", controller = "Profile"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Employees(Bank.API.Application.Helpers.HelperClasses.Filters.User.UserFilter) on controller Bank.API.WebUI.Controllers.ProfileController (Bank.API.WebUI).
+2025-11-11 11:58:14.797 +02:00 [INF] Getting employees page
+2025-11-11 11:58:14.800 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2025-11-11 11:58:14.805 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__role_Id_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Id], [a0].[AccessFailedCount], [a0].[AvatarPath], [a0].[ConcurrencyStamp], [a0].[DateOfBirth], [a0].[Email], [a0].[EmailConfirmed], [a0].[FirstName], [a0].[IsVerified], [a0].[JobCategory], [a0].[JobTitle], [a0].[LockoutEnabled], [a0].[LockoutEnd], [a0].[NormalizedEmail], [a0].[NormalizedUserName], [a0].[PasswordHash], [a0].[Patronymic], [a0].[PhoneNumber], [a0].[PhoneNumberConfirmed], [a0].[RefreshCode], [a0].[RefreshCodeExpiryTime], [a0].[RefreshToken], [a0].[RefreshTokenExpiryTime], [a0].[Salary], [a0].[SecurityStamp], [a0].[Surname], [a0].[TaxId], [a0].[TwoFactorEnabled], [a0].[UserName]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetUsers] AS [a0] ON [a].[UserId] = [a0].[Id]
+WHERE [a].[RoleId] = @__role_Id_0
+2025-11-11 11:58:14.811 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__adminsId_0='?' (Size = 4000), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[value]
+    FROM OPENJSON(@__adminsId_0) WITH ([value] uniqueidentifier '$') AS [a0]
+)
+ORDER BY [a].[Surname], [a].[Id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+2025-11-11 11:58:14.816 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__adminsId_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] IN (
+    SELECT [a0].[value]
+    FROM OPENJSON(@__adminsId_0) WITH ([value] uniqueidentifier '$') AS [a0]
+)
+2025-11-11 11:58:14.817 +02:00 [INF] Executing OkObjectResult, writing value of type 'Bank.API.Application.Helpers.HelperClasses.PageResult`1[[Bank.API.Application.DTOs.Identity.ProfileDto, Bank.API.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-11 11:58:14.818 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.ProfileController.Employees (Bank.API.WebUI) in 22.2925ms
+2025-11-11 11:58:14.820 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.ProfileController.Employees (Bank.API.WebUI)'
+2025-11-11 11:58:14.820 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Profile/Employees - 200 null application/json; charset=utf-8 31.6891ms
+2025-11-11 11:58:16.358 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Currency/GetCurrencyRates - null null
+2025-11-11 11:58:16.363 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:16.364 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.BankProducts.CurrencyController.GetCurrencyRates (Bank.API.WebUI)'
+2025-11-11 11:58:16.365 +02:00 [INF] Route matched with {action = "GetCurrencyRates", controller = "Currency"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCurrencyRates() on controller Bank.API.WebUI.Controllers.BankProducts.CurrencyController (Bank.API.WebUI).
+2025-11-11 11:58:16.366 +02:00 [INF] Trying to get currencies rates
+2025-11-11 11:58:16.367 +02:00 [INF] Success getting currencies rates from cache
+2025-11-11 11:58:16.368 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Bank.API.Application.DTOs.BankProducts.CurrencyDto, Bank.API.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-11 11:58:16.368 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.BankProducts.CurrencyController.GetCurrencyRates (Bank.API.WebUI) in 2.3651ms
+2025-11-11 11:58:16.369 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.BankProducts.CurrencyController.GetCurrencyRates (Bank.API.WebUI)'
+2025-11-11 11:58:16.370 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Currency/GetCurrencyRates - 200 null application/json; charset=utf-8 11.4989ms
+2025-11-11 11:58:17.436 +02:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7280/api/Vacancies/GetPage - null null
+2025-11-11 11:58:17.440 +02:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7280/api/Vacancies/GetPage - null null
+2025-11-11 11:58:17.447 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:17.454 +02:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7280/api/Vacancies/GetPage - 204 null null 22.1341ms
+2025-11-11 11:58:17.453 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:17.458 +02:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7280/api/Vacancies/GetPage - 204 null null 18.0196ms
+2025-11-11 11:58:17.463 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Vacancies/GetPage - null null
+2025-11-11 11:58:17.465 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:17.466 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.Users.VacanciesController.GetPage (Bank.API.WebUI)'
+2025-11-11 11:58:17.467 +02:00 [INF] Route matched with {action = "GetPage", controller = "Vacancies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPage(Bank.API.Application.Helpers.HelperClasses.Filters.User.VacancyFilters) on controller Bank.API.WebUI.Controllers.Users.VacanciesController (Bank.API.WebUI).
+2025-11-11 11:58:17.469 +02:00 [INF] Trying to get vacancies page
+2025-11-11 11:58:17.510 +02:00 [INF] Executed DbCommand (41ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [v].[Id], [v].[BankId], [v].[Category], [v].[JobTitle], [v].[PublicationDate], [v].[Salary]
+FROM [Vacancies] AS [v]
+ORDER BY [v].[PublicationDate] DESC, [v].[Id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-11-11 11:58:17.796 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Vacancies] AS [v]
+2025-11-11 11:58:17.800 +02:00 [INF] Success getting vacancies page
+2025-11-11 11:58:17.802 +02:00 [INF] Executing OkObjectResult, writing value of type 'Bank.API.Application.Helpers.HelperClasses.PageResult`1[[Bank.API.Application.DTOs.Users.Vacancies.VacancyDto, Bank.API.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-11 11:58:17.807 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.Users.VacanciesController.GetPage (Bank.API.WebUI) in 337.9402ms
+2025-11-11 11:58:17.808 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Vacancies/GetPage - null null
+2025-11-11 11:58:17.809 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.Users.VacanciesController.GetPage (Bank.API.WebUI)'
+2025-11-11 11:58:17.810 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:17.811 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Vacancies/GetPage - 200 null application/json; charset=utf-8 347.5186ms
+2025-11-11 11:58:17.811 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.Users.VacanciesController.GetPage (Bank.API.WebUI)'
+2025-11-11 11:58:17.814 +02:00 [INF] Route matched with {action = "GetPage", controller = "Vacancies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPage(Bank.API.Application.Helpers.HelperClasses.Filters.User.VacancyFilters) on controller Bank.API.WebUI.Controllers.Users.VacanciesController (Bank.API.WebUI).
+2025-11-11 11:58:17.815 +02:00 [INF] Trying to get vacancies page
+2025-11-11 11:58:17.823 +02:00 [INF] Executed DbCommand (6ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [v].[Id], [v].[BankId], [v].[Category], [v].[JobTitle], [v].[PublicationDate], [v].[Salary]
+FROM [Vacancies] AS [v]
+ORDER BY [v].[PublicationDate] DESC, [v].[Id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-11-11 11:58:17.827 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Vacancies] AS [v]
+2025-11-11 11:58:17.840 +02:00 [INF] Success getting vacancies page
+2025-11-11 11:58:17.841 +02:00 [INF] Executing OkObjectResult, writing value of type 'Bank.API.Application.Helpers.HelperClasses.PageResult`1[[Bank.API.Application.DTOs.Users.Vacancies.VacancyDto, Bank.API.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-11 11:58:17.843 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.Users.VacanciesController.GetPage (Bank.API.WebUI) in 28.1628ms
+2025-11-11 11:58:17.853 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.Users.VacanciesController.GetPage (Bank.API.WebUI)'
+2025-11-11 11:58:17.855 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Vacancies/GetPage - 200 null application/json; charset=utf-8 47.4333ms
+2025-11-11 11:58:17.879 +02:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7280/api/Currency/GetCurrencyRates - null null
+2025-11-11 11:58:17.894 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:17.897 +02:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7280/api/Currency/GetCurrencyRates - 204 null null 17.8206ms
+2025-11-11 11:58:17.903 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Currency/GetCurrencyRates - null null
+2025-11-11 11:58:17.907 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:17.908 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.BankProducts.CurrencyController.GetCurrencyRates (Bank.API.WebUI)'
+2025-11-11 11:58:17.910 +02:00 [INF] Route matched with {action = "GetCurrencyRates", controller = "Currency"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCurrencyRates() on controller Bank.API.WebUI.Controllers.BankProducts.CurrencyController (Bank.API.WebUI).
+2025-11-11 11:58:17.913 +02:00 [INF] Trying to get currencies rates
+2025-11-11 11:58:17.919 +02:00 [INF] Success getting currencies rates from cache
+2025-11-11 11:58:17.919 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Bank.API.Application.DTOs.BankProducts.CurrencyDto, Bank.API.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-11 11:58:17.921 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.BankProducts.CurrencyController.GetCurrencyRates (Bank.API.WebUI) in 8.2204ms
+2025-11-11 11:58:17.923 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.BankProducts.CurrencyController.GetCurrencyRates (Bank.API.WebUI)'
+2025-11-11 11:58:17.923 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Currency/GetCurrencyRates - 200 null application/json; charset=utf-8 21.0749ms
+2025-11-11 11:58:18.520 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Vacancies/GetPage - null null
+2025-11-11 11:58:18.523 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:18.524 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.Users.VacanciesController.GetPage (Bank.API.WebUI)'
+2025-11-11 11:58:18.525 +02:00 [INF] Route matched with {action = "GetPage", controller = "Vacancies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPage(Bank.API.Application.Helpers.HelperClasses.Filters.User.VacancyFilters) on controller Bank.API.WebUI.Controllers.Users.VacanciesController (Bank.API.WebUI).
+2025-11-11 11:58:18.527 +02:00 [INF] Trying to get vacancies page
+2025-11-11 11:58:18.529 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [v].[Id], [v].[BankId], [v].[Category], [v].[JobTitle], [v].[PublicationDate], [v].[Salary]
+FROM [Vacancies] AS [v]
+ORDER BY [v].[PublicationDate] DESC, [v].[Id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-11-11 11:58:18.532 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Vacancies] AS [v]
+2025-11-11 11:58:18.533 +02:00 [INF] Success getting vacancies page
+2025-11-11 11:58:18.534 +02:00 [INF] Executing OkObjectResult, writing value of type 'Bank.API.Application.Helpers.HelperClasses.PageResult`1[[Bank.API.Application.DTOs.Users.Vacancies.VacancyDto, Bank.API.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-11 11:58:18.535 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.Users.VacanciesController.GetPage (Bank.API.WebUI) in 8.1296ms
+2025-11-11 11:58:18.535 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Vacancies/GetPage - null null
+2025-11-11 11:58:18.536 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.Users.VacanciesController.GetPage (Bank.API.WebUI)'
+2025-11-11 11:58:18.537 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:18.538 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Vacancies/GetPage - 200 null application/json; charset=utf-8 17.9053ms
+2025-11-11 11:58:18.538 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.Users.VacanciesController.GetPage (Bank.API.WebUI)'
+2025-11-11 11:58:18.541 +02:00 [INF] Route matched with {action = "GetPage", controller = "Vacancies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPage(Bank.API.Application.Helpers.HelperClasses.Filters.User.VacancyFilters) on controller Bank.API.WebUI.Controllers.Users.VacanciesController (Bank.API.WebUI).
+2025-11-11 11:58:18.542 +02:00 [INF] Trying to get vacancies page
+2025-11-11 11:58:18.545 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [v].[Id], [v].[BankId], [v].[Category], [v].[JobTitle], [v].[PublicationDate], [v].[Salary]
+FROM [Vacancies] AS [v]
+ORDER BY [v].[PublicationDate] DESC, [v].[Id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-11-11 11:58:18.549 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Vacancies] AS [v]
+2025-11-11 11:58:18.553 +02:00 [INF] Success getting vacancies page
+2025-11-11 11:58:18.554 +02:00 [INF] Executing OkObjectResult, writing value of type 'Bank.API.Application.Helpers.HelperClasses.PageResult`1[[Bank.API.Application.DTOs.Users.Vacancies.VacancyDto, Bank.API.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-11 11:58:18.556 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.Users.VacanciesController.GetPage (Bank.API.WebUI) in 14.1966ms
+2025-11-11 11:58:18.557 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.Users.VacanciesController.GetPage (Bank.API.WebUI)'
+2025-11-11 11:58:18.558 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Vacancies/GetPage - 200 null application/json; charset=utf-8 23.1811ms
+2025-11-11 11:58:19.415 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Currency/GetCurrencyRates - null null
+2025-11-11 11:58:19.419 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:19.420 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.BankProducts.CurrencyController.GetCurrencyRates (Bank.API.WebUI)'
+2025-11-11 11:58:19.421 +02:00 [INF] Route matched with {action = "GetCurrencyRates", controller = "Currency"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCurrencyRates() on controller Bank.API.WebUI.Controllers.BankProducts.CurrencyController (Bank.API.WebUI).
+2025-11-11 11:58:19.423 +02:00 [INF] Trying to get currencies rates
+2025-11-11 11:58:19.424 +02:00 [INF] Success getting currencies rates from cache
+2025-11-11 11:58:19.425 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Bank.API.Application.DTOs.BankProducts.CurrencyDto, Bank.API.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-11 11:58:19.426 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.BankProducts.CurrencyController.GetCurrencyRates (Bank.API.WebUI) in 2.9931ms
+2025-11-11 11:58:19.427 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.BankProducts.CurrencyController.GetCurrencyRates (Bank.API.WebUI)'
+2025-11-11 11:58:19.428 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Currency/GetCurrencyRates - 200 null application/json; charset=utf-8 12.4466ms
+2025-11-11 11:58:20.104 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Vacancies/GetPage - null null
+2025-11-11 11:58:20.107 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:20.108 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.Users.VacanciesController.GetPage (Bank.API.WebUI)'
+2025-11-11 11:58:20.109 +02:00 [INF] Route matched with {action = "GetPage", controller = "Vacancies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPage(Bank.API.Application.Helpers.HelperClasses.Filters.User.VacancyFilters) on controller Bank.API.WebUI.Controllers.Users.VacanciesController (Bank.API.WebUI).
+2025-11-11 11:58:20.112 +02:00 [INF] Trying to get vacancies page
+2025-11-11 11:58:20.114 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [v].[Id], [v].[BankId], [v].[Category], [v].[JobTitle], [v].[PublicationDate], [v].[Salary]
+FROM [Vacancies] AS [v]
+ORDER BY [v].[PublicationDate] DESC, [v].[Id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-11-11 11:58:20.118 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Vacancies] AS [v]
+2025-11-11 11:58:20.120 +02:00 [INF] Success getting vacancies page
+2025-11-11 11:58:20.120 +02:00 [INF] Executing OkObjectResult, writing value of type 'Bank.API.Application.Helpers.HelperClasses.PageResult`1[[Bank.API.Application.DTOs.Users.Vacancies.VacancyDto, Bank.API.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-11 11:58:20.121 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.Users.VacanciesController.GetPage (Bank.API.WebUI) in 9.2957ms
+2025-11-11 11:58:20.122 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Vacancies/GetPage - null null
+2025-11-11 11:58:20.122 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.Users.VacanciesController.GetPage (Bank.API.WebUI)'
+2025-11-11 11:58:20.123 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:20.124 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Vacancies/GetPage - 200 null application/json; charset=utf-8 20.1487ms
+2025-11-11 11:58:20.126 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.Users.VacanciesController.GetPage (Bank.API.WebUI)'
+2025-11-11 11:58:20.128 +02:00 [INF] Route matched with {action = "GetPage", controller = "Vacancies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPage(Bank.API.Application.Helpers.HelperClasses.Filters.User.VacancyFilters) on controller Bank.API.WebUI.Controllers.Users.VacanciesController (Bank.API.WebUI).
+2025-11-11 11:58:20.130 +02:00 [INF] Trying to get vacancies page
+2025-11-11 11:58:20.133 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [v].[Id], [v].[BankId], [v].[Category], [v].[JobTitle], [v].[PublicationDate], [v].[Salary]
+FROM [Vacancies] AS [v]
+ORDER BY [v].[PublicationDate] DESC, [v].[Id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-11-11 11:58:20.138 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Vacancies] AS [v]
+2025-11-11 11:58:20.141 +02:00 [INF] Success getting vacancies page
+2025-11-11 11:58:20.141 +02:00 [INF] Executing OkObjectResult, writing value of type 'Bank.API.Application.Helpers.HelperClasses.PageResult`1[[Bank.API.Application.DTOs.Users.Vacancies.VacancyDto, Bank.API.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-11 11:58:20.142 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.Users.VacanciesController.GetPage (Bank.API.WebUI) in 12.868ms
+2025-11-11 11:58:20.143 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.Users.VacanciesController.GetPage (Bank.API.WebUI)'
+2025-11-11 11:58:20.144 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Vacancies/GetPage - 200 null application/json; charset=utf-8 22.5875ms
+2025-11-11 11:58:20.742 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Currency/GetCurrencyRates - null null
+2025-11-11 11:58:20.745 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:20.746 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.BankProducts.CurrencyController.GetCurrencyRates (Bank.API.WebUI)'
+2025-11-11 11:58:20.747 +02:00 [INF] Route matched with {action = "GetCurrencyRates", controller = "Currency"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCurrencyRates() on controller Bank.API.WebUI.Controllers.BankProducts.CurrencyController (Bank.API.WebUI).
+2025-11-11 11:58:20.749 +02:00 [INF] Trying to get currencies rates
+2025-11-11 11:58:20.750 +02:00 [INF] Success getting currencies rates from cache
+2025-11-11 11:58:20.750 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Bank.API.Application.DTOs.BankProducts.CurrencyDto, Bank.API.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-11 11:58:20.751 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.BankProducts.CurrencyController.GetCurrencyRates (Bank.API.WebUI) in 2.6165ms
+2025-11-11 11:58:20.752 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.BankProducts.CurrencyController.GetCurrencyRates (Bank.API.WebUI)'
+2025-11-11 11:58:20.753 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Currency/GetCurrencyRates - 200 null application/json; charset=utf-8 11.1644ms
+2025-11-11 11:58:22.862 +02:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7280/api/Vacancies/GetPage - null null
+2025-11-11 11:58:22.862 +02:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:7280/api/Vacancies/GetPage - null null
+2025-11-11 11:58:22.865 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:22.868 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:22.868 +02:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7280/api/Vacancies/GetPage - 204 null null 6.73ms
+2025-11-11 11:58:22.869 +02:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:7280/api/Vacancies/GetPage - 204 null null 7.0711ms
+2025-11-11 11:58:22.871 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Vacancies/GetPage - null null
+2025-11-11 11:58:22.876 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:22.877 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.Users.VacanciesController.GetPage (Bank.API.WebUI)'
+2025-11-11 11:58:22.878 +02:00 [INF] Route matched with {action = "GetPage", controller = "Vacancies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPage(Bank.API.Application.Helpers.HelperClasses.Filters.User.VacancyFilters) on controller Bank.API.WebUI.Controllers.Users.VacanciesController (Bank.API.WebUI).
+2025-11-11 11:58:22.880 +02:00 [INF] Trying to get vacancies page
+2025-11-11 11:58:22.882 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [v].[Id], [v].[BankId], [v].[Category], [v].[JobTitle], [v].[PublicationDate], [v].[Salary]
+FROM [Vacancies] AS [v]
+ORDER BY [v].[PublicationDate] DESC, [v].[Id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-11-11 11:58:22.887 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Vacancies] AS [v]
+2025-11-11 11:58:22.888 +02:00 [INF] Success getting vacancies page
+2025-11-11 11:58:22.889 +02:00 [INF] Executing OkObjectResult, writing value of type 'Bank.API.Application.Helpers.HelperClasses.PageResult`1[[Bank.API.Application.DTOs.Users.Vacancies.VacancyDto, Bank.API.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-11 11:58:22.890 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.Users.VacanciesController.GetPage (Bank.API.WebUI) in 10.6894ms
+2025-11-11 11:58:22.891 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/api/Vacancies/GetPage - null null
+2025-11-11 11:58:22.892 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.Users.VacanciesController.GetPage (Bank.API.WebUI)'
+2025-11-11 11:58:22.893 +02:00 [INF] CORS policy execution successful.
+2025-11-11 11:58:22.894 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Vacancies/GetPage - 200 null application/json; charset=utf-8 22.87ms
+2025-11-11 11:58:22.894 +02:00 [INF] Executing endpoint 'Bank.API.WebUI.Controllers.Users.VacanciesController.GetPage (Bank.API.WebUI)'
+2025-11-11 11:58:22.897 +02:00 [INF] Route matched with {action = "GetPage", controller = "Vacancies"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPage(Bank.API.Application.Helpers.HelperClasses.Filters.User.VacancyFilters) on controller Bank.API.WebUI.Controllers.Users.VacanciesController (Bank.API.WebUI).
+2025-11-11 11:58:22.898 +02:00 [INF] Trying to get vacancies page
+2025-11-11 11:58:22.901 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [v].[Id], [v].[BankId], [v].[Category], [v].[JobTitle], [v].[PublicationDate], [v].[Salary]
+FROM [Vacancies] AS [v]
+ORDER BY [v].[PublicationDate] DESC, [v].[Id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-11-11 11:58:22.906 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Vacancies] AS [v]
+2025-11-11 11:58:22.907 +02:00 [INF] Success getting vacancies page
+2025-11-11 11:58:22.907 +02:00 [INF] Executing OkObjectResult, writing value of type 'Bank.API.Application.Helpers.HelperClasses.PageResult`1[[Bank.API.Application.DTOs.Users.Vacancies.VacancyDto, Bank.API.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-11-11 11:58:22.908 +02:00 [INF] Executed action Bank.API.WebUI.Controllers.Users.VacanciesController.GetPage (Bank.API.WebUI) in 10.2667ms
+2025-11-11 11:58:22.909 +02:00 [INF] Executed endpoint 'Bank.API.WebUI.Controllers.Users.VacanciesController.GetPage (Bank.API.WebUI)'
+2025-11-11 11:58:22.910 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/api/Vacancies/GetPage - 200 null application/json; charset=utf-8 19.321ms
