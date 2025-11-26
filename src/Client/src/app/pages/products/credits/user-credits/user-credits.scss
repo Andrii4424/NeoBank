@@ -1,0 +1,25 @@
+.under-construction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  color: #333;
+
+  img {
+    width: 160px;
+    margin-bottom: 20px;
+    opacity: 0.8;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #666;
+  }
+}
