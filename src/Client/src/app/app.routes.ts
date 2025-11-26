@@ -26,6 +26,7 @@ import { RecoveryPassword } from './pages/auth/recovery-password/recovery-passwo
 import { AuthWrap } from './pages/auth/auth-wrap/auth-wrap';
 import { DepositTariffs } from './pages/products/deposits/deposit-tariffs/deposit-tariffs';
 import { CreditTariffs } from './pages/products/credits/credit-tariffs/credit-tariffs';
+import { UserCredits } from './pages/products/credits/user-credits/user-credits';
 
 export const routes: Routes = [
     {path: '', component: Layout, children: [
@@ -49,6 +50,7 @@ export const routes: Routes = [
         {path: 'clients/profile/:id', component: UserProfile, canActivate: [CanActivateAuth]},
         {path: 'deposits', component: DepositTariffs},
         {path: 'credits', component: CreditTariffs},
+        {path: 'credits/my', component: UserCredits}
        
     ]},
     {path: 'auth', component: AuthWrap, children:[

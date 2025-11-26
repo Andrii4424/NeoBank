@@ -344,7 +344,10 @@
 
     "ApplyForJobConfirmation":"Are you sure you want to work in a bank?",
 
-    "NameNotSpecified":"Name not specified"
+    "NameNotSpecified":"Name not specified",
+
+    "CreditTariffs": "Credit Tariffs",
+    "MyCredits":"My Credits"
     
 
 }

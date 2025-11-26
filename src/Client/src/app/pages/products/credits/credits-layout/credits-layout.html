@@ -1,0 +1,17 @@
+<div class="child-pages-links">
+    <a [routerLink]="['/credits']" routerLinkActive="chosen-child-link"    
+    [routerLinkActiveOptions]="{ 
+      paths: 'exact', 
+      queryParams: 'ignored', 
+      matrixParams: 'ignored', 
+      fragment: 'ignored'
+   }">{{'CreditTariffs' |translate}}</a>
+    <a [routerLink]="['/credits/my']" routerLinkActive="chosen-child-link"    
+        [routerLinkActiveOptions]="{ 
+        paths: 'exact', 
+        queryParams: 'ignored', 
+        matrixParams: 'ignored', 
+        fragment: 'ignored'
+    }">{{'MyCredits' |translate}}</a>
+</div>
+
