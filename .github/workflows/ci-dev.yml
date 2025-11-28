@@ -13,8 +13,12 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-      - run: dotnet restore
-      - run: dotnet build -c Release
+
+      - name: Restore
+        run: dotnet restore -p:EnableWindowsTargeting=true
+
+      - name: Build
+        run: dotnet build src/Services -c Release --no-restore
 
   test-backend:
     name: Test Backend
@@ -25,9 +29,12 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-      - run: |
-          dotnet restore
-          dotnet test -c Release --verbosity normal
+
+      - name: Restore
+        run: dotnet restore -p:EnableWindowsTargeting=true
+
+      - name: Test
+        run: dotnet test src/Services -c Release --verbosity normal
 
   frontend:
     name: Frontend - Build
@@ -37,7 +44,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: |
+      
+      - name: Install & Build
+        run: |
           cd src/Client
           npm ci
           npm run lint --if-present

@@ -21,13 +21,13 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Restore
-        run: dotnet restore
+        run: dotnet restore -p:EnableWindowsTargeting=true
 
       - name: Build
-        run: dotnet build -c Release --no-restore
+        run: dotnet build src/Services -c Release --no-restore
 
       - name: Test
-        run: dotnet test -c Release --verbosity normal
+        run: dotnet test src/Services -c Release --verbosity normal
 
   frontend:
     name: Frontend - Build
