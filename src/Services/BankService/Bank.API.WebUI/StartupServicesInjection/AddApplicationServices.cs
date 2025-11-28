@@ -3,6 +3,7 @@ using Bank.API.Application.Helpers.Mapping;
 using Bank.API.Application.ServiceContracts.BankServiceContracts;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.Auth;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.BankProducts;
+using Bank.API.Application.ServiceContracts.BankServiceContracts.News;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.Users;
 using Bank.API.Application.ServiceContracts.MessageServices;
 using Bank.API.Application.Services.Auth;
@@ -10,13 +11,16 @@ using Bank.API.Application.Services.BankServices;
 using Bank.API.Application.Services.BankServices.BankProducts;
 using Bank.API.Application.Services.BankServices.Users;
 using Bank.API.Application.Services.MessageServices;
+using Bank.API.Application.Services.News;
 using Bank.API.Domain.Entities.Identity;
 using Bank.API.Domain.RepositoryContracts;
 using Bank.API.Domain.RepositoryContracts.BankProducts;
+using Bank.API.Domain.RepositoryContracts.News;
 using Bank.API.Domain.RepositoryContracts.Users;
 using Bank.API.Infrastructure.Data;
 using Bank.API.Infrastructure.Repository;
 using Bank.API.Infrastructure.Repository.BankProducts;
+using Bank.API.Infrastructure.Repository.News;
 using Bank.API.Infrastructure.Repository.Users;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -123,6 +127,7 @@ namespace Bank.API.WebUI.StartupServicesInjection
             services.AddScoped(typeof(IUserCardsRepository), typeof(UserCardsRepository));
             services.AddScoped(typeof(IVacanciesRepository), typeof(VacanciesRepository));
             services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
+            services.AddScoped(typeof(INewsRepository), typeof(NewsRepository));
 
             //Services injection
             //Identity
@@ -137,6 +142,7 @@ namespace Bank.API.WebUI.StartupServicesInjection
             services.AddScoped<IVacanciesService, VacanciesService>();
             services.AddScoped<ISmtpService, SmtpService>();
             services.AddScoped<IRecoveryPasswordService, RecoveryPasswordService>();
+            services.AddScoped<INewsService, NewsService>();
 
 
             //Background Services

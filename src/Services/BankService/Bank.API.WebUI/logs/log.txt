@@ -35,3 +35,40 @@ WHERE [a].[UserId] = @__get_Item_0 AND [a].[RoleId] = @__get_Item_1
 2025-11-28 13:14:08.608 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/_vs/browserLink - 200 null text/javascript; charset=UTF-8 39.2724ms
 2025-11-28 13:14:08.879 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/swagger/v1/swagger.json - null null
 2025-11-28 13:14:08.931 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 52.3256ms
+2025-11-28 16:43:20.075 +02:00 [INF] User profile is available. Using 'C:\Users\andre\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-11-28 16:43:20.565 +02:00 [WRN] No store type was specified for the decimal property 'Balance' on entity type 'UserCardsEntity'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-28 16:43:20.568 +02:00 [WRN] No store type was specified for the decimal property 'CreditLimit' on entity type 'UserCardsEntity'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-28 16:43:20.569 +02:00 [WRN] No store type was specified for the decimal property 'InterestRate' on entity type 'CreditTariffsEntity'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-28 16:43:20.569 +02:00 [WRN] No store type was specified for the decimal property 'MaxAmount' on entity type 'CreditTariffsEntity'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-28 16:43:20.570 +02:00 [WRN] No store type was specified for the decimal property 'MinAmount' on entity type 'CreditTariffsEntity'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-11-28 16:43:21.163 +02:00 [INF] Executed DbCommand (80ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-28 16:43:21.226 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-11-28 16:43:21.242 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[AvatarPath], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[IsVerified], [a].[JobCategory], [a].[JobTitle], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[Patronymic], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[RefreshCode], [a].[RefreshCodeExpiryTime], [a].[RefreshToken], [a].[RefreshTokenExpiryTime], [a].[Salary], [a].[SecurityStamp], [a].[Surname], [a].[TaxId], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-11-28 16:43:21.304 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedRoleName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedRoleName_0
+2025-11-28 16:43:21.339 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__get_Item_0='?' (DbType = Guid), @__get_Item_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @__get_Item_0 AND [a].[RoleId] = @__get_Item_1
+2025-11-28 16:43:21.702 +02:00 [INF] Now listening on: https://localhost:7280
+2025-11-28 16:43:21.704 +02:00 [INF] Now listening on: http://localhost:5106
+2025-11-28 16:43:21.780 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-28 16:43:21.782 +02:00 [INF] Hosting environment: Development
+2025-11-28 16:43:21.784 +02:00 [INF] Content root path: D:\FullStack\NeoBank\src\Services\BankService\Bank.API.WebUI
+2025-11-28 16:43:22.948 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/_framework/aspnetcore-browser-refresh.js - null null
+2025-11-28 16:43:22.964 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 22.3314ms
+2025-11-28 16:43:22.981 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/_vs/browserLink - null null
+2025-11-28 16:43:23.030 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/_vs/browserLink - 200 null text/javascript; charset=UTF-8 48.6958ms
+2025-11-28 16:43:23.068 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7280/swagger/v1/swagger.json - null null
+2025-11-28 16:43:23.125 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7280/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 61.1985ms
