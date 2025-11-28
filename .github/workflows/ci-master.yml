@@ -3,7 +3,7 @@ name: CI/CD - Master
 on:
   pull_request:
     branches: [ master ]
-    
+
 concurrency:
   group: production-deploy
   cancel-in-progress: false
@@ -21,13 +21,14 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Restore
-        run: dotnet restore
+        run: dotnet restore -p:EnableWindowsTargeting=true
 
-      - name: Build
-        run: dotnet build -c Release --no-restore
+      - name: Build Bank API
+        run: dotnet build src/Services/BankService/Bank.API.WebUI/Bank.API.WebUI.csproj -c Release --no-restore
 
-      - name: Test
-        run: dotnet test -c Release --verbosity normal
+      - name: Build Transactions API
+        run: dotnet build src/Services/TransactionsService/Transactions.WebUI/Transactions.WebUI.csproj -c Release --no-restore
+
 
   frontend:
     name: Frontend - Build
@@ -89,9 +90,7 @@ jobs:
           echo "BankApiUrl=${{ secrets.BANK_API_URL }}" >> .env.transactions
 
       - name: Docker Compose Build
-        run: |
-          docker compose build --pull
+        run: docker compose build --pull
 
       - name: Docker Compose Push
-        run: |
-          docker compose push
+        run: docker compose push

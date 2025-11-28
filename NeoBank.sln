@@ -43,6 +43,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank.API.InfrastructureTest
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bank.API.ApplicationTests", "tests\Bank.API.ApplicationTests\Bank.API.ApplicationTests.csproj", "{F252BA36-9A0F-494D-B8B0-1E87D8537B1B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoBankDesktop", "src\NeoBankDesktop\NeoBankDesktop.csproj", "{E5349441-97E7-4FA6-A9B5-B0BD7EE96C12}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +99,10 @@ Global
 		{F252BA36-9A0F-494D-B8B0-1E87D8537B1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F252BA36-9A0F-494D-B8B0-1E87D8537B1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F252BA36-9A0F-494D-B8B0-1E87D8537B1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5349441-97E7-4FA6-A9B5-B0BD7EE96C12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5349441-97E7-4FA6-A9B5-B0BD7EE96C12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5349441-97E7-4FA6-A9B5-B0BD7EE96C12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5349441-97E7-4FA6-A9B5-B0BD7EE96C12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -120,6 +126,7 @@ Global
 		{EC7CC4E7-C9E7-41B2-8391-DFCEA91F64C6} = {BCC9F0A8-9C48-4612-A5B0-C49639FEB1DB}
 		{4DA9C3FC-E881-4389-B8E0-F44391C2636B} = {BCC9F0A8-9C48-4612-A5B0-C49639FEB1DB}
 		{F252BA36-9A0F-494D-B8B0-1E87D8537B1B} = {BCC9F0A8-9C48-4612-A5B0-C49639FEB1DB}
+		{E5349441-97E7-4FA6-A9B5-B0BD7EE96C12} = {DEC4F266-D133-40D3-ACEB-3541C0A922BD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {01D0DAB0-008A-4CFB-8403-A9C9681D0A27}
