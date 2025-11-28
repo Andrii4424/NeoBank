@@ -5,20 +5,26 @@ on:
     branches: [ dev ]
 
 jobs:
-  build-backend:
-    name: Build Backend
+  backend:
+    name: Backend - Build & Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v4
+
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
 
       - name: Restore
         run: dotnet restore -p:EnableWindowsTargeting=true
 
-      - name: Build
-        run: dotnet build NeoBank.sln -c Release --no-restore --exclude src/NeoBankDesktop/NeoBankDesktop.csproj
+      - name: Build Bank API
+        run: dotnet build src/Services/BankService/Bank.API.WebUI/Bank.API.WebUI.csproj -c Release --no-restore
+
+      - name: Build Transactions API
+        run: dotnet build src/Services/TransactionsService/Transactions.WebUI/Transactions.WebUI.csproj -c Release --no-restore
+
 
   test-backend:
     name: Test Backend
