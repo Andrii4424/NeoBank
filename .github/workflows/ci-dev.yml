@@ -10,16 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Setup .NET 8
-        uses: actions/setup-dotnet@v4
+      - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
 
       - name: Restore backend projects
-        run: |
-          dotnet restore src/Services/BankService/Bank.API.WebUI/Bank.API.WebUI.csproj
-          dotnet restore src/Services/TransactionsService/Transactions.WebUI/Transactions.WebUI.csproj
+        run: dotnet restore src/Services/BankService/Bank.API.WebUI/Bank.API.WebUI.csproj
 
       - name: Build Bank API
         run: dotnet build src/Services/BankService/Bank.API.WebUI/Bank.API.WebUI.csproj -c Release --no-restore
@@ -27,10 +23,12 @@ jobs:
       - name: Build Transactions API
         run: dotnet build src/Services/TransactionsService/Transactions.WebUI/Transactions.WebUI.csproj -c Release --no-restore
 
-      - name: Test Backend
+      - name: Run all tests automatically
         run: |
-          dotnet test tests/BankApiTests/BankApiTests.csproj -c Release
-          dotnet test tests/TransactionsTests/TransactionsTests.csproj -c Release
+          find tests -name "*.csproj" -print0 | while IFS= read -r -d '' proj; do
+            echo "Running tests for $proj"
+            dotnet test "$proj" -c Release --no-restore --verbosity normal
+          done
 
 
   test-backend:
