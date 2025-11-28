@@ -16,14 +16,21 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
-      - name: Restore
-        run: dotnet restore -p:EnableWindowsTargeting=true
+      - name: Restore backend projects
+        run: |
+          dotnet restore src/Services/BankService/Bank.API.WebUI/Bank.API.WebUI.csproj
+          dotnet restore src/Services/TransactionsService/Transactions.WebUI/Transactions.WebUI.csproj
 
       - name: Build Bank API
         run: dotnet build src/Services/BankService/Bank.API.WebUI/Bank.API.WebUI.csproj -c Release --no-restore
 
       - name: Build Transactions API
         run: dotnet build src/Services/TransactionsService/Transactions.WebUI/Transactions.WebUI.csproj -c Release --no-restore
+
+      - name: Test Backend
+        run: |
+          dotnet test tests/BankApiTests/BankApiTests.csproj -c Release
+          dotnet test tests/TransactionsTests/TransactionsTests.csproj -c Release
 
 
   test-backend:
