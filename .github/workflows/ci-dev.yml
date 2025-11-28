@@ -18,7 +18,7 @@ jobs:
         run: dotnet restore -p:EnableWindowsTargeting=true
 
       - name: Build
-        run: dotnet build src/Services -c Release --no-restore
+        run: dotnet build NeoBank.sln -c Release --no-restore --exclude src/NeoBankDesktop/NeoBankDesktop.csproj
 
   test-backend:
     name: Test Backend
@@ -34,7 +34,7 @@ jobs:
         run: dotnet restore -p:EnableWindowsTargeting=true
 
       - name: Test
-        run: dotnet test src/Services -c Release --verbosity normal
+        run: dotnet test tests -c Release --verbosity normal
 
   frontend:
     name: Frontend - Build

@@ -24,10 +24,10 @@ jobs:
         run: dotnet restore -p:EnableWindowsTargeting=true
 
       - name: Build
-        run: dotnet build -c Release --no-restore --exclude NeoBankDesktop
+        run: dotnet build NeoBank.sln -c Release --no-restore --exclude src/NeoBankDesktop/NeoBankDesktop.csproj
 
       - name: Test
-        run: dotnet test -c Release --verbosity normal
+        run: dotnet test tests -c Release --verbosity normal
 
   frontend:
     name: Frontend - Build
@@ -117,5 +117,6 @@ jobs:
 
             docker compose pull
             docker compose up -d --remove-orphans
+
             docker image prune -f
             docker ps
