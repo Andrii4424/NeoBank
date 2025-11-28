@@ -30,7 +30,7 @@ jobs:
         run: dotnet build src/Services/TransactionsService/Transactions.WebUI/Transactions.WebUI.csproj -c Release --no-restore
 
       - name: Test Backend
-          run: dotnet test tests -c Release --verbosity normal
+        run: dotnet test NeoBank.sln -c Release --verbosity normal
 
   frontend:
     name: Frontend - Build
