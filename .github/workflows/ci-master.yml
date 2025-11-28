@@ -20,8 +20,8 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
-      - name: Restore
-        run: dotnet restore -p:EnableWindowsTargeting=true
+      - name: Restore solution
+        run: dotnet restore NeoBank.sln -p:EnableWindowsTargeting=true
 
       - name: Build Bank API
         run: dotnet build src/Services/BankService/Bank.API.WebUI/Bank.API.WebUI.csproj -c Release --no-restore
@@ -29,6 +29,12 @@ jobs:
       - name: Build Transactions API
         run: dotnet build src/Services/TransactionsService/Transactions.WebUI/Transactions.WebUI.csproj -c Release --no-restore
 
+      - name: Run all tests
+        run: |
+          find tests -name "*.csproj" -print0 | while IFS= read -r -d '' proj; do
+            echo "Running tests for $proj"
+            dotnet test "$proj" -c Release --no-restore --verbosity normal
+          done
 
   frontend:
     name: Frontend - Build
