@@ -114,27 +114,12 @@ services:
       - "443:443"
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
-      - ./nginx/certbot/conf:/etc/letsencrypt
-      - ./nginx/certbot/www:/var/www/certbot
+      - ./nginx/selfsigned:/etc/nginx/selfsigned
     networks:
       - bank_network
     depends_on:
       - bank-api
       - transactions-api
-  certbot:
-    image: certbot/certbot
-    container_name: certbot
-    volumes:
-      - ./nginx/certbot/conf:/etc/letsencrypt
-      - ./nginx/certbot/www:/var/www/certbot
-    command: >
-      certonly --webroot
-      --webroot-path=/var/www/certbot
-      --email neobank4424@gmail.com
-      --agree-tos
-      --no-eff-email
-      -d neobank.switzerlandnorth.cloudapp.azure.com
-
 
 volumes:
   mssql_bank_data:
