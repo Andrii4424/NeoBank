@@ -1,6 +1,6 @@
 # Neobank
 ## Deployment
-- https://neobank.switzerlandnorth.cloudapp.azure.com/
+- https://neobank.westeurope.cloudapp.azure.com/
 ## Description
 NeoBank is a full-stack online banking system that simulates real-world financial operations such as card management, currency exchange, and P2P transactions within a scalable microservice architecture.
 
