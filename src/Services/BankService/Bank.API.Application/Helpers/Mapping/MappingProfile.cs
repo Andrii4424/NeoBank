@@ -2,11 +2,13 @@
 using Bank.API.Application.DTO;
 using Bank.API.Application.DTOs.BankProducts;
 using Bank.API.Application.DTOs.Identity;
+using Bank.API.Application.DTOs.News;
 using Bank.API.Application.DTOs.Users.Cards;
 using Bank.API.Application.DTOs.Users.Vacancies;
 using Bank.API.Domain.Entities;
 using Bank.API.Domain.Entities.Cards;
 using Bank.API.Domain.Entities.Identity;
+using Bank.API.Domain.Entities.News;
 using Bank.API.Domain.Entities.Users;
 using System;
 using System.Collections.Generic;
@@ -52,6 +54,10 @@ namespace Bank.API.Application.Helpers.Mapping
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
                 .ForMember(dest => dest.PublicationDate, opt => opt.Ignore());
 
+            //News 
+            CreateMap<NewsEntity, NewsDto>();
+            CreateMap<NewsDto, NewsEntity>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
 
         }
     }
