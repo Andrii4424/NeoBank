@@ -107,21 +107,42 @@ services:
     build:
       context: .
       dockerfile: ./src/Client/Dockerfile  
-    image: pipsqueak3/neobank-frontend:latest    
     container_name: bank-frontend
     ports:
       - "80:80"
       - "443:443"
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
-      - ./nginx/selfsigned:/etc/nginx/selfsigned
+      - letsencrypt:/etc/letsencrypt
+      - certbot_www:/var/www/certbot
     networks:
       - bank_network
     depends_on:
       - bank-api
       - transactions-api
 
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - letsencrypt:/etc/letsencrypt
+      - certbot_www:/var/www/certbot
+    entrypoint: ["/bin/sh", "-c"]
+    command: >
+      certbot certonly --webroot
+      --webroot-path=/var/www/certbot
+      --email neobank4424@gmail.com
+      --agree-tos
+      --no-eff-email
+      -d neobank.westeurope.cloudapp.azure.com
+    networks:
+      - bank_network
+    restart: "no"
+
+
 volumes:
+  bank_uploads:
   mssql_bank_data:
   mssql_transactions_data:
-  bank_uploads:
+  letsencrypt:
+  certbot_www:
