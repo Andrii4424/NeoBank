@@ -127,7 +127,6 @@ services:
     volumes:
       - letsencrypt:/etc/letsencrypt
       - certbot_www:/var/www/certbot
-    entrypoint: ["/bin/sh", "-c"]
     command: >
       certbot certonly --webroot
       --webroot-path=/var/www/certbot
