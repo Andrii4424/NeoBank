@@ -67,6 +67,14 @@ services:
     build: 
       context: .
       dockerfile: ./src/Services/BankService/Bank.API.WebUI/Dockerfile
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7280/swagger/index.html"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+      start_period: 10s
+
     image: pipsqueak3/neobank-bank-api:latest
     env_file:
       - .env.bank
@@ -87,6 +95,13 @@ services:
     build: 
       context: .
       dockerfile: ./src/Services/TransactionsService/Transactions.WebUI/Dockerfile
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7281/swagger/index.html"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+      
     image: pipsqueak3/neobank-transactions-api:latest
     env_file:
       - .env.transactions
