@@ -122,12 +122,22 @@ jobs:
               git reset --hard origin/master
             fi
 
+            docker compose down --remove-orphans || true
+
             docker compose pull
-            docker compose up -d --remove-orphans
+
+            docker compose up -d
+            
+            echo "Waiting for bank-api to be healthy..."
+            until [ "$(docker inspect -f '{{.State.Health.Status}}' bank-api)" = "healthy" ]; do
+              sleep 2
+            done
+
+            echo "Waiting for transactions-api to be healthy..."
+            until [ "$(docker inspect -f '{{.State.Health.Status}}' transactions-api)" = "healthy" ]; do
+              sleep 2
+            done
 
             docker exec bank-api dotnet Bank.API.WebUI.dll --migrate
-            docker exec transactions-api dotnet Transactions.API.WebUI.dll --migrate
-
-            docker image prune -f
-            docker ps
-            
+            docker exec transactions-api dotnet Transactions.WebUI.dll --migrate
+              
