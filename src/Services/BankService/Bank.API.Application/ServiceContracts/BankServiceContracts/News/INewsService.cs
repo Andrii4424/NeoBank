@@ -14,8 +14,8 @@ namespace Bank.API.Application.ServiceContracts.BankServiceContracts.News
     public interface INewsService
     {
         public Task<PageResult<NewsDto>> GetNewsPageAsync(NewsFilter? filters);
-        public Task<OperationResult> CreateNewsAsync(NewsDto news);
-        public Task<OperationResult> UpdateNewsAsync(NewsDto news);
+        public Task<OperationResult> CreateNewsAsync(AddNewsDto news);
+        public Task<OperationResult> UpdateNewsAsync(UpdateNewsDto news);
         public Task<OperationResult> DeleteNewsAsync(Guid id);
     }
 }

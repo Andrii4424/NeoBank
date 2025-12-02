@@ -9,6 +9,6 @@ namespace Bank.API.Domain.RepositoryContracts.News
 {
     public interface INewsRepository: IGenericRepository<NewsEntity>
     {
-        public Task<bool> IsDuplicateNewsAsync(Guid id);
+        public Task<bool> IsDuplicateNewsAsync(string title);
     }
 }

@@ -19,10 +19,9 @@ namespace Bank.API.Infrastructure.Repository.News
             _dbSet = context.Set<NewsEntity>();
         }
 
-
-        public async Task<bool> IsDuplicateNewsAsync(Guid id)
+        public async Task<bool> IsDuplicateNewsAsync(string title)
         {
-            return await _dbSet.AnyAsync(n=>n.Id==id);
+            return await _dbSet.AnyAsync(n=>n.Title==title);
         }
     }
 }
