@@ -1,4 +1,7 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+
+RUN apt-get update && apt-get install -y curl
+
 WORKDIR /app
 ENV ASPNETCORE_URLS=http://+:7281
 EXPOSE 7281

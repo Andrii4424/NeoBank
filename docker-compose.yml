@@ -66,12 +66,12 @@ services:
       context: .
       dockerfile: ./src/Services/BankService/Bank.API.WebUI/Dockerfile
     healthcheck:
-      test: ["CMD-SHELL", "sh -c 'echo > /dev/tcp/localhost/7280 || exit 1'"]
+      test: ["CMD", "curl", "-f", "http://localhost:7280/health"]
       interval: 10s
       timeout: 5s
-      retries: 15
-      start_period: 20s
-      
+      retries: 20
+      start_period: 25s
+    
     image: pipsqueak3/neobank-bank-api:latest
     env_file:
       - .env.bank
@@ -94,12 +94,11 @@ services:
       dockerfile: ./src/Services/TransactionsService/Transactions.WebUI/Dockerfile
 
     healthcheck:
-      test: ["CMD-SHELL", "sh -c 'echo > /dev/tcp/localhost/7281 || exit 1'"]
+      test: ["CMD", "curl", "-f", "http://localhost:7281/health"]
       interval: 10s
       timeout: 5s
-      retries: 15
-      start_period: 20s
-
+      retries: 20
+      start_period: 25s
 
     image: pipsqueak3/neobank-transactions-api:latest
     env_file:
