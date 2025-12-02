@@ -1,7 +1,9 @@
+using Bank.API.Infrastructure.Data;
 using Bank.API.Infrastructure.Identity.Seed;
 using Bank.API.WebUI.StartupServicesInjection;
 using DotNetEnv;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 
 var currentEnv = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production";
@@ -30,6 +32,15 @@ builder.Host.UseSerilog((context, services, loggerConfiguration) =>
 AddApplicationServices.AddServices(builder.Services, builder.Configuration);
 
 var app = builder.Build();
+
+//CD Migrations
+if (args.Contains("--migrate"))
+{
+    using var scope = app.Services.CreateScope();
+    var db = scope.ServiceProvider.GetRequiredService<BankAppContext>();
+    db.Database.Migrate();
+    return;
+}
 
 if (app.Environment.IsDevelopment())
 {
@@ -67,4 +78,5 @@ app.UseAuthorization();
 app.UseStaticFiles();
 app.MapControllers();
 
+app.MapGet("/health", () => Results.Ok("OK"));
 app.Run();

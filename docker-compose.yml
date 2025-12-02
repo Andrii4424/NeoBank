@@ -1,5 +1,3 @@
-version: '3.8'
-
 networks:
   bank_network: 
     driver: bridge
@@ -69,11 +67,12 @@ services:
       dockerfile: ./src/Services/BankService/Bank.API.WebUI/Dockerfile
 
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:7280/swagger/index.html"]
+      test: ["CMD", "curl", "-f", "http://localhost:7280/health"]
       interval: 10s
       timeout: 5s
       retries: 15
-      start_period: 10s
+      start_period: 20s
+
 
     image: pipsqueak3/neobank-bank-api:latest
     env_file:
@@ -97,11 +96,13 @@ services:
       dockerfile: ./src/Services/TransactionsService/Transactions.WebUI/Dockerfile
 
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:7281/swagger/index.html"]
-      interval: 5s
-      timeout: 3s
-      retries: 12
-      
+      test: ["CMD", "curl", "-f", "http://localhost:7281/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+      start_period: 20s
+
+
     image: pipsqueak3/neobank-transactions-api:latest
     env_file:
       - .env.transactions
@@ -116,7 +117,7 @@ services:
       rabbitmq:
         condition: service_healthy
       bank-api:
-        condition: service_started
+        condition: service_healthy
 
   frontend:
     build:
