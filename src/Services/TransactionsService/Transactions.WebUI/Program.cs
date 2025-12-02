@@ -1,5 +1,7 @@
 using DotNetEnv;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
+using Transactions.Infrastructure.Data;
 using Transactions.WebUI.Helpers;
 
 var currentEnv = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production";
@@ -31,6 +33,14 @@ ConfigureServices.AddServices(builder.Services, builder.Configuration);
 
 var app = builder.Build();
 
+//CD Migrations
+if (args.Contains("--migrate"))
+{
+    using var scope = app.Services.CreateScope();
+    var db = scope.ServiceProvider.GetRequiredService<TransactionContext>();
+    db.Database.Migrate();
+    return;
+}
 
 if (app.Environment.IsDevelopment())
 {
@@ -58,4 +68,5 @@ app.UseCors(options => options.AllowAnyHeader().AllowAnyMethod().WithOrigins("ht
 app.UseStaticFiles();
 app.MapControllers();
 
+app.MapGet("/health", () => Results.Ok("OK"));
 app.Run();
