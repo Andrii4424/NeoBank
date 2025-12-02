@@ -96,7 +96,7 @@ jobs:
           echo "BankApiUrl=${{ secrets.BANK_API_URL }}" >> .env.transactions
 
       - name: Docker Compose Build
-        run: docker compose build --pull
+        run: docker compose build --pull --no-cache
 
       - name: Docker Compose Push
         run: docker compose push
