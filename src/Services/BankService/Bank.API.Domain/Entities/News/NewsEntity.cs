@@ -15,5 +15,6 @@ namespace Bank.API.Domain.Entities.News
         public string Author { get; set; }  
         public string Content { get; set; }
         public DateOnly CreatedAt { get; set; } = DateOnly.FromDateTime(DateTime.UtcNow);
+        public string? ImagePath { get; set; }
     }
 }

@@ -29,7 +29,7 @@ namespace Bank.API.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddNews([FromBody] NewsDto news)
+        public async Task<IActionResult> AddNews([FromBody] AddNewsDto news)
         {
             OperationResult result= await _newsService.CreateNewsAsync(news);
             if (!result.Success)
@@ -41,7 +41,7 @@ namespace Bank.API.WebUI.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateNews([FromBody] NewsDto news)
+        public async Task<IActionResult> UpdateNews([FromBody] UpdateNewsDto news)
         {
             OperationResult result = await _newsService.UpdateNewsAsync(news);
             if (!result.Success)
@@ -52,8 +52,8 @@ namespace Bank.API.WebUI.Controllers
             return NoContent();
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> DeleteNews([FromBody] Guid id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteNews([FromRoute] Guid id)
         {
             OperationResult result = await _newsService.DeleteNewsAsync(id);
             if (!result.Success)

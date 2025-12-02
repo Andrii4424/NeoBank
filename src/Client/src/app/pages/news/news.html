@@ -1,2 +1,12 @@
-<p>news works!</p>
+@if(newsPage$ | async; as newsPage){
+    @if(newsPage.totalCount === 0){
+        <h1 class="subheading-small">There has been no news recently, we will definitely inform you about new developments in the NeoBank</h1>
+    }
+}
 
+
+@if(profileService.getRole()==="Admin"){
+    <div class="action-buttons">
+        <a class="add">Add News</a>
+    </div>
+}
