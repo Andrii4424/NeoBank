@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { News } from "../news/news";
+import { News } from '../news/news/news';
 
 @Component({
   selector: 'app-home',

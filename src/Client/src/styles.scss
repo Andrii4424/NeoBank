@@ -730,6 +730,13 @@ footer {
 	border: 1px solid var(--gray-primary-color);
 	border-radius: 8px;
 }
+.update-entity-form-fields textarea {
+	width: 14dvw;
+	height: 28px;
+	background-color: var(--gray-background);
+	border: 1px solid var(--gray-primary-color);
+	border-radius: 8px;
+}
 
 .update-entity-form-fields h4{
 	color: var(--gray-primary-color);

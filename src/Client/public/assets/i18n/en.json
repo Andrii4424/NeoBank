@@ -347,7 +347,17 @@
     "NameNotSpecified":"Name not specified",
 
     "CreditTariffs": "Credit Tariffs",
-    "MyCredits":"My Credits"
+    "MyCredits":"My Credits",
+
+    "News":{
+        "AddNews": "Add News",
+        "Title":"Title",
+        "Image":"Image",
+        "Topic":"Topic",
+        "Author":"Author",
+        "Сontent":"Content",
+        "Upload":"Upload Photo"
+    }
     
 
 }

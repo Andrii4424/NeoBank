@@ -1,3 +1,4 @@
+import { Component } from '@angular/core';
 import { Routes } from '@angular/router';
 import { Layout } from './common-ui/layout/layout';
 import { Home } from './pages/home/home';
@@ -27,6 +28,7 @@ import { AuthWrap } from './pages/auth/auth-wrap/auth-wrap';
 import { DepositTariffs } from './pages/products/deposits/deposit-tariffs/deposit-tariffs';
 import { CreditTariffs } from './pages/products/credits/credit-tariffs/credit-tariffs';
 import { UserCredits } from './pages/products/credits/user-credits/user-credits';
+import { AddNews } from './pages/news/add-news/add-news';
 
 export const routes: Routes = [
     {path: '', component: Layout, children: [
@@ -50,7 +52,8 @@ export const routes: Routes = [
         {path: 'clients/profile/:id', component: UserProfile, canActivate: [CanActivateAuth]},
         {path: 'deposits', component: DepositTariffs},
         {path: 'credits', component: CreditTariffs},
-        {path: 'credits/my', component: UserCredits}
+        {path: 'credits/my', component: UserCredits},
+        {path: 'news/add', component: AddNews, canActivate: [adminGuard]}
        
     ]},
     {path: 'auth', component: AuthWrap, children:[

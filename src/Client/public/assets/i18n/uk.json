@@ -349,7 +349,16 @@
     "NameNotSpecified":"Ім'я не вказано",
 
     "CreditTariffs":"Кредитні Тарифи",
-    "MyCredits":"Мої Кредити"
+    "MyCredits":"Мої Кредити",
         
+    "News":{
+        "AddNews": "Додати Новину",
+        "Title":"Заголовок",
+        "Image":"Зображення",
+        "Topic":"Тема",
+        "Author":"Автор",
+        "Сontent":"Зміст",
+        "Upload":"Завантажити Фото"
+    }
 
 }

@@ -1,0 +1,49 @@
+<header>
+    <h1 class="heading">{{"News.AddNews" |translate}}</h1>
+</header>
+
+<section class="object-info-card update-object-info">
+    <form [formGroup]="newsForm" class="update-entity-form" (ngSubmit)="onSubmit()">
+        <div class="form-fields">
+            <div class="upload-photo">
+                <label for="image">
+                    @if(updatedAvatarFile!=null){
+                        <img class="news-photo" [src]="updatedAvatarSrc" alt="news-photo">
+
+                    }
+                    @else{
+                        <img class="default-img" src="assets/images/default-image.svg" alt="news-photo">
+                    }
+
+                </label>
+
+                <button type="button" class="photo-btn" (click)="imageInput.click()">
+                    {{ "News.Upload" | translate  }}
+                </button>
+
+                <input #imageInput type="file" accept="image/*" (change)="uploadPhoto($event)" hidden/>
+
+            </div>
+
+            <div class="update-entity-form-fields">
+                <label for="title">{{'News.Title' |translate}}</label>
+                <input id="title" name="title" type="text" formControlName="title" />
+
+                <label for="author">{{'News.Author' |translate}}</label>
+                <input id="author" name="author" type="text" formControlName="author" />
+
+                <label for="topic">{{'News.Topic' |translate}}</label>
+                <input id="topic" name="topic" type="text" formControlName="topic" />
+
+                
+                <label for="content">{{'News.Сontent' |translate}}</label>
+                <textarea  id="content" name="content" type="text" formControlName="content" ></textarea>
+
+            </div>
+
+        </div>
+
+        <button type="submit" class="entity-update">{{"News.AddNews" |translate}}</button>
+    </form>
+</section>
+
