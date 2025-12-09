@@ -83,6 +83,7 @@ namespace Bank.API.Application.Services.News
                 await news.Image.CopyToAsync(stream);
             }
             newsEntity.ImagePath = $"uploads/news-photos/{fileName}";
+            newsEntity.CreatedAt = DateOnly.FromDateTime(DateTime.UtcNow);
 
             await _newsRepository.AddAsync(newsEntity);
             await _newsRepository.SaveAsync();

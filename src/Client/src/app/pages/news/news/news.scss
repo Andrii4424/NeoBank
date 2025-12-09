@@ -24,6 +24,11 @@
     column-gap: 40px;
 }
 
+.news > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+}
+
 .news-block{
     display: flex;
     flex-direction: column;

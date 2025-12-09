@@ -45,7 +45,7 @@
 
 
         <div [class.none]="!showValidationResult()" class="validation-result">
-            <span [class.none]="!successResult()" class="success-message">{{"NewsAdded"|translate}}</span>
+            <span [class.none]="!successResult()" class="success-message">{{"News.NewsAdded"|translate}}</span>
             <ul class="errors-list" [class.none]="!showValidationResult()">
                 @for (error of validationErrors; track $index) {
                     <li>{{error}}</li>
