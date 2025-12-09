@@ -5,5 +5,5 @@ export interface IAddNews {
     author: string;
     content: string;
     createdAt: string | null;
-    image: File;
+    image: File | null;
 }

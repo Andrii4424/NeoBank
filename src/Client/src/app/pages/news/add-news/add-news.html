@@ -3,7 +3,7 @@
 </header>
 
 <section class="object-info-card update-object-info">
-    <form [formGroup]="newsForm" class="update-entity-form" (ngSubmit)="onSubmit()">
+    <form [formGroup]="newsForm" class="update-entity-form" (ngSubmit)="onSubmit()" (click)="deleteStatus()">
         <div class="form-fields">
             <div class="upload-photo">
                 <label for="image">
@@ -41,6 +41,16 @@
 
             </div>
 
+        </div>
+
+
+        <div [class.none]="!showValidationResult()" class="validation-result">
+            <span [class.none]="!successResult()" class="success-message">{{"NewsAdded"|translate}}</span>
+            <ul class="errors-list" [class.none]="!showValidationResult()">
+                @for (error of validationErrors; track $index) {
+                    <li>{{error}}</li>
+                }
+            </ul>
         </div>
 
         <button type="submit" class="entity-update">{{"News.AddNews" |translate}}</button>

@@ -29,7 +29,7 @@ namespace Bank.API.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddNews([FromBody] AddNewsDto news)
+        public async Task<IActionResult> AddNews([FromForm] AddNewsDto news)
         {
             OperationResult result= await _newsService.CreateNewsAsync(news);
             if (!result.Success)
@@ -41,7 +41,7 @@ namespace Bank.API.WebUI.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateNews([FromBody] UpdateNewsDto news)
+        public async Task<IActionResult> UpdateNews([FromForm] UpdateNewsDto news)
         {
             OperationResult result = await _newsService.UpdateNewsAsync(news);
             if (!result.Success)
