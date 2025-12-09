@@ -6,6 +6,7 @@ import { ProfileService } from '../../../data/services/auth/profile-service';
 import { NewsService } from '../../../data/services/bank/news/news-service';
 import { IPageResult } from '../../../data/interfaces/page-inteface';
 import { INews } from '../../../data/interfaces/news/news-interface';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-news',
@@ -20,6 +21,8 @@ export class News {
   router = inject(Router);
   private querySub!: Subscription;
   newsPage$!: Observable<IPageResult<INews>>;
+  baseUrl = `${environment.apiPhotoUrl}/`;
+  
 
 
   ngOnInit() {
