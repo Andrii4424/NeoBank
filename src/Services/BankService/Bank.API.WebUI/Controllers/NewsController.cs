@@ -5,6 +5,7 @@ using Bank.API.Application.Helpers.HelperClasses.Filters.News;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.Auth;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.News;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -23,12 +24,14 @@ namespace Bank.API.WebUI.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetNews([FromQuery] NewsFilter filters)
         {
             return Ok(await _newsService.GetNewsPageAsync(filters));
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetNewsById([FromRoute] Guid id)
         {
             NewsDto? news = await _newsService.GetNewsByIdAsync(id);

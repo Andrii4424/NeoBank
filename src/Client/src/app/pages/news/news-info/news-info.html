@@ -11,12 +11,12 @@
         <div class="news-info-content" [innerHTML]="newsInfo.content"></div>
     </div>
 
-    <div class="admin-action-buttons">
-        <a routerLink="/coming-soon" class="update">{{"News.Update"|translate}}</a>
-        <a routerLink="/coming-soon" class="delete">{{"News.Delete"|translate}}</a>
-    </div>
-    @if(profileService.getRole() ==='admin') {
 
+    @if(profileService.getRole()==="Admin"){
+        <div class="admin-action-buttons">
+            <a routerLink="/coming-soon" class="update">{{"News.Update"|translate}}</a>
+            <a routerLink="/coming-soon" class="delete">{{"News.Delete"|translate}}</a>
+        </div>
     }
 }
 @else{
