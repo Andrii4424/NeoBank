@@ -5,6 +5,7 @@ using Bank.API.Application.Helpers.HelperClasses.Filters.News;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.Auth;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.News;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -23,13 +24,26 @@ namespace Bank.API.WebUI.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetNews([FromQuery] NewsFilter filters)
         {
             return Ok(await _newsService.GetNewsPageAsync(filters));
         }
 
+        [HttpGet("{id}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetNewsById([FromRoute] Guid id)
+        {
+            NewsDto? news = await _newsService.GetNewsByIdAsync(id);
+            if (news == null)
+            {
+                return NotFound();
+            }
+            return Ok(news);
+        }
+
         [HttpPost]
-        public async Task<IActionResult> AddNews([FromBody] AddNewsDto news)
+        public async Task<IActionResult> AddNews([FromForm] AddNewsDto news)
         {
             OperationResult result= await _newsService.CreateNewsAsync(news);
             if (!result.Success)
@@ -41,7 +55,7 @@ namespace Bank.API.WebUI.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateNews([FromBody] UpdateNewsDto news)
+        public async Task<IActionResult> UpdateNews([FromForm] UpdateNewsDto news)
         {
             OperationResult result = await _newsService.UpdateNewsAsync(news);
             if (!result.Success)

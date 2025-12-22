@@ -1,3 +1,4 @@
+import { Component } from '@angular/core';
 import { Routes } from '@angular/router';
 import { Layout } from './common-ui/layout/layout';
 import { Home } from './pages/home/home';
@@ -27,6 +28,9 @@ import { AuthWrap } from './pages/auth/auth-wrap/auth-wrap';
 import { DepositTariffs } from './pages/products/deposits/deposit-tariffs/deposit-tariffs';
 import { CreditTariffs } from './pages/products/credits/credit-tariffs/credit-tariffs';
 import { UserCredits } from './pages/products/credits/user-credits/user-credits';
+import { AddNews } from './pages/news/add-news/add-news';
+import { NewsInfo } from './pages/news/news-info/news-info';
+import { PageUnderDevelopment } from './common-ui/pages/page-under-development/page-under-development';
 
 export const routes: Routes = [
     {path: '', component: Layout, children: [
@@ -50,9 +54,12 @@ export const routes: Routes = [
         {path: 'clients/profile/:id', component: UserProfile, canActivate: [CanActivateAuth]},
         {path: 'deposits', component: DepositTariffs},
         {path: 'credits', component: CreditTariffs},
-        {path: 'credits/my', component: UserCredits}
-       
+        {path: 'credits/my', component: UserCredits},
+        {path: 'news/add', component: AddNews, canActivate: [adminGuard]},
+        {path: 'news/:id', component: NewsInfo},
+        {path: 'coming-soon', component: PageUnderDevelopment}       
     ]},
+
     {path: 'auth', component: AuthWrap, children:[
         {path: 'login', component: Login},
         {path: 'signup', component: Register},

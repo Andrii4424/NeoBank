@@ -5,4 +5,6 @@ export interface INews {
     author: string;
     content: string;
     createdAt: string;
+    imagePath: string;
+
 }

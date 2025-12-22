@@ -1,0 +1,27 @@
+@if(newsPage$ | async; as newsPage){
+    @if(newsPage.totalCount === 0){
+        <h1 class="subheading-small">There has been no news recently, we will definitely inform you about new developments in the NeoBank</h1>
+    }
+    @else {
+        <section class="news">
+            @for (news of newsPage.items; track $index) {
+                <a [routerLink]="['/news', news.id]" class="news-block">
+                    <img class="news-image" [src]="baseUrl+news.imagePath" alt="news-image">
+
+                    <div class="content">
+                        <h2 class="news-title subheading">{{news.title}}</h2>
+                        <p class="news-content description">{{news.content}}</p>
+                        <p class="news-content description">{{news.createdAt}}</p>
+                    </div>
+                </a>
+            }
+        </section>
+    }
+}
+
+
+@if(profileService.getRole()==="Admin"){
+    <div class="action-buttons">
+        <a routerLink="/news/add" class="add">Add News</a>
+    </div>
+}

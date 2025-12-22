@@ -60,6 +60,18 @@ namespace Bank.API.Application.Services.News
             return pageResult;
         }
         
+        public async Task<NewsDto?> GetNewsByIdAsync(Guid id)
+        {
+            _logger.LogInformation("Trying to get news with ID: {NewsId}", id);
+            NewsEntity? newsEntity = await _newsRepository.GetValueByIdAsync(id);
+            if (newsEntity == null)
+            {
+                _logger.LogError("News with ID: {NewsId} not found", id);
+                return null;
+            }
+            _logger.LogInformation("Success getting news with ID: {NewsId}", id);
+            return _mapper.Map<NewsDto>(newsEntity);
+        }
 
         //Create
         public async Task<OperationResult> CreateNewsAsync(AddNewsDto news)
@@ -83,8 +95,11 @@ namespace Bank.API.Application.Services.News
                 await news.Image.CopyToAsync(stream);
             }
             newsEntity.ImagePath = $"uploads/news-photos/{fileName}";
+            newsEntity.CreatedAt = DateOnly.FromDateTime(DateTime.UtcNow);
 
             await _newsRepository.AddAsync(newsEntity);
+            await _newsRepository.SaveAsync();
+
             _logger.LogInformation("News created with ID: {NewsId}", newsEntity.Id);
             return OperationResult.Ok();
         }
@@ -130,6 +145,8 @@ namespace Bank.API.Application.Services.News
 
 
             _newsRepository.UpdateObject(newsEntity);
+            await _newsRepository.SaveAsync();
+
             _logger.LogInformation("News updated with ID: {NewsId}", newsEntity.Id);
             return OperationResult.Ok();
         }
@@ -154,7 +171,9 @@ namespace Bank.API.Application.Services.News
                 }
             }
 
-                _newsRepository.DeleteElement(newsEntity);
+            _newsRepository.DeleteElement(newsEntity);
+            await _newsRepository.SaveAsync();
+
             _logger.LogInformation("News deleted with ID: {NewsId}", newsEntity.Id);
             return OperationResult.Ok();
         }

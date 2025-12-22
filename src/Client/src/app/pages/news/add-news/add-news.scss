@@ -1,0 +1,62 @@
+.update-entity-form{
+    padding: 20px 0px;
+}
+.update-entity-form-fields{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px 40px;
+}
+.form-fields{
+    display: flex;
+    flex-direction: row;
+    gap: 64px;
+}
+
+.upload-photo{
+    width: 254px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.photo-btn {
+  width: 100%;
+  padding: 10px 0;
+  background-color: #2f6bff;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+  font-size: 14px;
+}
+
+.upload-photo .default-img{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+.news-photo{
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.form-fields label{
+    width: 140px;
+}
+
+@media (max-width: 1024px) {
+    .form-fields{
+        flex-direction: column;
+        gap: 14px;
+        align-items: center;
+    }
+    .update-entity-form-fields{
+        padding: 20px 0px;
+    }
+}

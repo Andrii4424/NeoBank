@@ -247,7 +247,8 @@
     },
 
     "Validation": {
-        "AllFieldsRequired": "All fields must be provided!"
+        "AllFieldsRequired": "All fields must be provided!",
+        "ImageRequired": "Image is required!"
     },
 
     "Search":"Search",
@@ -347,7 +348,22 @@
     "NameNotSpecified":"Name not specified",
 
     "CreditTariffs": "Credit Tariffs",
-    "MyCredits":"My Credits"
+    "MyCredits":"My Credits",
+
+    "News":{
+        "AddNews": "Add News",
+        "Title":"Title",
+        "Image":"Image",
+        "Topic":"Topic",
+        "Author":"Author",
+        "Сontent":"Content",
+        "Upload":"Upload Photo",
+        "NewsAdded":"News has been successfully added!",
+        "By": "By",
+        "Update": "Update News",
+        "Delete": "Delete News"
+
+    }
     
 
 }

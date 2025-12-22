@@ -59,6 +59,10 @@ namespace Bank.API.Application.Helpers.Mapping
             CreateMap<NewsDto, NewsEntity>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore());
 
+
+            CreateMap<AddNewsDto, NewsEntity>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
+
         }
     }
 }
