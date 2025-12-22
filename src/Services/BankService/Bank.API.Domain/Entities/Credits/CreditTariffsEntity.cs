@@ -1,4 +1,5 @@
-﻿using Bank.API.Domain.Enums.CardEnums;
+﻿using Bank.API.Domain.Abstractions;
+using Bank.API.Domain.Enums.CardEnums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Bank.API.Domain.Entities.Credits
 {
-    public class CreditTariffsEntity
+    public class CreditTariffsEntity : IHasId
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public string Name { get; set; }

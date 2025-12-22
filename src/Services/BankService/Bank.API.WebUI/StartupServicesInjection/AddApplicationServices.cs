@@ -3,6 +3,7 @@ using Bank.API.Application.Helpers.Mapping;
 using Bank.API.Application.ServiceContracts.BankServiceContracts;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.Auth;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.BankProducts;
+using Bank.API.Application.ServiceContracts.BankServiceContracts.BankProducts.Credits;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.News;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.Users;
 using Bank.API.Application.ServiceContracts.MessageServices;
@@ -10,6 +11,7 @@ using Bank.API.Application.Services.Auth;
 using Bank.API.Application.Services.BankServices;
 using Bank.API.Application.Services.BankServices.BankProducts;
 using Bank.API.Application.Services.BankServices.Users;
+using Bank.API.Application.Services.CreditsServices;
 using Bank.API.Application.Services.MessageServices;
 using Bank.API.Application.Services.News;
 using Bank.API.Domain.Entities.Identity;
@@ -128,6 +130,8 @@ namespace Bank.API.WebUI.StartupServicesInjection
             services.AddScoped(typeof(IVacanciesRepository), typeof(VacanciesRepository));
             services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
             services.AddScoped(typeof(INewsRepository), typeof(NewsRepository));
+            services.AddScoped(typeof(ICreditTariffsRepository), typeof(CreditTariffsRepository));
+
 
             //Services injection
             //Identity
@@ -143,7 +147,8 @@ namespace Bank.API.WebUI.StartupServicesInjection
             services.AddScoped<ISmtpService, SmtpService>();
             services.AddScoped<IRecoveryPasswordService, RecoveryPasswordService>();
             services.AddScoped<INewsService, NewsService>();
-
+            services.AddScoped<ICreditTariffsService, CreditTariffsService>();
+   
 
             //Background Services
             services.AddHostedService<RabbitMqConsumerService>();
