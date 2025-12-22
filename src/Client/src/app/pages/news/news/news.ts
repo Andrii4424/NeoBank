@@ -23,8 +23,6 @@ export class News {
   newsPage$!: Observable<IPageResult<INews>>;
   baseUrl = `${environment.apiPhotoUrl}/`;
   
-
-
   ngOnInit() {
     this.querySub = this.route.queryParams.subscribe(params => {
       this.newsPage$ = this.newsService.getNews(params);

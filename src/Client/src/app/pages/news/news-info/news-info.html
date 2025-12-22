@@ -1,0 +1,24 @@
+@if(newsInfo$ | async; as newsInfo) {
+    <div class="news-info-container">
+        <header>
+            <h1 class="heading">{{newsInfo.title}}</h1>
+            <p class="description news-info-author"> </p>
+            <p class="description news-info-author">{{"News.Topic"|translate}}: {{newsInfo.topic}} &bull; {{"News.By"|translate}} {{newsInfo.author}} &bull; {{newsInfo.createdAt}}</p>
+
+        </header>
+        <img [src]="baseUrl + newsInfo.imagePath" alt="{{newsInfo.title}}" class="news-info-image"/>
+
+        <div class="news-info-content" [innerHTML]="newsInfo.content"></div>
+    </div>
+
+    <div class="admin-action-buttons">
+        <a routerLink="/coming-soon" class="update">{{"News.Update"|translate}}</a>
+        <a routerLink="/coming-soon" class="delete">{{"News.Delete"|translate}}</a>
+    </div>
+    @if(profileService.getRole() ==='admin') {
+
+    }
+}
+@else{
+    <app-loading></app-loading>
+}

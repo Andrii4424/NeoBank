@@ -28,6 +28,17 @@ namespace Bank.API.WebUI.Controllers
             return Ok(await _newsService.GetNewsPageAsync(filters));
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetNewsById([FromRoute] Guid id)
+        {
+            NewsDto? news = await _newsService.GetNewsByIdAsync(id);
+            if (news == null)
+            {
+                return NotFound();
+            }
+            return Ok(news);
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddNews([FromForm] AddNewsDto news)
         {

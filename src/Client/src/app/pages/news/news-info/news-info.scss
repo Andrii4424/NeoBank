@@ -1,0 +1,33 @@
+header h1{
+    font-size: 34px;
+    text-align: center;
+}
+
+.news-info-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.news-info-author{
+    text-align: center;
+}
+
+.news-info-content{
+    width: 70dvw;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--heavy-dark-primary-color);
+}
+.news-info-image{
+    width: 40dvw;
+    max-width: 800px;
+    height: auto;
+    margin: 10px 0;
+    border-radius: 8px;
+}
+
+.admin-action-buttons{
+    margin-top: 16px;
+}

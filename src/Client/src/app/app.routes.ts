@@ -29,6 +29,8 @@ import { DepositTariffs } from './pages/products/deposits/deposit-tariffs/deposi
 import { CreditTariffs } from './pages/products/credits/credit-tariffs/credit-tariffs';
 import { UserCredits } from './pages/products/credits/user-credits/user-credits';
 import { AddNews } from './pages/news/add-news/add-news';
+import { NewsInfo } from './pages/news/news-info/news-info';
+import { PageUnderDevelopment } from './common-ui/pages/page-under-development/page-under-development';
 
 export const routes: Routes = [
     {path: '', component: Layout, children: [
@@ -53,9 +55,11 @@ export const routes: Routes = [
         {path: 'deposits', component: DepositTariffs},
         {path: 'credits', component: CreditTariffs},
         {path: 'credits/my', component: UserCredits},
-        {path: 'news/add', component: AddNews, canActivate: [adminGuard]}
-       
+        {path: 'news/add', component: AddNews, canActivate: [adminGuard]},
+        {path: 'news/:id', component: NewsInfo},
+        {path: 'coming-soon', component: PageUnderDevelopment}       
     ]},
+
     {path: 'auth', component: AuthWrap, children:[
         {path: 'login', component: Login},
         {path: 'signup', component: Register},

@@ -17,6 +17,10 @@ export class NewsService {
     return this.http.get<IPageResult<INews>>(`${this.baseUrl}`, params);
   }
 
+  getNewsById(id: string) {
+    return this.http.get<INews>(`${this.baseUrl}/${id}`);
+  }
+
   addNews(news: IAddNews){
     return this.http.post(`${this.baseUrl}`, this.AddNewsToFormData(news));
   }

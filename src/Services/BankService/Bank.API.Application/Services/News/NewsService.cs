@@ -60,6 +60,18 @@ namespace Bank.API.Application.Services.News
             return pageResult;
         }
         
+        public async Task<NewsDto?> GetNewsByIdAsync(Guid id)
+        {
+            _logger.LogInformation("Trying to get news with ID: {NewsId}", id);
+            NewsEntity? newsEntity = await _newsRepository.GetValueByIdAsync(id);
+            if (newsEntity == null)
+            {
+                _logger.LogError("News with ID: {NewsId} not found", id);
+                return null;
+            }
+            _logger.LogInformation("Success getting news with ID: {NewsId}", id);
+            return _mapper.Map<NewsDto>(newsEntity);
+        }
 
         //Create
         public async Task<OperationResult> CreateNewsAsync(AddNewsDto news)

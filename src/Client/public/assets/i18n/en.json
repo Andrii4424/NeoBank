@@ -358,7 +358,11 @@
         "Author":"Author",
         "Сontent":"Content",
         "Upload":"Upload Photo",
-        "NewsAdded":"News has been successfully added!"
+        "NewsAdded":"News has been successfully added!",
+        "By": "By",
+        "Update": "Update News",
+        "Delete": "Delete News"
+
     }
     
 

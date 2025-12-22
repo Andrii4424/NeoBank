@@ -17,5 +17,6 @@ namespace Bank.API.Application.ServiceContracts.BankServiceContracts.News
         public Task<OperationResult> CreateNewsAsync(AddNewsDto news);
         public Task<OperationResult> UpdateNewsAsync(UpdateNewsDto news);
         public Task<OperationResult> DeleteNewsAsync(Guid id);
+        public Task<NewsDto?> GetNewsByIdAsync(Guid id);
     }
 }
