@@ -17,6 +17,6 @@ namespace Bank.API.Domain.Entities.Credits
         public decimal MaxAmount { get; set; }
         public int MinTermMonths { get; set; }
         public int MaxTermMonths { get; set; }
-        public List<Currency> AvaibleCurrencies { get; set; }
+        public List<Currency> EnableCurrency { get; set; }
     }
 }

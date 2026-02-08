@@ -26,11 +26,13 @@ import { UserProfile } from './pages/users/users/user-profile/user-profile';
 import { RecoveryPassword } from './pages/auth/recovery-password/recovery-password';
 import { AuthWrap } from './pages/auth/auth-wrap/auth-wrap';
 import { DepositTariffs } from './pages/products/deposits/deposit-tariffs/deposit-tariffs';
-import { CreditTariffs } from './pages/products/credits/credit-tariffs/credit-tariffs';
-import { UserCredits } from './pages/products/credits/user-credits/user-credits';
 import { AddNews } from './pages/news/add-news/add-news';
 import { NewsInfo } from './pages/news/news-info/news-info';
 import { PageUnderDevelopment } from './common-ui/pages/page-under-development/page-under-development';
+import { CreditTariffs } from './pages/products/credits/credit-tariffs/credit-tariffs/credit-tariffs';
+import { UserCredits } from './pages/products/credits/user-credits/user-credits/user-credits';
+import { AddCreditTariffs } from './pages/products/credits/credit-tariffs/add-credit-tariffs/add-credit-tariffs';
+import { UpdateCreditTariffs } from './pages/products/credits/credit-tariffs/update-credit-tariffs/update-credit-tariffs';
 
 export const routes: Routes = [
     {path: '', component: Layout, children: [
@@ -54,6 +56,8 @@ export const routes: Routes = [
         {path: 'clients/profile/:id', component: UserProfile, canActivate: [CanActivateAuth]},
         {path: 'deposits', component: DepositTariffs},
         {path: 'credits', component: CreditTariffs},
+        {path: 'credit/tariffs/add', component: AddCreditTariffs, canActivate: [adminGuard]},     
+        {path: 'credit/tariffs/update/:id', component: UpdateCreditTariffs, canActivate: [adminGuard]},   
         {path: 'credits/my', component: UserCredits},
         {path: 'news/add', component: AddNews, canActivate: [adminGuard]},
         {path: 'news/:id', component: NewsInfo},

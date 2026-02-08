@@ -228,7 +228,9 @@
         "ByAnnualMaintenanceCost": "By Annual Maintenance Cost",
         "ByValidityPeriod": "By Validity Period",
         "ByBalanceDesc": "By Balance (High → Low)",
-        "ByBalanceAsc": "By Balance (Low → High)"
+        "ByBalanceAsc": "By Balance (Low → High)",
+        "ByInterestRateAsc": "By Interest Rate (Low → High)",
+        "ByInterestRateDesc": "By Interest Rate (High → Low)"
     },    
 
     "Filter":{
@@ -362,8 +364,27 @@
         "By": "By",
         "Update": "Update News",
         "Delete": "Delete News"
+    },
 
-    }
-    
+    "TariffName": "Tariff Name",
+    "MinAmount": "Minimum Amount",
+    "MaxAmount": "Maximum Amount",
+    "MinTermMonths": "Minimum Term (months)",
+    "MaxTermMonths": "Maximum Term (months)",
+    "AvailableCurrencies": "Available Currencies",
+    "SaveTariff": "Save Tariff",
+    "TariffSaved": "Tariff successfully saved",
 
+    "PerYear": "per year",
+    "Term": "Term",
+    "MonthsShort": "months",
+    "Currencies": "Currencies",
+
+    "ApplyCredit": "Apply",
+    "UpdateTariff": "Update Tariff",
+    "DeleteTariff": "Delete Tariff",
+    "AddCredit": "Add Credit",
+    "UpdateCredit": "Update Credit",
+    "InterestRateYear":"Annual Interest Rate",
+    "CreditTariffDeleted":"Credit tariff has been deleted!"
 }

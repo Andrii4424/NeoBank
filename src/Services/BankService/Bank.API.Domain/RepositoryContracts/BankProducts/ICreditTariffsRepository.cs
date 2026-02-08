@@ -11,5 +11,6 @@ namespace Bank.API.Domain.RepositoryContracts.BankProducts
 {
     public interface ICreditTariffsRepository : IGenericRepository<CreditTariffsEntity>
     {
+        public Task<bool> IsNameUniqueAsync(string name);
     }
 }

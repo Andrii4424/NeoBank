@@ -1,0 +1,129 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.credits {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  justify-content: center;
+  gap: 32px;
+
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0px 20px;
+}
+
+@media (max-width: 900px) {
+  .credits {
+    grid-template-columns: 1fr;
+  }
+}
+
+.credit-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  transition: all 0.2s ease;
+}
+
+.credit-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.credits > .credit-card:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  justify-self: center;
+  max-width: 520px;
+  width: 100%;
+}
+
+.credit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.credit-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.interest {
+  font-size: 18px;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.credit-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 14px;
+  color: #374151;
+}
+
+.credit-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.currency {
+  background: #eef2ff;
+  color: #3730a3;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+.currencies{
+  display: flex;
+  gap: 2px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.apply-btn,
+.apply-job {
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.apply-btn:hover,
+.apply-job:hover {
+  background: #1e40af;
+}
+
+.delete-vacancy {
+  background: #dc2626;
+  color: #ffffff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.delete-vacancy:hover {
+  background: #b91c1c;
+}

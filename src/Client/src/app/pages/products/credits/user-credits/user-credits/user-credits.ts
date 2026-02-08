@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { CreditsLayout } from "../credits-layout/credits-layout";
+import { CreditsLayout } from '../../credits-layout/credits-layout';
 
 @Component({
   selector: 'app-user-credits',

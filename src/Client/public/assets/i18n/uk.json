@@ -232,7 +232,9 @@
         "ByAnnualMaintenanceCost": "За Вартістю Обслуговування",
         "ByValidityPeriod": "За Строком Дії",
         "ByBalanceDesc": "За Балансом (від більшого)",
-        "ByBalanceAsc": "За Балансом (від меншого)"
+        "ByBalanceAsc": "За Балансом (від меншого)",
+        "ByInterestRateAsc": "За Процентною Ставкою (від меншого)",
+        "ByInterestRateDesc": "За Процентною Ставкой (від більшого)"
     },
 
     "Filter":{
@@ -364,6 +366,30 @@
         "By": "Автор:",
         "Update": "Редагувати Новину",
         "Delete": "Видалити Новину"
-    }
+    },
+
+    "TariffName": "Назва тарифу",
+    "MinAmount": "Мінімальна сума",
+    "MaxAmount": "Максимальна сума",
+    "MinTermMonths": "Мінімальний термін (міс.)",
+    "MaxTermMonths": "Максимальний термін (міс.)",
+    "AvailableCurrencies": "Доступні валюти",
+    "SaveTariff": "Зберегти тариф",
+    "TariffSaved": "Тариф успішно збережено",
+
+    "PerYear": "річних",
+    "Term": "Термін",
+    "MonthsShort": "міс.",
+    "Currencies": "Валюти",
+
+    "ApplyCredit": "Оформити",
+    "UpdateTariff": "Редагувати тариф",
+    "DeleteTariff": "Видалити тариф",
+    "AddCredit": "Додати кредит",
+    "UpdateCredit": "Оновити кредит",
+    "InterestRateYear":"Процентна Ставка (річна)",
+    "CreditTariffDeleted": "Кредитний тариф був успішно видалений!"
+
+
 
 }

@@ -1,0 +1,114 @@
+<app-search 
+[searchPlaceholder]="'EnterCardName'|translate"
+[sortValues]="(sortValues$ | async) ||[]"
+[filterValues]="(filterValues$ | async) ||[]"
+(sortChange)="onSortChange($event)"
+(searchChange)="onSearchChange($event)"
+(filterChange)="onFiltersChange($event)"
+>
+</app-search>
+
+@if(isLoading()){
+    <div class="spinner-wrapper">
+      <app-loading></app-loading> 
+    </div>
+}
+@else{
+    <app-credits-layout></app-credits-layout>
+
+    <section class="credits">
+      @for(credit of credits?.items; track $index){
+        <div class="credit-card">
+
+        <div class="credit-header">
+          <h2>{{ credit.name }}</h2>
+          <div class="interest">
+            {{ credit.interestRate }}% {{ 'PerYear' | translate }}
+          </div>
+        </div>
+
+        <div class="credit-body">
+
+          <div class="credit-row">
+            <span>{{ 'Amount' | translate }}:</span>
+            <span>
+              {{ credit.minAmount | number }} —
+              {{ credit.maxAmount | number }}
+            </span>
+          </div>
+
+          <div class="credit-row">
+            <span>{{ 'Term' | translate }}:</span>
+            <span>
+              {{ credit.minTermMonths }} —
+              {{ credit.maxTermMonths }} {{ 'MonthsShort' | translate }}
+            </span>
+          </div>
+
+          <div class="credit-row">
+            <span>{{ 'Currencies' | translate }}:</span>
+              <span class="currencies">
+                @for (curr of getCurrencies(credit.enableCurrency); track $index) {
+                  <span class="currency">{{ curr }}</span>
+                }
+              </span>
+          </div>
+
+        </div>
+
+        <div class="buttons">
+          @if (profileService.getRole() === "Admin") {
+
+            <a
+              [routerLink]="['/credit/tariffs/update', credit.id]"
+              class="apply-job">
+              {{ 'UpdateTariff' | translate }}
+            </a>
+
+            <button class="delete-vacancy" (click)="openDeleteWindow(credit.id, credit.name)">
+              {{ 'DeleteTariff' | translate }}
+            </button>
+
+          } @else {
+
+            <button class="apply-btn">
+              {{ 'ApplyCredit' | translate }}
+            </button>
+
+          }
+        </div>
+        </div>
+      }
+    </section>
+
+
+    @if(profileService.getRole()?.toLowerCase()==='admin'){
+        <div class="add-block">
+            <a [routerLink]="['/credit/tariffs/add']" class="add-item">{{'AddCredit'|translate}}</a>
+        </div>
+    }
+  
+}
+
+<app-page-switcher 
+[currentPage]="credits?.pageNumber"
+[hasNextPage]="credits?.hasNextPage"
+[hasPreviousPage]="credits?.hasPreviousPage"
+[pageCount]="credits?.pageCount"
+(pageChange)="onPageChange($event)"
+> </app-page-switcher>
+
+@if(showDeleteWindow()){
+    <app-confirm-delete
+        [itemName]="deleteText"
+        (cancel)="cancelDelete()"
+        (confirm)="confirmDelete()"
+    ></app-confirm-delete>
+}
+
+@if(showSuccessWindow()){
+    <app-success-message
+        message="Success!"
+        [secondMessage]="successMessage!"
+    ></app-success-message>
+}

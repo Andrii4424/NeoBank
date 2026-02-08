@@ -41,7 +41,7 @@ namespace Bank.API.Application.DTOs.Credits
         [Display(Name = "Max Term Months")]
         public int MaxTermMonths { get; set; }
 
-        public List<Currency>? AvaibleCurrencies { get; set; }
+        public List<Currency>? EnableCurrency { get; set; }        
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
