@@ -24,6 +24,12 @@ namespace Transactions.Application.DTOs
 
         public Currency? GetterCurrency { get; set; }
 
+        public int? TermMonths { get; set; }
+
+        public Guid? CreditTariffsId { get; set; }
+
+        public Guid? UserCreditId { get; set; }
+
         public decimal CurrencyExchangeCommission { get; set; }
 
         [Required(ErrorMessage ="{0} has to be provided")]

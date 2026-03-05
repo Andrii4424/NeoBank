@@ -1,4 +1,5 @@
 ﻿using Bank.API.Domain.Abstractions;
+using Bank.API.Domain.Entities.Cards;
 using Bank.API.Domain.Enums.CardEnums;
 using System;
 using System.Collections.Generic;
@@ -18,5 +19,6 @@ namespace Bank.API.Domain.Entities.Credits
         public int MinTermMonths { get; set; }
         public int MaxTermMonths { get; set; }
         public List<Currency> EnableCurrency { get; set; }
+        public ICollection<UserCreditEntity> UserCredits { get; set; }
     }
 }

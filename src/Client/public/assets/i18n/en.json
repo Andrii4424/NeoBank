@@ -386,5 +386,38 @@
     "AddCredit": "Add Credit",
     "UpdateCredit": "Update Credit",
     "InterestRateYear":"Annual Interest Rate",
-    "CreditTariffDeleted":"Credit tariff has been deleted!"
+    "CreditTariffDeleted":"Credit tariff has been deleted!",
+
+    "OpenCredit": "Open Credit",
+    "OpenNewCredit": "Open New Credit",
+    "NoCreditsYet": "You don't have any active credits yet",
+    "MonthlyPayment": "Monthly payment",
+    "RemainingDebt": "Remaining debt",
+    "EndDate": "End date",
+
+    "OpenCreditModal":{
+        "Title": "Open a new credit",
+        "Amount": "Amount",
+        "CreditPeriodMonths": "Credit period (months)",
+        "CreditTariff": "Chose Credit Tariff",
+        "ToCard": "Chose card to receive credit",
+        "SelectCard":"Select your card",
+        "SelectCreditTariff":"Select credit tariff",
+        "CreditPeriod": "Credit period",
+        "SelectTariffFirst": "Please select a credit tariff first",
+        "CreditCurrency": "Credit currency",
+        "Confirm": "Confirm",
+        "NoGetterCard" : "The card to receive the credit must be selected.",
+        "OpenCreditSuccessMessage": "Credit has been successfully opened!",
+        "InvalidCardCurrency": "The currency of the selected card does not match the credit currency. Please select a different card or credit tariff."
+    },
+    "CurrentMonthAmountDue": "Current month amount due",
+    "PayCredit": "Pay For Credit",
+    
+    "CreditStatus":{
+        "Active": "Active",
+        "Closed": "Closed",
+        "Rejected": "Rejected",
+        "Overdue": "Overdue"
+    }
 }

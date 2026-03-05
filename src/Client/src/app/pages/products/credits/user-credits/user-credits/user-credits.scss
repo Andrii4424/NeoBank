@@ -1,25 +1,179 @@
-.under-construction {
+:host {
+  display: block;
+  width: 100%;
+}
+
+.credits {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  justify-content: center;
+  gap: 32px;
+
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+@media (max-width: 900px) {
+  .credits {
+    grid-template-columns: 1fr;
+  }
+}
+
+.credits > .credit-card:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  justify-self: center;
+  max-width: 520px;
+  width: 100%;
+}
+
+
+.credit-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid #e5e7eb;
+
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+
+  transition: all 0.2s ease;
+}
+
+.credit-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+
+.credit-header {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  margin-bottom: 18px;
+}
+
+.credit-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.interest {
+  font-size: 18px;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+
+.credit-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 14px;
+  color: #374151;
+}
+
+.credit-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.status {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+
+.buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.primary-btn {
+  flex: 1;
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.primary-btn:hover {
+  background: #1e40af;
+}
+
+.secondary-btn {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+  background: #eef2ff;
+  text-decoration: none;
+  color: #3730a3;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.secondary-btn:hover {
+  background: #e0e7ff;
+}
+
+
+.spinner-wrapper {
+  display: flex;
   justify-content: center;
-  height: 70vh;
-  color: #333;
+  margin-top: 40px;
+}
 
-  img {
-    width: 160px;
-    margin-bottom: 20px;
-    opacity: 0.8;
-  }
+.empty-state {
+  text-align: center;
+  margin-top: 60px;
+  font-size: 18px;
+  color: #6b7280;
+}
 
-  h2 {
-    font-size: 1.8rem;
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
 
-  p {
-    font-size: 1rem;
-    color: #666;
-  }
+
+.add-item:hover {
+  opacity: 0.9;
+}
+
+.status-badge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.status-0 {
+  background: #fff7ed;
+  color: #ea580c;
+}
+
+.status-1 {
+  background: #e0f2fe;
+  color: #0284c7;
+}
+
+.status-2 {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.status-3 {
+  background: #e6fffa;
+  color: #047857;
+}
+
+.status-4 {
+  background: #fef2f2;
+  color: #b91c1c;
 }

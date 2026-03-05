@@ -388,8 +388,14 @@
     "AddCredit": "Додати кредит",
     "UpdateCredit": "Оновити кредит",
     "InterestRateYear":"Процентна Ставка (річна)",
-    "CreditTariffDeleted": "Кредитний тариф був успішно видалений!"
+    "CreditTariffDeleted": "Кредитний тариф був успішно видалений!",
 
+    "OpenCredit": "Відкрити кредит",
+    "OpenNewCredit": "Відкрити новий кредит",
+    "NoCreditsYet": "У вас поки немає активних кредитів",
+    "MonthlyPayment": "Щомісячний платіж",
+    "RemainingDebt": "Залишок боргу",
+    "EndDate": "Дата завершення"
 
 
 }

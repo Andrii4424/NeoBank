@@ -1,4 +1,5 @@
 ﻿using Bank.API.Domain.Entities.Cards;
+using Bank.API.Domain.Entities.Credits;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,7 @@ namespace Bank.API.Domain.Entities.Identity
         public double? Salary { get; set; }
 
         public ICollection<UserCardsEntity> UserCards { get; set; }
+        public ICollection<UserCreditEntity> UserCredits { get; set; }
 
         [StringLength(6)]
         public string? RefreshCode { get; set; }

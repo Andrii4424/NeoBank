@@ -68,6 +68,12 @@ namespace Bank.API.Application.Helpers.Mapping
             CreateMap<CreditTariffsDto, CreditTariffsEntity>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore());
 
+            //UserCredits
+            CreateMap<UserCreditEntity, UserCreditDto>();
+            CreateMap<UserCreditDto, UserCreditEntity>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
+            CreateMap<UserCreditEntity, OpenUserCreditDto>()
+                .ForMember(dest => dest.EnrollmentCardNumber, opt => opt.Ignore());
         }
     }
 }

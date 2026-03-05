@@ -131,6 +131,7 @@ namespace Bank.API.WebUI.StartupServicesInjection
             services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
             services.AddScoped(typeof(INewsRepository), typeof(NewsRepository));
             services.AddScoped(typeof(ICreditTariffsRepository), typeof(CreditTariffsRepository));
+            services.AddScoped(typeof(IUserCreditsRepository), typeof(UserCreditsRepository));
 
 
             //Services injection
@@ -148,7 +149,7 @@ namespace Bank.API.WebUI.StartupServicesInjection
             services.AddScoped<IRecoveryPasswordService, RecoveryPasswordService>();
             services.AddScoped<INewsService, NewsService>();
             services.AddScoped<ICreditTariffsService, CreditTariffsService>();
-   
+            services.AddScoped<IUserCreditsService, UserCreditsService>();
 
             //Background Services
             services.AddHostedService<RabbitMqConsumerService>();

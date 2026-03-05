@@ -8,14 +8,15 @@
 >
 </app-search>
 
+<app-credits-layout></app-credits-layout>
+
+
 @if(isLoading()){
     <div class="spinner-wrapper">
       <app-loading></app-loading> 
     </div>
 }
 @else{
-    <app-credits-layout></app-credits-layout>
-
     <section class="credits">
       @for(credit of credits?.items; track $index){
         <div class="credit-card">

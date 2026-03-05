@@ -9,12 +9,15 @@ export interface ITransaction{
     getterCardId?: string; 
     getterId?: string; 
     senderCurrency?: Currency;
+    creditTariffsId?: string;
     getterCurrency?: Currency;
     currencyExchangeCommission?: number; 
+    termMonths?: number;
     amount: number; 
     amountToReceive?: number 
     commission?: number; 
     status?: TransactionStatus;
     type: TransactionType;
     transactionTime?: string;
+    isCreditPayment?: boolean;
 }
