@@ -48,6 +48,7 @@ namespace Bank.API.Application.DTOs.Credits
         public decimal CurrentMonthAmountDue { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateOnly? CurrentPaymentDate { get; set; }
 
         public CreditTariffsDto? CreditTariffs { get; private set; }
 

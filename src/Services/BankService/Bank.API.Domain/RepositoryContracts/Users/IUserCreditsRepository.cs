@@ -9,5 +9,6 @@ namespace Bank.API.Domain.RepositoryContracts.Users
         public Task<List<UserCreditEntity>> GetUserCredits(Guid userId);
         public Task<List<UserCreditEntity>> GetFilteredCardsAsync(int pageNumber, int pageSize, Expression<Func<UserCreditEntity, bool>>? searchFilter,
             bool ascending, Expression<Func<UserCreditEntity, object>>? sortValue, List<Expression<Func<UserCreditEntity, bool>>>? filters, bool icnludeTariffs);
+        public Task<List<UserCreditEntity>> GetActiveCreditsAsync();
     }
 }

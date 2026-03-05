@@ -56,5 +56,9 @@ namespace Bank.API.Infrastructure.Repository.Users
                 .Take(pageSize)
                 .ToListAsync();
         }
+
+        public async Task<List<UserCreditEntity>> GetActiveCreditsAsync(){
+            return await _dbSet.Where(uc => uc.Status == Domain.Enums.CreditEnums.CreditStatus.Active).ToListAsync();
+        }
     }
 }

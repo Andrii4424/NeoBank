@@ -81,10 +81,11 @@ namespace Bank.API.Application.Services.CreditsServices
             credit.IsClosed = false;
             credit.UserId = transaction.GetterId.Value;
             credit.Amount = (decimal)transaction.AmountToReplenish;
-            credit.AmountToClose = (decimal)transaction.AmountToReplenish;
+            credit.RemainingDebt = (decimal)transaction.AmountToReplenish;
             credit.StartDate = DateTime.UtcNow;
             credit.EndDate = DateTime.UtcNow.AddMonths(transaction.TermMonths.Value);
-
+            credit.Currency = transaction.TransactionCurrency.Value;
+            credit.CreatedAt = DateTime.UtcNow;
 
             OperationResult transactionResult = await _userCardService.UpdateCardBalanceAsync(transaction.GetterCardId.Value, (decimal)transaction.AmountToReplenish);
             if (!transactionResult.Success)
@@ -118,27 +119,28 @@ namespace Bank.API.Application.Services.CreditsServices
 
             UserCardsDto? card = await _userCardService.GetCardByIdAsync(transaction.SenderCardId.Value);
             UserCreditEntity? credit = await _userCreditsRepository.GetValueByIdAsync(transaction.UserCreditId.Value);
+            decimal PositiveAmountToWithdrawn = (decimal)transaction.AmountToWithdrawn * -1;
 
             if (card == null || credit == null) {
                 transaction.Success = false;
                 return transaction;
             }
 
-            if(card.Balance < (decimal)transaction.AmountToWithdrawn)
+            if(card.Balance < PositiveAmountToWithdrawn)
             {
                 transaction.Success = false;
                 return transaction;
             }
 
-            if (credit.AmountToClose != 0)
+            if (credit.RemainingDebt != 0)
             {
-                credit.CurrentMonthAmountDue = credit.CurrentMonthAmountDue < (decimal)transaction.AmountToWithdrawn ? 0 : credit.CurrentMonthAmountDue - (decimal)transaction.AmountToWithdrawn;
-                credit.AmountToClose = credit.AmountToClose < (decimal)transaction.AmountToWithdrawn ? 0 : credit.AmountToClose - (decimal)transaction.AmountToWithdrawn;
+                credit.CurrentMonthAmountDue = credit.CurrentMonthAmountDue < PositiveAmountToWithdrawn ? 0 : credit.CurrentMonthAmountDue - PositiveAmountToWithdrawn;
+                credit.RemainingDebt = credit.RemainingDebt < PositiveAmountToWithdrawn ? 0 : credit.RemainingDebt - PositiveAmountToWithdrawn;
 
-                transaction.AmountToWithdrawn = (double)Math.Min(credit.AmountToClose!.Value, (decimal)transaction.AmountToWithdrawn!.Value);
+                transaction.AmountToWithdrawn = (double)Math.Min(credit.RemainingDebt, PositiveAmountToWithdrawn);
 
                 OperationResult transactionResult =
-                    await _userCardService.UpdateCardBalanceAsync(transaction.SenderCardId!.Value, (decimal)transaction.AmountToWithdrawn);
+                    await _userCardService.UpdateCardBalanceAsync(transaction.SenderCardId!.Value, (decimal)transaction.AmountToWithdrawn * -1);
 
                 if (!transactionResult.Success)
                 {
@@ -146,13 +148,18 @@ namespace Bank.API.Application.Services.CreditsServices
                     return transaction;
                 }
 
-                if (credit.AmountToClose == 0) {
+                if (credit.RemainingDebt == 0) {
                     credit.Status = CreditStatus.Closed;
+                    credit.CloseTime = DateTime.UtcNow;
                 }
                 else if (credit.CurrentMonthAmountDue == 0)
                 {
-                    credit.CurrentMonthAmountDue = (decimal)credit.AmountToClose / (transaction.TermMonths.Value == 1? 1 : (transaction.TermMonths.Value) - 1);
+                    credit.CurrentMonthAmountDue = (decimal)credit.RemainingDebt / (credit.TermMonths == 1? 1 : (credit.TermMonths) - 1);
                 }
+
+                _userCreditsRepository.UpdateObject(credit);
+
+                await _userCreditsRepository.SaveAsync();
             }
 
             transaction.Success = true;

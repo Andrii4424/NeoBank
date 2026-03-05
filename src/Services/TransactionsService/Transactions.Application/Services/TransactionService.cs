@@ -85,6 +85,8 @@ namespace Transactions.Application.Services
                 transaction.Commission = 0;
                 transaction.CurrencyExchangeCommission = 0;
                 transaction.AmountToReceive = transaction.GetterCardId == null ? transaction.Amount * (-1) : transaction.Amount;
+                transaction.GetterCurrency = transaction.TransactionCurrency;
+                transaction.SenderCurrency = transaction.TransactionCurrency;
             }
             else
             {
@@ -114,7 +116,7 @@ namespace Transactions.Application.Services
                 {
                     transaction.Commission = 0;
                 }
-                transaction.TransactionTime = DateTime.UtcNow;
+                
 
                 OperationResult balanceCheckResult = await CheckBalance(transaction.SenderCardId.Value, amountWithComission);
                 if (!balanceCheckResult.Success)
@@ -144,13 +146,16 @@ namespace Transactions.Application.Services
                 }
             }
 
+            transaction.TransactionTime = DateTime.UtcNow;
             transaction.Status = TransactionStatus.Pending;
             Guid transactionId = await CreateTransaction(transaction);
 
             await _rabbitMqMessageBusService.PublishAsync(new UpdateBalanceDto { Id= transactionId, SenderCardId=transaction.SenderCardId,
                 GetterCardId =transaction.GetterCardId, AmountToReplenish = (double)transaction.AmountToReceive, AmountToWithdrawn = ((double)amountWithComission)*(-1), 
                 GetterId= transaction.GetterId, CreditTariffsId=transaction.CreditTariffsId, IsCreditPayment=transaction.Type == TransactionType.Credit,
-                TransactionGetterCurrency = transaction.GetterCurrency, TermMonths = transaction.TermMonths, UserCreditId=transaction.UserCreditId, Success=null}, 
+                TransactionGetterCurrency = transaction.GetterCurrency, TermMonths = transaction.TermMonths, UserCreditId=transaction.UserCreditId, Success=null,
+                TransactionCurrency = transaction.TransactionCurrency
+            }, 
                 _exchange, "balance.update");
 
             _logger.LogError("Success creating transaction, transaction id: {transactronId}", transactionId);

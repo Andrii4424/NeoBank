@@ -24,16 +24,13 @@ using Bank.API.Infrastructure.Repository;
 using Bank.API.Infrastructure.Repository.BankProducts;
 using Bank.API.Infrastructure.Repository.News;
 using Bank.API.Infrastructure.Repository.Users;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
-using System.Reflection;
 using System.Security.Claims;
 
 namespace Bank.API.WebUI.StartupServicesInjection
@@ -153,6 +150,10 @@ namespace Bank.API.WebUI.StartupServicesInjection
 
             //Background Services
             services.AddHostedService<RabbitMqConsumerService>();
+            services.AddHostedService<CreditInterestBackgroundService>();
+
+            //Http Clients
+            services.AddHttpClient<ICurrencyService, CurrencyService>();
 
             //AutoMapper
             services.AddAutoMapper(typeof(MappingProfile));

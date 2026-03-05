@@ -267,9 +267,6 @@ namespace Bank.API.Infrastructure.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal?>("AmountToClose")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<DateTime?>("CloseTime")
                         .HasColumnType("datetime2");
 

@@ -23,7 +23,8 @@ export interface UserCredit {
   monthlyPayment: number;
   remainingDebt: number;
   currentMonthAmountDue: number;
-
+  currentPaymentDate: string;
+  
   createdAt: string;
 
   creditTariffs : ICreditTariffs | null;

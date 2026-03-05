@@ -23,10 +23,13 @@ import { SuccessMessage } from "../../../../../common-ui/success-message/success
 import { ErrorMessage } from "../../../../../common-ui/error-message/error-message";
 import { PageSwitcher } from "../../../../../common-ui/page-switcher/page-switcher";
 import { CreditStatus } from '../../../../../data/enums/credit-status';
+import { PayForCreditModal } from "../pay-for-credit-modal/pay-for-credit-modal";
+import { CreditsDetailsModal } from "../credits-details-modal/credits-details-modal";
+
 
 @Component({
   selector: 'app-user-credits',
-  imports: [TranslateModule, RouterModule, CreditsLayout, Search, AsyncPipe, Loading, DecimalPipe, DatePipe, OpenCreditModal, SuccessMessage, ErrorMessage, PageSwitcher],
+  imports: [TranslateModule, RouterModule, CreditsLayout, Search, AsyncPipe, Loading, DecimalPipe, DatePipe, OpenCreditModal, SuccessMessage, ErrorMessage, PageSwitcher, PayForCreditModal, CreditsDetailsModal],
   templateUrl: './user-credits.html',
   styleUrl: './user-credits.scss'
 })
@@ -46,6 +49,9 @@ export class UserCredits {
   successMessage : string | null = null;
   openErrorMessage = signal<boolean>(false);
   errorMessage: string | null = null;
+  openPayForCreditModal = signal<boolean>(false);
+  openCreditDetailsModal = signal<UserCredit | null>(null);
+  selectedCredit: UserCredit | null = null;
 
   //Filters values
   sortValues$: Observable<ISort[]> = combineLatest([
@@ -66,11 +72,14 @@ export class UserCredits {
     this.translate.stream('Filter.UAH'),
     this.translate.stream('Filter.USD'),
     this.translate.stream('Filter.EUR'),
+    this.translate.stream('ShowClosedCredits')
   ]).pipe(
-    map(([uah, usd, eur])=>[
+    map(([uah, usd, eur, showClosedCredits])=>[
       {filterName:"ChosenCurrency", id: "uah", description: uah, value: Currency.UAH, chosen: false },
       {filterName:"ChosenCurrency", id: "usd", description: usd, value: Currency.USD, chosen: false },
       {filterName:"ChosenCurrency", id: "eur", description: eur, value: Currency.EUR, chosen: false },
+      {filterName:"ShowClosedCredits", id: "show-closed", description: showClosedCredits, value: true, chosen: false },
+
     ])
   )
 
@@ -79,6 +88,7 @@ export class UserCredits {
   //Enums
   PaymentSystem = PaymentSystem;
   CardType = CardType;
+  CreditStatus = CreditStatus;
   
   ngOnInit(){
     this.route.queryParams.subscribe(params =>{
@@ -179,6 +189,29 @@ export class UserCredits {
     });
   }
 
+  onMakeCreditPayment(transaction: ITransaction){
+    this.transactionService.makeTransaction(transaction).subscribe({
+      next:()=>{
+        this.openPayForCreditModal.set(false);
+        this.loadCredits(this.route.snapshot.queryParams);
+        this.showSuccessMessage(this.translate.instant('CreditPaymentSuccessMessage'));
+      },
+      error:(err)=>{
+        this.openPayForCreditModal.set(false);
+        this.showErrorMessage(this.sharedService.serverResponseErrorToArray(err)[0]);
+      }
+    });
+  }
+  
+  onOpenPayForCreditModal(credit: UserCredit){
+    this.selectedCredit = credit;
+    this.openPayForCreditModal.set(true);
+  }
+
+  onCLosePayForCreditModal(){
+    this.selectedCredit = null;
+    this.openPayForCreditModal.set(false);
+  }
       
   showSuccessMessage(message: string){
     this.successMessage = message;

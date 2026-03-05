@@ -23,6 +23,7 @@ namespace Transactions.Application.DTOs
         public Currency? SenderCurrency { get; set; }
 
         public Currency? GetterCurrency { get; set; }
+        public Currency? TransactionCurrency { get; set; }
 
         public int? TermMonths { get; set; }
 

@@ -78,7 +78,19 @@ export class OpenCreditModal {
       next: (response) => {
         this.CreditTariffs = response.items;
       }
-    }); 
+    });
+
+    this.transactionForm.get('creditTariffsId')?.valueChanges.subscribe(id => {
+      const tariff = this.CreditTariffs?.find(t => t.id === id);
+
+      this.selectedTariff.set(tariff ?? null);
+
+      if (tariff) {
+        this.transactionForm.patchValue({
+          creditPeriodMonths: tariff.minTermMonths
+        });
+      }
+    });    
 
     this.senderCardIdSub=this.transactionForm.get('senderCardId')!.valueChanges.subscribe(selectedCardId=>{
       const chosenCard = this.cards?.find(c=> c.id===selectedCardId);
@@ -117,9 +129,11 @@ export class OpenCreditModal {
         this.showError(this.translate.instant('OpenCreditModal.InvalidCardCurrency'));
         return ;
       }
+
+      console.log(this.transactionForm.get('creditCurrency')!.value!);
       this.openCredit.emit({getterCardId: this.transactionForm.get('getterCardId')!.value!, amount: this.transactionForm.get('amount')!.value!,
           type: TransactionType.Credit, creditTariffsId: this.transactionForm.get('creditTariffsId')!.value!, 
-          termMonths: this.transactionForm.get('creditPeriodMonths')!.value!, isCreditPayment: true})
+          termMonths: this.transactionForm.get('creditPeriodMonths')!.value!, isCreditPayment: true, transactionCurrency: this.transactionForm.get('creditCurrency')!.value!})
     }
 
     else{

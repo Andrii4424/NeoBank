@@ -16,7 +16,7 @@ namespace Bank.API.Application.DTOs.Users.CardOperations
         public Guid? CreditTariffsId { get; set; }
         public Guid? UserCreditId { get; set; }
         public int? TermMonths { get; set; }
-        public Currency TransactionCurrency { get; set; }
+        public Currency? TransactionCurrency { get; set; }
         public double? AmountToReplenish { get; set; }
         public double? AmountToWithdrawn { get; set; }
         public bool? Success { get; set; }

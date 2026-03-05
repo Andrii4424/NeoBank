@@ -23,12 +23,15 @@ namespace Bank.API.Application.Services.BankServices.BankProducts
         private readonly string cacheKey = "CurrencyData";
         private readonly IBankRepository _bankRepository;
         private readonly ILogger<CurrencyService> _logger;
+        private readonly HttpClient _httpClient;
 
-
-        public CurrencyService(IMemoryCache memoryCache, IBankRepository bankRepository, ILogger<CurrencyService> logger) {
+        public CurrencyService(IMemoryCache memoryCache, IBankRepository bankRepository, ILogger<CurrencyService> logger, 
+            HttpClient httpClient)
+        {
             _memoryCache = memoryCache;
             _bankRepository = bankRepository;
             _logger = logger;
+            _httpClient = httpClient;
         }
 
         public async Task<List<CurrencyDto>> GetCurrencyData()
@@ -41,10 +44,15 @@ namespace Bank.API.Application.Services.BankServices.BankProducts
             }
             else
             {
-                using var client = new HttpClient();
-                var allRates = await client.GetFromJsonAsync<List<CurrencyDto>>(url);
+                var allRates = await _httpClient.GetFromJsonAsync<List<CurrencyDto>>(url);
 
-                 allRates = allRates!
+                if (allRates == null)
+                {
+                    _logger.LogError("Failed to fetch currency data from NBU API");
+                    throw new Exception("Currency API returned null");
+                }
+
+                allRates = allRates!
                     .Where(r => r.cc == "USD" || r.cc == "EUR")
                     .ToList();
 

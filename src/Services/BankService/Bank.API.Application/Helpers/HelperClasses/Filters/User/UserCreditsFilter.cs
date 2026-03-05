@@ -1,5 +1,6 @@
 ﻿using Bank.API.Domain.Entities.Credits;
 using Bank.API.Domain.Enums.CardEnums;
+using Bank.API.Domain.Enums.CreditEnums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,7 +63,7 @@ namespace Bank.API.Application.Helpers.HelperClasses.Filters.User
             }
             if (!ShowClosedCredits)
             {
-                filters.Add(c => c.IsClosed == false);
+                filters.Add(c => c.Status != CreditStatus.Closed);
             }
             filters.Add(c => c.UserId == userId);
 

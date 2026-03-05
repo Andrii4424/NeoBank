@@ -29,7 +29,6 @@ namespace Bank.API.Domain.Entities.Credits
 
         public decimal? CurrentMonthAmountDue { get; set; }
         public DateOnly? CurrentPaymentDate { get; set; }
-        public decimal? AmountToClose { get; set; }
 
         public DateTime CreatedAt { get; set; }
 

@@ -11,6 +11,8 @@ export interface ITransaction{
     senderCurrency?: Currency;
     creditTariffsId?: string;
     getterCurrency?: Currency;
+    transactionCurrency?: Currency;
+    userCreditId?: string;
     currencyExchangeCommission?: number; 
     termMonths?: number;
     amount: number; 

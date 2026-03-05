@@ -1,1 +1,41 @@
-<p>pay-for-credit-modal works!</p>
+<div class="modal-overlay">
+  <form class="modal-content"[formGroup]="transactionForm" (submit)="onSubmit()" (click)="deleteError()">
+    
+    <header class="modal-header">
+      <h2>{{'PayForCreditTitle' |translate}}</h2>
+      <button class="close-button" (click)="cancel()">&times;</button>
+    </header>
+
+    <main class="modal-body" >
+      
+      <div class="form-group" >
+        <label for="sender-card">{{'TransferModal.FromCard' | translate}}</label>
+        <select id="sender-card" formControlName="senderCardId">
+          <option value="" disabled selected>{{ 'TransferModal.SelectCard' | translate }}</option>
+          @if(cards?.length ===0){
+            <h4>{{'TransferModal.NoCards' | translate }}</h4>
+          }
+          @else {
+            @for (card of cards; track $index) {
+              <option [value]="card.id">{{card.cardTariffs.cardName}} ({{card.balance}}{{getCurrencySymbol(card.chosenCurrency)}})</option>
+            }
+          }
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="amount">{{'TransferModal.Amount' | translate }}</label>
+        <input formControlName="amount" type="number" id="amount" [placeholder]="'TransferModal.Placeholder.Amount' | translate">
+      </div>
+      <div class="error-block">
+        <span class="error">{{errorText}} </span>
+      </div>
+    </main>
+
+    <footer class="modal-footer">
+      <button class="btn btn-secondary" (click)="cancel()">{{'TransferModal.Cancel' | translate }}</button>
+      <button class="btn btn-primary" type="submit" (click)="$event.stopPropagation()">{{'TransferModal.Confirm' | translate }}</button>
+    </footer>
+
+  </form>
+</div>

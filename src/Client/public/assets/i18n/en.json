@@ -419,5 +419,28 @@
         "Closed": "Closed",
         "Rejected": "Rejected",
         "Overdue": "Overdue"
-    }
+    },
+
+    "CreditOverpayment": "The entered payment amount is greater than the credit amount owed. Please enter a valid amount.",
+    "PayForCreditTitle": "Pay for Credit",
+    "CreditPaymentSuccessMessage": "Payment has been successfully made!",
+    "CurrentPaymentDate": "Current payment date",
+
+    "CreditDetails": {
+        "Title": "Credit Details",
+        "Amount": "Amount",
+        "RemainingDebt": "Remaining debt",
+        "MonthlyPayment": "Monthly payment",
+        "CurrentMonthDue": "Current month due",
+        "InterestRate": "Interest rate",
+        "Term": "Term",
+        "Months": "months",
+        "StartDate": "Start date",
+        "EndDate": "End date",
+        "NextPaymentDate": "Next payment date",
+        "Status": "Status",
+        "CreatedAt": "Created at"
+    },
+    "ShowClosedCredits": "Show closed credits"
+
 }

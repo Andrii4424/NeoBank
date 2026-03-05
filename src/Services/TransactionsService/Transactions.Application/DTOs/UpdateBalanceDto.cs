@@ -21,5 +21,6 @@ namespace Transactions.Application.DTOs
         public double? AmountToWithdrawn { get; set; }
         public bool? Success { get; set; }
         public bool? IsCreditPayment { get; set; }
+        public Currency? TransactionCurrency { get; set; }
     }
 }
