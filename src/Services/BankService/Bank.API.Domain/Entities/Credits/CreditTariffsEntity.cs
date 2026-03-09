@@ -1,4 +1,6 @@
-﻿using Bank.API.Domain.Enums.CardEnums;
+﻿using Bank.API.Domain.Abstractions;
+using Bank.API.Domain.Entities.Cards;
+using Bank.API.Domain.Enums.CardEnums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Bank.API.Domain.Entities.Credits
 {
-    public class CreditTariffsEntity
+    public class CreditTariffsEntity : IHasId
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public string Name { get; set; }
@@ -16,6 +18,7 @@ namespace Bank.API.Domain.Entities.Credits
         public decimal MaxAmount { get; set; }
         public int MinTermMonths { get; set; }
         public int MaxTermMonths { get; set; }
-        public List<Currency> AvaibleCurrencies { get; set; }
+        public List<Currency> EnableCurrency { get; set; }
+        public ICollection<UserCreditEntity> UserCredits { get; set; }
     }
 }

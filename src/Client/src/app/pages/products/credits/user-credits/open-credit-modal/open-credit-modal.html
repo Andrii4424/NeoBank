@@ -1,0 +1,126 @@
+<div class="modal-overlay">
+  <form class="modal-content"[formGroup]="transactionForm" (submit)="onSubmit()" (click)="deleteError()">
+    
+    <header class="modal-header">
+      <h2>{{'OpenCreditModal.Title' |translate}}</h2>
+      <button class="close-button" (click)="cancel()">&times;</button>
+    </header>
+
+    <main class="modal-body" >
+      
+      <div class="form-group" >
+        <label for="sender-card">{{'OpenCreditModal.CreditTariff' | translate}}</label>
+        <select id="sender-card" formControlName="creditTariffsId">
+          <option value="" disabled selected>{{ 'OpenCreditModal.SelectCreditTariff' | translate }}</option>
+          @if(CreditTariffs?.length ===0){
+            <h4>{{'OpenCreditModal.NoTariffs' | translate }}</h4>
+          }
+          @else {
+            @for (tariff of CreditTariffs; track $index) {
+              <option [value]="tariff.id">{{tariff.name}}</option>
+            }
+          }
+        </select>
+      </div>
+
+      <div class="form-group" >
+        <label for="sender-card">{{'OpenCreditModal.ToCard' | translate}}</label>
+        <select id="sender-card" formControlName="getterCardId">
+          <option value="" disabled selected>{{ 'OpenCreditModal.SelectCard' | translate }}</option>
+          @if(cards?.length ===0){
+            <h4>{{'OpenCreditModal.NoCards' | translate }}</h4>
+          }
+          @else {
+            @for (card of cards; track $index) {
+              <option [value]="card.id">{{card.cardTariffs.cardName}} ({{card.balance}}{{getCurrencySymbol(card.chosenCurrency)}})</option>
+            }
+          }
+        </select>
+      </div>
+      
+
+      <div class="form-group">
+        <label for="amount">{{'TransferModal.Amount' | translate }}</label>
+        <input formControlName="amount" type="number" id="amount" [placeholder]="'TransferModal.Placeholder.Amount' | translate">
+      </div>
+      
+        <div class="form-group">
+
+            <label>
+                {{ 'OpenCreditModal.CreditCurrency' | translate }}
+            </label>
+
+            <div class="currency-options"
+                [class.disabled]="!selectedTariff()">
+
+            @if (!selectedTariff()) {
+                <div class="currency-placeholder">
+                Select credit tariff first
+                </div>
+            }
+            @else {
+                @for (currency of selectedTariff()?.enableCurrency ?? []; track $index) {
+                <label class="currency-option">
+                    <input
+                    type="radio"
+                    formControlName="creditCurrency"
+                    [value]="currency"
+                    />
+                    <span>{{ getCurrencyLabel(currency) }}</span>
+                </label>
+                }
+            }
+
+            </div>
+
+        </div>      
+
+        <div class="form-group">
+
+            <label class="period-title">
+                {{ 'OpenCreditModal.CreditPeriod' | translate }}
+            </label>
+
+            <div class="period-container">
+
+                <input
+                    type="range"
+                    class="period-slider"
+                    formControlName="creditPeriodMonths"
+                    [min]="selectedTariff()?.minTermMonths ?? 1"
+                    [max]="selectedTariff()?.maxTermMonths"
+                    step="1"
+                    [class.slider-disabled]="!selectedTariff()"
+                />
+
+                <div class="period-labels">
+                <span class="min">
+                    {{ selectedTariff()?.minTermMonths }}
+                </span>
+
+                <span class="current" [class.none]="!selectedTariff()">
+                    {{ transactionForm.get('creditPeriodMonths')?.value ?? selectedTariff()?.minTermMonths }}
+                    {{ 'MonthsShort' | translate }}
+                </span>
+
+                <span class="max">
+                    {{ selectedTariff()?.maxTermMonths }}
+                </span>
+                </div>
+
+            </div>
+
+        </div>
+
+      <div class="error-block">
+        <span class="error">{{errorText}}</span>
+      </div>
+    </main>
+
+    <footer class="modal-footer">
+      <button class="btn btn-secondary" (click)="cancel()">{{'TransferModal.Cancel' | translate }}</button>
+      <button class="btn btn-primary" type="submit" (click)="$event.stopPropagation()">{{'OpenCreditModal.Confirm' | translate }}</button>
+    </footer>
+
+  </form>
+</div>

@@ -230,7 +230,7 @@ namespace Bank.API.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("AvaibleCurrencies")
+                    b.Property<string>("EnableCurrency")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -256,6 +256,69 @@ namespace Bank.API.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("CreditTariffs", (string)null);
+                });
+
+            modelBuilder.Entity("Bank.API.Domain.Entities.Credits.UserCreditEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime?>("CloseTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreditTariffId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Currency")
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("CurrentMonthAmountDue")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateOnly?>("CurrentPaymentDate")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("InterestRate")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("IsClosed")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("MonthlyPayment")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("RemainingDebt")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TermMonths")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreditTariffId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserCredits", (string)null);
                 });
 
             modelBuilder.Entity("Bank.API.Domain.Entities.Identity.ApplicationRole", b =>
@@ -591,6 +654,25 @@ namespace Bank.API.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Bank.API.Domain.Entities.Credits.UserCreditEntity", b =>
+                {
+                    b.HasOne("Bank.API.Domain.Entities.Credits.CreditTariffsEntity", "CreditTariffs")
+                        .WithMany("UserCredits")
+                        .HasForeignKey("CreditTariffId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Bank.API.Domain.Entities.Identity.ApplicationUser", "User")
+                        .WithMany("UserCredits")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CreditTariffs");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Bank.API.Domain.Entities.Users.VacancyEntity", b =>
                 {
                     b.HasOne("Bank.API.Domain.Entities.BankEntity", "Bank")
@@ -665,9 +747,16 @@ namespace Bank.API.Infrastructure.Migrations
                     b.Navigation("UserCards");
                 });
 
+            modelBuilder.Entity("Bank.API.Domain.Entities.Credits.CreditTariffsEntity", b =>
+                {
+                    b.Navigation("UserCredits");
+                });
+
             modelBuilder.Entity("Bank.API.Domain.Entities.Identity.ApplicationUser", b =>
                 {
                     b.Navigation("UserCards");
+
+                    b.Navigation("UserCredits");
                 });
 #pragma warning restore 612, 618
         }

@@ -232,7 +232,9 @@
         "ByAnnualMaintenanceCost": "За Вартістю Обслуговування",
         "ByValidityPeriod": "За Строком Дії",
         "ByBalanceDesc": "За Балансом (від більшого)",
-        "ByBalanceAsc": "За Балансом (від меншого)"
+        "ByBalanceAsc": "За Балансом (від меншого)",
+        "ByInterestRateAsc": "За Процентною Ставкою (від меншого)",
+        "ByInterestRateDesc": "За Процентною Ставкой (від більшого)"
     },
 
     "Filter":{
@@ -364,6 +366,83 @@
         "By": "Автор:",
         "Update": "Редагувати Новину",
         "Delete": "Видалити Новину"
-    }
+    },
 
+    "TariffName": "Назва тарифу",
+    "MinAmount": "Мінімальна сума",
+    "MaxAmount": "Максимальна сума",
+    "MinTermMonths": "Мінімальний термін (міс.)",
+    "MaxTermMonths": "Максимальний термін (міс.)",
+    "AvailableCurrencies": "Доступні валюти",
+    "SaveTariff": "Зберегти тариф",
+    "TariffSaved": "Тариф успішно збережено",
+
+    "PerYear": "річних",
+    "Term": "Термін",
+    "MonthsShort": "міс.",
+    "Currencies": "Валюти",
+
+    "ApplyCredit": "Оформити",
+    "UpdateTariff": "Редагувати тариф",
+    "DeleteTariff": "Видалити тариф",
+    "AddCredit": "Додати кредит",
+    "UpdateCredit": "Оновити кредит",
+    "InterestRateYear":"Процентна Ставка (річна)",
+    "CreditTariffDeleted": "Кредитний тариф був успішно видалений!",
+
+    "OpenCredit": "Відкрити кредит",
+    "OpenNewCredit": "Відкрити новий кредит",
+    "NoCreditsYet": "У вас поки немає активних кредитів",
+    "MonthlyPayment": "Щомісячний платіж",
+    "RemainingDebt": "Залишок боргу",
+    "EndDate": "Дата завершення",
+
+      "OpenCreditModal": {
+    "Title": "Відкрити новий кредит",
+    "Amount": "Сума",
+    "CreditPeriodMonths": "Період кредиту (місяці)",
+    "CreditTariff": "Оберіть кредитний тариф",
+    "ToCard": "Оберіть картку для отримання кредиту",
+    "SelectCard": "Оберіть вашу картку",
+    "SelectCreditTariff": "Оберіть кредитний тариф",
+    "CreditPeriod": "Період кредиту",
+    "SelectTariffFirst": "Будь ласка, спочатку оберіть кредитний тариф",
+    "CreditCurrency": "Валюта кредиту",
+    "Confirm": "Підтвердити",
+    "NoGetterCard": "Потрібно обрати картку для отримання кредиту.",
+    "OpenCreditSuccessMessage": "Кредит успішно відкрито!",
+    "InvalidCardCurrency": "Валюта обраної картки не відповідає валюті кредиту. Будь ласка, оберіть іншу картку або кредитний тариф."
+  },
+  "CurrentMonthAmountDue": "Сума до сплати за поточний місяць",
+  "PayCredit": "Сплатити кредит",
+
+  "CreditStatus": {
+    "Active": "Активний",
+    "Closed": "Закритий",
+    "Rejected": "Відхилений",
+    "Overdue": "Прострочений"
+  },
+
+  "CreditOverpayment": "Введена сума платежу перевищує заборгованість за кредитом. Будь ласка, введіть коректну суму.",
+  "PayForCreditTitle": "Оплата кредиту",
+  "CreditPaymentSuccessMessage": "Платіж успішно виконано!",
+  "CurrentPaymentDate": "Дата поточного платежу",
+
+  "CreditDetails": {
+    "Title": "Деталі кредиту",
+    "Amount": "Сума",
+    "RemainingDebt": "Залишок боргу",
+    "MonthlyPayment": "Щомісячний платіж",
+    "CurrentMonthDue": "Сума до сплати за поточний місяць",
+    "InterestRate": "Відсоткова ставка",
+    "Term": "Термін",
+    "Months": "місяців",
+    "StartDate": "Дата початку",
+    "EndDate": "Дата завершення",
+    "NextPaymentDate": "Наступна дата платежу",
+    "Status": "Статус",
+    "CreatedAt": "Дата створення"
+  },
+
+  "ShowClosedCredits": "Показати закриті кредити"
 }

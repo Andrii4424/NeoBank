@@ -1,0 +1,151 @@
+<app-search 
+  [searchPlaceholder]="'EnterCardName'|translate"
+  [sortValues]="(sortValues$ | async) ||[]"
+  [filterValues]="(filterValues$ | async) ||[]"
+  (sortChange)="onSortChange($event)"
+  (searchChange)="onSearchChange($event)"
+  (filterChange)="onFiltersChange($event)">
+</app-search>
+
+<app-credits-layout></app-credits-layout>
+
+@if(isLoading()){
+  <div class="spinner-wrapper">
+    <app-loading></app-loading>
+  </div>
+}
+@else{
+
+  @if(credits?.items?.length === 0){
+    <div class="empty-state">
+      {{ 'NoCreditsYet' | translate }}
+    </div>
+  }
+
+  @else{
+    <section class="credits">
+      @for (credit of credits?.items; track credit.id) {
+
+        <div class="credit-card">
+
+          <div class="credit-header">
+            <h2>{{ credit.creditTariffs?.name }}</h2>
+            <div class="interest">
+              {{ credit.interestRate }}% {{ 'PerYear' | translate }}
+            </div>
+          </div>
+
+          <div class="credit-body">
+
+            <div class="credit-row">
+              <span>{{ 'RemainingDebt' | translate }}:</span>
+              <span>
+                {{ credit.remainingDebt | number }}
+                {{ getCurrency(credit.currency) }}
+              </span>
+            </div>
+
+            <div class="credit-row">
+              <span>{{ 'RemainingDebt' | translate }}:</span>
+              <span>
+                {{ credit.remainingDebt | number }}
+                {{ getCurrency(credit.currency) }}
+              </span>
+            </div>
+
+            <div class="credit-row">
+              <span>{{ 'CurrentMonthAmountDue' | translate }}:</span>
+              <span>
+                {{ credit.currentMonthAmountDue | number }}
+                {{ getCurrency(credit.currency) }}
+              </span>
+            </div>
+
+            <div class="credit-row">
+              <span>{{ 'CurrentPaymentDate' | translate }}:</span>
+              <span>
+                {{ credit.currentPaymentDate | date:'dd.MM.yyyy' }}
+              </span>
+            </div>
+
+            <div class="credit-row status-row">
+              <span>{{ 'Status' | translate }}:</span>
+              <span 
+                class="status-badge"
+                [class]="'status-' + credit.status">
+                {{ getCreditStatusText(credit.status) | translate }}
+              </span>
+            </div>
+
+          </div>
+
+          <div class="buttons">
+            @if (credit.status === CreditStatus.Active){
+              <button (click)="onOpenPayForCreditModal(credit)" class="primary-btn">
+                {{ 'PayCredit' | translate }}
+              </button>
+            }
+
+            <button (click)="openCreditDetailsModal.set(credit)"
+              [routerLink]="['/credits/details', credit.id]"
+              class="secondary-btn">
+              {{ 'Details' | translate }}
+            </button>
+          </div>
+
+        </div>
+
+      }
+    </section>
+  }
+
+    <div class="add-block">
+      <a (click)="openCreditModal.set(true)" class="add-item">
+        {{ 'OpenCredit' | translate }}
+      </a>
+    </div>
+}
+
+<app-page-switcher 
+  [currentPage]="credits?.pageNumber"
+  [hasNextPage]="credits?.hasNextPage"
+  [hasPreviousPage]="credits?.hasPreviousPage"
+  [pageCount]="credits?.pageCount"
+  (pageChange)="onPageChange($event)">
+</app-page-switcher>
+
+@if(openCreditModal()){
+  <app-open-credit-modal 
+    (openCredit)="onOpenCredit($event)" 
+    (cancelTransaction)="openCreditModal.set(false)">
+  </app-open-credit-modal>
+}
+
+@if(showSuccessWindow()){
+  <app-success-message
+    message="Success!"
+    [secondMessage]="successMessage!">
+  </app-success-message>
+}
+
+@if(openErrorMessage()){
+  <app-error-message
+    [message]="'Error' | translate"
+    [secondMessage]="errorMessage!">
+  </app-error-message>
+}
+
+@if(openPayForCreditModal()){
+  <app-pay-for-credit-modal 
+    (makeTransaction)="onMakeCreditPayment($event)"
+    [credit]="selectedCredit!"
+    (cancelTransaction)="onCLosePayForCreditModal()">
+  </app-pay-for-credit-modal>
+}
+
+@if(openCreditDetailsModal()){
+  <app-credits-details-modal 
+    [credit]="openCreditDetailsModal()!"
+    (closeModal)="openCreditDetailsModal.set(null)">
+  </app-credits-details-modal>
+}

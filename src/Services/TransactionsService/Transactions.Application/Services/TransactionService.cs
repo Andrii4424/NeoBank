@@ -79,62 +79,84 @@ namespace Transactions.Application.Services
         {
             _logger.LogInformation("Trying to create transaction");
 
-            transaction = await GetTransactionDtoWithIdentifiers(transaction);
-            if (transaction.SenderCardId == null)
-            {
-                _logger.LogError("Failed creating transaction. Wrong sender card!");
-                return OperationResult.Error("Wrong sender card!");
-            }
-            else if(transaction.GetterCardId == null)
-            {
-                _logger.LogError("Failed creating transaction. Wrong getter card!");
-                return OperationResult.Error("Wrong getter card!");
-            }
-            else if (transaction.Amount<=0)
-            {
-                _logger.LogError("Failed creating transaction. Amount of transfer must be more than 0");
-                return OperationResult.Error("Amount of transfer must be more than 0");
-            }
-            double comissionPercentage = await GetOperationComission(transaction.SenderCardId.Value, transaction.Type);
             decimal amountWithComission = transaction.Amount;
-            if (comissionPercentage > 0) {
-                amountWithComission = amountWithComission * (((decimal)comissionPercentage / 100)+1);
-                transaction.Commission= amountWithComission - transaction.Amount;
-            }
-            else
+            if (transaction.Type == TransactionType.Credit)
             {
                 transaction.Commission = 0;
-            }
-            transaction.TransactionTime = DateTime.UtcNow;
-
-            OperationResult balanceCheckResult = await CheckBalance(transaction.SenderCardId.Value, amountWithComission);
-            if (!balanceCheckResult.Success) { 
-                if(balanceCheckResult.ErrorMessage== "Influent balance")
-                {
-                    _logger.LogError("Failed creating transaction. Influent balance in card {senderCardId}", transaction.SenderCardId);
-                    transaction.Status = TransactionStatus.Failed;
-                    await CreateTransaction(transaction);
-                }
-
-                return balanceCheckResult;
-            }
-
-            if (transaction.GetterCurrency != transaction.SenderCurrency)
-            {
-                transaction.AmountToReceive = (decimal)await GetAmountAfterExchange(new ExchangeCurrencyDto { From=transaction.SenderCurrency, To=transaction.GetterCurrency, 
-                Amount = (double)transaction.Amount});
+                transaction.CurrencyExchangeCommission = 0;
+                transaction.AmountToReceive = transaction.GetterCardId == null ? transaction.Amount * (-1) : transaction.Amount;
+                transaction.GetterCurrency = transaction.TransactionCurrency;
+                transaction.SenderCurrency = transaction.TransactionCurrency;
             }
             else
             {
-                transaction.AmountToReceive = transaction.Amount;
-            }
-            transaction.Status = TransactionStatus.Pending;
+                transaction = await GetTransactionDtoWithIdentifiers(transaction);
+                if (transaction.SenderCardId == null)
+                {
+                    _logger.LogError("Failed creating transaction. Wrong sender card!");
+                    return OperationResult.Error("Wrong sender card!");
+                }
+                else if (transaction.GetterCardId == null)
+                {
+                    _logger.LogError("Failed creating transaction. Wrong getter card!");
+                    return OperationResult.Error("Wrong getter card!");
+                }
+                else if (transaction.Amount <= 0)
+                {
+                    _logger.LogError("Failed creating transaction. Amount of transfer must be more than 0");
+                    return OperationResult.Error("Amount of transfer must be more than 0");
+                }
+                double comissionPercentage = await GetOperationComission(transaction.SenderCardId.Value, transaction.Type);
+                if (comissionPercentage > 0)
+                {
+                    amountWithComission = amountWithComission * (((decimal)comissionPercentage / 100) + 1);
+                    transaction.Commission = amountWithComission - transaction.Amount;
+                }
+                else
+                {
+                    transaction.Commission = 0;
+                }
+                
 
+                OperationResult balanceCheckResult = await CheckBalance(transaction.SenderCardId.Value, amountWithComission);
+                if (!balanceCheckResult.Success)
+                {
+                    if (balanceCheckResult.ErrorMessage == "Influent balance")
+                    {
+                        _logger.LogError("Failed creating transaction. Influent balance in card {senderCardId}", transaction.SenderCardId);
+                        transaction.Status = TransactionStatus.Failed;
+                        await CreateTransaction(transaction);
+                    }
+
+                    return balanceCheckResult;
+                }
+
+                if (transaction.GetterCurrency != transaction.SenderCurrency)
+                {
+                    transaction.AmountToReceive = (decimal)await GetAmountAfterExchange(new ExchangeCurrencyDto
+                    {
+                        From = transaction.SenderCurrency,
+                        To = transaction.GetterCurrency,
+                        Amount = (double)transaction.Amount
+                    });
+                }
+                else
+                {
+                    transaction.AmountToReceive = transaction.Amount;
+                }
+            }
+
+            transaction.TransactionTime = DateTime.UtcNow;
+            transaction.Status = TransactionStatus.Pending;
             Guid transactionId = await CreateTransaction(transaction);
 
             await _rabbitMqMessageBusService.PublishAsync(new UpdateBalanceDto { Id= transactionId, SenderCardId=transaction.SenderCardId,
-            GetterCardId =transaction.GetterCardId, AmountToReplenish = (double)transaction.AmountToReceive, AmountToWithdrawn = ((double)amountWithComission)*(-1),
-            Success=null}, _exchange, "balance.update");
+                GetterCardId =transaction.GetterCardId, AmountToReplenish = (double)transaction.AmountToReceive, AmountToWithdrawn = ((double)amountWithComission)*(-1), 
+                GetterId= transaction.GetterId, CreditTariffsId=transaction.CreditTariffsId, IsCreditPayment=transaction.Type == TransactionType.Credit,
+                TransactionGetterCurrency = transaction.GetterCurrency, TermMonths = transaction.TermMonths, UserCreditId=transaction.UserCreditId, Success=null,
+                TransactionCurrency = transaction.TransactionCurrency
+            }, 
+                _exchange, "balance.update");
 
             _logger.LogError("Success creating transaction, transaction id: {transactronId}", transactionId);
 
@@ -181,7 +203,8 @@ namespace Transactions.Application.Services
                 throw new ArgumentException("Resoponse from update balance service is invalid. Wrong transaction id, transaction with id doesnt exist");
             }
 
-            if (transactionDetails.Success == true) { 
+            if (transactionDetails.Success == true)
+            {
                 transaction.Status = TransactionStatus.Completed;
             }
             else

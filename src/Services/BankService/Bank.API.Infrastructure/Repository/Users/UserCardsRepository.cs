@@ -101,5 +101,10 @@ namespace Bank.API.Infrastructure.Repository.Users
             if (card == null) return null;
             return card.Id;
         }
+
+        public async Task<UserCardsEntity?> GetCardByCardNumberAsync(string cardNumber)
+        {
+            return await _dbSet.FirstOrDefaultAsync(uc => uc.CardNumber == cardNumber);
+        }
     }
 }

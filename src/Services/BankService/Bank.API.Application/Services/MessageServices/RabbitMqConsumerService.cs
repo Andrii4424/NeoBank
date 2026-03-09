@@ -1,4 +1,5 @@
 ﻿using Bank.API.Application.DTOs.Users.CardOperations;
+using Bank.API.Application.ServiceContracts.BankServiceContracts.BankProducts.Credits;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.Users;
 using Bank.API.Application.ServiceContracts.MessageServices;
 using Microsoft.Extensions.Configuration;
@@ -65,10 +66,23 @@ namespace Bank.API.Application.Services.MessageServices
 
                     _logger.LogInformation("Trying to update balance");
 
-                    await using (var scope = _scopeFactory.CreateAsyncScope()) { 
-                        var _userCardService = scope.ServiceProvider.GetRequiredService<IUserCardService>();
+                    await using (var scope = _scopeFactory.CreateAsyncScope()) {
+                        IUserCardService _userCardService = scope.ServiceProvider.GetRequiredService<IUserCardService>();
+                        IUserCreditsService _userCreditsService = scope.ServiceProvider.GetRequiredService<IUserCreditsService>();
 
-                        operationInfo = await _userCardService.UpdateBalanceAfterTransactionAsync(operationInfo);
+
+                        if (operationInfo.IsCreditPayment == true && operationInfo.GetterCardId != null)
+                        {
+                            operationInfo = await _userCreditsService.OpenUserCredit(operationInfo);
+                        }
+                        else if (operationInfo.IsCreditPayment == true && operationInfo.SenderCardId != null)
+                        {
+                            operationInfo = await _userCreditsService.PayForCredit(operationInfo);
+                        }
+                        else
+                        {
+                            operationInfo = await _userCardService.UpdateBalanceAfterTransactionAsync(operationInfo);
+                        }
 
                         var _producerService = scope.ServiceProvider.GetRequiredService<IRabbitMqProducerService>();
                         await _producerService.PublishAsync(operationInfo, _exchangeName, "status.update");

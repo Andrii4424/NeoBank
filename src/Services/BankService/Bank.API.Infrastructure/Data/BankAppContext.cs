@@ -34,6 +34,7 @@ namespace Bank.API.Infrastructure.Data
             modelBuilder.Entity<CardTariffsEntity>().ToTable("CardTariffs");
             modelBuilder.Entity<VacancyEntity>().ToTable("Vacancies");
             modelBuilder.Entity<CreditTariffsEntity>().ToTable("CreditTariffs");
+            modelBuilder.Entity<UserCreditEntity>().ToTable("UserCredits");
             modelBuilder.Entity<NewsEntity>().ToTable("News");
 
             modelBuilder.Entity<CardTariffsEntity>()
@@ -61,6 +62,17 @@ namespace Bank.API.Infrastructure.Data
                 .HasForeignKey(c => c.BankId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<UserCreditEntity>()
+                .HasOne(uc => uc.User)
+                .WithMany(u => u.UserCredits)
+                .HasForeignKey(c => c.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<UserCreditEntity>()
+                .HasOne(uc => uc.CreditTariffs)
+                .WithMany(t => t.UserCredits)
+                .HasForeignKey(uc => uc.CreditTariffId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

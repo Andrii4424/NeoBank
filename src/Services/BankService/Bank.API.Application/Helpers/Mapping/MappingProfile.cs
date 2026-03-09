@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
 using Bank.API.Application.DTO;
 using Bank.API.Application.DTOs.BankProducts;
+using Bank.API.Application.DTOs.Credits;
 using Bank.API.Application.DTOs.Identity;
 using Bank.API.Application.DTOs.News;
 using Bank.API.Application.DTOs.Users.Cards;
 using Bank.API.Application.DTOs.Users.Vacancies;
 using Bank.API.Domain.Entities;
 using Bank.API.Domain.Entities.Cards;
+using Bank.API.Domain.Entities.Credits;
 using Bank.API.Domain.Entities.Identity;
 using Bank.API.Domain.Entities.News;
 using Bank.API.Domain.Entities.Users;
@@ -58,11 +60,20 @@ namespace Bank.API.Application.Helpers.Mapping
             CreateMap<NewsEntity, NewsDto>();
             CreateMap<NewsDto, NewsEntity>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore());
-
-
             CreateMap<AddNewsDto, NewsEntity>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore());
 
+            //CreditTariffs
+            CreateMap<CreditTariffsEntity, CreditTariffsDto>();
+            CreateMap<CreditTariffsDto, CreditTariffsEntity>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
+
+            //UserCredits
+            CreateMap<UserCreditEntity, UserCreditDto>();
+            CreateMap<UserCreditDto, UserCreditEntity>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
+            CreateMap<UserCreditEntity, OpenUserCreditDto>()
+                .ForMember(dest => dest.EnrollmentCardNumber, opt => opt.Ignore());
         }
     }
 }

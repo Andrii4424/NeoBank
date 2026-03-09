@@ -1,0 +1,78 @@
+<div class="modal-overlay">
+  <div class="modal-content">
+
+    <div class="modal-header">
+      <h2>{{ credit.creditTariffs?.name || ('CreditDetails.Title' | translate) }}</h2>
+      <button class="close-btn" (click)="close()">✕</button>
+    </div>
+
+    <div class="modal-body">
+
+      <div class="info-grid">
+
+        <div class="info-row">
+          <span>{{ 'CreditDetails.Amount' | translate }}:</span>
+          <strong>{{ credit.amount }} {{ getCurrency(credit.currency) }}</strong>
+        </div>
+
+        <div class="info-row">
+          <span>{{ 'CreditDetails.RemainingDebt' | translate }}:</span>
+          <strong>{{ credit.remainingDebt }} {{ getCurrency(credit.currency) }}</strong>
+        </div>
+
+        <div class="info-row">
+          <span>{{ 'CreditDetails.MonthlyPayment' | translate }}:</span>
+          <strong>{{ credit.monthlyPayment }} {{ getCurrency(credit.currency) }}</strong>
+        </div>
+
+        <div class="info-row">
+          <span>{{ 'CreditDetails.CurrentMonthDue' | translate }}:</span>
+          <strong>{{ credit.currentMonthAmountDue }} {{ getCurrency(credit.currency) }}</strong>
+        </div>
+
+        <div class="info-row">
+          <span>{{ 'CreditDetails.InterestRate' | translate }}:</span>
+          <strong>{{ credit.interestRate }} %</strong>
+        </div>
+
+        <div class="info-row">
+          <span>{{ 'CreditDetails.Term' | translate }}:</span>
+          <strong>{{ credit.termMonths }} {{ 'CreditDetails.Months' | translate }}</strong>
+        </div>
+
+        <div class="info-row">
+          <span>{{ 'CreditDetails.StartDate' | translate }}:</span>
+          <strong>{{ credit.startDate | date:'dd.MM.yyyy'}}</strong>
+        </div>
+
+        <div class="info-row">
+          <span>{{ 'CreditDetails.EndDate' | translate }}:</span>
+          <strong>{{ credit.endDate | date:'dd.MM.yyyy' }}</strong>
+        </div>
+
+        <div class="info-row">
+          <span>{{ 'CreditDetails.NextPaymentDate' | translate }}:</span>
+          <strong>{{ credit.currentPaymentDate | date:'dd.MM.yyyy' }}</strong>
+        </div>
+
+        <div class="info-row">
+          <span>{{ 'CreditDetails.Status' | translate }}:</span>
+
+          <span
+            class="status-badge"
+            [class.active]="credit.status === CreditStatus.Active"
+            [class.closed]="credit.status === CreditStatus.Closed"
+          >
+            {{ getCreditStatusText(credit.status) }}
+          </span>
+
+        </div>
+
+        <div class="info-row">
+          <span>{{ 'CreditDetails.CreatedAt' | translate }}:</span>
+          <strong>{{ credit.createdAt | date:'dd.MM.yyyy' }}</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

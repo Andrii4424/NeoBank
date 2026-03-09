@@ -3,6 +3,7 @@ using Bank.API.Application.Helpers.Mapping;
 using Bank.API.Application.ServiceContracts.BankServiceContracts;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.Auth;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.BankProducts;
+using Bank.API.Application.ServiceContracts.BankServiceContracts.BankProducts.Credits;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.News;
 using Bank.API.Application.ServiceContracts.BankServiceContracts.Users;
 using Bank.API.Application.ServiceContracts.MessageServices;
@@ -10,6 +11,7 @@ using Bank.API.Application.Services.Auth;
 using Bank.API.Application.Services.BankServices;
 using Bank.API.Application.Services.BankServices.BankProducts;
 using Bank.API.Application.Services.BankServices.Users;
+using Bank.API.Application.Services.CreditsServices;
 using Bank.API.Application.Services.MessageServices;
 using Bank.API.Application.Services.News;
 using Bank.API.Domain.Entities.Identity;
@@ -22,16 +24,13 @@ using Bank.API.Infrastructure.Repository;
 using Bank.API.Infrastructure.Repository.BankProducts;
 using Bank.API.Infrastructure.Repository.News;
 using Bank.API.Infrastructure.Repository.Users;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
-using System.Reflection;
 using System.Security.Claims;
 
 namespace Bank.API.WebUI.StartupServicesInjection
@@ -128,6 +127,9 @@ namespace Bank.API.WebUI.StartupServicesInjection
             services.AddScoped(typeof(IVacanciesRepository), typeof(VacanciesRepository));
             services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
             services.AddScoped(typeof(INewsRepository), typeof(NewsRepository));
+            services.AddScoped(typeof(ICreditTariffsRepository), typeof(CreditTariffsRepository));
+            services.AddScoped(typeof(IUserCreditsRepository), typeof(UserCreditsRepository));
+
 
             //Services injection
             //Identity
@@ -143,10 +145,15 @@ namespace Bank.API.WebUI.StartupServicesInjection
             services.AddScoped<ISmtpService, SmtpService>();
             services.AddScoped<IRecoveryPasswordService, RecoveryPasswordService>();
             services.AddScoped<INewsService, NewsService>();
-
+            services.AddScoped<ICreditTariffsService, CreditTariffsService>();
+            services.AddScoped<IUserCreditsService, UserCreditsService>();
 
             //Background Services
             services.AddHostedService<RabbitMqConsumerService>();
+            services.AddHostedService<CreditInterestBackgroundService>();
+
+            //Http Clients
+            services.AddHttpClient<ICurrencyService, CurrencyService>();
 
             //AutoMapper
             services.AddAutoMapper(typeof(MappingProfile));

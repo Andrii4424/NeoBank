@@ -23,7 +23,16 @@ export class ProfileService {
     return this.http.get<IProfile>(`${this.baseUrl}Me`, {
       context: new HttpContext()
         .set(SKIP_LOGIN_REDIRECT, skipRedirect)
-    });
+    }).pipe(
+      tap({
+        next:(profile)=>{
+          localStorage.setItem( "userId", profile.id ?? "");
+        },
+        error:()=>{
+          localStorage.removeItem("userId");
+        }
+      })
+    );
   }
 
   constructor(){
@@ -94,6 +103,10 @@ export class ProfileService {
 
   getRole(){
     return localStorage.getItem("role");
+  }
+
+  getUserId(){
+    return localStorage.getItem("userId");
   }
 }
 
